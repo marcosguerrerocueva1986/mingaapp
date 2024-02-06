@@ -1,0 +1,1 @@
+export 'deposito_detalle/index.dart';

@@ -1,0 +1,27 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'beneficiario_controller.dart';
+
+// **************************************************************************
+// RiverpodGenerator
+// **************************************************************************
+
+String _$beneficiarioControllerHash() =>
+    r'6357f0dffca12666a5e12c5c3d0c78351e80efec';
+
+/// See also [BeneficiarioController].
+@ProviderFor(BeneficiarioController)
+final beneficiarioControllerProvider = AutoDisposeNotifierProvider<
+    BeneficiarioController, BeneficiarioState>.internal(
+  BeneficiarioController.new,
+  name: r'beneficiarioControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$beneficiarioControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$BeneficiarioController = AutoDisposeNotifier<BeneficiarioState>;
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
