@@ -72,6 +72,7 @@ class LoginController extends _$LoginController {
           () async => await client.validaCodigoOtpIngreso(requerimiento));
 
       if (respuesta.hasValue) {
+        ref.read(themeInfoProvider.notifier).cambiarColor('#B70055');
         HttpClientHelper.token = respuesta.value?.token ?? '';
         state = state.copyWith(
             validacionOtpRespuesta: respuesta.value,

@@ -1,5 +1,6 @@
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/utils/shared_preferences.dart';
+import 'package:get_storage/get_storage.dart';
 
 part 'theme_provider.g.dart';
 
@@ -23,4 +24,13 @@ class ThemeInfo extends _$ThemeInfo {
     preferences.isDarkMode.val = isDarkMode;
     state = obtenerTema(isDarkMode);
   }
+
+  void cambiarColor(String color) {
+    if (color != '') {
+      state = obtenerTema(color.toColor());
+      preferences.color.val = color;
+    }
+  }
+
+
 }

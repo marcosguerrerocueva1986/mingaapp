@@ -70,8 +70,9 @@ class _MyAppState extends ConsumerState<MyApp> {
     return MaterialApp.router(
       themeMode: themeMode,
       theme: ThemeData(
-          colorScheme:
-              ColorScheme.fromSeed(seedColor: Color(int.parse("0x0055b7"))),
+          //colorScheme:ColorScheme.fromSeed(seedColor: Color(int.parse("0x0055b7"))),
+          colorScheme:ColorScheme.fromSeed(seedColor: Color(int.parse("0xff9e444e"))),
+
           cardTheme: CardTheme(
               elevation: 0,
               shape: RoundedRectangleBorder(
@@ -81,7 +82,7 @@ class _MyAppState extends ConsumerState<MyApp> {
                 borderRadius: BorderRadius.circular(
                     8.0), // Personaliza el radio de borde según lo necesites
               ),
-              // color: Colors.white,
+               //color: Colors.white,
               surfaceTintColor: Colors.transparent),
           inputDecorationTheme: InputDecorationTheme(
             errorBorder: OutlineInputBorder(
@@ -97,7 +98,22 @@ class _MyAppState extends ConsumerState<MyApp> {
           ),
           useMaterial3: true,
           textTheme: GoogleFonts.aBeeZeeTextTheme(
-              ThemeData(brightness: Brightness.light).textTheme)),
+              ThemeData(brightness: Brightness.light).textTheme),
+              elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          elevation: 8.0,
+          shadowColor: Colors.green,
+          backgroundColor: Colors.green,
+          disabledBackgroundColor: Colors.green.withOpacity(0.4),
+          disabledForegroundColor: Colors.grey,
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+          textStyle: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        )
+              )
+              
+              ),
+
       darkTheme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
             seedColor: Color(int.parse("0x0055b7")),

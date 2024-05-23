@@ -116,16 +116,16 @@ class _PosicionConsolidadaPageState
                     tipoTransferencia: TipoTransferencia.directa));
               },
             ),
-            const Divider(height: 1),
-            DrawerItemWidget(
-              icon: Icons.compare_arrows_outlined,
-              title: 'Transferencias Interbancarias',
-              onTap: () {
-                appRouter.pop();
-                appRouter.navigate(TransferenciaRoute(
-                    tipoTransferencia: TipoTransferencia.interbancaria));
-              },
-            ),
+            // const Divider(height: 1),
+            // DrawerItemWidget(
+            //   icon: Icons.compare_arrows_outlined,
+            //   title: 'Transferencias Interbancarias',
+            //   onTap: () {
+            //     appRouter.pop();
+            //     appRouter.navigate(TransferenciaRoute(
+            //         tipoTransferencia: TipoTransferencia.interbancaria));
+            //   },
+            // ),
             const Divider(height: 1),
             DrawerItemWidget(
               icon: Icons.people,
@@ -147,12 +147,12 @@ class _PosicionConsolidadaPageState
                 appRouter.navigate(AbonoRoute());
               },
             ),
-            const Divider(height: 1),
-            DrawerItemWidget(
-              icon: Icons.water_drop_outlined,
-              title: 'Pagos Servicios',
-              onTap: () {},
-            ),
+            // const Divider(height: 1),
+            // DrawerItemWidget(
+            //   icon: Icons.water_drop_outlined,
+            //   title: 'Pagos Servicios',
+            //   onTap: () {},
+            // ),
             const Divider(height: 1),
 
             const TitleSectionWidget(
@@ -174,14 +174,14 @@ class _PosicionConsolidadaPageState
               },
             ),
             const Divider(height: 1),
-            DrawerItemWidget(
-              icon: Icons.fingerprint_outlined,
-              title: preferences.accesoPorHuellaHabilitado.val
-                  ? 'Deshabilitar Acceso Por Huella'
-                  : 'Habilitar Acceso Por Huella',
-              onTap: controller.toogleAccesoPorHuella,
-            ),
-            const Divider(height: 1),
+            // DrawerItemWidget(
+            //   icon: Icons.fingerprint_outlined,
+            //   title: preferences.accesoPorHuellaHabilitado.val
+            //       ? 'Deshabilitar Acceso Por Huella'
+            //       : 'Habilitar Acceso Por Huella',
+            //   onTap: controller.toogleAccesoPorHuella,
+            // ),
+            // const Divider(height: 1),
             DrawerItemWidget(
               icon: Icons.lock_outline,
               title: 'Cerrar Sesión',
