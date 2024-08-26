@@ -89,7 +89,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             CircleAvatar(
                               radius: 60.0,
                               child: Image.network(
-                                // Configs.baseUrlSite + 'assets/images/seguridad/' + provider.informacionValidada?.imagen ??
+                                '${Configs.baseUrlSite}assets/images/seguridad/${provider.informacionValidada!.imagen}' ?? 
                                 'https://ssl.gstatic.com/onebox/media/sports/logos/E0wlNj3ZcvO0hmFpU-5z9g_96x96.png',
                                 width: 85,
                                 height: 85,

@@ -27,7 +27,7 @@ class ThemeInfo extends _$ThemeInfo {
 
   void cambiarColor(String color) {
     if (color != '') {
-      state = obtenerTema(color.toColor());
+      state = obtenerTema(false);
       preferences.color.val = color;
     }
   }

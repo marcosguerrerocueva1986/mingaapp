@@ -15,7 +15,8 @@ final class _Configs {
   static const String baseUrlTest =
       'http://26.132.159.192:9091/services/api/v2/';
 
-  static const String baseUrlSite = 'https://cooperativa15deagosto.com/';
+  static const String baseUrlSite =
+      'https://webbancapersonas.cooperativa15deagosto.com/';
 
   static const String userTest = 'USERTEST';
 
