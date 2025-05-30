@@ -10,12 +10,11 @@ part of 'configs.dart';
 // ignore_for_file: type=lint
 final class _Configs {
   static const String baseUrl =
-      'https://webbancapersonas.cooperativa15deagosto.com/services/api/v2/';
+      'https://mingaonline.coopminga.com/services/api/v2/';
 
-  static const String baseUrlTest = 'http://131.196.8.93:9099/services/api/v2/';
+  static const String baseUrlTest = 'http://192.168.1.92:3003/api/v2/';
 
-  static const String baseUrlSite =
-      'https://webbancapersonas.cooperativa15deagosto.com/';
+  static const String baseUrlSite = 'https://mingaonline.coopminga.com';
 
   static const String userTest = 'userTest';
 

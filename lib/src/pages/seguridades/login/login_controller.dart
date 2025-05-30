@@ -19,11 +19,11 @@ class LoginController extends _$LoginController {
 
   void login() async {
     if (form.valid) {
-      var client = HttpClientHelper.getClient();
       var requerimiento = LoginRequerimiento.fromJson(form.value);
-
       HttpClientHelper.testMode =
           requerimiento.codigoUsuario == Configs.userTest;
+
+      var client = HttpClientHelper.getClient();
 
       if (state.estaValidado) {
         var respuesta =

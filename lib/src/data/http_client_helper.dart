@@ -42,6 +42,7 @@ class HttpClientHelper {
       };
 
     dio.options.contentType = 'application/json';
+    testMode = HttpClientHelper.testMode;
 
     return RestClient(dio, baseUrl: testMode ? Configs.baseUrlTest : Configs.baseUrl);
   }
