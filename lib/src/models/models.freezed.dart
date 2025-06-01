@@ -10640,6 +10640,7 @@ mixin _$TransferenciaState {
   bool get esComprobante => throw _privateConstructorUsedError;
   ProcesaTransfernciaDirectaRespuesta? get respuestaProceso =>
       throw _privateConstructorUsedError;
+  ConceptoModel? get concepto => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -10659,12 +10660,14 @@ abstract class $TransferenciaStateCopyWith<$Res> {
       CuentaModel? cuentaDestino,
       bool esValidacion,
       bool esComprobante,
-      ProcesaTransfernciaDirectaRespuesta? respuestaProceso});
+      ProcesaTransfernciaDirectaRespuesta? respuestaProceso,
+      ConceptoModel? concepto});
 
   $CuentaModelCopyWith<$Res>? get cuenta;
   $BeneficiarioModelCopyWith<$Res>? get beneficiario;
   $CuentaModelCopyWith<$Res>? get cuentaDestino;
   $ProcesaTransfernciaDirectaRespuestaCopyWith<$Res>? get respuestaProceso;
+  $ConceptoModelCopyWith<$Res>? get concepto;
 }
 
 /// @nodoc
@@ -10686,6 +10689,7 @@ class _$TransferenciaStateCopyWithImpl<$Res, $Val extends TransferenciaState>
     Object? esValidacion = null,
     Object? esComprobante = null,
     Object? respuestaProceso = freezed,
+    Object? concepto = freezed,
   }) {
     return _then(_value.copyWith(
       cuenta: freezed == cuenta
@@ -10712,6 +10716,10 @@ class _$TransferenciaStateCopyWithImpl<$Res, $Val extends TransferenciaState>
           ? _value.respuestaProceso
           : respuestaProceso // ignore: cast_nullable_to_non_nullable
               as ProcesaTransfernciaDirectaRespuesta?,
+      concepto: freezed == concepto
+          ? _value.concepto
+          : concepto // ignore: cast_nullable_to_non_nullable
+              as ConceptoModel?,
     ) as $Val);
   }
 
@@ -10763,6 +10771,18 @@ class _$TransferenciaStateCopyWithImpl<$Res, $Val extends TransferenciaState>
       return _then(_value.copyWith(respuestaProceso: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConceptoModelCopyWith<$Res>? get concepto {
+    if (_value.concepto == null) {
+      return null;
+    }
+
+    return $ConceptoModelCopyWith<$Res>(_value.concepto!, (value) {
+      return _then(_value.copyWith(concepto: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -10779,7 +10799,8 @@ abstract class _$$TransferenciaStateImplCopyWith<$Res>
       CuentaModel? cuentaDestino,
       bool esValidacion,
       bool esComprobante,
-      ProcesaTransfernciaDirectaRespuesta? respuestaProceso});
+      ProcesaTransfernciaDirectaRespuesta? respuestaProceso,
+      ConceptoModel? concepto});
 
   @override
   $CuentaModelCopyWith<$Res>? get cuenta;
@@ -10789,6 +10810,8 @@ abstract class _$$TransferenciaStateImplCopyWith<$Res>
   $CuentaModelCopyWith<$Res>? get cuentaDestino;
   @override
   $ProcesaTransfernciaDirectaRespuestaCopyWith<$Res>? get respuestaProceso;
+  @override
+  $ConceptoModelCopyWith<$Res>? get concepto;
 }
 
 /// @nodoc
@@ -10808,6 +10831,7 @@ class __$$TransferenciaStateImplCopyWithImpl<$Res>
     Object? esValidacion = null,
     Object? esComprobante = null,
     Object? respuestaProceso = freezed,
+    Object? concepto = freezed,
   }) {
     return _then(_$TransferenciaStateImpl(
       cuenta: freezed == cuenta
@@ -10834,6 +10858,10 @@ class __$$TransferenciaStateImplCopyWithImpl<$Res>
           ? _value.respuestaProceso
           : respuestaProceso // ignore: cast_nullable_to_non_nullable
               as ProcesaTransfernciaDirectaRespuesta?,
+      concepto: freezed == concepto
+          ? _value.concepto
+          : concepto // ignore: cast_nullable_to_non_nullable
+              as ConceptoModel?,
     ));
   }
 }
@@ -10847,7 +10875,8 @@ class _$TransferenciaStateImpl implements _TransferenciaState {
       this.cuentaDestino,
       this.esValidacion = false,
       this.esComprobante = false,
-      this.respuestaProceso});
+      this.respuestaProceso,
+      this.concepto});
 
   factory _$TransferenciaStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$TransferenciaStateImplFromJson(json);
@@ -10866,10 +10895,12 @@ class _$TransferenciaStateImpl implements _TransferenciaState {
   final bool esComprobante;
   @override
   final ProcesaTransfernciaDirectaRespuesta? respuestaProceso;
+  @override
+  final ConceptoModel? concepto;
 
   @override
   String toString() {
-    return 'TransferenciaState(cuenta: $cuenta, beneficiario: $beneficiario, cuentaDestino: $cuentaDestino, esValidacion: $esValidacion, esComprobante: $esComprobante, respuestaProceso: $respuestaProceso)';
+    return 'TransferenciaState(cuenta: $cuenta, beneficiario: $beneficiario, cuentaDestino: $cuentaDestino, esValidacion: $esValidacion, esComprobante: $esComprobante, respuestaProceso: $respuestaProceso, concepto: $concepto)';
   }
 
   @override
@@ -10887,13 +10918,15 @@ class _$TransferenciaStateImpl implements _TransferenciaState {
             (identical(other.esComprobante, esComprobante) ||
                 other.esComprobante == esComprobante) &&
             (identical(other.respuestaProceso, respuestaProceso) ||
-                other.respuestaProceso == respuestaProceso));
+                other.respuestaProceso == respuestaProceso) &&
+            (identical(other.concepto, concepto) ||
+                other.concepto == concepto));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, cuenta, beneficiario,
-      cuentaDestino, esValidacion, esComprobante, respuestaProceso);
+      cuentaDestino, esValidacion, esComprobante, respuestaProceso, concepto);
 
   @JsonKey(ignore: true)
   @override
@@ -10912,13 +10945,13 @@ class _$TransferenciaStateImpl implements _TransferenciaState {
 
 abstract class _TransferenciaState implements TransferenciaState {
   factory _TransferenciaState(
-          {final CuentaModel? cuenta,
-          final BeneficiarioModel? beneficiario,
-          final CuentaModel? cuentaDestino,
-          final bool esValidacion,
-          final bool esComprobante,
-          final ProcesaTransfernciaDirectaRespuesta? respuestaProceso}) =
-      _$TransferenciaStateImpl;
+      {final CuentaModel? cuenta,
+      final BeneficiarioModel? beneficiario,
+      final CuentaModel? cuentaDestino,
+      final bool esValidacion,
+      final bool esComprobante,
+      final ProcesaTransfernciaDirectaRespuesta? respuestaProceso,
+      final ConceptoModel? concepto}) = _$TransferenciaStateImpl;
 
   factory _TransferenciaState.fromJson(Map<String, dynamic> json) =
       _$TransferenciaStateImpl.fromJson;
@@ -10935,6 +10968,8 @@ abstract class _TransferenciaState implements TransferenciaState {
   bool get esComprobante;
   @override
   ProcesaTransfernciaDirectaRespuesta? get respuestaProceso;
+  @override
+  ConceptoModel? get concepto;
   @override
   @JsonKey(ignore: true)
   _$$TransferenciaStateImplCopyWith<_$TransferenciaStateImpl> get copyWith =>
@@ -12898,4 +12933,661 @@ abstract class _ValidaPinAccesoRequerimiento
   _$$ValidaPinAccesoRequerimientoImplCopyWith<
           _$ValidaPinAccesoRequerimientoImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+ConceptoModel _$ConceptoModelFromJson(Map<String, dynamic> json) {
+  return _ConceptoModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ConceptoModel {
+  String get codigo => throw _privateConstructorUsedError;
+  String get nombre => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ConceptoModelCopyWith<ConceptoModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ConceptoModelCopyWith<$Res> {
+  factory $ConceptoModelCopyWith(
+          ConceptoModel value, $Res Function(ConceptoModel) then) =
+      _$ConceptoModelCopyWithImpl<$Res, ConceptoModel>;
+  @useResult
+  $Res call({String codigo, String nombre});
+}
+
+/// @nodoc
+class _$ConceptoModelCopyWithImpl<$Res, $Val extends ConceptoModel>
+    implements $ConceptoModelCopyWith<$Res> {
+  _$ConceptoModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codigo = null,
+    Object? nombre = null,
+  }) {
+    return _then(_value.copyWith(
+      codigo: null == codigo
+          ? _value.codigo
+          : codigo // ignore: cast_nullable_to_non_nullable
+              as String,
+      nombre: null == nombre
+          ? _value.nombre
+          : nombre // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ConceptoModelImplCopyWith<$Res>
+    implements $ConceptoModelCopyWith<$Res> {
+  factory _$$ConceptoModelImplCopyWith(
+          _$ConceptoModelImpl value, $Res Function(_$ConceptoModelImpl) then) =
+      __$$ConceptoModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String codigo, String nombre});
+}
+
+/// @nodoc
+class __$$ConceptoModelImplCopyWithImpl<$Res>
+    extends _$ConceptoModelCopyWithImpl<$Res, _$ConceptoModelImpl>
+    implements _$$ConceptoModelImplCopyWith<$Res> {
+  __$$ConceptoModelImplCopyWithImpl(
+      _$ConceptoModelImpl _value, $Res Function(_$ConceptoModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codigo = null,
+    Object? nombre = null,
+  }) {
+    return _then(_$ConceptoModelImpl(
+      codigo: null == codigo
+          ? _value.codigo
+          : codigo // ignore: cast_nullable_to_non_nullable
+              as String,
+      nombre: null == nombre
+          ? _value.nombre
+          : nombre // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ConceptoModelImpl implements _ConceptoModel {
+  _$ConceptoModelImpl({this.codigo = '', this.nombre = ''});
+
+  factory _$ConceptoModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ConceptoModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String codigo;
+  @override
+  @JsonKey()
+  final String nombre;
+
+  @override
+  String toString() {
+    return 'ConceptoModel(codigo: $codigo, nombre: $nombre)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConceptoModelImpl &&
+            (identical(other.codigo, codigo) || other.codigo == codigo) &&
+            (identical(other.nombre, nombre) || other.nombre == nombre));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, codigo, nombre);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConceptoModelImplCopyWith<_$ConceptoModelImpl> get copyWith =>
+      __$$ConceptoModelImplCopyWithImpl<_$ConceptoModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ConceptoModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ConceptoModel implements ConceptoModel {
+  factory _ConceptoModel({final String codigo, final String nombre}) =
+      _$ConceptoModelImpl;
+
+  factory _ConceptoModel.fromJson(Map<String, dynamic> json) =
+      _$ConceptoModelImpl.fromJson;
+
+  @override
+  String get codigo;
+  @override
+  String get nombre;
+  @override
+  @JsonKey(ignore: true)
+  _$$ConceptoModelImplCopyWith<_$ConceptoModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SeleccionConceptoState _$SeleccionConceptoStateFromJson(
+    Map<String, dynamic> json) {
+  return _SeleccionConceptoState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SeleccionConceptoState {
+  List<ConceptoModel> get conceptos => throw _privateConstructorUsedError;
+  ConceptoModel? get concepto => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SeleccionConceptoStateCopyWith<SeleccionConceptoState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SeleccionConceptoStateCopyWith<$Res> {
+  factory $SeleccionConceptoStateCopyWith(SeleccionConceptoState value,
+          $Res Function(SeleccionConceptoState) then) =
+      _$SeleccionConceptoStateCopyWithImpl<$Res, SeleccionConceptoState>;
+  @useResult
+  $Res call({List<ConceptoModel> conceptos, ConceptoModel? concepto});
+
+  $ConceptoModelCopyWith<$Res>? get concepto;
+}
+
+/// @nodoc
+class _$SeleccionConceptoStateCopyWithImpl<$Res,
+        $Val extends SeleccionConceptoState>
+    implements $SeleccionConceptoStateCopyWith<$Res> {
+  _$SeleccionConceptoStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? conceptos = null,
+    Object? concepto = freezed,
+  }) {
+    return _then(_value.copyWith(
+      conceptos: null == conceptos
+          ? _value.conceptos
+          : conceptos // ignore: cast_nullable_to_non_nullable
+              as List<ConceptoModel>,
+      concepto: freezed == concepto
+          ? _value.concepto
+          : concepto // ignore: cast_nullable_to_non_nullable
+              as ConceptoModel?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConceptoModelCopyWith<$Res>? get concepto {
+    if (_value.concepto == null) {
+      return null;
+    }
+
+    return $ConceptoModelCopyWith<$Res>(_value.concepto!, (value) {
+      return _then(_value.copyWith(concepto: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$SeleccionConceptoStateImplCopyWith<$Res>
+    implements $SeleccionConceptoStateCopyWith<$Res> {
+  factory _$$SeleccionConceptoStateImplCopyWith(
+          _$SeleccionConceptoStateImpl value,
+          $Res Function(_$SeleccionConceptoStateImpl) then) =
+      __$$SeleccionConceptoStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<ConceptoModel> conceptos, ConceptoModel? concepto});
+
+  @override
+  $ConceptoModelCopyWith<$Res>? get concepto;
+}
+
+/// @nodoc
+class __$$SeleccionConceptoStateImplCopyWithImpl<$Res>
+    extends _$SeleccionConceptoStateCopyWithImpl<$Res,
+        _$SeleccionConceptoStateImpl>
+    implements _$$SeleccionConceptoStateImplCopyWith<$Res> {
+  __$$SeleccionConceptoStateImplCopyWithImpl(
+      _$SeleccionConceptoStateImpl _value,
+      $Res Function(_$SeleccionConceptoStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? conceptos = null,
+    Object? concepto = freezed,
+  }) {
+    return _then(_$SeleccionConceptoStateImpl(
+      conceptos: null == conceptos
+          ? _value._conceptos
+          : conceptos // ignore: cast_nullable_to_non_nullable
+              as List<ConceptoModel>,
+      concepto: freezed == concepto
+          ? _value.concepto
+          : concepto // ignore: cast_nullable_to_non_nullable
+              as ConceptoModel?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SeleccionConceptoStateImpl implements _SeleccionConceptoState {
+  _$SeleccionConceptoStateImpl(
+      {final List<ConceptoModel> conceptos = const [], this.concepto})
+      : _conceptos = conceptos;
+
+  factory _$SeleccionConceptoStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SeleccionConceptoStateImplFromJson(json);
+
+  final List<ConceptoModel> _conceptos;
+  @override
+  @JsonKey()
+  List<ConceptoModel> get conceptos {
+    if (_conceptos is EqualUnmodifiableListView) return _conceptos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_conceptos);
+  }
+
+  @override
+  final ConceptoModel? concepto;
+
+  @override
+  String toString() {
+    return 'SeleccionConceptoState(conceptos: $conceptos, concepto: $concepto)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SeleccionConceptoStateImpl &&
+            const DeepCollectionEquality()
+                .equals(other._conceptos, _conceptos) &&
+            (identical(other.concepto, concepto) ||
+                other.concepto == concepto));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_conceptos), concepto);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SeleccionConceptoStateImplCopyWith<_$SeleccionConceptoStateImpl>
+      get copyWith => __$$SeleccionConceptoStateImplCopyWithImpl<
+          _$SeleccionConceptoStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SeleccionConceptoStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SeleccionConceptoState implements SeleccionConceptoState {
+  factory _SeleccionConceptoState(
+      {final List<ConceptoModel> conceptos,
+      final ConceptoModel? concepto}) = _$SeleccionConceptoStateImpl;
+
+  factory _SeleccionConceptoState.fromJson(Map<String, dynamic> json) =
+      _$SeleccionConceptoStateImpl.fromJson;
+
+  @override
+  List<ConceptoModel> get conceptos;
+  @override
+  ConceptoModel? get concepto;
+  @override
+  @JsonKey(ignore: true)
+  _$$SeleccionConceptoStateImplCopyWith<_$SeleccionConceptoStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ConsultaConceptosRespuesta _$ConsultaConceptosRespuestaFromJson(
+    Map<String, dynamic> json) {
+  return _ConsultaConceptosRespuesta.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ConsultaConceptosRespuesta {
+  List<ConceptoModel> get conceptoLista => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ConsultaConceptosRespuestaCopyWith<ConsultaConceptosRespuesta>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ConsultaConceptosRespuestaCopyWith<$Res> {
+  factory $ConsultaConceptosRespuestaCopyWith(ConsultaConceptosRespuesta value,
+          $Res Function(ConsultaConceptosRespuesta) then) =
+      _$ConsultaConceptosRespuestaCopyWithImpl<$Res,
+          ConsultaConceptosRespuesta>;
+  @useResult
+  $Res call({List<ConceptoModel> conceptoLista});
+}
+
+/// @nodoc
+class _$ConsultaConceptosRespuestaCopyWithImpl<$Res,
+        $Val extends ConsultaConceptosRespuesta>
+    implements $ConsultaConceptosRespuestaCopyWith<$Res> {
+  _$ConsultaConceptosRespuestaCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? conceptoLista = null,
+  }) {
+    return _then(_value.copyWith(
+      conceptoLista: null == conceptoLista
+          ? _value.conceptoLista
+          : conceptoLista // ignore: cast_nullable_to_non_nullable
+              as List<ConceptoModel>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ConsultaConceptosRespuestaImplCopyWith<$Res>
+    implements $ConsultaConceptosRespuestaCopyWith<$Res> {
+  factory _$$ConsultaConceptosRespuestaImplCopyWith(
+          _$ConsultaConceptosRespuestaImpl value,
+          $Res Function(_$ConsultaConceptosRespuestaImpl) then) =
+      __$$ConsultaConceptosRespuestaImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<ConceptoModel> conceptoLista});
+}
+
+/// @nodoc
+class __$$ConsultaConceptosRespuestaImplCopyWithImpl<$Res>
+    extends _$ConsultaConceptosRespuestaCopyWithImpl<$Res,
+        _$ConsultaConceptosRespuestaImpl>
+    implements _$$ConsultaConceptosRespuestaImplCopyWith<$Res> {
+  __$$ConsultaConceptosRespuestaImplCopyWithImpl(
+      _$ConsultaConceptosRespuestaImpl _value,
+      $Res Function(_$ConsultaConceptosRespuestaImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? conceptoLista = null,
+  }) {
+    return _then(_$ConsultaConceptosRespuestaImpl(
+      conceptoLista: null == conceptoLista
+          ? _value._conceptoLista
+          : conceptoLista // ignore: cast_nullable_to_non_nullable
+              as List<ConceptoModel>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ConsultaConceptosRespuestaImpl implements _ConsultaConceptosRespuesta {
+  _$ConsultaConceptosRespuestaImpl(
+      {final List<ConceptoModel> conceptoLista = const []})
+      : _conceptoLista = conceptoLista;
+
+  factory _$ConsultaConceptosRespuestaImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ConsultaConceptosRespuestaImplFromJson(json);
+
+  final List<ConceptoModel> _conceptoLista;
+  @override
+  @JsonKey()
+  List<ConceptoModel> get conceptoLista {
+    if (_conceptoLista is EqualUnmodifiableListView) return _conceptoLista;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_conceptoLista);
+  }
+
+  @override
+  String toString() {
+    return 'ConsultaConceptosRespuesta(conceptoLista: $conceptoLista)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConsultaConceptosRespuestaImpl &&
+            const DeepCollectionEquality()
+                .equals(other._conceptoLista, _conceptoLista));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_conceptoLista));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConsultaConceptosRespuestaImplCopyWith<_$ConsultaConceptosRespuestaImpl>
+      get copyWith => __$$ConsultaConceptosRespuestaImplCopyWithImpl<
+          _$ConsultaConceptosRespuestaImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ConsultaConceptosRespuestaImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ConsultaConceptosRespuesta
+    implements ConsultaConceptosRespuesta {
+  factory _ConsultaConceptosRespuesta(
+          {final List<ConceptoModel> conceptoLista}) =
+      _$ConsultaConceptosRespuestaImpl;
+
+  factory _ConsultaConceptosRespuesta.fromJson(Map<String, dynamic> json) =
+      _$ConsultaConceptosRespuestaImpl.fromJson;
+
+  @override
+  List<ConceptoModel> get conceptoLista;
+  @override
+  @JsonKey(ignore: true)
+  _$$ConsultaConceptosRespuestaImplCopyWith<_$ConsultaConceptosRespuestaImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ComunItemModel _$ComunItemModelFromJson(Map<String, dynamic> json) {
+  return _ComunItemModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ComunItemModel {
+  String get codigo => throw _privateConstructorUsedError;
+  String get nombre => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ComunItemModelCopyWith<ComunItemModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ComunItemModelCopyWith<$Res> {
+  factory $ComunItemModelCopyWith(
+          ComunItemModel value, $Res Function(ComunItemModel) then) =
+      _$ComunItemModelCopyWithImpl<$Res, ComunItemModel>;
+  @useResult
+  $Res call({String codigo, String nombre});
+}
+
+/// @nodoc
+class _$ComunItemModelCopyWithImpl<$Res, $Val extends ComunItemModel>
+    implements $ComunItemModelCopyWith<$Res> {
+  _$ComunItemModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codigo = null,
+    Object? nombre = null,
+  }) {
+    return _then(_value.copyWith(
+      codigo: null == codigo
+          ? _value.codigo
+          : codigo // ignore: cast_nullable_to_non_nullable
+              as String,
+      nombre: null == nombre
+          ? _value.nombre
+          : nombre // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ComunItemModelImplCopyWith<$Res>
+    implements $ComunItemModelCopyWith<$Res> {
+  factory _$$ComunItemModelImplCopyWith(_$ComunItemModelImpl value,
+          $Res Function(_$ComunItemModelImpl) then) =
+      __$$ComunItemModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String codigo, String nombre});
+}
+
+/// @nodoc
+class __$$ComunItemModelImplCopyWithImpl<$Res>
+    extends _$ComunItemModelCopyWithImpl<$Res, _$ComunItemModelImpl>
+    implements _$$ComunItemModelImplCopyWith<$Res> {
+  __$$ComunItemModelImplCopyWithImpl(
+      _$ComunItemModelImpl _value, $Res Function(_$ComunItemModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codigo = null,
+    Object? nombre = null,
+  }) {
+    return _then(_$ComunItemModelImpl(
+      codigo: null == codigo
+          ? _value.codigo
+          : codigo // ignore: cast_nullable_to_non_nullable
+              as String,
+      nombre: null == nombre
+          ? _value.nombre
+          : nombre // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ComunItemModelImpl implements _ComunItemModel {
+  _$ComunItemModelImpl({this.codigo = '', this.nombre = ''});
+
+  factory _$ComunItemModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ComunItemModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String codigo;
+  @override
+  @JsonKey()
+  final String nombre;
+
+  @override
+  String toString() {
+    return 'ComunItemModel(codigo: $codigo, nombre: $nombre)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ComunItemModelImpl &&
+            (identical(other.codigo, codigo) || other.codigo == codigo) &&
+            (identical(other.nombre, nombre) || other.nombre == nombre));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, codigo, nombre);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ComunItemModelImplCopyWith<_$ComunItemModelImpl> get copyWith =>
+      __$$ComunItemModelImplCopyWithImpl<_$ComunItemModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ComunItemModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ComunItemModel implements ComunItemModel {
+  factory _ComunItemModel({final String codigo, final String nombre}) =
+      _$ComunItemModelImpl;
+
+  factory _ComunItemModel.fromJson(Map<String, dynamic> json) =
+      _$ComunItemModelImpl.fromJson;
+
+  @override
+  String get codigo;
+  @override
+  String get nombre;
+  @override
+  @JsonKey(ignore: true)
+  _$$ComunItemModelImplCopyWith<_$ComunItemModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

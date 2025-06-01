@@ -1,3 +1,5 @@
+import 'package:bancamovilr/src/pages/ahorros/seleccion_concepto/seleccion_concepto_page.dart';
+
 import '../../index.dart';
 
 part 'app_router.gr.dart';
@@ -32,6 +34,10 @@ class AppRouter extends _$AppRouter {
           page: TransferenciaRoute.page,
           initial: false,
         ),
+         AutoRoute(
+          page: SeleccionConceptoRoute.page,
+          initial: false,
+        ),
         AutoRoute(
           page: SeleccionCuentaRoute.page,
           initial: false,
@@ -59,6 +65,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: AgenciaRoute.page,
           initial: false,
-        ),
+        )
       ];
 }

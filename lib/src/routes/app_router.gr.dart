@@ -101,6 +101,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    SeleccionConceptoRoute.name: (routeData) {
+      return AutoRoutePage<ConceptoModel?>(
+        routeData: routeData,
+        child: const SeleccionConceptoPage(),
+      );
+    },
     SeleccionCuentaRoute.name: (routeData) {
       return AutoRoutePage<CuentaModel?>(
         routeData: routeData,
@@ -415,6 +421,20 @@ class SeleccionBeneficiarioRouteArgs {
   String toString() {
     return 'SeleccionBeneficiarioRouteArgs{tipoTransferencia: $tipoTransferencia, key: $key}';
   }
+}
+
+/// generated route for
+/// [SeleccionConceptoPage]
+class SeleccionConceptoRoute extends PageRouteInfo<void> {
+  const SeleccionConceptoRoute({List<PageRouteInfo>? children})
+      : super(
+          SeleccionConceptoRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SeleccionConceptoRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

@@ -86,4 +86,8 @@ abstract class RestClient {
   @POST("/validaPinAcceso")
   Future<ValidacionOtpAccesoRespuesta> validaPinAcceso(
       @Body() ValidaPinAccesoRequerimiento  requerimiento);
+
+  @POST("/consultaConceptos")
+  Future<ConsultaConceptosRespuesta> consultaConceptos(
+      @Body() BaseRequerimiento requerimiento);
 }

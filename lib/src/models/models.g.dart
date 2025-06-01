@@ -1008,6 +1008,9 @@ _$TransferenciaStateImpl _$$TransferenciaStateImplFromJson(
           ? null
           : ProcesaTransfernciaDirectaRespuesta.fromJson(
               json['respuestaProceso'] as Map<String, dynamic>),
+      concepto: json['concepto'] == null
+          ? null
+          : ConceptoModel.fromJson(json['concepto'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TransferenciaStateImplToJson(
@@ -1019,6 +1022,7 @@ Map<String, dynamic> _$$TransferenciaStateImplToJson(
       'esValidacion': instance.esValidacion,
       'esComprobante': instance.esComprobante,
       'respuestaProceso': instance.respuestaProceso,
+      'concepto': instance.concepto,
     };
 
 _$SeleccionBeneficiarioStateImpl _$$SeleccionBeneficiarioStateImplFromJson(
@@ -1201,4 +1205,63 @@ Map<String, dynamic> _$$ValidaPinAccesoRequerimientoImplToJson(
       'idRegistro': instance.idRegistro,
       'textoOriginal': instance.textoOriginal,
       'firma': instance.firma,
+    };
+
+_$ConceptoModelImpl _$$ConceptoModelImplFromJson(Map<String, dynamic> json) =>
+    _$ConceptoModelImpl(
+      codigo: json['codigo'] as String? ?? '',
+      nombre: json['nombre'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$ConceptoModelImplToJson(_$ConceptoModelImpl instance) =>
+    <String, dynamic>{
+      'codigo': instance.codigo,
+      'nombre': instance.nombre,
+    };
+
+_$SeleccionConceptoStateImpl _$$SeleccionConceptoStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SeleccionConceptoStateImpl(
+      conceptos: (json['conceptos'] as List<dynamic>?)
+              ?.map((e) => ConceptoModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      concepto: json['concepto'] == null
+          ? null
+          : ConceptoModel.fromJson(json['concepto'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$SeleccionConceptoStateImplToJson(
+        _$SeleccionConceptoStateImpl instance) =>
+    <String, dynamic>{
+      'conceptos': instance.conceptos,
+      'concepto': instance.concepto,
+    };
+
+_$ConsultaConceptosRespuestaImpl _$$ConsultaConceptosRespuestaImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ConsultaConceptosRespuestaImpl(
+      conceptoLista: (json['conceptoLista'] as List<dynamic>?)
+              ?.map((e) => ConceptoModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$ConsultaConceptosRespuestaImplToJson(
+        _$ConsultaConceptosRespuestaImpl instance) =>
+    <String, dynamic>{
+      'conceptoLista': instance.conceptoLista,
+    };
+
+_$ComunItemModelImpl _$$ComunItemModelImplFromJson(Map<String, dynamic> json) =>
+    _$ComunItemModelImpl(
+      codigo: json['codigo'] as String? ?? '',
+      nombre: json['nombre'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$ComunItemModelImplToJson(
+        _$ComunItemModelImpl instance) =>
+    <String, dynamic>{
+      'codigo': instance.codigo,
+      'nombre': instance.nombre,
     };

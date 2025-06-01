@@ -116,16 +116,16 @@ class _PosicionConsolidadaPageState
                     tipoTransferencia: TipoTransferencia.directa));
               },
             ),
-            // const Divider(height: 1),
-            // DrawerItemWidget(
-            //   icon: Icons.compare_arrows_outlined,
-            //   title: 'Transferencias Interbancarias',
-            //   onTap: () {
-            //     appRouter.pop();
-            //     appRouter.navigate(TransferenciaRoute(
-            //         tipoTransferencia: TipoTransferencia.interbancaria));
-            //   },
-            // ),
+            const Divider(height: 1),
+            DrawerItemWidget(
+              icon: Icons.compare_arrows_outlined,
+              title: 'Transferencias Interbancarias',
+              onTap: () {
+                appRouter.pop();
+                appRouter.navigate(TransferenciaRoute(
+                    tipoTransferencia: TipoTransferencia.interbancaria));
+              },
+            ),
             const Divider(height: 1),
             DrawerItemWidget(
               icon: Icons.people,

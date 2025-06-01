@@ -490,7 +490,7 @@ class PrestamoDetalleState with _$PrestamoDetalleState {
 @freezed
 class TransferenciaState with _$TransferenciaState {
   factory TransferenciaState(
-     {CuentaModel? cuenta, BeneficiarioModel? beneficiario, CuentaModel? cuentaDestino, @Default(false) bool esValidacion, @Default(false) bool esComprobante, ProcesaTransfernciaDirectaRespuesta? respuestaProceso}) = _TransferenciaState;
+     {CuentaModel? cuenta, BeneficiarioModel? beneficiario, CuentaModel? cuentaDestino, @Default(false) bool esValidacion, @Default(false) bool esComprobante, ProcesaTransfernciaDirectaRespuesta? respuestaProceso, ConceptoModel? concepto}) = _TransferenciaState;
 
   factory TransferenciaState.fromJson(Map<String, Object?> json) =>
      _$TransferenciaStateFromJson(json);
@@ -590,3 +590,44 @@ class ValidaPinAccesoRequerimiento with _$ValidaPinAccesoRequerimiento {
   factory ValidaPinAccesoRequerimiento.fromJson(Map<String, Object?> json) =>
      _$ValidaPinAccesoRequerimientoFromJson(json);
 }
+
+@freezed
+class ConceptoModel with _$ConceptoModel {
+  factory ConceptoModel(
+     {@Default('') String codigo, 
+     @Default('') String nombre}) = _ConceptoModel;
+
+  factory ConceptoModel.fromJson(Map<String, Object?> json) =>
+     _$ConceptoModelFromJson(json);
+}
+
+@freezed
+class SeleccionConceptoState with _$SeleccionConceptoState{
+  factory SeleccionConceptoState(
+     {@Default([]) List<ConceptoModel> conceptos,
+      ConceptoModel? concepto
+     }) = _SeleccionConceptoState;
+
+  factory SeleccionConceptoState.fromJson(Map<String, Object?> json) =>
+     _$SeleccionConceptoStateFromJson(json);
+}
+
+@freezed
+class ConsultaConceptosRespuesta with _$ConsultaConceptosRespuesta {
+  factory ConsultaConceptosRespuesta(
+     {@Default([]) List<ConceptoModel> conceptoLista}) = _ConsultaConceptosRespuesta;
+
+  factory ConsultaConceptosRespuesta.fromJson(Map<String, Object?> json) =>
+     _$ConsultaConceptosRespuestaFromJson(json);
+}
+
+
+@freezed
+class ComunItemModel with _$ComunItemModel {
+  factory ComunItemModel(
+     { @Default('') String codigo, @Default('') String nombre}) = _ComunItemModel;
+
+  factory ComunItemModel.fromJson(Map<String, Object?> json) =>
+     _$ComunItemModelFromJson(json);
+}
+

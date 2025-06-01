@@ -67,6 +67,7 @@ class TransferenciaController extends _$TransferenciaController {
                     cuentaDestino: (state.beneficiario?.id ?? 0) == 0
                         ? (state.beneficiario?.numeroCuenta ?? '')
                         : '',
+                   codigoConcepto: (state.concepto?.codigo ?? ''),
                     esDirecta:
                         tipoTransferencia != TipoTransferencia.interbancaria,
                     idBeneficiario: state.beneficiario?.id ?? 0,
@@ -116,6 +117,7 @@ class TransferenciaController extends _$TransferenciaController {
                     idBeneficiario: state.beneficiario?.id ?? 0,
                     monto: monto,
                     otpIngresado: otp,
+                    codigoConcepto: state.concepto?.codigo ?? '',
                     descripcion: form.value['descripcion'].toString(),
                     emailEnvio: form.value['emailEnvio'].toString())));
 
@@ -159,5 +161,15 @@ class TransferenciaController extends _$TransferenciaController {
 
   irInicio() async {
     appRouter.navigate(const PosicionConsolidadaRoute());
+  }
+
+
+    Future seleccionarConcepto() async {
+    var respuesta =
+        await appRouter.push<ConceptoModel?>(const SeleccionConceptoRoute());
+
+    if (respuesta != null) {
+      state = state.copyWith(concepto: respuesta);
+    }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:bancamovilr/index.dart';
+import 'package:bancamovilr/src/pages/ahorros/widgets/simple_item_widget.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sks_ticket_view/sks_ticket_view.dart';
@@ -355,6 +356,38 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                       ),
                     ),
                   ),
+
+
+                  WrapperFormItem(
+                    label: 'Selección Concepto:',
+                    child: Card(
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                            top: defaultPadding,
+                            left: defaultPadding / 1.2,
+                            right: defaultPadding / 1.2,
+                            bottom: defaultPadding),
+                        child: Column(
+                          children: [
+                            SelectionCardWidget(
+                              text: 'Seleccione un Concepto',
+                              subTitle:
+                                  'Motivo de la transferencia',
+                              isEmpty: provider.concepto == null,
+                              onTap: controller.seleccionarConcepto,
+                              child: SimpleItemWidget(
+                                item: ComunItemModel(codigo: provider.concepto?.codigo??"", nombre: provider.concepto?.nombre??"" ),
+                                flat: true,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+
+
                   WrapperFormItem(
                     label: 'Ingresa una descripción',
                     child: ReactiveTextField(
