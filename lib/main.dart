@@ -71,7 +71,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       themeMode: themeMode,
       theme: ThemeData(
           //colorScheme:ColorScheme.fromSeed(seedColor: Color(int.parse("0x0055b7"))),
-          colorScheme:ColorScheme.fromSeed(seedColor: Color(int.parse("0xff9e444e"))),
+          colorScheme:ColorScheme.fromSeed(seedColor: Color(int.parse("0x1291c4ff"))),
 
           cardTheme: CardTheme(
               elevation: 0,

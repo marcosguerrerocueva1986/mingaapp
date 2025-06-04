@@ -282,7 +282,7 @@ class ConsultaBeneficiarioRequerimiento with _$ConsultaBeneficiarioRequerimiento
 @freezed
 class BeneficiarioModel with _$BeneficiarioModel {
   factory BeneficiarioModel(
-     {@Default(0) int id, @Default(0) int idUsuario, @Default('') String codigoTipoId, @Default('') String identificacion, @Default('') String nombre, @Default('') String codigoTipoInstitucion, @Default('') String tipoInstitucion, 
+     {@Default(0) int id, @Default(0) int idUsuario, @Default('') String codigoTipoId, @Default('') String identificacion, @Default('') String nombre, @Default('') String apellido, @Default('') String codigoTipoInstitucion, @Default('') String tipoInstitucion, 
      @Default(0) int idInstitucion, @Default('') String institucion, @Default('') String codigoTipoCuenta, @Default('') String tipoCuenta, @Default('') String numeroCuenta, @Default(false) bool esInterno,
      @Default('') String email, @Default(false) bool activo}) = _BeneficiarioModel;
 

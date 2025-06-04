@@ -54,11 +54,12 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
         child: ReactiveForm(
           formGroup: controller.form,
           child: SingleChildScrollView(
-            child: ListView(
+            child: Column(
+              //scrollDirection: Axis.vertical,
               // crossAxisAlignment: CrossAxisAlignment.start,
               // mainAxisAlignment: MainAxisAlignment.start,
-              // mainAxisSize: MainAxisSize.min,
-              shrinkWrap: true,
+               mainAxisSize: MainAxisSize.min,
+              //shrinkWrap: true,
               children: [
                 if (provider.esComprobante) ...[
                   Text(
@@ -357,7 +358,7 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                     ),
                   ),
 
-
+                 if (widget.tipoTransferencia == TipoTransferencia.interbancaria) 
                   WrapperFormItem(
                     label: 'Selección Concepto:',
                     child: Card(
@@ -384,10 +385,11 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                         ),
                       ),
                     ),
+                  )
+                  else
+                     const SizedBox(
+                    height: defaultPadding,
                   ),
-
-
-
                   WrapperFormItem(
                     label: 'Ingresa una descripción',
                     child: ReactiveTextField(

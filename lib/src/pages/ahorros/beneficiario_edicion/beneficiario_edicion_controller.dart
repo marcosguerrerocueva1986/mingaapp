@@ -9,6 +9,7 @@ class BeneficiarioEdicionController extends _$BeneficiarioEdicionController {
     'numeroCuenta': ['', Validators.required],
     'identificacion': [''],
     'nombre': [''],
+    'apellido': [''],
     'email': [''],
     'codigoTipoCuenta': [''],
     'codigoTipoId': [''],

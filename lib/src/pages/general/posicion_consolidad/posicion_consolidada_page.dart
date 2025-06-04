@@ -139,14 +139,14 @@ class _PosicionConsolidadaPageState
             const TitleSectionWidget(
               title: 'PAGOS',
             ),
-            const Divider(height: 1),
-            DrawerItemWidget(
-              icon: Icons.attach_money,
-              title: 'Abono Préstamos',
-              onTap: () {
-                appRouter.navigate(AbonoRoute());
-              },
-            ),
+            // const Divider(height: 1),
+            // DrawerItemWidget(
+            //   icon: Icons.attach_money,
+            //   title: 'Abono Préstamos',
+            //   onTap: () {
+            //     appRouter.navigate(AbonoRoute());
+            //   },
+            // ),
             // const Divider(height: 1),
             // DrawerItemWidget(
             //   icon: Icons.water_drop_outlined,

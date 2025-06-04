@@ -5811,6 +5811,7 @@ mixin _$BeneficiarioModel {
   String get codigoTipoId => throw _privateConstructorUsedError;
   String get identificacion => throw _privateConstructorUsedError;
   String get nombre => throw _privateConstructorUsedError;
+  String get apellido => throw _privateConstructorUsedError;
   String get codigoTipoInstitucion => throw _privateConstructorUsedError;
   String get tipoInstitucion => throw _privateConstructorUsedError;
   int get idInstitucion => throw _privateConstructorUsedError;
@@ -5840,6 +5841,7 @@ abstract class $BeneficiarioModelCopyWith<$Res> {
       String codigoTipoId,
       String identificacion,
       String nombre,
+      String apellido,
       String codigoTipoInstitucion,
       String tipoInstitucion,
       int idInstitucion,
@@ -5870,6 +5872,7 @@ class _$BeneficiarioModelCopyWithImpl<$Res, $Val extends BeneficiarioModel>
     Object? codigoTipoId = null,
     Object? identificacion = null,
     Object? nombre = null,
+    Object? apellido = null,
     Object? codigoTipoInstitucion = null,
     Object? tipoInstitucion = null,
     Object? idInstitucion = null,
@@ -5901,6 +5904,10 @@ class _$BeneficiarioModelCopyWithImpl<$Res, $Val extends BeneficiarioModel>
       nombre: null == nombre
           ? _value.nombre
           : nombre // ignore: cast_nullable_to_non_nullable
+              as String,
+      apellido: null == apellido
+          ? _value.apellido
+          : apellido // ignore: cast_nullable_to_non_nullable
               as String,
       codigoTipoInstitucion: null == codigoTipoInstitucion
           ? _value.codigoTipoInstitucion
@@ -5960,6 +5967,7 @@ abstract class _$$BeneficiarioModelImplCopyWith<$Res>
       String codigoTipoId,
       String identificacion,
       String nombre,
+      String apellido,
       String codigoTipoInstitucion,
       String tipoInstitucion,
       int idInstitucion,
@@ -5988,6 +5996,7 @@ class __$$BeneficiarioModelImplCopyWithImpl<$Res>
     Object? codigoTipoId = null,
     Object? identificacion = null,
     Object? nombre = null,
+    Object? apellido = null,
     Object? codigoTipoInstitucion = null,
     Object? tipoInstitucion = null,
     Object? idInstitucion = null,
@@ -6019,6 +6028,10 @@ class __$$BeneficiarioModelImplCopyWithImpl<$Res>
       nombre: null == nombre
           ? _value.nombre
           : nombre // ignore: cast_nullable_to_non_nullable
+              as String,
+      apellido: null == apellido
+          ? _value.apellido
+          : apellido // ignore: cast_nullable_to_non_nullable
               as String,
       codigoTipoInstitucion: null == codigoTipoInstitucion
           ? _value.codigoTipoInstitucion
@@ -6073,6 +6086,7 @@ class _$BeneficiarioModelImpl implements _BeneficiarioModel {
       this.codigoTipoId = '',
       this.identificacion = '',
       this.nombre = '',
+      this.apellido = '',
       this.codigoTipoInstitucion = '',
       this.tipoInstitucion = '',
       this.idInstitucion = 0,
@@ -6102,6 +6116,9 @@ class _$BeneficiarioModelImpl implements _BeneficiarioModel {
   @override
   @JsonKey()
   final String nombre;
+  @override
+  @JsonKey()
+  final String apellido;
   @override
   @JsonKey()
   final String codigoTipoInstitucion;
@@ -6135,7 +6152,7 @@ class _$BeneficiarioModelImpl implements _BeneficiarioModel {
 
   @override
   String toString() {
-    return 'BeneficiarioModel(id: $id, idUsuario: $idUsuario, codigoTipoId: $codigoTipoId, identificacion: $identificacion, nombre: $nombre, codigoTipoInstitucion: $codigoTipoInstitucion, tipoInstitucion: $tipoInstitucion, idInstitucion: $idInstitucion, institucion: $institucion, codigoTipoCuenta: $codigoTipoCuenta, tipoCuenta: $tipoCuenta, numeroCuenta: $numeroCuenta, esInterno: $esInterno, email: $email, activo: $activo)';
+    return 'BeneficiarioModel(id: $id, idUsuario: $idUsuario, codigoTipoId: $codigoTipoId, identificacion: $identificacion, nombre: $nombre, apellido: $apellido, codigoTipoInstitucion: $codigoTipoInstitucion, tipoInstitucion: $tipoInstitucion, idInstitucion: $idInstitucion, institucion: $institucion, codigoTipoCuenta: $codigoTipoCuenta, tipoCuenta: $tipoCuenta, numeroCuenta: $numeroCuenta, esInterno: $esInterno, email: $email, activo: $activo)';
   }
 
   @override
@@ -6151,6 +6168,8 @@ class _$BeneficiarioModelImpl implements _BeneficiarioModel {
             (identical(other.identificacion, identificacion) ||
                 other.identificacion == identificacion) &&
             (identical(other.nombre, nombre) || other.nombre == nombre) &&
+            (identical(other.apellido, apellido) ||
+                other.apellido == apellido) &&
             (identical(other.codigoTipoInstitucion, codigoTipoInstitucion) ||
                 other.codigoTipoInstitucion == codigoTipoInstitucion) &&
             (identical(other.tipoInstitucion, tipoInstitucion) ||
@@ -6180,6 +6199,7 @@ class _$BeneficiarioModelImpl implements _BeneficiarioModel {
       codigoTipoId,
       identificacion,
       nombre,
+      apellido,
       codigoTipoInstitucion,
       tipoInstitucion,
       idInstitucion,
@@ -6213,6 +6233,7 @@ abstract class _BeneficiarioModel implements BeneficiarioModel {
       final String codigoTipoId,
       final String identificacion,
       final String nombre,
+      final String apellido,
       final String codigoTipoInstitucion,
       final String tipoInstitucion,
       final int idInstitucion,
@@ -6237,6 +6258,8 @@ abstract class _BeneficiarioModel implements BeneficiarioModel {
   String get identificacion;
   @override
   String get nombre;
+  @override
+  String get apellido;
   @override
   String get codigoTipoInstitucion;
   @override

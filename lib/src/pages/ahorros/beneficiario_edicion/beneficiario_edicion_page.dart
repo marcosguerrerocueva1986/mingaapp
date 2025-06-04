@@ -208,6 +208,13 @@ class _BeneficiarioEdicionPageState
                       ),
                     ),
                     WrapperFormItem(
+                      label: 'Apellido:',
+                      child: ReactiveTextField(
+                        formControlName: 'apellido',
+                        decoration: inputDecorationForm,
+                      ),
+                    ),
+                    WrapperFormItem(
                       label: 'Email:',
                       child: ReactiveTextField(
                         formControlName: 'email',
