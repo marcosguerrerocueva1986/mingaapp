@@ -21,7 +21,7 @@ class AbonoController extends _$AbonoController {
     var primerCuenta = ref
         .read(posicionConsolidadaControllerProvider)
         .posicionConsolidada
-        ?.cuentas
+        ?.cuentas.where((element) => element.permiteUsoBancaElectronica)
         .firstOrNull;
 
     if (primerCuenta != null) {

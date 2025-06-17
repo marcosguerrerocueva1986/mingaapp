@@ -68,4 +68,11 @@ class PosicionConsolidadaController extends _$PosicionConsolidadaController {
     HttpClientHelper.token = '';
     appRouter.replace(LoginRoute());
   }
+
+  List<CuentaModel>? listaCuentasParaTransferencia() {
+      return state.posicionConsolidada?.cuentas
+          .where((element) => element.permiteUsoBancaElectronica)
+          .toList();
+  }
+
 }

@@ -23,7 +23,7 @@ class TransferenciaController extends _$TransferenciaController {
     primerCuenta ??= ref
           .read(posicionConsolidadaControllerProvider)
           .posicionConsolidada
-          ?.cuentas
+          ?.cuentas.where((element) => element.permiteUsoBancaElectronica)
           .firstOrNull;
 
     if (primerCuenta != null) {

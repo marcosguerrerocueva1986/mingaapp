@@ -23,6 +23,9 @@ class _SeleccionCuentaPageState extends ConsumerState<SeleccionCuentaPage> {
     var controller = ref.read(posicionConsolidadaControllerProvider.notifier);
     var provider = ref.watch(posicionConsolidadaControllerProvider);
 
+    var cuentasTransaccionales = controller.listaCuentasParaTransferencia();
+
+
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -41,15 +44,14 @@ class _SeleccionCuentaPageState extends ConsumerState<SeleccionCuentaPage> {
             child: ListView.separated(
               separatorBuilder: (context, index) => separadorListaItems,
               itemBuilder: (context, index) {
-                var cuenta = provider.posicionConsolidada!.cuentas[index];
-
+                var cuenta = cuentasTransaccionales?[index];
                 return GestureDetector(
                   onTap: () => appRouter.pop<CuentaModel?>(cuenta),
                   behavior: HitTestBehavior.translucent,
                   child: CuentaItemWidget(cuenta: cuenta),
                 );
               },
-              itemCount: provider.posicionConsolidada?.cuentas.length ?? 0,
+              itemCount: cuentasTransaccionales?.length ?? 0,
             ),
           ),
         ),
