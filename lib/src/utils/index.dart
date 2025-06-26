@@ -6,3 +6,4 @@ export 'shared_preferences.dart';
 export 'styles.dart';
 export 'subfolders.dart';
 export 'tools.dart';
+export 'monto_personalidazado_validator.dart';

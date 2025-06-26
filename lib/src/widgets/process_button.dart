@@ -9,7 +9,7 @@ class ProcessButton extends StatelessWidget {
 
   final String text;
   final bool isSecondary;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

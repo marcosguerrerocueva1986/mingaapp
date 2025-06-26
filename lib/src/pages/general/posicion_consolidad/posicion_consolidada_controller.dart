@@ -15,8 +15,10 @@ class PosicionConsolidadaController extends _$PosicionConsolidadaController {
     return PosicionConsolidadaState();
   }
 
-  Future actualizaConsolidado() async {
+  Future actualizaConsolidado({bool disableLoading = false}) async {
     var client = HttpClientHelper.getClient();
+
+    bootstrapNotifier.isDisabledLoading = disableLoading;
 
     var respuesta = await guard(() async => await client.consultaConsolidado(
         BaseRequerimiento(idUsuario: HttpClientHelper.idUsuario)));
@@ -24,6 +26,8 @@ class PosicionConsolidadaController extends _$PosicionConsolidadaController {
     if (respuesta.hasValue) {
       state = state.copyWith(posicionConsolidada: respuesta.value);
     }
+
+    bootstrapNotifier.isDisabledLoading = false;
   }
 
   Future toogleAccesoPorHuella() async {
@@ -48,24 +52,34 @@ class PosicionConsolidadaController extends _$PosicionConsolidadaController {
           state = state.copyWith();
 
           NotificationService.showSuccess(
-              text: 'Acceso por huella habilitado correctamente');
+              text: 'Acceso biométrico habilitado correctamente');
         }
       } else {
-        preferences.idRegistro.val = 0;
-        preferences.accesoPorHuellaHabilitado.val = !habilitado;
-
-        state = state.copyWith();
+        eliminarAccesoHuella();
 
         NotificationService.showSuccess(
-            text: 'Acceso por huella deshabilitado correctamente');
+            text: 'Acceso biométrico deshabilitado correctamente');
       }
     } catch (e) {
-      NotificationService.showError(text: 'Acceso por huella no permitido');
+      NotificationService.showError(text: 'Acceso biométrico no permitido');
     }
   }
 
+  void eliminarAccesoHuella() {
+    SharedPreferences preferences = SharedPreferences();
+    preferences.idRegistro.val = 0;
+    preferences.accesoPorHuellaHabilitado.val = false;
+
+    state = state.copyWith();
+  }
+
   Future cerrarSesion() async {
-    HttpClientHelper.token = '';
-    appRouter.replace(LoginRoute());
+    var client = HttpClientHelper.getClient();
+    var respuesta = await guard(() async => await client.logout());
+
+    if (respuesta.hasValue) {
+      HttpClientHelper.token = '';
+      appRouter.replace(const LoginRoute());
+    }
   }
 }

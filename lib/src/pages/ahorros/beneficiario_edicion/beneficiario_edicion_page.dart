@@ -78,6 +78,9 @@ class _BeneficiarioEdicionPageState
                           EtiquetaValorRecibo(
                               etiqueta: 'Nombre',
                               valor: provider.beneficiario?.nombre ?? ''),
+                              EtiquetaValorRecibo(
+                              etiqueta: 'Apellido',
+                              valor: provider.beneficiario?.nombre ?? ''),
                           EtiquetaValorRecibo(
                               etiqueta: 'Identificación',
                               valor:
@@ -204,6 +207,13 @@ class _BeneficiarioEdicionPageState
                       label: 'Nombre:',
                       child: ReactiveTextField(
                         formControlName: 'nombre',
+                        decoration: inputDecorationForm,
+                      ),
+                    ),
+                    WrapperFormItem(
+                      label: 'Apellido:',
+                      child: ReactiveTextField(
+                        formControlName: 'apellido',
                         decoration: inputDecorationForm,
                       ),
                     ),

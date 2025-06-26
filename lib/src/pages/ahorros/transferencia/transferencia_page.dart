@@ -38,6 +38,9 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
     var controller = ref.read(transferenciaControllerProvider.notifier);
     var provider = ref.watch(transferenciaControllerProvider);
 
+    var loginProvider = ref.read(loginControllerProvider);
+    var nombreCliente = loginProvider.loginRespuesta?.nombre ?? '';
+
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -116,7 +119,11 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                                       decoration: const BoxDecoration(
                                           color: Colors.transparent),
                                       child: Center(
-                                        child: SvgPicture.asset(R.svg.logo,
+                                        child: SvgPicture.asset(
+                                            Theme.of(context).brightness ==
+                                                    Brightness.dark
+                                                ? R.svg.logoBlack
+                                                : R.svg.logo,
                                             height: 120),
                                       ),
                                     ),
@@ -143,15 +150,22 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                                           valor: controller.monto.toMoney()),
                                       EtiquetaValorRecibo(
                                           etiqueta: 'Comisión',
-                                          valor: 0.00.toMoney()),
+                                          valor: ((widget.tipoTransferencia ==
+                                                      TipoTransferencia
+                                                          .interbancaria)
+                                                  ? (provider
+                                                          .requisitosTransferencia
+                                                          ?.comision ??
+                                                      0.00)
+                                                  : 0.00)
+                                              .toMoney()),
                                       EtiquetaValorRecibo(
                                           etiqueta: 'Cuenta Origen',
                                           valor: provider.cuenta?.codigo ?? ''),
                                       EtiquetaValorRecibo(
                                           etiqueta: 'Beneficiario',
                                           valor:
-                                              provider.beneficiario?.nombre ??
-                                                  ''),
+                                              ('${provider.beneficiario?.apellido ?? ''} ${provider.beneficiario?.nombre ?? ''}')),
                                       EtiquetaValorRecibo(
                                           etiqueta: 'Cuenta Destino',
                                           valor: provider
@@ -175,6 +189,13 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                                             etiqueta: 'Fecha',
                                             valor: provider
                                                 .respuestaProceso!.fecha),
+                                        EtiquetaValorRecibo(
+                                            etiqueta: 'Ordenante',
+                                            valor: nombreCliente),
+                                        EtiquetaValorRecibo(
+                                            etiqueta: 'Concepto',
+                                            valor: controller
+                                                .obtenerDescipcionTransferencia()),
                                       ]
                                     ]),
                                     const SizedBox(
@@ -194,7 +215,11 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                     height: 50,
                     decoration: const BoxDecoration(color: Colors.transparent),
                     child: Center(
-                      child: SvgPicture.asset(R.svg.logo, height: 120),
+                      child: SvgPicture.asset(
+                          Theme.of(context).brightness == Brightness.dark
+                              ? R.svg.logoBlack
+                              : R.svg.logo,
+                          height: 120),
                     ),
                   ),
                   const SizedBox(
@@ -220,13 +245,21 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                               etiqueta: 'Valor',
                               valor: controller.monto.toMoney()),
                           EtiquetaValorRecibo(
-                              etiqueta: 'Comisión', valor: 0.00.toMoney()),
+                              etiqueta: 'Comisión',
+                              valor: ((widget.tipoTransferencia ==
+                                          TipoTransferencia.interbancaria)
+                                      ? (provider.requisitosTransferencia
+                                              ?.comision ??
+                                          0.00)
+                                      : 0.00)
+                                  .toMoney()),
                           EtiquetaValorRecibo(
                               etiqueta: 'Cuenta Origen',
                               valor: provider.cuenta?.codigo ?? ''),
                           EtiquetaValorRecibo(
                               etiqueta: 'Beneficiario',
-                              valor: provider.beneficiario?.nombre ?? ''),
+                              valor:
+                                  ('${provider.beneficiario?.nombre ?? ''} ${provider.beneficiario?.apellido ?? ''}')),
                           EtiquetaValorRecibo(
                               etiqueta: 'Cuenta Destino',
                               valor: provider.beneficiario?.numeroCuenta ?? ''),
@@ -280,7 +313,7 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                   )
                 ] else ...[
                   WrapperFormItem(
-                    label: 'Ingresa el monto a transfererir',
+                    label: 'Ingresa el monto a transferir',
                     child: ReactiveTextField(
                       formControlName: 'monto',
                       style: context.textTheme.displayLarge,
@@ -289,6 +322,17 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                       inputFormatters: [
                         DollarTextInputFormatter(),
                       ],
+                      validationMessages: {
+                        ValidationMessage.required: (_) =>
+                            'Este campo es obligatorio',
+                        'montoCero': (_) => 'El monto debe ser mayor que \$0',
+                        'montoNegativo': (_) =>
+                            'El monto no puede ser negativo',
+                        'formatoInvalido': (_) =>
+                            'El formato del monto es inválido',
+                        'saldoInsuficiente': (_) =>
+                            'El monto no puede ser mayor que el saldo de la cuenta',
+                      },
                       decoration: const InputDecoration(
                           hintText: '\$ 0.00',
                           isDense: true,
@@ -436,10 +480,14 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                   const SizedBox(
                     height: defaultPadding,
                   ),
-                  ProcessButton(
-                      text: 'CONTINUAR',
-                      onPressed: () =>
-                          controller.continuar(widget.tipoTransferencia)),
+                  ReactiveFormConsumer(builder: (context, form, child) {
+                    return ProcessButton(
+                        text: 'CONTINUAR',
+                        onPressed: form.valid
+                            ? () =>
+                                controller.continuar(widget.tipoTransferencia)
+                            : null);
+                  }),
                   const SizedBox(
                     height: defaultPadding,
                   ),

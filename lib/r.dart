@@ -15,28 +15,41 @@ class R {
 class _Images {
   const _Images._();
 
+  final String errorDeunaQr = 'assets/images/error-deuna-qr.png';
+
+  final String errorDeunaTransaccion =
+      'assets/images/error-deuna-transaccion.png';
+
   final String icon = 'assets/images/icon.png';
 
-  final String logo = 'assets/images/logo.png';
+  final String logoDeunaBlanco = 'assets/images/logo-deuna-blanco.png';
+
+  final String logoDeunaMorado = 'assets/images/logo-deuna-morado.png';
 
   final String marcaagua = 'assets/images/marcaagua.png';
 
-  static const Map<String, String> $files = {
+  final String onboardingDeuna = 'assets/images/onboarding-deuna.png';
+
+  final Map<String, String> $files = const {
+    'errorDeunaQr': 'assets/images/error-deuna-qr.png',
+    'errorDeunaTransaccion': 'assets/images/error-deuna-transaccion.png',
     'icon': 'assets/images/icon.png',
-    'logo': 'assets/images/logo.png',
+    'logoDeunaBlanco': 'assets/images/logo-deuna-blanco.png',
+    'logoDeunaMorado': 'assets/images/logo-deuna-morado.png',
     'marcaagua': 'assets/images/marcaagua.png',
+    'onboardingDeuna': 'assets/images/onboarding-deuna.png',
   };
 }
 
 class _Svg {
   const _Svg._();
 
+  final String logoBlack = 'assets/svg/logo-black.svg';
+
   final String logo = 'assets/svg/logo.svg';
 
-  final String logoAnterior = 'assets/svg/logo_anterior.svg';
-
-  static const Map<String, String> $files = {
+  final Map<String, String> $files = const {
+    'logoBlack': 'assets/svg/logo-black.svg',
     'logo': 'assets/svg/logo.svg',
-    'logoAnterior': 'assets/svg/logo_anterior.svg',
   };
 }

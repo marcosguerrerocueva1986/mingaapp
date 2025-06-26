@@ -7,3 +7,5 @@ export 'process_button.dart';
 export 'scaffold_bootstrap.dart';
 export 'subfolders.dart';
 export 'wrapper_form_item.dart';
+export 'search_box.dart';
+export 'info_text.dart';

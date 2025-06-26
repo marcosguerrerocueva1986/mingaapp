@@ -15,7 +15,7 @@ class _SeleccionCuentaPageState extends ConsumerState<SeleccionCuentaPage> {
     super.initState();
     ref
         .read(posicionConsolidadaControllerProvider.notifier)
-        .actualizaConsolidado();
+        .actualizaConsolidado(disableLoading: true);
   }
 
   @override

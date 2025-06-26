@@ -1,4 +1,4 @@
-package com.cloudstudio.bancamovil
+package ec.com.cloudbancamovil
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 
