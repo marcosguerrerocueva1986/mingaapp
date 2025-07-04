@@ -102,6 +102,12 @@ abstract class RestClient {
   Future<ConsultaRequisitosPagoServiciosRespuesta>
       consultaRequisitosPagoServicios(@Body() BaseRequerimiento requerimiento);
 
+  @POST("/consultarCamposConsultaPagoServicios")
+  Future<ConsultaCamposConsultaPagoServiciosRespuesta>
+      consultarCamposConsultaPagoServicios(
+          @Body()
+          ConsultaCamposConsultaPagoServiciosRequerimiento requerimiento);
+
   @POST("/consultaRubrosPagoServicio")
   Future<ConsultaValoresServiciosBasicosRespuesta> consultaRubrosPagoServicio(
       @Body() ConsultaValoresServiciosBasicosRequerimiento requerimiento);
@@ -115,6 +121,7 @@ abstract class RestClient {
       @Body() ProcesaPagoServiciosBasicosRequerimiento requerimiento);
 
   @POST("/consultaRequisitosTransferenciaInterbancaria")
-  Future<ConsultaRequisitosTransferenciasRespuesta> consultaRequisitosTransferenciaInterbancaria(
-      @Body() BaseRequerimiento requerimiento);
+  Future<ConsultaRequisitosTransferenciasRespuesta>
+      consultaRequisitosTransferenciaInterbancaria(
+          @Body() BaseRequerimiento requerimiento);
 }

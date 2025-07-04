@@ -415,26 +415,34 @@ class _PagoServicioPageState extends ConsumerState<PagoServicioPage> {
                         : ListView(
                             shrinkWrap: true,
                             children: [
-                              Container(
-                                child: Text(
-                                  provider.servicioSeleccionado?.nombre ?? '',
-                                  textAlign: TextAlign.center,
+                              if (!provider
+                                  .servicioSeleccionado!.esEspecial) ...[
+                                SizedBox(
+                                  child: Text(
+                                    provider.servicioSeleccionado?.nombre ?? '',
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: defaultPadding,
-                              ),
-                              WrapperFormItem(
-                                label:
-                                    provider.servicioSeleccionado?.etiqueta ??
-                                        'Referencia',
-                                child: ReactiveTextField(
-                                  formControlName: 'referencia',
-                                  style: context.textTheme.bodyMedium,
-                                  keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.left,
+                                const SizedBox(
+                                  height: defaultPadding,
                                 ),
-                              ),
+                                WrapperFormItem(
+                                  label:
+                                      provider.servicioSeleccionado?.etiqueta ??
+                                          'Referencia',
+                                  child: ReactiveTextField(
+                                    formControlName: 'referencia',
+                                    style: context.textTheme.bodyMedium,
+                                    keyboardType: TextInputType.text,
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ),
+                              ] else
+                                ...generaCamposConsulta(provider
+                                        .respuestaCamposConsulta
+                                        ?.camposConsultaDetalle
+                                        ?.camposConsulta ??
+                                    [])
                             ],
                           ))
                     : Column(mainAxisSize: MainAxisSize.min, children: [
@@ -549,6 +557,76 @@ class _PagoServicioPageState extends ConsumerState<PagoServicioPage> {
         ),
       ),
     );
+  }
+
+  List<Widget> generaCamposConsulta(List<CampoConsulta> items) {
+    var lista = <Widget>[];
+
+    for (var elemento in items) {
+      if (elemento.nombre != "PSI_NOMBRE_OPERADOR_IFI") {
+        lista.add(etiqueta(elemento));
+      }
+      if ((elemento.tipoDato == "" ||
+              elemento.tipoDato == "A" ||
+              elemento.tipoDato == "N" ||
+              elemento.tipoDato == "M" ||
+              elemento.tipoDato == "C" ||
+              elemento.tipoDato == "R") &&
+          (elemento.catalogo.isEmpty) &&
+          elemento.nombre != "PSI_NOMBRE_OPERADOR_IFI") {
+        lista.add(entrada(elemento));
+      } else if ((elemento.catalogo.isNotEmpty ||
+              elemento.tipoDato == "A" ||
+              elemento.tipoDato == "N" ||
+              elemento.tipoDato == "M" ||
+              elemento.tipoDato == "C") &&
+          (elemento.catalogo.isNotEmpty) &&
+          elemento.nombre != "PSI_NOMBRE_OPERADOR_IFI") {
+        lista.add(opciones(elemento));
+      }
+
+      lista.add(const SizedBox(
+        height: defaultPadding,
+      ));
+    }
+
+    return lista;
+  }
+
+  Widget etiqueta(CampoConsulta camposConsulta) {
+    return Text(
+      (camposConsulta.etiqueta.isNotEmpty)
+          ? camposConsulta.etiqueta
+          : camposConsulta.nombre,
+    );
+  }
+
+  Widget entrada(CampoConsulta camposConsulta) {
+    return ReactiveTextField(
+      formControlName: camposConsulta.nombre.toLowerCase(),
+      style: context.textTheme.bodyMedium,
+      keyboardType: TextInputType.text,
+      textAlign: TextAlign.left,
+    );
+  }
+
+  Widget opciones(CampoConsulta campos) {
+    return ReactiveDropdownField(
+        formControlName: campos.nombre.toLowerCase(),
+        isDense: true,
+        isExpanded: true,
+        decoration: const InputDecoration(
+          hintText: "Seleccione",
+        ),
+        items: campos.catalogo.map<DropdownMenuItem<String>>((Catalogo cat) {
+          return DropdownMenuItem<String>(
+            value: cat.valor,
+            child: Text(
+              cat.descripcion,
+              overflow: TextOverflow.ellipsis,
+            ),
+          );
+        }).toList());
   }
 }
 

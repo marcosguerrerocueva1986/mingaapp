@@ -6,7 +6,7 @@ part 'pago_servicio_controller.g.dart';
 
 @riverpod
 class PagoServicioController extends _$PagoServicioController {
-  final form = fb.group({
+  final FormGroup form = fb.group({
     'monto': ['0.00', MontoPersonalizadoValidator(0.00)],
     'referencia': ['', Validators.required],
   });
@@ -117,18 +117,82 @@ class PagoServicioController extends _$PagoServicioController {
   }
 
   Future seleccionarServicio(ServicioModel servicio) async {
-    state = state.copyWith(servicioSeleccionado: servicio);
+    form.patchValue({'referencia': ''});
+    form.control('referencia')
+      ..markAsUntouched()
+      ..markAsPristine();
+
+    if (servicio.esEspecial) {
+      var client = HttpClientHelper.getClient();
+      var respuesta = await guard(() async =>
+          await client.consultarCamposConsultaPagoServicios(
+              ConsultaCamposConsultaPagoServiciosRequerimiento(
+                  idProducto: servicio.id)));
+
+      if (respuesta.hasValue) {
+        form.controls.keys
+            .toList()
+            .where((element) => element != 'referencia' && element != 'monto')
+            .forEach(form.removeControl);
+        final nuevosControles = <String, AbstractControl>{};
+
+        for (var element
+            in respuesta.value!.camposConsultaDetalle!.camposConsulta) {
+          var nombreCampo = element.nombre.toLowerCase();
+
+          if (!form.contains(nombreCampo)) {
+            nuevosControles[nombreCampo] = FormControl<String>(
+              validators:
+                  element.catalogo.isNotEmpty ? [] : [Validators.required],
+            );
+
+            form.addAll(nuevosControles);
+          }
+        }
+
+        state = state.copyWith(
+            respuestaCamposConsulta: respuesta.value,
+            servicioSeleccionado: servicio);
+      }
+    } else {
+      state = state.copyWith(servicioSeleccionado: servicio);
+    }
   }
 
   Future consultar() async {
     if (!state.esValidacion) {
       var referencia = form.value['referencia'].toString();
       var client = HttpClientHelper.getClient();
+
+      CamposConsultaDetalle? camposConsultaDetalle;
+
+      if (state.respuestaCamposConsulta?.camposConsultaDetalle != null &&
+          (state.respuestaCamposConsulta?.camposConsultaDetalle?.camposConsulta
+                  .isNotEmpty ??
+              false)) {
+        List<CampoConsulta> listaCamposConsulta = [];
+
+        for (var element in state
+            .respuestaCamposConsulta!.camposConsultaDetalle!.camposConsulta) {
+          var nombreControl = element.nombre.toLowerCase();
+          if (form.contains(nombreControl)) {
+            listaCamposConsulta.add(
+                element.copyWith(valor: form.control(nombreControl).value));
+          }
+        }
+
+        if (listaCamposConsulta.isNotEmpty) {
+          camposConsultaDetalle =
+              CamposConsultaDetalle(camposConsulta: listaCamposConsulta);
+        }
+      }
+
       var respuesta = await guard(() async =>
           await client.consultaRubrosPagoServicio(
               ConsultaValoresServiciosBasicosRequerimiento(
                   idProducto: state.servicioSeleccionado!.id,
-                  referencia: referencia)));
+                  referencia: referencia,
+                  camposConsultaDetalle: camposConsultaDetalle)));
 
       if (respuesta.hasValue) {
         state = state.copyWith(respuestaConsulta: respuesta.value);
@@ -140,7 +204,7 @@ class PagoServicioController extends _$PagoServicioController {
     if (!state.esValidacion) {
       var valorPredefinido = state.respuestaConsulta?.rubrosDetalle?.listaRubros
           .where((element) => element.seleccionado)
-          .map((e) => e.valorPago)
+          .map((e) => e.valorConComision)
           .toList()
           .sum();
 
@@ -261,9 +325,10 @@ class PagoServicioController extends _$PagoServicioController {
       if (!puedePagar) {
         mensajeError =
             'Verifique rubros seleccionados y montos, no puede pagar rubros de mayor prioridad sin seleccionar rubros previos, o tiene saldo insuficiente';
-      } else if (valorPago > 0.00) {
-        mensajeError = 'Monto es superior al adeudado';
       }
+      // else if (valorPago > 0.00) {
+      //   mensajeError = 'Monto es superior al adeudado';
+      // }
 
       if (mensajeError.isNotEmpty) {
         NotificationService.showError(text: mensajeError);

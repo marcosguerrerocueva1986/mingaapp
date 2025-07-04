@@ -936,6 +936,7 @@ class PagoServicioState with _$PagoServicioState {
           @Default(false) bool esValidacion,
           @Default(false) bool esComprobante,
           @Default([]) List<ServicioModel> servicios,
+          ConsultaCamposConsultaPagoServiciosRespuesta? respuestaCamposConsulta,
           ConsultaValoresServiciosBasicosRespuesta? respuestaConsulta,
           ProcesaPagoServiciosBasicosRespuesta? respuestaProceso}) =
       _PagoServicioState;
@@ -945,10 +946,75 @@ class PagoServicioState with _$PagoServicioState {
 }
 
 @freezed
+class ConsultaCamposConsultaPagoServiciosRequerimiento
+    with _$ConsultaCamposConsultaPagoServiciosRequerimiento {
+  factory ConsultaCamposConsultaPagoServiciosRequerimiento(
+          {@Default(0) int idProducto}) =
+      _ConsultaCamposConsultaPagoServiciosRequerimiento;
+
+  factory ConsultaCamposConsultaPagoServiciosRequerimiento.fromJson(
+          Map<String, Object?> json) =>
+      _$ConsultaCamposConsultaPagoServiciosRequerimientoFromJson(json);
+}
+
+@freezed
+class ConsultaCamposConsultaPagoServiciosRespuesta
+    with _$ConsultaCamposConsultaPagoServiciosRespuesta {
+  factory ConsultaCamposConsultaPagoServiciosRespuesta(
+          {CamposConsultaDetalle? camposConsultaDetalle}) =
+      _ConsultaCamposConsultaPagoServiciosRespuesta;
+
+  factory ConsultaCamposConsultaPagoServiciosRespuesta.fromJson(
+          Map<String, Object?> json) =>
+      _$ConsultaCamposConsultaPagoServiciosRespuestaFromJson(json);
+}
+
+@freezed
+class CamposConsultaDetalle with _$CamposConsultaDetalle {
+  factory CamposConsultaDetalle(
+          {@Default([]) List<CampoConsulta> camposConsulta}) =
+      _CamposConsultaDetalle;
+
+  factory CamposConsultaDetalle.fromJson(Map<String, Object?> json) =>
+      _$CamposConsultaDetalleFromJson(json);
+}
+
+@freezed
+class CampoConsulta with _$CampoConsulta {
+  factory CampoConsulta({
+    @Default('') String id,
+    @Default('') String etiqueta,
+    @Default('') String nombre,
+    @Default('') String tipoDato,
+    @Default('') String valor,
+    @Default([]) List<Catalogo> catalogo,
+    @Default(false) bool esTexto,
+    @Default(false) bool esNumerico,
+    @Default(false) bool esFecha,
+  }) = _CampoConsulta;
+
+  factory CampoConsulta.fromJson(Map<String, Object?> json) =>
+      _$CampoConsultaFromJson(json);
+}
+
+@freezed
+class Catalogo with _$Catalogo {
+  factory Catalogo({
+    @Default('') String valor,
+    @Default('') String descripcion,
+  }) = _Catalogo;
+
+  factory Catalogo.fromJson(Map<String, Object?> json) =>
+      _$CatalogoFromJson(json);
+}
+
+@freezed
 class ConsultaValoresServiciosBasicosRequerimiento
     with _$ConsultaValoresServiciosBasicosRequerimiento {
   factory ConsultaValoresServiciosBasicosRequerimiento(
-          {@Default(0) int idProducto, @Default('') String referencia}) =
+          {@Default(0) int idProducto,
+          @Default('') String referencia,
+          CamposConsultaDetalle? camposConsultaDetalle}) =
       _ConsultaValoresServiciosBasicosRequerimiento;
 
   factory ConsultaValoresServiciosBasicosRequerimiento.fromJson(
@@ -1054,10 +1120,13 @@ class ProcesaPagoServiciosBasicosRespuesta
 }
 
 @freezed
-class ConsultaRequisitosTransferenciasRespuesta with _$ConsultaRequisitosTransferenciasRespuesta {
+class ConsultaRequisitosTransferenciasRespuesta
+    with _$ConsultaRequisitosTransferenciasRespuesta {
   factory ConsultaRequisitosTransferenciasRespuesta(
-     {@Default(0) double comision}) = _ConsultaRequisitosTransferenciasRespuesta;
+          {@Default(0) double comision}) =
+      _ConsultaRequisitosTransferenciasRespuesta;
 
-  factory ConsultaRequisitosTransferenciasRespuesta.fromJson(Map<String, Object?> json) =>
-     _$ConsultaRequisitosTransferenciasRespuestaFromJson(json);
+  factory ConsultaRequisitosTransferenciasRespuesta.fromJson(
+          Map<String, Object?> json) =>
+      _$ConsultaRequisitosTransferenciasRespuestaFromJson(json);
 }
