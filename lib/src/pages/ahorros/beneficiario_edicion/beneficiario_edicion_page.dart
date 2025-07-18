@@ -80,7 +80,7 @@ class _BeneficiarioEdicionPageState
                               valor: provider.beneficiario?.nombre ?? ''),
                               EtiquetaValorRecibo(
                               etiqueta: 'Apellido',
-                              valor: provider.beneficiario?.nombre ?? ''),
+                              valor: provider.beneficiario?.apellido ?? ''),
                           EtiquetaValorRecibo(
                               etiqueta: 'Identificación',
                               valor:
