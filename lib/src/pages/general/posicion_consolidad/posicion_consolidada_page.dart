@@ -197,35 +197,37 @@ class _PosicionConsolidadaPageState
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: () {
-      //     SharedPreferences preferences = SharedPreferences();
-      //     if (preferences.onBoardingDeunaMostrado.val) {
-      //       appRouter.navigate(const QrScannerRoute());
-      //     } else {
-      //       appRouter.navigate(const OnboardingRoute());
-      //     }
-      //   },
-      //   label: Row(
-      //     crossAxisAlignment: CrossAxisAlignment.center,
-      //     children: [
-      //       const SizedBox(width: 8),
-      //       Text(
-      //         "Escanear QR",
-      //         style: Theme.of(context)
-      //             .textTheme
-      //             .bodyMedium!
-      //             .copyWith(color: Colors.white),
-      //       ),
-      //       const SizedBox(width: 5),
-      //       Image.asset(R.images.logoDeunaBlanco, height: 12),
-      //       const SizedBox(width: 8),
-      //     ],
-      //   ),
-      //   shape: RoundedRectangleBorder(
-      //     borderRadius: BorderRadius.circular(30),
-      //   ),
-      // ),
+      floatingActionButton: HttpClientHelper.testMode
+          ? null
+          : FloatingActionButton.extended(
+              onPressed: () {
+                SharedPreferences preferences = SharedPreferences();
+                if (preferences.onBoardingDeunaMostrado.val) {
+                  appRouter.navigate(const QrScannerRoute());
+                } else {
+                  appRouter.navigate(const OnboardingRoute());
+                }
+              },
+              label: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(width: 8),
+                  Text(
+                    "Escanear QR",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: Colors.white),
+                  ),
+                  const SizedBox(width: 5),
+                  Image.asset(R.images.logoDeunaBlanco, height: 12),
+                  const SizedBox(width: 8),
+                ],
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Padding(
         padding: const EdgeInsets.all(30.0),
