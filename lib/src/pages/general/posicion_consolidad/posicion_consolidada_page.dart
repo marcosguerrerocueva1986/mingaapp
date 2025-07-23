@@ -65,19 +65,24 @@ class _PosicionConsolidadaPageState
                   top: false,
                   bottom: false,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Expanded(
                         child: LayoutBuilder(
                           builder: (context, constraints) => Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Image.asset(
-                              R.images.logo,
-                              height: constraints.maxHeight,
-                              width: constraints.maxWidth,
-                            ),
-                          ),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: Padding(
+                                padding: const EdgeInsets.all(defaultPadding),
+                                child: SvgPicture.asset(
+                                    Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? R.svg.logoBlack
+                                        : R.svg.logo,
+                                    height: constraints.maxHeight,
+                                    width: constraints.maxWidth),
+                              )),
                         ),
                       ),
                     ],
@@ -139,20 +144,22 @@ class _PosicionConsolidadaPageState
             const TitleSectionWidget(
               title: 'PAGOS',
             ),
-            // const Divider(height: 1),
-            // DrawerItemWidget(
-            //   icon: Icons.attach_money,
-            //   title: 'Abono Préstamos',
-            //   onTap: () {
-            //     appRouter.navigate(AbonoRoute());
-            //   },
-            // ),
-            // const Divider(height: 1),
-            // DrawerItemWidget(
-            //   icon: Icons.water_drop_outlined,
-            //   title: 'Pagos Servicios',
-            //   onTap: () {},
-            // ),
+            const Divider(height: 1),
+            DrawerItemWidget(
+              icon: Icons.attach_money,
+              title: 'Abono Préstamos',
+              onTap: () {
+                appRouter.navigate(AbonoRoute());
+              },
+            ),
+            const Divider(height: 1),
+            DrawerItemWidget(
+              icon: Icons.water_drop_outlined,
+              title: 'Pagos Servicios',
+              onTap: () {
+                appRouter.navigate(PagoServicioRoute());
+              },
+            ),
             const Divider(height: 1),
 
             const TitleSectionWidget(
@@ -190,6 +197,38 @@ class _PosicionConsolidadaPageState
           ],
         ),
       ),
+      floatingActionButton: HttpClientHelper.testMode
+          ? null
+          : FloatingActionButton.extended(
+              onPressed: () {
+                SharedPreferences preferences = SharedPreferences();
+                if (preferences.onBoardingDeunaMostrado.val) {
+                  appRouter.navigate(const QrScannerRoute());
+                } else {
+                  appRouter.navigate(const OnboardingRoute());
+                }
+              },
+              label: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(width: 8),
+                  Text(
+                    "Escanear QR",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: Colors.white),
+                  ),
+                  const SizedBox(width: 5),
+                  Image.asset(R.images.logoDeunaBlanco, height: 12),
+                  const SizedBox(width: 8),
+                ],
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+            ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Center(

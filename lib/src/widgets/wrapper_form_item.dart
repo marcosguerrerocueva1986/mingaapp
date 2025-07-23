@@ -1,9 +1,10 @@
-
 import 'package:bancamovilr/index.dart';
 
 class WrapperFormItem extends StatelessWidget {
   const WrapperFormItem({
-    super.key, required this.label, required this.child,
+    super.key,
+    required this.label,
+    required this.child,
   });
 
   final String label;

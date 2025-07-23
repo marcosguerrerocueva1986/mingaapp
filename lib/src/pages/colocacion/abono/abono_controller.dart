@@ -6,7 +6,7 @@ part 'abono_controller.g.dart';
 @riverpod
 class AbonoController extends _$AbonoController {
   final form = fb.group({
-    'monto': [],
+    'monto': ['0.00', MontoPersonalizadoValidator(0.00)],
   });
 
   double monto = 0.00;
@@ -25,6 +25,11 @@ class AbonoController extends _$AbonoController {
         .firstOrNull;
 
     if (primerCuenta != null) {
+      form
+          .control('monto')
+          .setValidators([MontoPersonalizadoValidator(primerCuenta.saldo)]);
+      form.control('monto').updateValueAndValidity();
+
       state = state.copyWith(cuenta: primerCuenta, prestamo: prestamoParametro);
     }
   }
@@ -34,6 +39,11 @@ class AbonoController extends _$AbonoController {
         await appRouter.push<CuentaModel?>(const SeleccionCuentaRoute());
 
     if (respuesta != null) {
+      form
+          .control('monto')
+          .setValidators([MontoPersonalizadoValidator(respuesta.saldo)]);
+      form.control('monto').updateValueAndValidity();
+
       state = state.copyWith(cuenta: respuesta);
     }
   }
@@ -98,6 +108,10 @@ class AbonoController extends _$AbonoController {
               emailEnvio: '')));
 
       if (respuesta.hasValue) {
+        ref
+            .read(posicionConsolidadaControllerProvider.notifier)
+            .actualizaConsolidado(disableLoading: true);
+
         state = state.copyWith(
             esComprobante: true, respuestaProceso: respuesta.value);
       }

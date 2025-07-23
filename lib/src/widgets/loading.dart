@@ -5,7 +5,7 @@ import 'package:bancamovilr/index.dart';
 class Loading extends StatefulWidget {
   final double height;
 
-  const Loading({Key? key, this.height = 100.0}) : super(key: key);
+  const Loading({Key? key, this.height = 200.0}) : super(key: key);
 
   @override
   State<Loading> createState() => _LoadingState();
@@ -43,7 +43,7 @@ class _LoadingState extends State<Loading> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.height + 100,
+      height: widget.height + 150,
       child: AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
@@ -74,7 +74,7 @@ class ProgressIndicatorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const buttonSize = 150.0;
+    const buttonSize = 250.0;
     const borderWidth = 3.0;
 
     return Opacity(
@@ -99,18 +99,20 @@ class ProgressIndicatorButton extends StatelessWidget {
               opacity: lerpDouble(0.5, 1.0, animationValue) ?? 1.0,
               child: Center(
                 child: Container(
-                  width: buttonSize - (lerpDouble(5, 25, animationValue) ?? 5),
-                  height: buttonSize - (lerpDouble(5, 25, animationValue) ?? 5),
-                  decoration: const BoxDecoration(
-                    // color: active,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Image.asset(
-                    R.images.logo,
-                    height: double.infinity,
-                    width: double.infinity,
-                  ),
-                ),
+                    width:
+                        buttonSize - (lerpDouble(5, 25, animationValue) ?? 5),
+                    height:
+                        buttonSize - (lerpDouble(5, 25, animationValue) ?? 5),
+                    decoration: const BoxDecoration(
+                      // color: active,
+                      shape: BoxShape.circle,
+                    ),
+                    child: SvgPicture.asset(
+                        Theme.of(context).brightness == Brightness.dark
+                            ? R.svg.logoBlack
+                            : R.svg.logo,
+                        height: double.infinity,
+                        width: double.infinity)),
               ),
             ),
           ),

@@ -6,7 +6,7 @@ part 'transferencia_controller.g.dart';
 @riverpod
 class TransferenciaController extends _$TransferenciaController {
   final form = fb.group({
-    'monto': [],
+    'monto': ['0.00', MontoPersonalizadoValidator(0.00)],
     'descripcion': ['', Validators.required],
     'emailEnvio': ['', Validators.required],
   });
@@ -27,7 +27,27 @@ class TransferenciaController extends _$TransferenciaController {
           .firstOrNull;
 
     if (primerCuenta != null) {
-      state = state.copyWith(cuenta: primerCuenta);
+      form
+          .control('monto')
+          .setValidators([MontoPersonalizadoValidator(primerCuenta.saldo)]);
+      form.control('monto').updateValueAndValidity();
+
+      var client = HttpClientHelper.getClient();
+
+      bootstrapNotifier.isDisabledLoading = true;
+
+      var respuesta = await guard(() async =>
+          await client.consultaRequisitosTransferenciaInterbancaria(
+              BaseRequerimiento(idUsuario: HttpClientHelper.idUsuario)));
+
+      if (respuesta.hasValue) {
+        state = state.copyWith(
+            requisitosTransferencia: respuesta.value, cuenta: primerCuenta);
+      } else {
+        state = state.copyWith(cuenta: primerCuenta);
+      }
+
+      bootstrapNotifier.isDisabledLoading = false;
     }
   }
 
@@ -36,6 +56,11 @@ class TransferenciaController extends _$TransferenciaController {
         await appRouter.push<CuentaModel?>(const SeleccionCuentaRoute());
 
     if (respuesta != null) {
+      form
+          .control('monto')
+          .setValidators([MontoPersonalizadoValidator(respuesta.saldo)]);
+      form.control('monto').updateValueAndValidity();
+
       state = state.copyWith(cuenta: respuesta);
     }
   }
@@ -45,6 +70,7 @@ class TransferenciaController extends _$TransferenciaController {
         SeleccionBeneficiarioRoute(tipoTransferencia: tipoTransferencia));
 
     if (respuesta != null) {
+      form.patchValue({'emailEnvio': respuesta.email});
       state = state.copyWith(beneficiario: respuesta);
     }
   }
@@ -122,6 +148,10 @@ class TransferenciaController extends _$TransferenciaController {
                     emailEnvio: form.value['emailEnvio'].toString())));
 
         if (respuesta.hasValue) {
+          ref
+              .read(posicionConsolidadaControllerProvider.notifier)
+              .actualizaConsolidado(disableLoading: true);
+
           state = state.copyWith(
               esComprobante: true, respuestaProceso: respuesta.value);
         }
@@ -146,6 +176,10 @@ class TransferenciaController extends _$TransferenciaController {
         }
       }
     }
+  }
+
+  String obtenerDescipcionTransferencia() {
+    return form.value['descripcion']?.toString() ?? '';
   }
 
   tomarCaptura() async {

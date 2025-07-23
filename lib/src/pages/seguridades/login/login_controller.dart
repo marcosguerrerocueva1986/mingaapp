@@ -8,8 +8,8 @@ part 'login_controller.g.dart';
 @riverpod
 class LoginController extends _$LoginController {
   final form = fb.group({
-    'codigoUsuario': Validators.required,
-    'pwdUsuario': [],
+    'codigoUsuario': ['', Validators.required],
+    'pwdUsuario': [''],
   });
 
   @override
@@ -118,6 +118,16 @@ class LoginController extends _$LoginController {
             modoConfirmacion: false);
         form.patchValue({'pwdUsuario': ''});
         appRouter.replace(const PosicionConsolidadaRoute());
+      } else {
+        SharedPreferences preferences = SharedPreferences();
+        preferences.idRegistro.val = 0;
+        preferences.accesoPorHuellaHabilitado.val = false;
+
+        state = state.copyWith();
+
+        NotificationService.showWarning(
+            text:
+                'Se han detectado cambios en tu acceso biométrico, se requiere que vuelvas a habilitar el acceso');
       }
     } catch (e) {}
   }

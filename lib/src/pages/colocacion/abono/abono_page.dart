@@ -109,7 +109,11 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                                       decoration: const BoxDecoration(
                                           color: Colors.transparent),
                                       child: Center(
-                                        child: SvgPicture.asset(R.svg.logo,
+                                        child: SvgPicture.asset(
+                                            Theme.of(context).brightness ==
+                                                    Brightness.dark
+                                                ? R.svg.logoBlack
+                                                : R.svg.logo,
                                             height: 120),
                                       ),
                                     ),
@@ -172,7 +176,11 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                     height: 50,
                     decoration: const BoxDecoration(color: Colors.transparent),
                     child: Center(
-                      child: SvgPicture.asset(R.svg.logo, height: 120),
+                      child: SvgPicture.asset(
+                          Theme.of(context).brightness == Brightness.dark
+                              ? R.svg.logoBlack
+                              : R.svg.logo,
+                          height: 120),
                     ),
                   ),
                   const SizedBox(
@@ -257,6 +265,17 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                       inputFormatters: [
                         DollarTextInputFormatter(),
                       ],
+                      validationMessages: {
+                        ValidationMessage.required: (_) =>
+                            'Este campo es obligatorio',
+                        'montoCero': (_) => 'El monto debe ser mayor que \$0',
+                        'montoNegativo': (_) =>
+                            'El monto no puede ser negativo',
+                        'formatoInvalido': (_) =>
+                            'El formato del monto es inválido',
+                        'saldoInsuficiente': (_) =>
+                            'El monto no puede ser mayor que el saldo de la cuenta',
+                      },
                       decoration: const InputDecoration(
                           hintText: '\$ 0.00',
                           isDense: true,
@@ -284,7 +303,10 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                                   'Cuenta desde la cual se realizará el abono',
                               isEmpty: provider.cuenta == null,
                               onTap: controller.seleccionarCuenta,
-                              child: CuentaItemWidget(cuenta: provider.cuenta, flat: true,),
+                              child: CuentaItemWidget(
+                                cuenta: provider.cuenta,
+                                flat: true,
+                              ),
                             )
                           ],
                         ),

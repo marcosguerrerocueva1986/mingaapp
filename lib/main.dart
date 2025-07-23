@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:no_screenshot/no_screenshot.dart';
+
 import 'index.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -20,6 +22,8 @@ void main() async {
   HttpOverrides.global = MyHttpOverrides();
   await GetStorage.init();
   // await initializeDateFormatting('es', '');
+
+  await NoScreenshot.instance.screenshotOn();
 
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -96,6 +100,13 @@ class _MyAppState extends ConsumerState<MyApp> {
             border: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.grey.withOpacity(0.3))),
           ),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: Color(int.parse("0xFF0055B7")),
+            foregroundColor: Color(int.parse("0xFF0055B7")),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+          ),
           useMaterial3: true,
           textTheme: GoogleFonts.aBeeZeeTextTheme(
               ThemeData(brightness: Brightness.light).textTheme),
@@ -116,8 +127,9 @@ class _MyAppState extends ConsumerState<MyApp> {
 
       darkTheme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: Color(int.parse("0x0055b7")),
+            seedColor: Color(int.parse("0xFF0055B7")),
             brightness: Brightness.dark,
+            // onPrimary: Colors.white
           ),
           inputDecorationTheme: InputDecorationTheme(
             errorBorder: OutlineInputBorder(
@@ -137,6 +149,12 @@ class _MyAppState extends ConsumerState<MyApp> {
                       MaterialStateProperty.all<Color>(Colors.white),
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.grey.shade700))),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: Colors.grey.shade700,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+          ),
           buttonTheme: const ButtonThemeData(
             buttonColor: Colors.yellow,
             textTheme: ButtonTextTheme.primary,

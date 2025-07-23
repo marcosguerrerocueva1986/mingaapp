@@ -13,6 +13,8 @@ class SeleccionBeneficiarioController
   Future actualizaListaBeneficiarios() async {
     var client = HttpClientHelper.getClient();
 
+    // bootstrapNotifier.isDisabledLoading = true;
+
     var respuesta = await guard(() async => await client.consultaBeneficiarios(
         BaseRequerimiento(idUsuario: HttpClientHelper.idUsuario)));
 
@@ -20,6 +22,8 @@ class SeleccionBeneficiarioController
       state = state.copyWith(
           beneficiarios: respuesta.value?.beneficiarioLista ?? []);
     }
+
+    // bootstrapNotifier.isDisabledLoading = false;
   }
 
   List<BeneficiarioModel> listaBeneficarioPorTipoTransferencia(

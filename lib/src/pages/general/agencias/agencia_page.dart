@@ -75,7 +75,7 @@ class _AgenciaPageState extends ConsumerState<AgenciaPage> {
   }
 }
 
-class AgenciaDetalleCarousel extends StatefulWidget {
+class AgenciaDetalleCarousel extends StatelessWidget {
   List<AgenciaCajeroItem> listaDetalle;
 
   AgenciaDetalleCarousel(
@@ -83,40 +83,30 @@ class AgenciaDetalleCarousel extends StatefulWidget {
       : super(key: key);
 
   @override
-  _AgenciaDetalleCarouselState createState() => _AgenciaDetalleCarouselState();
-
-  final Function(AgenciaCajeroItem) onTap;
-}
-
-class _AgenciaDetalleCarouselState extends State<AgenciaDetalleCarousel> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return widget.listaDetalle.isEmpty
+    return listaDetalle.isEmpty
         ? const CardsCarouselLoaderWidget()
         : SizedBox(
             height: 225,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: widget.listaDetalle.length,
+              itemCount: listaDetalle.length,
               physics: defaultScrollPhysics,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    widget.onTap.call(widget.listaDetalle.elementAt(index));
+                    onTap.call(listaDetalle.elementAt(index));
                   },
                   child: CardWidget(
-                    agenciaCajero: widget.listaDetalle.elementAt(index),
+                    agenciaCajero: listaDetalle.elementAt(index),
                   ),
                 );
               },
             ),
           );
   }
+
+  final Function(AgenciaCajeroItem) onTap;
 }
 
 class CardsCarouselLoaderWidget extends StatelessWidget {
@@ -260,68 +250,6 @@ class CardWidget extends StatelessWidget {
                   ),
                 ],
               ),
-
-              // Row(
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   mainAxisSize: MainAxisSize.max,
-              //   children: <Widget>[
-              //     Expanded(
-              //       flex: 3,
-              //       child: Column(
-              //         crossAxisAlignment: CrossAxisAlignment.start,
-              //         children: <Widget>[
-              //           Row(
-              //             crossAxisAlignment: CrossAxisAlignment.center,
-              //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //             children: [
-              //               Expanded(
-              //                 child: Text(
-              //                   agenciaCajero.saldo.toMoney(),
-              //                   overflow: TextOverflow.ellipsis,
-              //                   maxLines: 2,
-              //                   style: Get.textTheme.caption,
-              //                 ),
-              //               ),
-              //               Expanded(
-              //                 child: Text(
-              //                   agenciaCajero.estado,
-              //                   overflow: TextOverflow.ellipsis,
-              //                   textAlign: TextAlign.right,
-              //                   style: Get.textTheme.caption,
-              //                 ),
-              //               ),
-              //             ],
-              //           )
-              //         ],
-              //       ),
-              //     ),
-              //     if ((agenciaCajero.longitudResidencia.isNotEmpty &&
-              //             agenciaCajero.latitudResidencia.isNotEmpty) ||
-              //         (agenciaCajero.longitudMicroEmpresa.isNotEmpty &&
-              //             agenciaCajero.latitudMicroEmpresa.isNotEmpty)) ...[
-              //       const SizedBox(width: 15),
-              //       Expanded(
-              //         child: Column(
-              //           children: <Widget>[
-              //             MaterialButton(
-              //               padding: const EdgeInsets.all(0),
-              //               onPressed: () {
-              //                 HojaRutaController.to
-              //                     .irUbicacionDetalleSeleccion(agenciaCajero);
-              //               },
-              //               child: const Icon(Icons.directions,
-              //                   color: Colors.white),
-              //               color: Theme.of(context).accentColor,
-              //               shape: RoundedRectangleBorder(
-              //                   borderRadius: BorderRadius.circular(5)),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ]
-              //   ],
-              // )
             ],
           ),
         ),

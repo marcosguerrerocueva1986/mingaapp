@@ -78,6 +78,9 @@ class _BeneficiarioEdicionPageState
                           EtiquetaValorRecibo(
                               etiqueta: 'Nombre',
                               valor: provider.beneficiario?.nombre ?? ''),
+                              EtiquetaValorRecibo(
+                              etiqueta: 'Apellido',
+                              valor: provider.beneficiario?.apellido ?? ''),
                           EtiquetaValorRecibo(
                               etiqueta: 'Identificación',
                               valor:
