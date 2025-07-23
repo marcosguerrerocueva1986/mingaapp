@@ -6,7 +6,7 @@ part of 'abono_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$abonoControllerHash() => r'2d110032d00b5c1a2cd0ed66cd61e5463f43f6a6';
+String _$abonoControllerHash() => r'54b5d0a22ce0158f0ad1706f46b48743351dcc8f';
 
 /// See also [AbonoController].
 @ProviderFor(AbonoController)
