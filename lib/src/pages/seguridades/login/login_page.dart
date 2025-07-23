@@ -15,8 +15,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     var controller = ref.read(loginControllerProvider.notifier);
     var provider = ref.watch(loginControllerProvider);
 
-    SharedPreferences preferences = SharedPreferences();
-
     return ScaffoldBootstrap(
       body: Padding(
         padding: const EdgeInsets.all(30.0),
@@ -31,16 +29,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
+                        SvgPicture.asset(
+                          Theme.of(context).brightness == Brightness.dark
+                              ? R.svg.logoBlack
+                              : R.svg.logo,
+                          fit: BoxFit.contain,
                           height: 120,
-                          decoration:
-                              const BoxDecoration(color: Colors.transparent),
-                          child: Center(
-                            child: SvgPicture.asset(R.svg.logo, height: 120),
-                          ),
+                          width: 120,
                         ),
                         const SizedBox(
-                          height: defaultPadding,
+                          height: defaultPadding * 2,
                         ),
                         if (provider.modoConfirmacion) ...[
                           const Text(
@@ -87,10 +85,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         ] else ...[
                           if (provider.estaValidado) ...[
                             CircleAvatar(
+                              backgroundColor: Colors.white,
                               radius: 60.0,
                               child: Image.network(
-                                // Configs.baseUrlSite + 'assets/images/seguridad/' + provider.informacionValidada?.imagen ??
-                                'https://ssl.gstatic.com/onebox/media/sports/logos/E0wlNj3ZcvO0hmFpU-5z9g_96x96.png',
+                                '${Configs.baseUrlSite}assets/images/seguridad/${provider.informacionValidada?.imagen ?? ''}',
                                 width: 85,
                                 height: 85,
                               ),
@@ -207,45 +205,56 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            GestureDetector(
-                              behavior: HitTestBehavior.translucent,
-                              onTap: () => appRouter.push(const AgenciaRoute()),
-                              child: Card(
-                                child: Container(
-                                  padding:
-                                      const EdgeInsets.all(defaultPadding * 2),
-                                  child: const Column(children: [
-                                    Icon(
-                                      Icons.location_on,
-                                      size: 30,
-                                    ),
-                                    SizedBox(
-                                      height: defaultPadding,
-                                    ),
-                                    Text('        Ubícanos       ')
-                                  ]),
-                                ),
-                              ),
-                            ),
-                            if (snapshot.hasData &&
-                                (snapshot.data ?? false)) ...[
-                              GestureDetector(
+                            Expanded(
+                              child: GestureDetector(
                                 behavior: HitTestBehavior.translucent,
-                                onTap: controller.accesoPorHuella,
+                                onTap: () =>
+                                    appRouter.push(const AgenciaRoute()),
                                 child: Card(
                                   child: Container(
                                     padding: const EdgeInsets.all(
                                         defaultPadding * 2),
                                     child: const Column(children: [
                                       Icon(
-                                        Icons.fingerprint_outlined,
+                                        Icons.location_on,
                                         size: 30,
                                       ),
                                       SizedBox(
                                         height: defaultPadding,
                                       ),
-                                      Text('Acceso por Huella')
+                                      Text(
+                                        'Ubícanos',
+                                        textAlign: TextAlign.center,
+                                      )
                                     ]),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            if (snapshot.hasData &&
+                                (snapshot.data ?? false)) ...[
+                              Expanded(
+                                child: GestureDetector(
+                                  behavior: HitTestBehavior.translucent,
+                                  onTap: controller.accesoPorHuella,
+                                  child: Card(
+                                    child: Container(
+                                      padding: const EdgeInsets.all(
+                                          defaultPadding * 2),
+                                      child: const Column(children: [
+                                        Icon(
+                                          Icons.fingerprint_outlined,
+                                          size: 30,
+                                        ),
+                                        SizedBox(
+                                          height: defaultPadding,
+                                        ),
+                                        Text(
+                                          'Huella',
+                                          textAlign: TextAlign.center,
+                                        )
+                                      ]),
+                                    ),
                                   ),
                                 ),
                               )

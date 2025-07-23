@@ -14,6 +14,9 @@ abstract class RestClient {
   @POST("/login")
   Future<LoginRespuesta> login(@Body() LoginRequerimiento requerimiento);
 
+  @POST("/logout")
+  Future<LoginRespuesta> logout();
+
   @POST("/validaCodigoOtpIngreso")
   Future<ValidacionOtpAccesoRespuesta> validaCodigoOtpIngreso(
       @Body() LoginRequerimiento requerimiento);
@@ -75,9 +78,9 @@ abstract class RestClient {
   Future<ConsultaRequisitosBeneficiarioRespuesta>
       consultaRequisitosBeneficiarios(@Body() BaseRequerimiento requerimiento);
 
-    @POST("/consultaAgenciasCajeros")
-  Future<ConsultaAgenciaCajeroRespuesta>
-      consultaAgenciasCajeros(@Body() BaseRequerimiento requerimiento);
+  @POST("/consultaAgenciasCajeros")
+  Future<ConsultaAgenciaCajeroRespuesta> consultaAgenciasCajeros(
+      @Body() BaseRequerimiento requerimiento);
 
   @POST("/registroPinAcceso")
   Future<BaseRequerimiento> registraPinAcceso(
@@ -85,5 +88,40 @@ abstract class RestClient {
 
   @POST("/validaPinAcceso")
   Future<ValidacionOtpAccesoRespuesta> validaPinAcceso(
-      @Body() ValidaPinAccesoRequerimiento  requerimiento);
+      @Body() ValidaPinAccesoRequerimiento requerimiento);
+
+  @POST("/consultaCuentaVinculadaQR")
+  Future<ConsultaCuentaVinculadaQRRespuesta> consultaCuentaVinculadaQR(
+      @Body() ConsultaCuentaVinculadaQRRequerimiento requerimiento);
+
+  @POST("/procesaPagoQR")
+  Future<ProcesaPagoQRRespuesta> procesaPagoQR(
+      @Body() ProcesaPagoQRRequerimiento requerimiento);
+
+  @POST("/consultaRequisitosPagoServicios")
+  Future<ConsultaRequisitosPagoServiciosRespuesta>
+      consultaRequisitosPagoServicios(@Body() BaseRequerimiento requerimiento);
+
+  @POST("/consultarCamposConsultaPagoServicios")
+  Future<ConsultaCamposConsultaPagoServiciosRespuesta>
+      consultarCamposConsultaPagoServicios(
+          @Body()
+          ConsultaCamposConsultaPagoServiciosRequerimiento requerimiento);
+
+  @POST("/consultaRubrosPagoServicio")
+  Future<ConsultaValoresServiciosBasicosRespuesta> consultaRubrosPagoServicio(
+      @Body() ConsultaValoresServiciosBasicosRequerimiento requerimiento);
+
+  @POST("/generaOtpServiciosBasicos")
+  Future<BaseRequerimiento> generaOtpServiciosBasicos(
+      @Body() ProcesaPagoServiciosBasicosRequerimiento requerimiento);
+
+  @POST("/procesaTransaccionPagoServicios")
+  Future<ProcesaPagoServiciosBasicosRespuesta> procesaTransaccionPagoServicios(
+      @Body() ProcesaPagoServiciosBasicosRequerimiento requerimiento);
+
+  @POST("/consultaRequisitosTransferenciaInterbancaria")
+  Future<ConsultaRequisitosTransferenciasRespuesta>
+      consultaRequisitosTransferenciaInterbancaria(
+          @Body() BaseRequerimiento requerimiento);
 }

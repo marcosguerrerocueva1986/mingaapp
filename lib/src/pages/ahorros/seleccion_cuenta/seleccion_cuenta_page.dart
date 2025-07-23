@@ -15,13 +15,17 @@ class _SeleccionCuentaPageState extends ConsumerState<SeleccionCuentaPage> {
     super.initState();
     ref
         .read(posicionConsolidadaControllerProvider.notifier)
-        .actualizaConsolidado();
+        .actualizaConsolidado(disableLoading: true);
   }
 
   @override
   Widget build(BuildContext context) {
     var controller = ref.read(posicionConsolidadaControllerProvider.notifier);
     var provider = ref.watch(posicionConsolidadaControllerProvider);
+
+    var cuentasDisponibles = provider.posicionConsolidada?.cuentas ?? [];
+    cuentasDisponibles =
+        cuentasDisponibles.where((x) => x.permiteUsoBancaElectronica).toList();
 
     return ScaffoldBootstrap(
       appBar: AppBar(
@@ -41,7 +45,7 @@ class _SeleccionCuentaPageState extends ConsumerState<SeleccionCuentaPage> {
             child: ListView.separated(
               separatorBuilder: (context, index) => separadorListaItems,
               itemBuilder: (context, index) {
-                var cuenta = provider.posicionConsolidada!.cuentas[index];
+                var cuenta = cuentasDisponibles[index];
 
                 return GestureDetector(
                   onTap: () => appRouter.pop<CuentaModel?>(cuenta),
@@ -49,7 +53,7 @@ class _SeleccionCuentaPageState extends ConsumerState<SeleccionCuentaPage> {
                   child: CuentaItemWidget(cuenta: cuenta),
                 );
               },
-              itemCount: provider.posicionConsolidada?.cuentas.length ?? 0,
+              itemCount: cuentasDisponibles.length,
             ),
           ),
         ),

@@ -124,32 +124,32 @@ class _CuentaDetallePageState extends ConsumerState<CuentaDetallePage> {
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: context.theme.cardColor,
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(100.0),
-                                  ),
-                                ),
-                                child: TextButton.icon(
-                                  onPressed: () {
-                                    // Acción cuando se presiona el segundo botón
-                                  },
-                                  icon: Icon(
-                                    Icons.water_drop_outlined,
-                                    color: context.textTheme.bodyMedium!.color,
-                                  ),
-                                  label: Text(
-                                    'Pago Servicio',
-                                    style: context.textTheme.bodyMedium,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            // const SizedBox(
+                            //   width: 5,
+                            // ),
+                            // Expanded(
+                            //   child: Container(
+                            //     decoration: BoxDecoration(
+                            //       color: context.theme.cardColor,
+                            //       borderRadius: const BorderRadius.all(
+                            //         Radius.circular(100.0),
+                            //       ),
+                            //     ),
+                            //     child: TextButton.icon(
+                            //       onPressed: () {
+                            //         // Acción cuando se presiona el segundo botón
+                            //       },
+                            //       icon: Icon(
+                            //         Icons.water_drop_outlined,
+                            //         color: context.textTheme.bodyMedium!.color,
+                            //       ),
+                            //       label: Text(
+                            //         'Pago Servicio',
+                            //         style: context.textTheme.bodyMedium,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ],
@@ -212,10 +212,10 @@ class _CuentaDetallePageState extends ConsumerState<CuentaDetallePage> {
                           ],
                         ),
                         itemComparator: (item1, item2) =>
-                            item1.fecha!.compareTo(item2.fecha!),
+                            item1.id.compareTo(item2.id),
                         useStickyGroupSeparators: true,
                         floatingHeader: true,
-                        order: GroupedListOrder.ASC,
+                        order: GroupedListOrder.DESC,
                         separator: separadorListaItems,
                         itemBuilder: (context, MovimientoCuentaModel element) =>
                             Card(

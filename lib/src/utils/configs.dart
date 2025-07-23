@@ -26,4 +26,5 @@ abstract class Configs {
 class Configuracion {
   static int segundosInactividad = 300;
   static DateTime ultimaVezActividad = DateTime.now();
+  static bool mostrarInfo = false;
 }

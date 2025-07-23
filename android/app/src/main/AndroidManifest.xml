@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
 
     <application
@@ -34,6 +35,6 @@
             android:value="2" />
 
                     <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyB7iO80gp7s2rWhnpvjUCjve0w0VBV8pvw"/>
+               android:value="AIzaSyACz08wSAXrDGzPGvEdhpoLTMV5CIO8rJE"/>
     </application>
 </manifest>

@@ -49,7 +49,7 @@ class BeneficiarioItemWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              beneficiario!.nombre,
+                              ('${beneficiario?.nombre ?? ''} ${beneficiario?.apellido ?? ''}'),
                               style: context.textTheme.bodyMedium!
                                   .copyWith(fontWeight: FontWeight.bold),
                               overflow: TextOverflow.ellipsis,

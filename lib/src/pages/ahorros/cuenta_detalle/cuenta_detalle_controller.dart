@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bancamovilr/index.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 

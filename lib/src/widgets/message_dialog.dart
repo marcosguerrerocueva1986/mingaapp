@@ -121,7 +121,7 @@ class _MessageDialogState extends State<MessageDialog> {
             child: Center(
               child: Text(
                 ((widget.title.isEmpty) ? Configs.nameApp : widget.title),
-                style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     decorationColor: Colors.black),
