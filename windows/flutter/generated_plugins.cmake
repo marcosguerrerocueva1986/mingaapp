@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  local_auth_windows
   maps_launcher
   permission_handler_windows
   share_plus

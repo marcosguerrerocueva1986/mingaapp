@@ -9,7 +9,7 @@ part of 'models.dart';
 _$BaseRequerimientoImpl _$$BaseRequerimientoImplFromJson(
         Map<String, dynamic> json) =>
     _$BaseRequerimientoImpl(
-      idUsuario: json['idUsuario'] as int? ?? 0,
+      idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$BaseRequerimientoImplToJson(
@@ -21,8 +21,8 @@ Map<String, dynamic> _$$BaseRequerimientoImplToJson(
 _$LoginRequerimientoImpl _$$LoginRequerimientoImplFromJson(
         Map<String, dynamic> json) =>
     _$LoginRequerimientoImpl(
-      idUsuario: json['idUsuario'] as int? ?? 0,
-      idRegistro: json['idRegistro'] as int? ?? 0,
+      idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
+      idRegistro: (json['idRegistro'] as num?)?.toInt() ?? 0,
       codigoUsuario: json['codigoUsuario'] as String? ?? '',
       pwdUsuario: json['pwdUsuario'] as String? ?? '',
       otpIngresado: json['otpIngresado'] as String? ?? '',
@@ -42,13 +42,13 @@ Map<String, dynamic> _$$LoginRequerimientoImplToJson(
 
 _$LoginRespuestaImpl _$$LoginRespuestaImplFromJson(Map<String, dynamic> json) =>
     _$LoginRespuestaImpl(
-      id: json['id'] as int? ?? 0,
-      idRegistro: json['idRegistro'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      idRegistro: (json['idRegistro'] as num?)?.toInt() ?? 0,
       realizaCambioUsuario: json['realizaCambioUsuario'] as bool? ?? false,
       realizaCambioClave: json['realizaCambioClave'] as bool? ?? false,
       identificacion: json['identificacion'] as String? ?? '',
       nombre: json['nombre'] as String? ?? '',
-      segundosInactividad: json['segundosInactividad'] as int? ?? 0,
+      segundosInactividad: (json['segundosInactividad'] as num?)?.toInt() ?? 0,
       fechaUltimoAcceso: json['fechaUltimoAcceso'] as String? ?? '',
       existError: json['sF_ExisteError'] as bool? ?? false,
       error: json['sF_Error'] as String? ?? '',
@@ -87,7 +87,7 @@ Map<String, dynamic> _$$ValidaUsuarioRespuestaImplToJson(
 
 _$UsuarioModelImpl _$$UsuarioModelImplFromJson(Map<String, dynamic> json) =>
     _$UsuarioModelImpl(
-      id: json['id'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       nombre: json['nombre'] as String? ?? '',
       fechaUltimoAcceso: json['fechaUltimoAcceso'] as String? ?? '',
       codigoUsuario: json['codigoUsuario'] as String? ?? '',
@@ -106,7 +106,7 @@ _$ValidacionOtpAccesoRespuestaImpl _$$ValidacionOtpAccesoRespuestaImplFromJson(
     _$ValidacionOtpAccesoRespuestaImpl(
       esValido: json['esValido'] as bool? ?? false,
       token: json['token'] as String? ?? '',
-      segundosInactividad: json['segundosInactividad'] as int? ?? 60,
+      segundosInactividad: (json['segundosInactividad'] as num?)?.toInt() ?? 60,
       usuario: json['usuario'] == null
           ? null
           : UsuarioModel.fromJson(json['usuario'] as Map<String, dynamic>),
@@ -299,9 +299,9 @@ _$ConsultaMovimientosCuentaRequerimientoImpl
     _$$ConsultaMovimientosCuentaRequerimientoImplFromJson(
             Map<String, dynamic> json) =>
         _$ConsultaMovimientosCuentaRequerimientoImpl(
-          idUsuario: json['idUsuario'] as int? ?? 0,
+          idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
           codigoCuenta: json['codigoCuenta'] as String? ?? '',
-          numeroRegistros: json['numeroRegistros'] as int? ?? 0,
+          numeroRegistros: (json['numeroRegistros'] as num?)?.toInt() ?? 0,
           fechaDesde: json['fechaDesde'] == null
               ? null
               : DateTime.parse(json['fechaDesde'] as String),
@@ -340,7 +340,7 @@ Map<String, dynamic> _$$ConsultaMovimientosCuentaRespuestaImplToJson(
 _$MovimientoCuentaModelImpl _$$MovimientoCuentaModelImplFromJson(
         Map<String, dynamic> json) =>
     _$MovimientoCuentaModelImpl(
-      id: json['id'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       fecha: json['fecha'] == null
           ? null
           : DateTime.parse(json['fecha'] as String),
@@ -426,7 +426,7 @@ _$ConsultaDetallePrestamoRequerimientoImpl
             Map<String, dynamic> json) =>
         _$ConsultaDetallePrestamoRequerimientoImpl(
           codigoPrestamo: json['codigoPrestamo'] as String? ?? '',
-          idUsuario: json['idUsuario'] as int? ?? 0,
+          idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
           fechaInicio: json['fechaInicio'] == null
               ? null
               : DateTime.parse(json['fechaInicio'] as String),
@@ -478,7 +478,7 @@ _$InformacionPrestamoImpl _$$InformacionPrestamoImplFromJson(
       fechaAdjudicacion: json['fechaAdjudicacion'] == null
           ? null
           : DateTime.parse(json['fechaAdjudicacion'] as String),
-      cuotasVencidas: json['cuotasVencidas'] as int? ?? 0,
+      cuotasVencidas: (json['cuotasVencidas'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$InformacionPrestamoImplToJson(
@@ -500,7 +500,7 @@ _$DetallePrestamoImpl _$$DetallePrestamoImplFromJson(
       fechaVencimiento: json['fechaVencimiento'] == null
           ? null
           : DateTime.parse(json['fechaVencimiento'] as String),
-      numeroCuota: json['numeroCuota'] as int? ?? 0,
+      numeroCuota: (json['numeroCuota'] as num?)?.toInt() ?? 0,
       saldoAdeudado: (json['saldoAdeudado'] as num?)?.toDouble() ?? 0.00,
       capital: (json['capital'] as num?)?.toDouble() ?? 0.00,
       interes: (json['interes'] as num?)?.toDouble() ?? 0.00,
@@ -548,15 +548,15 @@ Map<String, dynamic> _$$ConsultaBeneficiarioRequerimientoImplToJson(
 _$BeneficiarioModelImpl _$$BeneficiarioModelImplFromJson(
         Map<String, dynamic> json) =>
     _$BeneficiarioModelImpl(
-      id: json['id'] as int? ?? 0,
-      idUsuario: json['idUsuario'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
       codigoTipoId: json['codigoTipoId'] as String? ?? '',
       identificacion: json['identificacion'] as String? ?? '',
       nombre: json['nombre'] as String? ?? '',
       apellido: json['apellido'] as String? ?? '',
       codigoTipoInstitucion: json['codigoTipoInstitucion'] as String? ?? '',
       tipoInstitucion: json['tipoInstitucion'] as String? ?? '',
-      idInstitucion: json['idInstitucion'] as int? ?? 0,
+      idInstitucion: (json['idInstitucion'] as num?)?.toInt() ?? 0,
       institucion: json['institucion'] as String? ?? '',
       codigoTipoCuenta: json['codigoTipoCuenta'] as String? ?? '',
       tipoCuenta: json['tipoCuenta'] as String? ?? '',
@@ -656,7 +656,7 @@ Map<String, dynamic> _$$TipoInstitucionModelImplToJson(
 _$InstitucionFinancieraModelImpl _$$InstitucionFinancieraModelImplFromJson(
         Map<String, dynamic> json) =>
     _$InstitucionFinancieraModelImpl(
-      id: json['id'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       codigoTipo: json['codigoTipo'] as String? ?? '',
       nombre: json['nombre'] as String? ?? '',
     );
@@ -732,9 +732,9 @@ _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
     _$$ValidaTransferenciaYGeneraOtpRequerimientoImplFromJson(
             Map<String, dynamic> json) =>
         _$ValidaTransferenciaYGeneraOtpRequerimientoImpl(
-          idUsuario: json['idUsuario'] as int? ?? 0,
+          idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
           cuentaOrigen: json['cuentaOrigen'] as String? ?? '',
-          idBeneficiario: json['idBeneficiario'] as int? ?? 0,
+          idBeneficiario: (json['idBeneficiario'] as num?)?.toInt() ?? 0,
           codigoConcepto: json['codigoConcepto'] as String? ?? '',
           cuentaDestino: json['cuentaDestino'] as String? ?? '',
           monto: (json['monto'] as num?)?.toDouble() ?? 0.00,
@@ -780,10 +780,10 @@ _$ProcesaTransferenciaDirectaRequerimientoImpl
     _$$ProcesaTransferenciaDirectaRequerimientoImplFromJson(
             Map<String, dynamic> json) =>
         _$ProcesaTransferenciaDirectaRequerimientoImpl(
-          idUsuario: json['idUsuario'] as int? ?? 0,
+          idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
           codigoTxEmpresa: json['codigoTxEmpresa'] as String? ?? '',
           cuentaOrigen: json['cuentaOrigen'] as String? ?? '',
-          idBeneficiario: json['idBeneficiario'] as int? ?? 0,
+          idBeneficiario: (json['idBeneficiario'] as num?)?.toInt() ?? 0,
           codigoConcepto: json['codigoConcepto'] as String? ?? '',
           cuentaDestino: json['cuentaDestino'] as String? ?? '',
           monto: (json['monto'] as num?)?.toDouble() ?? 0.00,
@@ -864,7 +864,7 @@ _$ProcesaAbonoPrestamoRequerimientoImpl
     _$$ProcesaAbonoPrestamoRequerimientoImplFromJson(
             Map<String, dynamic> json) =>
         _$ProcesaAbonoPrestamoRequerimientoImpl(
-          idUsuario: json['idUsuario'] as int? ?? 0,
+          idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
           codigoPrestamo: json['codigoPrestamo'] as String? ?? '',
           cuentaDebito: json['cuentaDebito'] as String? ?? '',
           monto: (json['monto'] as num?)?.toDouble() ?? 0.00,
@@ -928,7 +928,7 @@ _$ConsultaDetalleInversionRequerimientoImpl
             Map<String, dynamic> json) =>
         _$ConsultaDetalleInversionRequerimientoImpl(
           codigoInversion: json['codigoInversion'] as String? ?? '',
-          idUsuario: json['idUsuario'] as int? ?? 0,
+          idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
         );
 
 Map<String, dynamic> _$$ConsultaDetalleInversionRequerimientoImplToJson(
@@ -1108,7 +1108,7 @@ Map<String, dynamic> _$$BeneficiarioStateImplToJson(
 _$BeneficiarioEdicionStateImpl _$$BeneficiarioEdicionStateImplFromJson(
         Map<String, dynamic> json) =>
     _$BeneficiarioEdicionStateImpl(
-      id: json['id'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       esInterno: json['esInterno'] as bool? ?? false,
       beneficiario: json['beneficiario'] == null
           ? null
@@ -1203,7 +1203,7 @@ Map<String, dynamic> _$$RegistroPinAccesoRequerimientoImplToJson(
 _$ValidaPinAccesoRequerimientoImpl _$$ValidaPinAccesoRequerimientoImplFromJson(
         Map<String, dynamic> json) =>
     _$ValidaPinAccesoRequerimientoImpl(
-      idRegistro: json['idRegistro'] as int? ?? 0,
+      idRegistro: (json['idRegistro'] as num?)?.toInt() ?? 0,
       textoOriginal: json['textoOriginal'] as String? ?? '',
       firma: json['firma'] as String? ?? '',
     );
@@ -1437,7 +1437,7 @@ Map<String, dynamic> _$$ProcesaPagoQRRespuestaImplToJson(
 
 _$ServicioModelImpl _$$ServicioModelImplFromJson(Map<String, dynamic> json) =>
     _$ServicioModelImpl(
-      id: json['id'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       nombre: json['nombre'] as String? ?? '',
       tipo: json['tipo'] as String? ?? '',
       codigo: json['codigo'] as String? ?? '',
@@ -1590,7 +1590,7 @@ _$ConsultaCamposConsultaPagoServiciosRequerimientoImpl
     _$$ConsultaCamposConsultaPagoServiciosRequerimientoImplFromJson(
             Map<String, dynamic> json) =>
         _$ConsultaCamposConsultaPagoServiciosRequerimientoImpl(
-          idProducto: json['idProducto'] as int? ?? 0,
+          idProducto: (json['idProducto'] as num?)?.toInt() ?? 0,
         );
 
 Map<String, dynamic>
@@ -1676,7 +1676,7 @@ _$ConsultaValoresServiciosBasicosRequerimientoImpl
     _$$ConsultaValoresServiciosBasicosRequerimientoImplFromJson(
             Map<String, dynamic> json) =>
         _$ConsultaValoresServiciosBasicosRequerimientoImpl(
-          idProducto: json['idProducto'] as int? ?? 0,
+          idProducto: (json['idProducto'] as num?)?.toInt() ?? 0,
           referencia: json['referencia'] as String? ?? '',
           camposConsultaDetalle: json['camposConsultaDetalle'] == null
               ? null
@@ -1714,9 +1714,9 @@ _$RubrosPagoExternoDetalleImpl _$$RubrosPagoExternoDetalleImplFromJson(
         Map<String, dynamic> json) =>
     _$RubrosPagoExternoDetalleImpl(
       codigoCausal: json['codigoCausal'] as String? ?? '',
-      idAgencia: json['idAgencia'] as int? ?? 0,
+      idAgencia: (json['idAgencia'] as num?)?.toInt() ?? 0,
       codigoAgenciaProveedor: json['codigoAgenciaProveedor'] as String? ?? '',
-      idProducto: json['idProducto'] as int? ?? 0,
+      idProducto: (json['idProducto'] as num?)?.toInt() ?? 0,
       idTransaccion: json['idTransaccion'] as String? ?? '',
       identificacion: json['identificacion'] as String? ?? '',
       nombre: json['nombre'] as String? ?? '',
@@ -1763,7 +1763,7 @@ _$RubroPagoExternoDetalleImpl _$$RubroPagoExternoDetalleImplFromJson(
       comisionProveedor: (json['comisionProveedor'] as num?)?.toDouble() ?? 0.0,
       descripcion: json['descripcion'] as String? ?? '',
       idRubro: json['idRubro'] as String? ?? '',
-      prioridad: json['prioridad'] as int? ?? 0,
+      prioridad: (json['prioridad'] as num?)?.toInt() ?? 0,
       valor: (json['valor'] as num?)?.toDouble() ?? 0.0,
       valorConComision: (json['valorConComision'] as num?)?.toDouble() ?? 0.0,
       valorPago: (json['valorPago'] as num?)?.toDouble() ?? 0.0,
@@ -1802,7 +1802,7 @@ _$ProcesaPagoServiciosBasicosRequerimientoImpl
     _$$ProcesaPagoServiciosBasicosRequerimientoImplFromJson(
             Map<String, dynamic> json) =>
         _$ProcesaPagoServiciosBasicosRequerimientoImpl(
-          idProducto: json['idProducto'] as int? ?? 0,
+          idProducto: (json['idProducto'] as num?)?.toInt() ?? 0,
           guidConsulta: json['guidConsulta'] as String? ?? '',
           cuentaDebito: json['cuentaDebito'] as String? ?? '',
           otpIngresado: json['otpIngresado'] as String? ?? '',

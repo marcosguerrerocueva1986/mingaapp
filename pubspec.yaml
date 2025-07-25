@@ -31,13 +31,14 @@ dependencies:
   awesome_select: ^6.0.0
   calendar_date_picker2: ^0.5.3
   cupertino_icons: ^1.0.2
+  shared_preferences: any
+  flutter_biometrics: any
   darq: ^2.0.0
   date_format: ^2.0.7
   easy_debounce: ^2.0.3
   encrypt: ^5.0.3
   flutter:
     sdk: flutter
-  flutter_biometrics: ^0.3.0
   flutter_launcher_icons: ^0.13.1
   flutter_riverpod: ^2.4.9
   flutter_screenutil: ^5.9.0
@@ -45,7 +46,7 @@ dependencies:
   freezed_annotation: ^2.4.1
   get_it: ^7.6.4
   get_storage: ^2.1.1
-  google_fonts: ^6.1.0
+  google_fonts: ^4.0.3
   google_maps_flutter: ^2.5.0
   grouped_list: ^5.1.2
   intl: ^0.18.1
@@ -70,7 +71,8 @@ dependencies:
   sks_ticket_view: ^1.0.0
   ticket_widget: ^1.0.2
   widgets_to_image: ^0.0.2
-
+  local_auth: ^2.1.8
+  provider: any
 dev_dependencies:
   auto_route_generator: ^7.3.2
   build_runner: ^2.4.7
@@ -100,10 +102,35 @@ flutter:
     - assets/images/icon.png
     - assets/images/logo-deuna-blanco.png
     - assets/images/logo-deuna-morado.png
+    - assets/images/logopantallamenu.png
+    - assets/images/imagenmenu.png
     - assets/images/marcaagua.png
     - assets/images/onboarding-deuna.png
     - assets/svg/logo-black.svg
     - assets/svg/logo.svg
+    - assets/images/logo1.png
+    - assets/images/logo2.png
+    - assets/images/logomitad.png
+    - assets/images/usuariocontrasenia.png
+    - assets/images/accesobiometrico.png
+    - assets/images/huelladactilar.png
+    - assets/images/huelladactilar_icon.png
+    - assets/images/pin.png
+    - assets/images/activacuenta.png
+    - assets/images/fondoSplash.jpg
+    - assets/images/fondoLogin.jpg
+    - assets/images/misproductos.png
+    - assets/images/imagencardinformacion.jpg
+    - assets/images/compartircuenta.png
+    - assets/images/descubre.png
+    - assets/images/ojocuenta.png
+    - assets/images/transferirdinero.png
+    - assets/images/nuestrasagencias.png
+    - assets/images/pagarservicios.png
+    - assets/images/deuna.png
+    - assets/images/estadocuenta.png
+
+
     # mek_assets
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

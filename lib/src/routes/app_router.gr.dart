@@ -75,6 +75,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const LoginPage(),
       );
     },
+    LoginPrincipalRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const LoginPrincipalPage(),
+      );
+    },
     OnboardingRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -168,6 +174,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<PrestamoModel?>(
         routeData: routeData,
         child: const SeleccionPrestamoPage(),
+      );
+    },
+    SplashRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SplashPage(),
       );
     },
     TransaccionDeunaErrorRoute.name: (routeData) {
@@ -390,6 +402,20 @@ class LoginRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'LoginRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [LoginPrincipalPage]
+class LoginPrincipalRoute extends PageRouteInfo<void> {
+  const LoginPrincipalRoute({List<PageRouteInfo>? children})
+      : super(
+          LoginPrincipalRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LoginPrincipalRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -684,6 +710,20 @@ class SeleccionPrestamoRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SeleccionPrestamoRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SplashPage]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute({List<PageRouteInfo>? children})
+      : super(
+          SplashRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

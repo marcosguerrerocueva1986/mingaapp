@@ -4,6 +4,8 @@ import 'package:bancamovilr/src/pages/deuna/onboarding/onboarding_page.dart';
 import 'package:bancamovilr/src/pages/deuna/pago/preguntasfrecuentasdeuna_page.dart';
 import 'package:bancamovilr/src/pages/deuna/pago/qrdeuna_error_page.dart';
 import 'package:bancamovilr/src/pages/deuna/scanner/qr_scanner_page.dart';
+import 'package:bancamovilr/src/pages/loginprincipal_page.dart';
+import 'package:bancamovilr/src/pages/splash.dart';
 
 import '../../index.dart';
 import '../pages/deuna/pago/index.dart';
@@ -17,8 +19,16 @@ class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
-          page: LoginRoute.page,
+          page: SplashRoute.page,
           initial: true,
+        ),
+        AutoRoute(
+          page: LoginPrincipalRoute.page,
+          initial: false,
+        ),
+        AutoRoute(
+          page: LoginRoute.page,
+          initial: false,
         ),
         AutoRoute(
           page: PosicionConsolidadaRoute.page,

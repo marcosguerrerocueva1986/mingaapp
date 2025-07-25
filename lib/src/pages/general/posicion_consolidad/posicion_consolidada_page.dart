@@ -23,18 +23,14 @@ class _PosicionConsolidadaPageState
   Widget build(BuildContext context) {
     var controller = ref.read(posicionConsolidadaControllerProvider.notifier);
     var provider = ref.watch(posicionConsolidadaControllerProvider);
-
     var loginProvider = ref.watch(loginControllerProvider);
-
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
-    var fechaUltimoAcceso =
-        loginProvider.validacionOtpRespuesta?.usuario?.fechaUltimoAcceso ?? '';
-
+    var fechaUltimoAcceso =  loginProvider.validacionOtpRespuesta?.usuario?.fechaUltimoAcceso ?? '';
     SharedPreferences preferences = SharedPreferences();
 
-    return ScaffoldBootstrap(
-      appBar: AppBar(
-        backgroundColor: context.theme.primaryColor,
+    return Scaffold(
+      /*appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
           'Posición Consolidada',
@@ -192,7 +188,10 @@ class _PosicionConsolidadaPageState
             DrawerItemWidget(
               icon: Icons.lock_outline,
               title: 'Cerrar Sesión',
-              onTap: controller.cerrarSesion,
+              onTap: () {
+                appRouter.pop();
+                appRouter.navigate(const LoginPrincipalRoute());
+              },
             ),
           ],
         ),
@@ -229,9 +228,68 @@ class _PosicionConsolidadaPageState
               ),
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      */
+      
       body: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Center(
+        padding: EdgeInsets.zero,
+        child: Stack(
+          fit:  StackFit.expand,
+          children: <Widget> [
+            Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(''),
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget> [
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget> [
+                          Image.asset('assets/images/logopantallamenu.png', width: 110, height: 90),
+                          const SizedBox(width: 32,),
+                          Image.asset('assets/images/logo1.png', width: 160, height: 130),
+                        ],
+                      ),
+                  ),
+                ],
+              ),              
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget> [
+                  Image.asset('assets/images/imagenmenu.png', width: 400, height: 120
+                  ),
+                  const SizedBox(height: 530),
+                ],
+              ),    
+            ),
+            Positioned(
+              top: 270,
+              left: 0,
+              right: 0,
+              child: Center(
+               child: CardInformacion(nombreCliente: nombreCliente),
+              ),
+            ),
+            Positioned(
+              top: 470,
+              left: 0,
+              right: 0,
+              child: Center(
+               child: CardServicios(nombreCliente: nombreCliente),
+              ),
+            ),
+          ],
+        ),
+
+
+        //child: Center(
+          /*
           child: ReactiveForm(
             formGroup: controller.form,
             child: RefreshIndicator(
@@ -373,6 +431,394 @@ class _PosicionConsolidadaPageState
                 ],
               ),
             ),
+          ),
+        */
+        //),
+      ),
+    );
+  }
+}
+class CardInformacion extends StatelessWidget {
+  final String nombreCliente;
+  const CardInformacion({super.key, required this.nombreCliente});
+  @override
+  Widget build(BuildContext context) {
+    
+    return Center(
+      child: Card(
+        color: Colors.transparent,
+        child: Container(
+          width: 365,
+          height: 200,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.0),
+            image: const DecorationImage(
+              image: AssetImage('assets/images/imagencardinformacion.jpg'),
+              fit: BoxFit.cover,
+              alignment: Alignment.center
+            ),
+          ),
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: [
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget> [
+                      Text(
+                        'AHORRO VISTA',
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 2.0,
+                              color: Colors.white70,
+                              offset: Offset(1.0, 1.0)
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 180),
+                  Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget> [
+                    ElevatedButton (
+                      onPressed: () {
+                          print('boton ojito');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent, 
+                          foregroundColor: Colors.white, 
+                          elevation: 0, 
+                          padding: EdgeInsets.zero, 
+                          minimumSize: Size.zero, 
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
+                        ),
+                        child: Ink.image(
+                          image: const AssetImage('assets/images/ojocuenta.png'),
+                          fit: BoxFit.fill,
+                          width: 24,
+                          height: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Text(
+                  nombreCliente,
+                  style: const TextStyle(
+                    color: Colors.white70,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 2.0,
+                        color: Colors.white70,
+                        offset: Offset(1.0, 1.0)
+                      ),
+                    ],
+                  ),
+              ),
+              const Row(
+                children: [
+                  Text(
+                      'Cuenta N°- ',
+                      style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 2.0,
+                          color: Colors.white70,
+                          offset: Offset(1.0, 1.0)
+                        ),
+                      ],
+                    ),
+                  ),
+                  Text(
+                      '22451254128',
+                      style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 2.0,
+                          color: Colors.white70,
+                          offset: Offset(1.0, 1.0)
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 50.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget> [
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget> [
+                      Text(
+                          'Saldo Disponible: ',
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            shadows: [
+                              Shadow(
+                                blurRadius: 2.0,
+                                color: Colors.white70,
+                                offset: Offset(1.0, 1.0)
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                        '\$125.37',
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 24.0,
+                            fontWeight: FontWeight.bold,
+                            shadows: [
+                              Shadow(
+                              blurRadius: 2.0,
+                              color: Colors.white70,
+                              offset: Offset(1.0, 1.0)
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 40),
+                  Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget> [
+                    ElevatedButton (
+                      onPressed: () {
+                          print('boton ojito');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent, 
+                          foregroundColor: Colors.white, 
+                          elevation: 0, 
+                          padding: EdgeInsets.zero, 
+                          minimumSize: Size.zero, 
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
+                        ),
+                        child: Ink.image(
+                          image: const AssetImage('assets/images/compartircuenta.png'),
+                          fit: BoxFit.fill,
+                          width: 140,
+                          height: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+class CardServicios extends StatelessWidget {
+  final String nombreCliente;
+  const CardServicios({super.key, required this.nombreCliente});
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Card (
+        color: Colors.transparent,
+        child: Container(
+          width: 365,
+          height: 280,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      ElevatedButton(
+                        onPressed: () {
+                          context.router.push(const LoginRoute());
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                          padding: EdgeInsets.zero,
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Ink.image(
+                          image: const AssetImage('assets/images/descubre.png'),
+                          fit: BoxFit.fill,
+                          width: 250,
+                          height: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 4,),
+              Row(
+                children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ElevatedButton(
+                      onPressed: () {
+                        context.router.push(const LoginRoute());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        padding: EdgeInsets.zero,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Ink.image(
+                        image: const AssetImage('assets/images/transferirdinero.png'),
+                        fit: BoxFit.fill,
+                        width: 80,
+                        height: 80,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 40,),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ElevatedButton(
+                      onPressed: () {
+                        context.router.push(const LoginRoute());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        padding: EdgeInsets.zero,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Ink.image(
+                        image: const AssetImage('assets/images/estadocuenta.png'),
+                        fit: BoxFit.fill,
+                        width: 80,
+                        height: 80,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 30,),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ElevatedButton(
+                      onPressed: () {
+                        context.router.push(const LoginRoute());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        padding: EdgeInsets.zero,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Ink.image(
+                        image: const AssetImage('assets/images/deuna.png'),
+                        fit: BoxFit.fill,
+                        width: 95,
+                        height: 80,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+              const SizedBox(height: 20,),
+              Row(
+                children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ElevatedButton(
+                      onPressed: () {
+                        context.router.push(const LoginRoute());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        padding: EdgeInsets.zero,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Ink.image(
+                        image: const AssetImage('assets/images/pagarservicios.png'),
+                        fit: BoxFit.fill,
+                        width: 80,
+                        height: 80,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 40,),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ElevatedButton(
+                      onPressed: () {
+                        context.router.push(const LoginRoute());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        padding: EdgeInsets.zero,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Ink.image(
+                        image: const AssetImage('assets/images/nuestrasagencias.png'),
+                        fit: BoxFit.fill,
+                        width: 80,
+                        height: 80,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 30,),
+              ],
+            ),
+            ],
           ),
         ),
       ),
