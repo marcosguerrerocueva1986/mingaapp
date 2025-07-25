@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:bancamovilr/index.dart';
+import 'package:bancamovilr/src/providers/auth_storage_provider.dart';
+import 'package:bancamovilr/src/services/auth_storage_service.dart';
 import 'package:flutter_biometrics/flutter_biometrics.dart';
-
 part 'login_controller.g.dart';
 
 @riverpod
@@ -11,9 +12,10 @@ class LoginController extends _$LoginController {
     'codigoUsuario': ['', Validators.required],
     'pwdUsuario': [''],
   });
-
+late final AuthStorageService _authStorageService;
   @override
   LoginState build() {
+    _authStorageService = ref.read(authStorageServiceProvider);
     return LoginState(permiteEditarUsuario: true, obscurecerClave: true);
   }
 
@@ -29,13 +31,16 @@ class LoginController extends _$LoginController {
         var respuesta =
             await guard(() async => await client.login(requerimiento));
 
-        if (respuesta.hasValue) {
+        if (respuesta.hasValue) {      
           if (respuesta.value?.realizaCambioClave ?? true) {
             NotificationService.showError(
                 text: 'Require cambio de Clave, realizar en sitio web');
           } else {
             HttpClientHelper.idUsuario = respuesta.value?.id ?? 0;
             HttpClientHelper.idRegistro = respuesta.value?.idRegistro ?? 0;
+            if (respuesta.value?.id != null) {
+              await _authStorageService.saveUserId(respuesta.value!.id);
+            }
             state = state.copyWith(
                 modoConfirmacion: true, loginRespuesta: respuesta.value);
           }
@@ -99,7 +104,6 @@ class LoginController extends _$LoginController {
       String signedData = await FlutterBiometrics().sign(
           payload: encodedText,
           reason: 'Pon tu dedo en el sensor para acceder');
-
       var respuesta = await guard(() async => await client.validaPinAcceso(
           ValidaPinAccesoRequerimiento(
               idRegistro: preferences.idRegistro.val,

@@ -6,276 +6,333 @@ part of 'rest_client.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
 
 class _RestClient implements RestClient {
   _RestClient(
     this._dio, {
     this.baseUrl,
+    this.errorLogger,
   });
 
   final Dio _dio;
 
   String? baseUrl;
 
+  final ParseErrorLogger? errorLogger;
+
   @override
   Future<ValidaUsuarioRespuesta> validarUsuario(
       LoginRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ValidaUsuarioRespuesta>(Options(
+    final _options = _setStreamType<ValidaUsuarioRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/validaUsuario',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ValidaUsuarioRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/validaUsuario',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ValidaUsuarioRespuesta _value;
+    try {
+      _value = ValidaUsuarioRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<LoginRespuesta> login(LoginRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<LoginRespuesta>(Options(
+    final _options = _setStreamType<LoginRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/login',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = LoginRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/login',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late LoginRespuesta _value;
+    try {
+      _value = LoginRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<LoginRespuesta> logout() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<LoginRespuesta>(Options(
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<LoginRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/logout',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = LoginRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/logout',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late LoginRespuesta _value;
+    try {
+      _value = LoginRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ValidacionOtpAccesoRespuesta> validaCodigoOtpIngreso(
       LoginRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ValidacionOtpAccesoRespuesta>(Options(
+    final _options = _setStreamType<ValidacionOtpAccesoRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/validaCodigoOtpIngreso',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ValidacionOtpAccesoRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/validaCodigoOtpIngreso',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ValidacionOtpAccesoRespuesta _value;
+    try {
+      _value = ValidacionOtpAccesoRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<PosicionConsolidadaRespuesta> consultaConsolidado(
       BaseRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<PosicionConsolidadaRespuesta>(Options(
+    final _options = _setStreamType<PosicionConsolidadaRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/consultaConsolidado',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = PosicionConsolidadaRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/consultaConsolidado',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late PosicionConsolidadaRespuesta _value;
+    try {
+      _value = PosicionConsolidadaRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ConsultaMovimientosCuentaRespuesta> consultaMovimientosCuenta(
       ConsultaMovimientosCuentaRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ConsultaMovimientosCuentaRespuesta>(Options(
+    final _options = _setStreamType<ConsultaMovimientosCuentaRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/consultaMovimientosCuenta',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ConsultaMovimientosCuentaRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/consultaMovimientosCuenta',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ConsultaMovimientosCuentaRespuesta _value;
+    try {
+      _value = ConsultaMovimientosCuentaRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ConsultaDetalleInversionRespuesta> consultaDetalleInversion(
       ConsultaDetalleInversionRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ConsultaDetalleInversionRespuesta>(Options(
+    final _options = _setStreamType<ConsultaDetalleInversionRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/consultaDetalleInversion',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ConsultaDetalleInversionRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/consultaDetalleInversion',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ConsultaDetalleInversionRespuesta _value;
+    try {
+      _value = ConsultaDetalleInversionRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ConsultaDetalePrestamoRespuesta> consultaDetallePrestamo(
       ConsultaDetallePrestamoRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ConsultaDetalePrestamoRespuesta>(Options(
+    final _options = _setStreamType<ConsultaDetalePrestamoRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/consultaDetallePrestamo',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ConsultaDetalePrestamoRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/consultaDetallePrestamo',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ConsultaDetalePrestamoRespuesta _value;
+    try {
+      _value = ConsultaDetalePrestamoRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ConsultaBeneficiariosRespuesta> consultaBeneficiarios(
       BaseRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ConsultaBeneficiariosRespuesta>(Options(
+    final _options = _setStreamType<ConsultaBeneficiariosRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/consultaBeneficiarios',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ConsultaBeneficiariosRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/consultaBeneficiarios',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ConsultaBeneficiariosRespuesta _value;
+    try {
+      _value = ConsultaBeneficiariosRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ValidaTransferenciaYGeneraOtpRespuesta> validaTransaferenciaYGeneraOtp(
       ValidaTransferenciaYGeneraOtpRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
+    final _options =
         _setStreamType<ValidaTransferenciaYGeneraOtpRespuesta>(Options(
       method: 'POST',
       headers: _headers,
@@ -291,20 +348,26 @@ class _RestClient implements RestClient {
                 baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
-            ))));
-    final value =
-        ValidaTransferenciaYGeneraOtpRespuesta.fromJson(_result.data!);
-    return value;
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ValidaTransferenciaYGeneraOtpRespuesta _value;
+    try {
+      _value = ValidaTransferenciaYGeneraOtpRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ProcesaTransfernciaDirectaRespuesta> ingresaTransferenciaDirecta(
       ProcesaTransferenciaDirectaRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
+    final _options =
         _setStreamType<ProcesaTransfernciaDirectaRespuesta>(Options(
       method: 'POST',
       headers: _headers,
@@ -320,20 +383,27 @@ class _RestClient implements RestClient {
                 baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
-            ))));
-    final value = ProcesaTransfernciaDirectaRespuesta.fromJson(_result.data!);
-    return value;
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ProcesaTransfernciaDirectaRespuesta _value;
+    try {
+      _value = ProcesaTransfernciaDirectaRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ProcesaTransfernciaDirectaRespuesta>
       procesaTransaferenciaInterbancaria(
           ProcesaTransferenciaDirectaRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
+    final _options =
         _setStreamType<ProcesaTransfernciaDirectaRespuesta>(Options(
       method: 'POST',
       headers: _headers,
@@ -349,75 +419,94 @@ class _RestClient implements RestClient {
                 baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
-            ))));
-    final value = ProcesaTransfernciaDirectaRespuesta.fromJson(_result.data!);
-    return value;
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ProcesaTransfernciaDirectaRespuesta _value;
+    try {
+      _value = ProcesaTransfernciaDirectaRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ProcesaAbonoPrestamoRespuesta> validaAbonoPrestamoYGeneraOtp(
       ProcesaAbonoPrestamoRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ProcesaAbonoPrestamoRespuesta>(Options(
+    final _options = _setStreamType<ProcesaAbonoPrestamoRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/validaAbonoPrestamoYGeneraOtp',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ProcesaAbonoPrestamoRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/validaAbonoPrestamoYGeneraOtp',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ProcesaAbonoPrestamoRespuesta _value;
+    try {
+      _value = ProcesaAbonoPrestamoRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ProcesaAbonoPrestamoRespuesta> procesaAbonoPrestamo(
       ProcesaAbonoPrestamoRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ProcesaAbonoPrestamoRespuesta>(Options(
+    final _options = _setStreamType<ProcesaAbonoPrestamoRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/ingresaAbonoPrestamo',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ProcesaAbonoPrestamoRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/ingresaAbonoPrestamo',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ProcesaAbonoPrestamoRespuesta _value;
+    try {
+      _value = ProcesaAbonoPrestamoRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<MantenimientoBeneficiarioRequerimiento> generaOtpBeneficiario(
       MantenimientoBeneficiarioRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
+    final _options =
         _setStreamType<MantenimientoBeneficiarioRequerimiento>(Options(
       method: 'POST',
       headers: _headers,
@@ -433,20 +522,26 @@ class _RestClient implements RestClient {
                 baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
-            ))));
-    final value =
-        MantenimientoBeneficiarioRequerimiento.fromJson(_result.data!);
-    return value;
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late MantenimientoBeneficiarioRequerimiento _value;
+    try {
+      _value = MantenimientoBeneficiarioRequerimiento.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<MantenimientoBeneficiarioRequerimiento> mantenimientoBeneficiario(
       MantenimientoBeneficiarioRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
+    final _options =
         _setStreamType<MantenimientoBeneficiarioRequerimiento>(Options(
       method: 'POST',
       headers: _headers,
@@ -462,20 +557,26 @@ class _RestClient implements RestClient {
                 baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
-            ))));
-    final value =
-        MantenimientoBeneficiarioRequerimiento.fromJson(_result.data!);
-    return value;
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late MantenimientoBeneficiarioRequerimiento _value;
+    try {
+      _value = MantenimientoBeneficiarioRequerimiento.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<MantenimientoBeneficiarioRequerimiento> eliminaBeneficiario(
       BeneficiarioModel requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
+    final _options =
         _setStreamType<MantenimientoBeneficiarioRequerimiento>(Options(
       method: 'POST',
       headers: _headers,
@@ -491,20 +592,26 @@ class _RestClient implements RestClient {
                 baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
-            ))));
-    final value =
-        MantenimientoBeneficiarioRequerimiento.fromJson(_result.data!);
-    return value;
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late MantenimientoBeneficiarioRequerimiento _value;
+    try {
+      _value = MantenimientoBeneficiarioRequerimiento.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ConsultaRequisitosBeneficiarioRespuesta>
       consultaRequisitosBeneficiarios(BaseRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
+    final _options =
         _setStreamType<ConsultaRequisitosBeneficiarioRespuesta>(Options(
       method: 'POST',
       headers: _headers,
@@ -520,160 +627,196 @@ class _RestClient implements RestClient {
                 baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
-            ))));
-    final value =
-        ConsultaRequisitosBeneficiarioRespuesta.fromJson(_result.data!);
-    return value;
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ConsultaRequisitosBeneficiarioRespuesta _value;
+    try {
+      _value = ConsultaRequisitosBeneficiarioRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ConsultaAgenciaCajeroRespuesta> consultaAgenciasCajeros(
       BaseRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ConsultaAgenciaCajeroRespuesta>(Options(
+    final _options = _setStreamType<ConsultaAgenciaCajeroRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/consultaAgenciasCajeros',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ConsultaAgenciaCajeroRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/consultaAgenciasCajeros',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ConsultaAgenciaCajeroRespuesta _value;
+    try {
+      _value = ConsultaAgenciaCajeroRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<BaseRequerimiento> registraPinAcceso(
       RegistroPinAccesoRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<BaseRequerimiento>(Options(
+    final _options = _setStreamType<BaseRequerimiento>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/registroPinAcceso',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = BaseRequerimiento.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/registroPinAcceso',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BaseRequerimiento _value;
+    try {
+      _value = BaseRequerimiento.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ValidacionOtpAccesoRespuesta> validaPinAcceso(
       ValidaPinAccesoRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ValidacionOtpAccesoRespuesta>(Options(
+    final _options = _setStreamType<ValidacionOtpAccesoRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/validaPinAcceso',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ValidacionOtpAccesoRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/validaPinAcceso',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ValidacionOtpAccesoRespuesta _value;
+    try {
+      _value = ValidacionOtpAccesoRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ConsultaCuentaVinculadaQRRespuesta> consultaCuentaVinculadaQR(
       ConsultaCuentaVinculadaQRRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ConsultaCuentaVinculadaQRRespuesta>(Options(
+    final _options = _setStreamType<ConsultaCuentaVinculadaQRRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/consultaCuentaVinculadaQR',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ConsultaCuentaVinculadaQRRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/consultaCuentaVinculadaQR',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ConsultaCuentaVinculadaQRRespuesta _value;
+    try {
+      _value = ConsultaCuentaVinculadaQRRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ProcesaPagoQRRespuesta> procesaPagoQR(
       ProcesaPagoQRRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ProcesaPagoQRRespuesta>(Options(
+    final _options = _setStreamType<ProcesaPagoQRRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/procesaPagoQR',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ProcesaPagoQRRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/procesaPagoQR',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ProcesaPagoQRRespuesta _value;
+    try {
+      _value = ProcesaPagoQRRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ConsultaRequisitosPagoServiciosRespuesta>
       consultaRequisitosPagoServicios(BaseRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
+    final _options =
         _setStreamType<ConsultaRequisitosPagoServiciosRespuesta>(Options(
       method: 'POST',
       headers: _headers,
@@ -689,10 +832,16 @@ class _RestClient implements RestClient {
                 baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
-            ))));
-    final value =
-        ConsultaRequisitosPagoServiciosRespuesta.fromJson(_result.data!);
-    return value;
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ConsultaRequisitosPagoServiciosRespuesta _value;
+    try {
+      _value = ConsultaRequisitosPagoServiciosRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -700,11 +849,11 @@ class _RestClient implements RestClient {
       consultarCamposConsultaPagoServicios(
           ConsultaCamposConsultaPagoServiciosRequerimiento
               requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
+    final _options =
         _setStreamType<ConsultaCamposConsultaPagoServiciosRespuesta>(Options(
       method: 'POST',
       headers: _headers,
@@ -720,20 +869,27 @@ class _RestClient implements RestClient {
                 baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
-            ))));
-    final value =
-        ConsultaCamposConsultaPagoServiciosRespuesta.fromJson(_result.data!);
-    return value;
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ConsultaCamposConsultaPagoServiciosRespuesta _value;
+    try {
+      _value =
+          ConsultaCamposConsultaPagoServiciosRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ConsultaValoresServiciosBasicosRespuesta> consultaRubrosPagoServicio(
       ConsultaValoresServiciosBasicosRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
+    final _options =
         _setStreamType<ConsultaValoresServiciosBasicosRespuesta>(Options(
       method: 'POST',
       headers: _headers,
@@ -749,48 +905,60 @@ class _RestClient implements RestClient {
                 baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
-            ))));
-    final value =
-        ConsultaValoresServiciosBasicosRespuesta.fromJson(_result.data!);
-    return value;
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ConsultaValoresServiciosBasicosRespuesta _value;
+    try {
+      _value = ConsultaValoresServiciosBasicosRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<BaseRequerimiento> generaOtpServiciosBasicos(
       ProcesaPagoServiciosBasicosRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<BaseRequerimiento>(Options(
+    final _options = _setStreamType<BaseRequerimiento>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/generaOtpServiciosBasicos',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = BaseRequerimiento.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/generaOtpServiciosBasicos',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BaseRequerimiento _value;
+    try {
+      _value = BaseRequerimiento.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ProcesaPagoServiciosBasicosRespuesta> procesaTransaccionPagoServicios(
       ProcesaPagoServiciosBasicosRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
+    final _options =
         _setStreamType<ProcesaPagoServiciosBasicosRespuesta>(Options(
       method: 'POST',
       headers: _headers,
@@ -806,20 +974,27 @@ class _RestClient implements RestClient {
                 baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
-            ))));
-    final value = ProcesaPagoServiciosBasicosRespuesta.fromJson(_result.data!);
-    return value;
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ProcesaPagoServiciosBasicosRespuesta _value;
+    try {
+      _value = ProcesaPagoServiciosBasicosRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ConsultaRequisitosTransferenciasRespuesta>
       consultaRequisitosTransferenciaInterbancaria(
           BaseRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
+    final _options =
         _setStreamType<ConsultaRequisitosTransferenciasRespuesta>(Options(
       method: 'POST',
       headers: _headers,
@@ -835,38 +1010,51 @@ class _RestClient implements RestClient {
                 baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
-            ))));
-    final value =
-        ConsultaRequisitosTransferenciasRespuesta.fromJson(_result.data!);
-    return value;
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ConsultaRequisitosTransferenciasRespuesta _value;
+    try {
+      _value =
+          ConsultaRequisitosTransferenciasRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ConsultaConceptosRespuesta> consultaConceptos(
       BaseRequerimiento requerimiento) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requerimiento;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ConsultaConceptosRespuesta>(Options(
+    final _options = _setStreamType<ConsultaConceptosRespuesta>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/consultaConceptos',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ConsultaConceptosRespuesta.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/consultaConceptos',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ConsultaConceptosRespuesta _value;
+    try {
+      _value = ConsultaConceptosRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
