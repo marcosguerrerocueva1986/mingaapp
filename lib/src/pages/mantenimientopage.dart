@@ -28,7 +28,7 @@ class _MantenimientoPageState extends ConsumerState<MantenimientoPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            appRouter.pushAndPopUntil(const PosicionConsolidadaRoute(), predicate: (_) => false);
+            appRouter.push(const PosicionConsolidadaRoute());
           },
         ),
       ),
