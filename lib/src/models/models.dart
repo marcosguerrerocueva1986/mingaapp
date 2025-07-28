@@ -163,9 +163,11 @@ class PrestamoModel with _$PrestamoModel {
 
 @freezed
 class PosicionConsolidadaState with _$PosicionConsolidadaState {
-  factory PosicionConsolidadaState(
-          {PosicionConsolidadaRespuesta? posicionConsolidada}) =
-      _PosicionConsolidadaState;
+  const factory PosicionConsolidadaState({
+    @Default(true) bool isLoading,
+    PosicionConsolidadaRespuesta? posicionConsolidada,
+    String? errorMessage,
+  }) = _PosicionConsolidadaState;
 
   factory PosicionConsolidadaState.fromJson(Map<String, Object?> json) =>
       _$PosicionConsolidadaStateFromJson(json);

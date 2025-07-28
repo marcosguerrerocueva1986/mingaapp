@@ -264,16 +264,20 @@ Map<String, dynamic> _$$PrestamoModelImplToJson(_$PrestamoModelImpl instance) =>
 _$PosicionConsolidadaStateImpl _$$PosicionConsolidadaStateImplFromJson(
         Map<String, dynamic> json) =>
     _$PosicionConsolidadaStateImpl(
+      isLoading: json['isLoading'] as bool? ?? true,
       posicionConsolidada: json['posicionConsolidada'] == null
           ? null
           : PosicionConsolidadaRespuesta.fromJson(
               json['posicionConsolidada'] as Map<String, dynamic>),
+      errorMessage: json['errorMessage'] as String?,
     );
 
 Map<String, dynamic> _$$PosicionConsolidadaStateImplToJson(
         _$PosicionConsolidadaStateImpl instance) =>
     <String, dynamic>{
+      'isLoading': instance.isLoading,
       'posicionConsolidada': instance.posicionConsolidada,
+      'errorMessage': instance.errorMessage,
     };
 
 _$CuentaDetalleStateImpl _$$CuentaDetalleStateImplFromJson(

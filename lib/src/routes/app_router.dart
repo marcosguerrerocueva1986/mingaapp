@@ -5,6 +5,7 @@ import 'package:bancamovilr/src/pages/deuna/pago/preguntasfrecuentasdeuna_page.d
 import 'package:bancamovilr/src/pages/deuna/pago/qrdeuna_error_page.dart';
 import 'package:bancamovilr/src/pages/deuna/scanner/qr_scanner_page.dart';
 import 'package:bancamovilr/src/pages/loginprincipal_page.dart';
+import 'package:bancamovilr/src/pages/mantenimientopage.dart';
 import 'package:bancamovilr/src/pages/splash.dart';
 
 import '../../index.dart';
@@ -108,6 +109,10 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: PreguntasFrecuentesDeunaRoute.page,
+          initial: false,
+        ),
+        AutoRoute(
+          page: MantenimientoRoute.page,
           initial: false,
         ),
       ];

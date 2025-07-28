@@ -2869,8 +2869,10 @@ PosicionConsolidadaState _$PosicionConsolidadaStateFromJson(
 
 /// @nodoc
 mixin _$PosicionConsolidadaState {
+  bool get isLoading => throw _privateConstructorUsedError;
   PosicionConsolidadaRespuesta? get posicionConsolidada =>
       throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2884,7 +2886,10 @@ abstract class $PosicionConsolidadaStateCopyWith<$Res> {
           $Res Function(PosicionConsolidadaState) then) =
       _$PosicionConsolidadaStateCopyWithImpl<$Res, PosicionConsolidadaState>;
   @useResult
-  $Res call({PosicionConsolidadaRespuesta? posicionConsolidada});
+  $Res call(
+      {bool isLoading,
+      PosicionConsolidadaRespuesta? posicionConsolidada,
+      String? errorMessage});
 
   $PosicionConsolidadaRespuestaCopyWith<$Res>? get posicionConsolidada;
 }
@@ -2903,13 +2908,23 @@ class _$PosicionConsolidadaStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLoading = null,
     Object? posicionConsolidada = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       posicionConsolidada: freezed == posicionConsolidada
           ? _value.posicionConsolidada
           : posicionConsolidada // ignore: cast_nullable_to_non_nullable
               as PosicionConsolidadaRespuesta?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -2936,7 +2951,10 @@ abstract class _$$PosicionConsolidadaStateImplCopyWith<$Res>
       __$$PosicionConsolidadaStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PosicionConsolidadaRespuesta? posicionConsolidada});
+  $Res call(
+      {bool isLoading,
+      PosicionConsolidadaRespuesta? posicionConsolidada,
+      String? errorMessage});
 
   @override
   $PosicionConsolidadaRespuestaCopyWith<$Res>? get posicionConsolidada;
@@ -2955,13 +2973,23 @@ class __$$PosicionConsolidadaStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLoading = null,
     Object? posicionConsolidada = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$PosicionConsolidadaStateImpl(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       posicionConsolidada: freezed == posicionConsolidada
           ? _value.posicionConsolidada
           : posicionConsolidada // ignore: cast_nullable_to_non_nullable
               as PosicionConsolidadaRespuesta?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -2969,17 +2997,23 @@ class __$$PosicionConsolidadaStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PosicionConsolidadaStateImpl implements _PosicionConsolidadaState {
-  _$PosicionConsolidadaStateImpl({this.posicionConsolidada});
+  const _$PosicionConsolidadaStateImpl(
+      {this.isLoading = true, this.posicionConsolidada, this.errorMessage});
 
   factory _$PosicionConsolidadaStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$PosicionConsolidadaStateImplFromJson(json);
 
   @override
+  @JsonKey()
+  final bool isLoading;
+  @override
   final PosicionConsolidadaRespuesta? posicionConsolidada;
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'PosicionConsolidadaState(posicionConsolidada: $posicionConsolidada)';
+    return 'PosicionConsolidadaState(isLoading: $isLoading, posicionConsolidada: $posicionConsolidada, errorMessage: $errorMessage)';
   }
 
   @override
@@ -2987,13 +3021,18 @@ class _$PosicionConsolidadaStateImpl implements _PosicionConsolidadaState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PosicionConsolidadaStateImpl &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             (identical(other.posicionConsolidada, posicionConsolidada) ||
-                other.posicionConsolidada == posicionConsolidada));
+                other.posicionConsolidada == posicionConsolidada) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, posicionConsolidada);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, posicionConsolidada, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -3011,15 +3050,20 @@ class _$PosicionConsolidadaStateImpl implements _PosicionConsolidadaState {
 }
 
 abstract class _PosicionConsolidadaState implements PosicionConsolidadaState {
-  factory _PosicionConsolidadaState(
-          {final PosicionConsolidadaRespuesta? posicionConsolidada}) =
-      _$PosicionConsolidadaStateImpl;
+  const factory _PosicionConsolidadaState(
+      {final bool isLoading,
+      final PosicionConsolidadaRespuesta? posicionConsolidada,
+      final String? errorMessage}) = _$PosicionConsolidadaStateImpl;
 
   factory _PosicionConsolidadaState.fromJson(Map<String, dynamic> json) =
       _$PosicionConsolidadaStateImpl.fromJson;
 
   @override
+  bool get isLoading;
+  @override
   PosicionConsolidadaRespuesta? get posicionConsolidada;
+  @override
+  String? get errorMessage;
   @override
   @JsonKey(ignore: true)
   _$$PosicionConsolidadaStateImplCopyWith<_$PosicionConsolidadaStateImpl>

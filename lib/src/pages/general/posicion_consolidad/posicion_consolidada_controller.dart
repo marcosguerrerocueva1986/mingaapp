@@ -12,22 +12,42 @@ class PosicionConsolidadaController extends _$PosicionConsolidadaController {
 
   @override
   PosicionConsolidadaState build() {
-    return PosicionConsolidadaState();
+    return const PosicionConsolidadaState();
   }
 
   Future actualizaConsolidado({bool disableLoading = false}) async {
     var client = HttpClientHelper.getClient();
 
+    state = state.copyWith(isLoading: true, errorMessage: null);
     bootstrapNotifier.isDisabledLoading = disableLoading;
 
-    var respuesta = await guard(() async => await client.consultaConsolidado(
+    try {
+      var respuesta = await guard(() async => await client.consultaConsolidado(
         BaseRequerimiento(idUsuario: HttpClientHelper.idUsuario)));
 
-    if (respuesta.hasValue) {
-      state = state.copyWith(posicionConsolidada: respuesta.value);
+      if (respuesta.hasValue) {
+        state = state.copyWith(posicionConsolidada: respuesta.value, isLoading: false, errorMessage: null);
+        print('Datos de posición consolidada cargados con éxito.');
+      } else {
+        String errorMsg = 'No se pudo cargar la posición consolidada. Intente de nuevo.';
+        state = state.copyWith(
+          posicionConsolidada: null, 
+          isLoading: false,
+          errorMessage: errorMsg,
+        );
+        print('Error al cargar datos de posición consolidada. Respuesta no tiene valor.');
+        print('Detalle del error: $errorMsg');
+      }
+    } catch (e) {
+      state = state.copyWith(
+        posicionConsolidada: null,
+        isLoading: false,
+        errorMessage: 'Ocurrió un error inesperado: $e',
+      );
+      print('Excepción en actualizaConsolidado: $e');
+    } finally {
+      bootstrapNotifier.isDisabledLoading = false;
     }
-
-    bootstrapNotifier.isDisabledLoading = false;
   }
 
   Future toogleAccesoPorHuella() async {

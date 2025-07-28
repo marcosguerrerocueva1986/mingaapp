@@ -182,6 +182,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashPage(),
       );
     },
+    MantenimientoRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MantenimientoPage(),
+      );
+    },
     TransaccionDeunaErrorRoute.name: (routeData) {
       final args = routeData.argsAs<TransaccionDeunaErrorRouteArgs>(
           orElse: () => const TransaccionDeunaErrorRouteArgs());
@@ -724,6 +730,20 @@ class SplashRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MantenimientoPage]
+class MantenimientoRoute extends PageRouteInfo<void> {
+  const MantenimientoRoute({List<PageRouteInfo>? children})
+      : super(
+          MantenimientoRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MantenimientoRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

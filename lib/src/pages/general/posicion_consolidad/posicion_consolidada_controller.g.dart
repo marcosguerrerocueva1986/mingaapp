@@ -7,7 +7,7 @@ part of 'posicion_consolidada_controller.dart';
 // **************************************************************************
 
 String _$posicionConsolidadaControllerHash() =>
-    r'cccd8c11f1e9014e934f5bcd8b92b7c87a494063';
+    r'63d5b7faba5a33c493f806cc1bfa9908cd1060d4';
 
 /// See also [PosicionConsolidadaController].
 @ProviderFor(PosicionConsolidadaController)
