@@ -114,7 +114,7 @@ with SingleTickerProviderStateMixin {
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
     
-    if (provider.posicionConsolidada == null) {
+    if (provider.isLoading) {
       return const Center(
         child: CircularProgressIndicator(), 
       );
