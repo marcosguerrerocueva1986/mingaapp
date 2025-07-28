@@ -34,24 +34,24 @@ class _MantenimientoPageState extends ConsumerState<MantenimientoPage> {
       ),
       body: Container(
         width: double.infinity, 
-        padding: const EdgeInsets.all(20.0), 
+        padding: const EdgeInsets.all(10.0), 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center, 
           children: <Widget>[
             Image.asset(
               'assets/images/cloudstudiologo.jpg', 
-              height: 150, 
-              width: 150,
+              height: 300, 
+              width: 300,
             ),
-            const SizedBox(height: 40), 
+            const SizedBox(height: 1), 
             const Text(
               '¡Estamos trabajando para mejorar tus servicios!',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.white, 
+                color: Colors.blue, 
               ),
             ),
             const SizedBox(height: 20),
@@ -59,8 +59,8 @@ class _MantenimientoPageState extends ConsumerState<MantenimientoPage> {
               'Próximamente, estas funcionalidades estarán disponibles para ti.',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
+                fontSize: 20,
+                color: Colors.blue,
               ),
             ),
             const SizedBox(height: 60), 

@@ -81,6 +81,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const LoginPrincipalPage(),
       );
     },
+    MantenimientoRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MantenimientoPage(),
+      );
+    },
     OnboardingRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -180,12 +186,6 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SplashPage(),
-      );
-    },
-    MantenimientoRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MantenimientoPage(),
       );
     },
     TransaccionDeunaErrorRoute.name: (routeData) {
@@ -422,6 +422,20 @@ class LoginPrincipalRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'LoginPrincipalRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MantenimientoPage]
+class MantenimientoRoute extends PageRouteInfo<void> {
+  const MantenimientoRoute({List<PageRouteInfo>? children})
+      : super(
+          MantenimientoRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MantenimientoRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -730,20 +744,6 @@ class SplashRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SplashRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [MantenimientoPage]
-class MantenimientoRoute extends PageRouteInfo<void> {
-  const MantenimientoRoute({List<PageRouteInfo>? children})
-      : super(
-          MantenimientoRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'MantenimientoRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

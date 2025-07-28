@@ -35,18 +35,13 @@ with SingleTickerProviderStateMixin {
   ];
   int _selectedIndex = 0; 
   late PageController _pageController;
-  late final List<Widget> _screens = [
-    _buildHomePageContent(context),
-    const Center(child: Text('Pantalla de Solicitudes', style: TextStyle(fontSize: 24))),
-    const Center(child: Text('Pantalla de Perfil', style: TextStyle(fontSize: 24))),
-  ];
 
   @override
   void initState() {
     super.initState();
-    ref.read(posicionConsolidadaControllerProvider.notifier).actualizaConsolidado();
     _tabController = TabController(length: 3, vsync: this);
     _pageController = PageController(initialPage: _selectedIndex);
+    ref.read(posicionConsolidadaControllerProvider.notifier).actualizaConsolidado();
   }   
 
   @override
@@ -70,8 +65,14 @@ with SingleTickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) { 
+    late final List<Widget> screens = [
+    _buildHomePageContent(context),
+    const Center(child: Text('Pantalla de Solicitudes', style: TextStyle(fontSize: 24))),
+    const Center(child: Text('Pantalla de Perfil', style: TextStyle(fontSize: 24))),
+  ];
+
+    return ScaffoldBootstrap(
       body: SafeArea(
         child: PageView(
           controller: _pageController,
@@ -80,7 +81,7 @@ with SingleTickerProviderStateMixin {
               _selectedIndex = index;
             });
           },
-          children: _screens,
+          children: screens,
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -113,249 +114,285 @@ with SingleTickerProviderStateMixin {
     var provider = ref.watch(posicionConsolidadaControllerProvider);
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
-    
     if (provider.isLoading) {
       return const Center(
         child: CircularProgressIndicator(), 
       );
-    }
-
-    return RefreshIndicator(
-      onRefresh: () async {
-        await controller.actualizaConsolidado();
-      }, 
-      child: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-          child: Container(
-            decoration: const BoxDecoration(),
-              child: Column(
-                children: <Widget> [
-                  //contaniner de logo y bienvenida
-                  Container(
-                    height: 80,
-                    decoration: const BoxDecoration(
-                      color: Colors.transparent,
-                    ),
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 5.0,
-                          left: 20.0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget> [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget> [
-                                  Image.asset('assets/images/logopantallamenu.png', width: 130, height: 90),
-                                ],
-                              ),
-                            ]
-                          ),
-                        ),
-                        Positioned(
-                          top: 20.0,
-                          right: 20.0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget> [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget> [
-                                  Image.asset('assets/images/bienvenidos.png', width: 60, height: 50),
-                                ],
-                              ),                          
-                            ]
-                          ),
-                        ),
-                        Positioned(
-                          top: 55.0,
-                          right: defaultPadding,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+    } else if (provider.errorMessage != null) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.error_outline, color: Colors.blue, size: 40),
+            const SizedBox(height: 10),
+            Text(
+              provider.errorMessage!,
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.blue, fontSize: 16),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => controller.actualizaConsolidado(), 
+              child: const Text('Reintentar'),
+            ),
+          ],
+        ),
+      );
+    } else if (provider.posicionConsolidada == null) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'No hay datos de posición consolidada disponibles.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, color: Colors.blue),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () => controller.actualizaConsolidado(), 
+            child: const Text('Cargar datos'),
+          ),
+        ],
+      ),
+    );
+  }
+  return RefreshIndicator(
+    onRefresh: () async {
+      await controller.actualizaConsolidado();
+    }, 
+    child: SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
+        child: Container(
+          decoration: const BoxDecoration(),
+            child: Column(
+              children: <Widget> [
+                //contaniner de logo y bienvenida
+                Container(
+                  height: 80,
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: 5.0,
+                        left: 20.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget> [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget> [
-                                Text(nombreCliente.toUpperCase(), 
-                                  style: const TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ]
-                          ),
-                        )
-                      ],
-                    ),
-                  ),               
-                  //container de logos de promociones
-                  Container(
-                    height: 120,
-                    decoration: const BoxDecoration(
-                      color: Colors.transparent,
-                    ),
-                    
-                    child: SizedBox(
-                      child: PageView.builder(
-                        controller: PageController(viewportFraction: 1),
-                        itemCount: _carouselImagePaths.length,
-                        itemBuilder: (context, index) {
-                          final String imagePath = _carouselImagePaths[index];
-                          return Padding(
-                            padding: EdgeInsets.zero,
-                            child: Card(
-                              margin: EdgeInsets.zero,
-                              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                child: CardImagen(
-                                  imagePath: imagePath,
-                                  onClick: () {
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text('Clic en ${imagePath.split('/').last}')),
-                                    );
-                                    //Puedes navegar a otra pantalla, mostrar un diálogo, etc.
-                                    //context.router.push(MiNuevaRuta(imagen: imagePath));
-                                  },
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  //container de mis productos
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Mis productos:',
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: ContextExtension(context).getTitlePrimaryColor(), 
-                            ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                    alignment: Alignment.center,
-                    height: 250,
-                    decoration: const BoxDecoration(
-                      color: Colors.transparent,
-                    ),
-                    margin: EdgeInsets.zero,
-                    child: Column(
-                      children: [
-                        TabBar(
-                          controller: _tabController,
-                          indicatorSize: TabBarIndicatorSize.tab,
-                          indicatorPadding: const EdgeInsets.fromLTRB(1,0,0,0),
-                          dividerColor: Colors.transparent,
-                          indicator: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.0),
-                            color: Colors.blue,
-                          ),
-                          labelColor: Colors.white, 
-                          labelStyle: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold
-                          ),
-                          unselectedLabelColor: Colors.blue, 
-                          tabs: const [
-                            Tab(text: 'Ahorros'),
-                            Tab(text: 'Créditos'),
-                            Tab(text: 'Inversiones'),
-                          ],
-                        ),
-                        SizedBox(
-                            height: 200,
-                            child: TabBarView(
-                              controller: _tabController,
-                              children: [
-                                // Pestaña de Ahorros
-                                _buildCarousel(
-                                  context,
-                                  provider.posicionConsolidada?.cuentas ?? [],
-                                  _pageControllerCuentas,
-                                  (item) => CardInformacion(
-                                    title: item.tipo ?? 'Cuenta',
-                                    accountHolder: nombreCliente,
-                                    accountNumber: item.codigo ?? 'N/A',
-                                    balance: item.saldo ?? 0.0,
-                                    backgroundImage: const AssetImage('assets/images/imagencardinformacion.jpg'),
-                                  ),
-                                  'No hay cuentas de ahorro disponibles.',
-                                ),
-                      
-                                // Pestaña de Créditos
-                                _buildCarousel(
-                                  context,
-                                  provider.posicionConsolidada?.prestamos ?? [],
-                                  _pageControllerPrestamos,
-                                  (item) => CardInformacion(
-                                    title: item.tipo ?? 'Préstamo',
-                                    accountHolder: nombreCliente,
-                                    accountNumber: item.codigo ?? 'N/A',
-                                    balance: item.saldo ?? 0.0,
-                                    backgroundImage: const AssetImage('assets/images/imagencardinformacion.jpg'),
-                                  ),
-                                  'No hay créditos disponibles.',
-                                ),
-                      
-                                // Pestaña de Inversiones
-                                _buildCarousel(
-                                  context,
-                                  provider.posicionConsolidada?.inversiones ?? [],
-                                  _pageControllerInversiones,
-                                  (item) => CardInformacion(
-                                    title: item.estado ?? 'Inversión', 
-                                    accountHolder: nombreCliente,
-                                    accountNumber: item.codigo ?? 'N/A',
-                                    balance: item.monto ?? 0.0,                   
-                                    backgroundImage: const AssetImage('assets/images/imagencardinformacion.jpg'),
-                                  ),
-                                  'No hay inversiones disponibles.',
-                                ),
+                                Image.asset('assets/images/logopantallamenu.png', width: 130, height: 90),
                               ],
                             ),
-                          ),  
-                      ],
-                    ),
-                  ),
-                  //container de servicios
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20,0,20,0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Descubre todo lo que tenemos para ti:',
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: ContextExtension(context).getTitlePrimaryColor(), 
-                            ),
+                          ]
+                        ),
                       ),
+                      Positioned(
+                        top: 20.0,
+                        right: 20.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget> [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget> [
+                                Image.asset('assets/images/bienvenidos.png', width: 60, height: 50),
+                              ],
+                            ),                          
+                          ]
+                        ),
+                      ),
+                      Positioned(
+                        top: 55.0,
+                        right: defaultPadding,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget> [
+                              Text(nombreCliente.toUpperCase(), 
+                                style: const TextStyle(
+                                color: Colors.blue,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ]
+                        ),
+                      )
+                    ],
+                  ),
+                ),               
+                //container de logos de promociones
+                Container(
+                  height: 120,
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                  
+                  child: SizedBox(
+                    child: PageView.builder(
+                      controller: PageController(viewportFraction: 1),
+                      itemCount: _carouselImagePaths.length,
+                      itemBuilder: (context, index) {
+                        final String imagePath = _carouselImagePaths[index];
+                        return Padding(
+                          padding: EdgeInsets.zero,
+                          child: Card(
+                            margin: EdgeInsets.zero,
+                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                              child: CardImagen(
+                                imagePath: imagePath,
+                                onClick: () {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Clic en ${imagePath.split('/').last}')),
+                                  );
+                                  //Puedes navegar a otra pantalla, mostrar un diálogo, etc.
+                                  //context.router.push(MiNuevaRuta(imagen: imagePath));
+                                },
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: 400,
-                    decoration: const BoxDecoration(
-                      color: Colors.transparent,
+                ),
+                //container de mis productos
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Mis productos:',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: ContextExtension(context).getTitlePrimaryColor(), 
+                          ),
                     ),
-                    child: const ServiciosWidget(),
                   ),
-                ],
-              ),
+                ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  alignment: Alignment.center,
+                  height: 250,
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                  margin: EdgeInsets.zero,
+                  child: Column(
+                    children: [
+                      TabBar(
+                        controller: _tabController,
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        indicatorPadding: const EdgeInsets.fromLTRB(1,0,0,0),
+                        dividerColor: Colors.transparent,
+                        indicator: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: Colors.blue,
+                        ),
+                        labelColor: Colors.white, 
+                        labelStyle: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold
+                        ),
+                        unselectedLabelColor: Colors.blue, 
+                        tabs: const [
+                          Tab(text: 'Ahorros'),
+                          Tab(text: 'Créditos'),
+                          Tab(text: 'Inversiones'),
+                        ],
+                      ),
+                      SizedBox(
+                          height: 200,
+                          child: TabBarView(
+                            controller: _tabController,
+                            children: [
+                              // Pestaña de Ahorros
+                              _buildCarousel(
+                                context,
+                                provider.posicionConsolidada?.cuentas ?? [],
+                                _pageControllerCuentas,
+                                (item) => CardInformacion(
+                                  title: item.tipo ?? 'Cuenta',
+                                  accountHolder: nombreCliente,
+                                  accountNumber: item.codigo ?? 'N/A',
+                                  balance: item.saldo ?? 0.0,
+                                  backgroundImage: const AssetImage('assets/images/imagencardinformacion.jpg'),
+                                ),
+                                'No hay cuentas de ahorro disponibles.',
+                              ),
+                    
+                              // Pestaña de Créditos
+                              _buildCarousel(
+                                context,
+                                provider.posicionConsolidada?.prestamos ?? [],
+                                _pageControllerPrestamos,
+                                (item) => CardInformacion(
+                                  title: item.tipo ?? 'Préstamo',
+                                  accountHolder: nombreCliente,
+                                  accountNumber: item.codigo ?? 'N/A',
+                                  balance: item.saldo ?? 0.0,
+                                  backgroundImage: const AssetImage('assets/images/imagencardinformacion.jpg'),
+                                ),
+                                'No hay créditos disponibles.',
+                              ),
+                    
+                              // Pestaña de Inversiones
+                              _buildCarousel(
+                                context,
+                                provider.posicionConsolidada?.inversiones ?? [],
+                                _pageControllerInversiones,
+                                (item) => CardInformacion(
+                                  title: item.estado ?? 'Inversión', 
+                                  accountHolder: nombreCliente,
+                                  accountNumber: item.codigo ?? 'N/A',
+                                  balance: item.monto ?? 0.0,                   
+                                  backgroundImage: const AssetImage('assets/images/imagencardinformacion.jpg'),
+                                ),
+                                'No hay inversiones disponibles.',
+                              ),
+                            ],
+                          ),
+                        ),  
+                    ],
+                  ),
+                ),
+                //container de servicios
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20,0,20,0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Descubre todo lo que tenemos para ti:',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: ContextExtension(context).getTitlePrimaryColor(), 
+                          ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 400,
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                  child: const ServiciosWidget(),
+                ),
+              ],
             ),
           ),
-      );
-    }
+        ),
+    );
   }
+}
 
   Widget _buildCarousel<T>(
     BuildContext context,
@@ -654,7 +691,7 @@ with SingleTickerProviderStateMixin {
           physics: const NeverScrollableScrollPhysics(),
           children: listaServicios.map((servicio) => ElevatedButton(
               onPressed: () {
-                print("arreglo");
+                appRouter.pushAndPopUntil(const MantenimientoRoute(), predicate: (_) => false);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent,            
