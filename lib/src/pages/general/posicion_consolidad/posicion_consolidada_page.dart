@@ -691,7 +691,7 @@ with SingleTickerProviderStateMixin {
           physics: const NeverScrollableScrollPhysics(),
           children: listaServicios.map((servicio) => ElevatedButton(
               onPressed: () {
-                appRouter.pushAndPopUntil(const MantenimientoRoute(), predicate: (_) => false);
+                appRouter.push(const PosicionConsolidadaRoute());
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent,            

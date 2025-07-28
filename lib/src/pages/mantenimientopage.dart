@@ -66,7 +66,7 @@ class _MantenimientoPageState extends ConsumerState<MantenimientoPage> {
             const SizedBox(height: 60), 
             ElevatedButton(
               onPressed: () {
-                appRouter.pushAndPopUntil(const PosicionConsolidadaRoute(), predicate: (_) => false);
+                appRouter.push(const PosicionConsolidadaRoute());
               },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
