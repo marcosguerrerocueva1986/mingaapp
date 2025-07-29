@@ -4,6 +4,8 @@ import 'package:bancamovilr/src/pages/deuna/onboarding/onboarding_page.dart';
 import 'package:bancamovilr/src/pages/deuna/pago/preguntasfrecuentasdeuna_page.dart';
 import 'package:bancamovilr/src/pages/deuna/pago/qrdeuna_error_page.dart';
 import 'package:bancamovilr/src/pages/deuna/scanner/qr_scanner_page.dart';
+import 'package:bancamovilr/src/pages/general/posicion_consolidad/mis_productos_page.dart';
+import 'package:bancamovilr/src/pages/general/posicion_consolidad/mis_productos_router_page.dart';
 import 'package:bancamovilr/src/pages/loginprincipal_page.dart';
 import 'package:bancamovilr/src/pages/mantenimientopage.dart';
 import 'package:bancamovilr/src/pages/splash.dart';
@@ -115,5 +117,23 @@ class AppRouter extends _$AppRouter {
           page: MantenimientoRoute.page,
           initial: false,
         ),
+        AutoRoute(
+          page: PosicionConsolidadaRoute.page, 
+          initial: false, 
+          children: [
+          AutoRoute(page: PosicionConsolidadaRoute.page, path: 'home'),
+          AutoRoute(
+            page: MisProductosRouterRoute.page, 
+            path: 'mis-productos',
+            children: [
+              AutoRoute(page: MisProductosOverviewRoute.page), 
+              AutoRoute(page: CuentaDetalleRoute.page), 
+              AutoRoute(page: PrestamoDetalleRoute.page),
+              AutoRoute(page: DepositoDetalleRoute.page),
+            ],
+          ),
+          //AutoRoute(page: SolicitudesRoute.page, path: 'solicitudes'), // Si tienes estas rutas
+          //AutoRoute(page: PerfilRoute.page, path: 'perfil'), // Si tienes estas rutas
+        ]),
       ];
 }

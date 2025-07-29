@@ -28,7 +28,7 @@ class _MantenimientoPageState extends ConsumerState<MantenimientoPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            appRouter.push(const PosicionConsolidadaRoute());
+            appRouter.pop();
           },
         ),
       ),
@@ -66,7 +66,7 @@ class _MantenimientoPageState extends ConsumerState<MantenimientoPage> {
             const SizedBox(height: 60), 
             ElevatedButton(
               onPressed: () {
-                appRouter.push(const PosicionConsolidadaRoute());
+                appRouter.pop();
               },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),

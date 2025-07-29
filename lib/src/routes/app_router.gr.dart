@@ -87,6 +87,18 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MantenimientoPage(),
       );
     },
+    MisProductosOverviewRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MisProductosOverviewPage(),
+      );
+    },
+    MisProductosRouterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MisProductosRouterPage(),
+      );
+    },
     OnboardingRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -436,6 +448,34 @@ class MantenimientoRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MantenimientoRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MisProductosOverviewPage]
+class MisProductosOverviewRoute extends PageRouteInfo<void> {
+  const MisProductosOverviewRoute({List<PageRouteInfo>? children})
+      : super(
+          MisProductosOverviewRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MisProductosOverviewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MisProductosRouterPage]
+class MisProductosRouterRoute extends PageRouteInfo<void> {
+  const MisProductosRouterRoute({List<PageRouteInfo>? children})
+      : super(
+          MisProductosRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MisProductosRouterRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
