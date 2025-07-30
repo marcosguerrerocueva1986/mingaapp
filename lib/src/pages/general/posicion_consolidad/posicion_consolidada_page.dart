@@ -1,4 +1,6 @@
 import 'package:bancamovilr/index.dart';
+import 'package:bancamovilr/src/pages/general/posicion_consolidad/balance_visibility_controller.dart';
+import 'package:flutter/rendering.dart';
 
 @RoutePage()
 class PosicionConsolidadaPage extends ConsumerStatefulWidget {
@@ -68,6 +70,11 @@ with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) { 
     late final List<Widget> screens = [
     _buildHomePageContent(context),
+    AutoRouter.declarative(
+      routes: (context) => [
+        const MisProductosOverviewRoute(), 
+      ],
+    ),
     const Center(child: Text('Pantalla de Solicitudes', style: TextStyle(fontSize: 24))),
     const Center(child: Text('Pantalla de Perfil', style: TextStyle(fontSize: 24))),
   ];
@@ -89,6 +96,10 @@ with SingleTickerProviderStateMixin {
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined), 
             label: 'Inicio',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.post_add_rounded), 
+            label: 'Mis Productos',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.description_outlined), 
@@ -321,10 +332,25 @@ with SingleTickerProviderStateMixin {
                                 _pageControllerCuentas,
                                 (item) => CardInformacion(
                                   title: item.tipo ?? 'Cuenta',
+                                  detalle: 'Cuenta N°: ',
                                   accountHolder: nombreCliente,
                                   accountNumber: item.codigo ?? 'N/A',
                                   balance: item.saldo ?? 0.0,
                                   backgroundImage: const AssetImage('assets/images/imagencardinformacion.jpg'),
+                                  isBalanceVisible: ref.watch(balanceVisibilityProvider).isBalanceVisible(item.codigo ?? ''),
+                                  onToggleVisibility: () {
+                                    ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();
+                                  },
+                                  onTap: () {
+                                    _onItemTapped(1);
+                                    Future.delayed(const Duration(milliseconds: 100), () {
+                                      context.router.navigate(
+                                        MisProductosRouterRoute(children: [
+                                          CuentaDetalleRoute(cuenta: item),
+                                        ]),
+                                      );
+                                    });
+                                  },
                                 ),
                                 'No hay cuentas de ahorro disponibles.',
                               ),
@@ -336,10 +362,25 @@ with SingleTickerProviderStateMixin {
                                 _pageControllerPrestamos,
                                 (item) => CardInformacion(
                                   title: item.tipo ?? 'Préstamo',
+                                  detalle: 'N° OPERACIÓN: ',
                                   accountHolder: nombreCliente,
                                   accountNumber: item.codigo ?? 'N/A',
                                   balance: item.saldo ?? 0.0,
                                   backgroundImage: const AssetImage('assets/images/imagencardinformacion.jpg'),
+                                  isBalanceVisible: ref.watch(balanceVisibilityProvider).isBalanceVisible(item.codigo ?? ''),
+                                  onToggleVisibility: () {
+                                    ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();
+                                  },
+                                  onTap: () {
+                                    _onItemTapped(1);
+                                    Future.delayed(const Duration(milliseconds: 200), () {
+                                      context.router.navigate(
+                                        MisProductosRouterRoute(children: [
+                                          PrestamoDetalleRoute(prestamo: item),
+                                        ]),
+                                      );
+                                    });
+                                  },
                                 ),
                                 'No hay créditos disponibles.',
                               ),
@@ -351,11 +392,26 @@ with SingleTickerProviderStateMixin {
                                 _pageControllerInversiones,
                                 (item) => CardInformacion(
                                   title: item.estado ?? 'Inversión', 
+                                  detalle: 'N° OPERACIÓN: ',
                                   accountHolder: nombreCliente,
                                   accountNumber: item.codigo ?? 'N/A',
                                   balance: item.monto ?? 0.0,                   
                                   backgroundImage: const AssetImage('assets/images/imagencardinformacion.jpg'),
-                                ),
+                                  isBalanceVisible: ref.watch(balanceVisibilityProvider).isBalanceVisible(item.codigo ?? ''),
+                                  onToggleVisibility: () {
+                                    ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();
+                                  },
+                                  onTap: () {
+                                    _onItemTapped(1);
+                                    Future.delayed(const Duration(milliseconds: 200), () {
+                                      context.router.navigate(
+                                        MisProductosRouterRoute(children: [
+                                          DepositoDetalleRoute(deposito: item),
+                                        ]),
+                                      );
+                                    });
+                                  },
+                                ),  
                                 'No hay inversiones disponibles.',
                               ),
                             ],
@@ -391,8 +447,7 @@ with SingleTickerProviderStateMixin {
           ),
         ),
     );
-  }
-}
+  }}
 
   Widget _buildCarousel<T>(
     BuildContext context,
@@ -460,25 +515,34 @@ with SingleTickerProviderStateMixin {
 
   class CardInformacion extends StatelessWidget {
     final String title;
+    final String detalle;
     final String accountHolder;
     final String accountNumber;
     final double balance;
     final ImageProvider? backgroundImage;
     final Color? backgroundColor;
+    final bool isBalanceVisible; 
+    final VoidCallback onToggleVisibility;
+    final VoidCallback? onTap;
 
     const CardInformacion({
       super.key,
       required this.title,
+      required this.detalle,
       required this.accountHolder,
       required this.accountNumber,
       required this.balance,
       this.backgroundImage,
       this.backgroundColor,
+      required this.isBalanceVisible, 
+      required this.onToggleVisibility, 
+      this.onTap,
     });
 
     @override
     Widget build(BuildContext context) {
       return GestureDetector(
+        onTap: onTap,
         child: Card(
           elevation: 0,
           margin: EdgeInsets.zero,
@@ -527,9 +591,7 @@ with SingleTickerProviderStateMixin {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget> [
                         ElevatedButton (
-                          onPressed: () {
-                              print('boton ojito');
-                            },
+                          onPressed: onToggleVisibility,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.transparent, 
                               foregroundColor: Colors.white, 
@@ -566,9 +628,9 @@ with SingleTickerProviderStateMixin {
                   ),
                   Row(
                     children: [
-                      const Text(
-                          'Cuenta N°- ',
-                          style: TextStyle(
+                          Text(
+                          detalle,
+                          style: const TextStyle(
                           color: Colors.white70,
                           fontSize: 13.0,
                           fontWeight: FontWeight.bold,
@@ -621,7 +683,7 @@ with SingleTickerProviderStateMixin {
                               ),
                             ),
                             Text(
-                              balance.toMoney(),
+                              isBalanceVisible ? '\$${balance.toStringAsFixed(2)}' : '********',
                               style: const TextStyle(
                                 color: Colors.white70,
                                 fontSize: 26.0,
@@ -643,7 +705,7 @@ with SingleTickerProviderStateMixin {
                       children: <Widget> [
                         ElevatedButton (
                           onPressed: () {
-                              print('boton ojito');
+                              print('compartir cuenta');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.transparent, 
@@ -691,7 +753,7 @@ with SingleTickerProviderStateMixin {
           physics: const NeverScrollableScrollPhysics(),
           children: listaServicios.map((servicio) => ElevatedButton(
               onPressed: () {
-                appRouter.pushAndPopUntil(const MantenimientoRoute(), predicate: (_) => false);
+                appRouter.push(const MantenimientoRoute());
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent,            

@@ -29,24 +29,27 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        const SizedBox(height: defaultPadding * 3,),
                         SvgPicture.asset(
                           Theme.of(context).brightness == Brightness.dark
                               ? R.svg.logoBlack
-                              : R.svg.logo,
-                          fit: BoxFit.contain,
-                          height: 120,
-                          width: 120,
+                              : R.svg.logoPantallas,
+                          fit: BoxFit.fill,
+                          height: 50,
+                          width: 80,
                         ),
-                        const SizedBox(
-                          height: defaultPadding * 2,
-                        ),
+                        const SizedBox(height: defaultPadding * 2),
                         if (provider.modoConfirmacion) ...[
+                          const SizedBox(height: defaultPadding * 5),
                           const Text(
                               "Ingrese el código temporal de seguridad que fue enviado a su correo y/o celular.",
-                              textAlign: TextAlign.center),
-                          const SizedBox(
-                            height: defaultPadding,
-                          ),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                              )),
+                          const SizedBox(height: defaultPadding * 2),
                           Pinput(
                             androidSmsAutofillMethod:
                                 AndroidSmsAutofillMethod.smsUserConsentApi,
@@ -67,9 +70,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: defaultPadding * 2,
-                          ),
+                          const SizedBox(height: defaultPadding * 10),
                           // ProcessButton(
                           //   onPressed: controller.login,
                           //   text: 'Confirmar'.toUpperCase(),
@@ -78,33 +79,31 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           //   height: defaultPadding,
                           // ),
                           ProcessButton(
-                            isSecondary: true,
+                            isSecondary: false,
                             onPressed: controller.cancelar,
-                            text: 'Cancelar'.toUpperCase(),
+                            text: 'Regresar'.toUpperCase(),
                           ),
+
                         ] else ...[
-                          if (provider.estaValidado) ...[
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 60.0,
-                              child: Image.network(
-                                '${Configs.baseUrlSite}assets/images/seguridad/${provider.informacionValidada?.imagen ?? ''}',
-                                width: 85,
-                                height: 85,
+                          const Text(
+                            "Ingrese con su usuario y contraseña de Minga Online",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 50),
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(20, 5, 0, 5),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Usuario",
+                                style: TextStyle(fontSize: 17, color: Colors.grey),
                               ),
                             ),
-                            const SizedBox(
-                              height: defaultPadding,
-                            ),
-                            Text(
-                              '"${provider.informacionValidada?.frase ?? ''}"',
-                              style: context.textTheme.bodyMedium!
-                                  .copyWith(fontStyle: FontStyle.italic),
-                            ),
-                            const SizedBox(
-                              height: defaultPadding,
-                            ),
-                          ],
+                          ),
                           ReactiveTextField(
                             key: const ValueKey('usuario'),
                             formControlName: 'codigoUsuario',
@@ -117,7 +116,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 ),
                                 contentPadding: const EdgeInsets.fromLTRB(
                                     20.0, 15.0, 20.0, 15.0),
-                                hintText: "Usuario",
+                                hintText: "Ingrese su usuario",
                                 errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Colors.red.withOpacity(0.3)),
@@ -139,128 +138,116 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                         color: Colors.grey.withOpacity(0.7)),
                                     borderRadius: BorderRadius.circular(32.0))),
                           ),
+                          GestureDetector(
+                            onTap: () {
+                              appRouter.push(const MantenimientoRoute());
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.fromLTRB(20, 5, 10, 0),
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  "¿Olvido su usuario?",
+                                  
+                                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                                ),
+                              ),
+                            ),
+                          ),
                           const SizedBox(
                             height: defaultPadding,
                           ),
-                          if (provider.estaValidado) ...[
-                            ReactiveTextField(
-                              key: const ValueKey('password'),
-                              formControlName: 'pwdUsuario',
-                              obscureText: provider.obscurecerClave,
-                              decoration: InputDecoration(
-                                  prefixIcon: const Icon(
-                                    Icons.lock_outline,
-                                    size: 15.0,
-                                  ),
-                                  suffixIcon: GestureDetector(
-                                    onTap: controller.toggleOscurecerClave,
-                                    child: Icon(
-                                      provider.obscurecerClave
-                                          ? Icons.remove_red_eye
-                                          : Icons.remove_red_eye_outlined,
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                  contentPadding: const EdgeInsets.fromLTRB(
-                                      20.0, 15.0, 20.0, 15.0),
-                                  hintText: "Clave",
-                                  errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.red.withOpacity(0.3)),
-                                      borderRadius:
-                                          BorderRadius.circular(32.0)),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.red.withOpacity(0.3)),
-                                      borderRadius:
-                                          BorderRadius.circular(32.0)),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.grey.withOpacity(0.7)),
-                                      borderRadius:
-                                          BorderRadius.circular(32.0)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.grey.withOpacity(0.7)),
-                                      borderRadius:
-                                          BorderRadius.circular(32.0)),
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.grey.withOpacity(0.7)),
-                                      borderRadius:
-                                          BorderRadius.circular(32.0))),
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(20, 5, 0, 5),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Contraseña",
+                                style: TextStyle(fontSize: 17, color: Colors.grey),
+                              ),
                             ),
-                            const SizedBox(
-                              height: defaultPadding,
+                          ),
+                          const SizedBox(height: 5),
+                          ReactiveTextField(
+                            key: const ValueKey('password'),
+                            formControlName: 'pwdUsuario',
+                            obscureText: provider.obscurecerClave,
+                            decoration: InputDecoration(
+                                prefixIcon: const Icon(
+                                  Icons.lock_outline,
+                                  size: 15.0,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: controller.toggleOscurecerClave,
+                                  child: Icon(
+                                    provider.obscurecerClave
+                                        ? Icons.remove_red_eye
+                                        : Icons.remove_red_eye_outlined,
+                                    size: 24.0,
+                                  ),
+                                ),
+                                contentPadding: const EdgeInsets.fromLTRB(
+                                    20.0, 15.0, 20.0, 15.0),
+                                hintText: "Clave",
+                                errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.red.withOpacity(0.3)),
+                                    borderRadius: BorderRadius.circular(32.0)),
+                                focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.red.withOpacity(0.3)),
+                                    borderRadius: BorderRadius.circular(32.0)),
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(0.7)),
+                                    borderRadius: BorderRadius.circular(32.0)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(0.7)),
+                                    borderRadius: BorderRadius.circular(32.0)),
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(0.7)),
+                                    borderRadius: BorderRadius.circular(32.0))),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              appRouter.push(const MantenimientoRoute());
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.fromLTRB(20, 5, 10, 0),
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  "¿Olvido su contraseña?",
+                                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                                ),
+                              ),
                             ),
-                          ],
+                          ),
+                          const SizedBox(
+                            height: defaultPadding,
+                          ),
                           ProcessButton(
                             onPressed: controller.login,
                             text: 'Iniciar Sesión'.toUpperCase(),
                           ),
-                        ],
-                        const SizedBox(
-                          height: defaultPadding * 4,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: GestureDetector(
-                                behavior: HitTestBehavior.translucent,
-                                onTap: () =>
-                                    appRouter.push(const AgenciaRoute()),
-                                child: Card(
-                                  child: Container(
-                                    padding: const EdgeInsets.all(
-                                        defaultPadding * 2),
-                                    child: const Column(children: [
-                                      Icon(
-                                        Icons.location_on,
-                                        size: 30,
-                                      ),
-                                      SizedBox(
-                                        height: defaultPadding,
-                                      ),
-                                      Text(
-                                        'Ubícanos',
-                                        textAlign: TextAlign.center,
-                                      )
-                                    ]),
-                                  ),
-                                ),
+                          const SizedBox(height: defaultPadding * 6),
+                          GestureDetector(
+                            onTap: () {
+                              appRouter.push(const MantenimientoRoute());
+                            },
+                            child: const Text(
+                              "Activa tu cuenta",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            if (snapshot.hasData &&
-                                (snapshot.data ?? false)) ...[
-                              Expanded(
-                                child: GestureDetector(
-                                  behavior: HitTestBehavior.translucent,
-                                  onTap: controller.accesoPorHuella,
-                                  child: Card(
-                                    child: Container(
-                                      padding: const EdgeInsets.all(
-                                          defaultPadding * 2),
-                                      child: const Column(children: [
-                                        Icon(
-                                          Icons.fingerprint_outlined,
-                                          size: 30,
-                                        ),
-                                        SizedBox(
-                                          height: defaultPadding,
-                                        ),
-                                        Text(
-                                          'Huella',
-                                          textAlign: TextAlign.center,
-                                        )
-                                      ]),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ]
-                          ],
-                        )
+                          ),
+                        ],
+                        const SizedBox(height: defaultPadding * 6),
                       ],
                     ),
                   ),

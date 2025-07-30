@@ -26,7 +26,15 @@ late final AuthStorageService _authStorageService;
           requerimiento.codigoUsuario == Configs.userTest;
 
       var client = HttpClientHelper.getClient();
+      var respuesta =
+          await guard(() async => await client.validarUsuario(requerimiento));
 
+      if (respuesta.hasValue) {
+        state = state.copyWith(
+            estaValidado: true,
+            permiteEditarUsuario: false,
+            informacionValidada: respuesta.value);
+      }
       if (state.estaValidado) {
         var respuesta =
             await guard(() async => await client.login(requerimiento));
@@ -46,15 +54,7 @@ late final AuthStorageService _authStorageService;
           }
         }
       } else {
-        var respuesta =
-            await guard(() async => await client.validarUsuario(requerimiento));
-
-        if (respuesta.hasValue) {
-          state = state.copyWith(
-              estaValidado: true,
-              permiteEditarUsuario: false,
-              informacionValidada: respuesta.value);
-        }
+        NotificationService.showError(text: 'Credenciales Incorrectas');
       }
     } else {
       NotificationService.showError(text: 'Ingrese credenciales');

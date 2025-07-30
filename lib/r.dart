@@ -47,9 +47,12 @@ class _Svg {
   final String logoBlack = 'assets/svg/logo-black.svg';
 
   final String logo = 'assets/svg/logo.svg';
+  
+  final String logoPantallas = 'assets/svg/logoPantallas.svg';
 
   final Map<String, String> $files = const {
     'logoBlack': 'assets/svg/logo-black.svg',
     'logo': 'assets/svg/logo.svg',
+    'logoPantallas': 'assets/svg/logoPantallas.svg',
   };
 }
