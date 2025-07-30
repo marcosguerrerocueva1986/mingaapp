@@ -36,125 +36,275 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(defaultPadding),
+        padding: const EdgeInsets.fromLTRB(5,0,5,0),
         child: Center(
           child: RefreshIndicator(
             onRefresh: () => controller.actualizaInformacion(widget.prestamo),
             child: ListView(
               children: [
                 Card(
+                  elevation: 0,
+                  margin: EdgeInsets.zero,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  color: Colors.transparent,
                   child: Container(
-                    padding: const EdgeInsets.only(
-                        top: defaultPadding / 1.2,
-                        left: defaultPadding / 1.2,
-                        right: defaultPadding / 1.2,
-                        bottom: defaultPadding),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(widget.prestamo.tipo,
-                                      style: context.textTheme.bodyMedium),
-                                  Text('Nro: ${widget.prestamo.codigo}'),
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/imagencardinformacion.jpg'),
+                          fit: BoxFit.fill,
+                          alignment: Alignment.center
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding),
+                        child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children:  <Widget> [
                                   Text(
-                                    widget.prestamo.deudaInicial.toMoney(),
-                                    textAlign: TextAlign.center,
-                                    style: context.textTheme.titleLarge!
-                                        .copyWith(fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Saldo.: ${widget.prestamo.saldo.toMoney()}',
-                                    style: context.textTheme.bodySmall,
-                                    textAlign: TextAlign.center,
+                                    'CRÉDITO ${widget.prestamo.tipo}',
+                                    style: const TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                      shadows: [
+                                        Shadow(
+                                          blurRadius: 2.0,
+                                          color: Colors.white70,
+                                          offset: Offset(1.0, 1.0)
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
-                            )
-                          ],
-                        ),
-                        if ((provider.prestamo?.saldo ?? 0) > 0) ...[
-                          const SizedBox(
-                            height: defaultPadding,
+                              Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget> [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(160, 0, 20, 0),
+                                  child: ElevatedButton (
+                                    onPressed: () {},// onToggleVisibility,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.transparent, 
+                                        foregroundColor: Colors.white, 
+                                        elevation: 0, 
+                                        padding: EdgeInsets.zero, 
+                                        minimumSize: Size.zero, 
+                                        tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
+                                      ),
+                                      child: Ink.image(
+                                        image: const AssetImage('assets/images/ojocuenta.png'),
+                                        fit: BoxFit.fill,
+                                        width: 24,
+                                        height: 15,
+                                      ),
+                                    ),
+                                ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Text(
+                              widget.prestamo.codigo,
+                              style: const TextStyle(
+                                color: Colors.white70,
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                                shadows: [
+                                  Shadow(
+                                    blurRadius: 2.0,
+                                    color: Colors.white70,
+                                    offset: Offset(1.0, 1.0)
+                                  ),
+                                ],
+                              ),
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Expanded(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: context.theme.cardColor,
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(100.0),
+                                  const Text(
+                                  'N° OPERACIÓN:',
+                                  style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                  shadows: [
+                                    Shadow(
+                                      blurRadius: 2.0,
+                                      color: Colors.white70,
+                                      offset: Offset(1.0, 1.0)
                                     ),
-                                  ),
-                                  child: TextButton.icon(
-                                    onPressed: controller.irAbono,
-                                    icon: Icon(
-                                      Icons.attach_money_outlined,
-                                      color:
-                                          context.textTheme.bodyMedium!.color,
+                                  ],
+                                ),
+                              ),
+                              Text(
+                                  widget.prestamo.codigo,
+                                  style: const TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                  shadows: [
+                                    Shadow(
+                                      blurRadius: 2.0,
+                                      color: Colors.white70,
+                                      offset: Offset(1.0, 1.0)
                                     ),
-                                    label: Text(
-                                      'Abonar',
-                                      style: context.textTheme.bodyMedium,
-                                    ),
-                                  ),
+                                  ],
                                 ),
                               ),
                             ],
                           ),
-                        ]
-                      ],
+                          const SizedBox(height: 50.0),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget> [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget> [
+                                  const Text(
+                                      'Saldo: ',
+                                      style: TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold,
+                                        shadows: [
+                                          Shadow(
+                                            blurRadius: 2.0,
+                                            color: Colors.white70,
+                                            offset: Offset(1.0, 1.0)
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Text(
+                                      widget.prestamo.saldo.toMoney(),
+                                      //isBalanceVisible ? '\$${balance.toStringAsFixed(2)}' : '********',
+                                      style: const TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 28.0,
+                                        fontWeight: FontWeight.bold,
+                                        shadows: [
+                                          Shadow(
+                                          blurRadius: 2.0,
+                                          color: Colors.white70,
+                                          offset: Offset(1.0, 1.0)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget> [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                  child: ElevatedButton (
+                                    onPressed: () {
+                                        print('ver más detalles');
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.transparent, 
+                                        foregroundColor: Colors.white, 
+                                        elevation: 0, 
+                                        padding: EdgeInsets.zero, 
+                                        minimumSize: Size.zero, 
+                                        tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
+                                      ),
+                                      child: Ink.image(
+                                        image: const AssetImage('assets/images/verdetalles.png'),
+                                        fit: BoxFit.fill,
+                                        width: 140,
+                                        height: 20,
+                                      ),
+                                    ),
+                                ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      ),
                     ),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                  child: Column(
+                    children: <Widget> [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
+                        child: TarjetaDetallesPrestamo(prestamo: widget.prestamo),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          print('Activar Cuenta');
+                        }, 
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          padding: const EdgeInsets.fromLTRB(40,1,40,1),
+                        ),
+                        child: const Text(
+                          'Pagar Ahora',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            decoration: TextDecoration.none,
+                            decorationThickness: 2.0,
+                            decorationColor: Colors.white,
+                            fontSize: 20,
+                            height: 1.3,
+                          ),
+                        )
+                      ),
+                    ]
                   ),
                 ),
-                const SizedBox(
-                  height: defaultPadding,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Tabla de Amortización',
-                      style: context.textTheme.bodyLarge!.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: context.getTitlePrimaryColor()),
+                const SizedBox(height: defaultPadding / 2),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5.0), 
+                  child: Row(
+                    children: [
+                      SizedBox(width: 2), 
+                      Expanded(
+                        child: Text(
+                          'Registro de Pagos',
+                          style: TextStyle(fontSize: 14, color: Colors.blue, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Text(
+                        'VALOR',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.blue, 
+                          fontWeight: FontWeight.bold, 
+                        ),
+                      ),
+                    ],
+                  ),
+                ),              
+                Container(
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
                     ),
-                  ],
-                ),
-                const SizedBox(
-                  height: defaultPadding / 2,
-                ),
-                (provider.respuestaDetalles?.detalles.length ?? 0) == 0
-                    ? const EmptyResult(
-                        text: 'No se encontraron detalles',
-                      )
-                    : ListView.separated(
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) =>
-                            separadorListaItems,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          var detalle =
-                              provider.respuestaDetalles!.detalles[index];
-
-                          return prestamoItems(
-                            detalle.fechaVencimiento!.toStringFormat(),
-                            detalle.numeroCuota.toString(),
-                            detalle.saldoAdeudado.toMoney(),
-                            detalle.total.toMoney(),
-                            detalle.fechaPago,
-                            detalle.estado,
-                            oddColour: Colors.white,
-                          );
-                        },
-                        itemCount:
-                            (provider.respuestaDetalles?.detalles.length ?? 0),
-                      )
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 1, 20, 0), 
+                    child: ListView(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: provider.respuestaDetalles!.detalles.map((detallePrestamo) => TarjetaPagosPrestamo(prestamo: detallePrestamo)).toList(),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
@@ -162,113 +312,293 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
       ),
     );
   }
+}
 
-  Widget prestamoItems(String fechaVencimiento, String numeroCuota,
-          String saldo, String totalCuota, String fechaPago, String estado,
-          {Color oddColour = Colors.white}) =>
-      Card(
-        child: Container(
-          // decoration: BoxDecoration(color: oddColour),
-          padding: const EdgeInsets.only(
-              top: defaultPadding,
-              bottom: defaultPadding / 2,
-              left: defaultPadding,
-              right: defaultPadding),
-          child: Column(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  const Text("Fecha Vencimiento"),
-                  const SizedBox(
-                    width: defaultPadding,
-                  ),
-                  Flexible(
-                    child: Text(fechaVencimiento,
-                        textAlign: TextAlign.right,
-                        overflow: TextOverflow.ellipsis),
-                  ),
-                ],
+class TarjetaDetallesPrestamo extends StatelessWidget {
+const TarjetaDetallesPrestamo({super.key, required this.prestamo});
+  final PrestamoModel  prestamo;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(20, 5, 0, 0), // Relleno interno del contenedor
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(0), 
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.transparent,
+            spreadRadius: 0, 
+            blurRadius: 0, 
+            offset: Offset(0, 0), 
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end, 
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const Text(
+                'Deuda Inicial',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
               ),
-              const SizedBox(
-                height: defaultPadding,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  const Text("Número Cuota"),
-                  const SizedBox(
-                    width: defaultPadding,
-                  ),
-                  Flexible(
-                    child: Text(numeroCuota,
-                        textAlign: TextAlign.right,
-                        overflow: TextOverflow.ellipsis),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: defaultPadding,
-              ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: <Widget>[
-              //     Text("Saldo Reducido",
-              //         style: TextStyle(
-              //             color: Colors.grey,
-              //             fontSize: Configuracion.sizeTextoItem)),
-              //     const SizedBox(
-              //       width: 25,
-              //     ),
-              //     Flexible(
-              //       child: Text(saldo,
-              //           textAlign: TextAlign.right,
-              //           style: TextStyle(
-              //               color: Colors.grey,
-              //               fontSize: Configuracion.sizeTextoItem),
-              //           overflow: TextOverflow.ellipsis),
-              //     ),
-              //   ],
-              // ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  const Text("Total Cuota"),
-                  const SizedBox(
-                    width: defaultPadding,
-                  ),
-                  Flexible(
-                    child: Text(totalCuota,
-                        textAlign: TextAlign.right,
-                        overflow: TextOverflow.ellipsis),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: defaultPadding,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  const Text("Estado"),
-                  const SizedBox(
-                    width: defaultPadding,
-                  ),
-                  Flexible(
-                    child: Text(estado,
-                        textAlign: TextAlign.right,
-                        overflow: TextOverflow.ellipsis),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: defaultPadding,
+              Text(
+                prestamo.deudaInicial.toMoney(),
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),
               ),
             ],
           ),
-        ),
-      );
+          const SizedBox(height: 1),
+          _construirFilaDetalle(
+            icono: Icons.keyboard_arrow_right,
+            etiqueta: 'Saldo Préstamo',
+            valor: prestamo.saldo.toMoney(),
+            colorValor: Colors.blue,
+          ),
+          _construirDivisor(),
+          _construirFilaDetalle(
+            icono: Icons.keyboard_arrow_right,
+            etiqueta: 'Próx. Pago',
+            valor: 'vier. 11 jun. 2025',
+            colorValor: Colors.blue,
+          ),
+          _construirDivisor(),
+          _construirFilaDetalle(
+            icono: Icons.keyboard_arrow_right,
+            etiqueta: 'Estado',
+            valor: prestamo.estado,
+            colorValor: Colors.blue,
+            pesoFuenteValor: FontWeight.bold,
+          ),
+          _construirDivisor(),
+          _construirFilaDetalle(
+            icono: Icons.keyboard_arrow_right,
+            etiqueta: 'Valor a pagar',
+            valor: prestamo.valorParaEstarAlDia.toMoney(),
+            colorValor: Colors.blue,
+          ),
+          _construirDivisor(),
+          _construirFilaDetalle(
+            icono: Icons.keyboard_arrow_right,
+            etiqueta: 'Cuotas canceladas',
+            valor: '5/32',
+            colorValor: Colors.blue,
+          ),
+        ],
+      ),
+    );
+  }
 }
+Widget _construirFilaDetalle({
+  required IconData icono, 
+  required String etiqueta, 
+  required String valor,
+  Color? colorValor, 
+  FontWeight? pesoFuenteValor, 
+}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 5.0), 
+    child: Row(
+      children: [
+        Icon(icono, size: 16, color: Colors.blue), 
+        const SizedBox(width: 2), 
+        Expanded(
+          child: Text(
+            etiqueta,
+            style: const TextStyle(fontSize: 13, color: Colors.grey),
+          ),
+        ),
+        Text(
+          valor,
+          style: TextStyle(
+            fontSize: 14,
+            color: colorValor ?? Colors.black, 
+            fontWeight: pesoFuenteValor ?? FontWeight.normal, 
+          ),
+        ),
+      ],
+    ),
+  );
+}
+Widget _construirDivisor() {
+  return const Divider(
+    height: 1, 
+    color: Colors.grey,
+    thickness: 0.6,
+    indent: 26, 
+  );
+}
+class TarjetaPagosPrestamo extends StatelessWidget {
+const TarjetaPagosPrestamo({super.key, required this.prestamo});
+  final DetallePrestamo prestamo;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(20, 5, 5, 0), // Relleno interno del contenedor
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(0), 
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.transparent,
+            spreadRadius: 0, 
+            blurRadius: 0, 
+            offset: Offset(0, 0), 
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end, 
+        children: [
+          const SizedBox(height: 1),
+          _construirFilaPagosDetalle(
+            icono: Icons.keyboard_arrow_right,
+            etiqueta: 'Traer detalle de la transaccion',
+            valor: prestamo.capital.toMoney(),
+            colorValor: Colors.grey,
+          ),
+          _construirFilaPagosDetalle(
+            icono: Icons.keyboard_arrow_right,
+            etiqueta: 'Fecha Transacción',
+            valor: prestamo.fechaPago,
+            colorValor: Colors.grey,
+          ),
+          _construirDivisorPagosDetalle(),
+        ],
+      ),
+    );
+  }
+}
+Widget _construirFilaPagosDetalle({
+  required IconData icono, 
+  required String etiqueta, 
+  required String valor,
+  Color? colorValor, 
+  FontWeight? pesoFuenteValor, 
+}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 5.0), 
+    child: Row(
+      children: [
+        Icon(icono, size: 16, color: Colors.blue), 
+        const SizedBox(width: 2), 
+        Expanded(
+          child: Text(
+            etiqueta,
+            style: const TextStyle(fontSize: 13, color: Colors.grey),
+          ),
+        ),
+        Text(
+          valor,
+          style: TextStyle(
+            fontSize: 14,
+            color: colorValor ?? Colors.black, 
+            fontWeight: pesoFuenteValor ?? FontWeight.normal, 
+          ),
+        ),
+      ],
+    ),
+  );
+}
+Widget _construirDivisorPagosDetalle() {
+  return const Divider(
+    height: 1, 
+    color: Colors.grey,
+    thickness: 0.6,
+    indent: 26, 
+  );
+}
+Widget prestamoItems(String fechaVencimiento, String numeroCuota,
+        String saldo, String totalCuota, String fechaPago, String estado,
+        {Color oddColour = Colors.white}) =>
+Card(
+  child: Container(
+    padding: const EdgeInsets.only(
+        top: defaultPadding,
+        bottom: defaultPadding / 2,
+        left: defaultPadding,
+        right: defaultPadding),
+    child: Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            const Text("Fecha Vencimiento"),
+            const SizedBox(
+              width: defaultPadding,
+            ),
+            Flexible(
+              child: Text(fechaVencimiento,
+                  textAlign: TextAlign.right,
+                  overflow: TextOverflow.ellipsis),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: defaultPadding,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            const Text("Número Cuota"),
+            const SizedBox(
+              width: defaultPadding,
+            ),
+            Flexible(
+              child: Text(numeroCuota,
+                  textAlign: TextAlign.right,
+                  overflow: TextOverflow.ellipsis),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: defaultPadding,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            const Text("Total Cuota"),
+            const SizedBox(
+              width: defaultPadding,
+            ),
+            Flexible(
+              child: Text(totalCuota,
+                  textAlign: TextAlign.right,
+                  overflow: TextOverflow.ellipsis),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: defaultPadding,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            const Text("Estado"),
+            const SizedBox(
+              width: defaultPadding,
+            ),
+            Flexible(
+              child: Text(estado,
+                  textAlign: TextAlign.right,
+                  overflow: TextOverflow.ellipsis),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: defaultPadding,
+        ),
+      ],
+    ),
+  ),
+);

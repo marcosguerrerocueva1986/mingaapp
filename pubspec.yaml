@@ -133,6 +133,8 @@ flutter:
     - assets/images/deuna.png
     - assets/images/estadocuenta.png
     - assets/images/bienvenidos.png
+    - assets/images/verdetalles.png
+
     # mek_assets
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

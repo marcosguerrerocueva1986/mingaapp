@@ -356,33 +356,36 @@ with SingleTickerProviderStateMixin {
                               ),
                     
                               // Pestaña de Créditos
-                              _buildCarousel(
-                                context,
-                                provider.posicionConsolidada?.prestamos ?? [],
-                                _pageControllerPrestamos,
-                                (item) => CardInformacion(
-                                  title: item.tipo ?? 'Préstamo',
-                                  detalle: 'N° OPERACIÓN: ',
-                                  accountHolder: nombreCliente,
-                                  accountNumber: item.codigo ?? 'N/A',
-                                  balance: item.saldo ?? 0.0,
-                                  backgroundImage: const AssetImage('assets/images/imagencardinformacion.jpg'),
-                                  isBalanceVisible: ref.watch(balanceVisibilityProvider).isBalanceVisible(item.codigo ?? ''),
-                                  onToggleVisibility: () {
-                                    ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();
-                                  },
-                                  onTap: () {
-                                    _onItemTapped(1);
-                                    Future.delayed(const Duration(milliseconds: 200), () {
-                                      context.router.navigate(
-                                        MisProductosRouterRoute(children: [
-                                          PrestamoDetalleRoute(prestamo: item),
-                                        ]),
-                                      );
-                                    });
-                                  },
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                child: _buildCarousel(
+                                  context,
+                                  provider.posicionConsolidada?.prestamos ?? [],
+                                  _pageControllerPrestamos,
+                                  (item) => CardInformacion(
+                                    title: item.tipo ?? 'Préstamo',
+                                    detalle: 'N° OPERACIÓN: ',
+                                    accountHolder: nombreCliente,
+                                    accountNumber: item.codigo ?? 'N/A',
+                                    balance: item.saldo ?? 0.0,
+                                    backgroundImage: const AssetImage('assets/images/imagencardinformacion.jpg'),
+                                    isBalanceVisible: ref.watch(balanceVisibilityProvider).isBalanceVisible(item.codigo ?? ''),
+                                    onToggleVisibility: () {
+                                      ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();
+                                    },
+                                    onTap: () {
+                                      _onItemTapped(1);
+                                      Future.delayed(const Duration(milliseconds: 200), () {
+                                        context.router.navigate(
+                                          MisProductosRouterRoute(children: [
+                                            PrestamoDetalleRoute(prestamo: item),
+                                          ]),
+                                        );
+                                      });
+                                    },
+                                  ),
+                                  'No hay créditos disponibles.',
                                 ),
-                                'No hay créditos disponibles.',
                               ),
                     
                               // Pestaña de Inversiones
