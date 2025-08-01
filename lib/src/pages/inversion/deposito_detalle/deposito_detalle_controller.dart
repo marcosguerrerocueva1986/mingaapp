@@ -22,4 +22,23 @@ class DepositoDetalleController extends _$DepositoDetalleController {
           state.copyWith(deposito: deposito, respuestaDetalles: respuesta.value);
     }
   }
+  Future<List<DetalleInversionModel>> movimientosInformacion(InversionModel deposito) async {
+    var client = HttpClientHelper.getClient();
+
+    var respuesta = await guard(() async => await client
+        .consultaMovimientosInversion(ConsultaMovimientosInversionRequerimiento(
+            idUsuario: HttpClientHelper.idUsuario,
+            numeroCuenta: deposito.codigo,
+            numeroRegistros: 15)));
+
+    if (respuesta.hasValue) {
+      state =
+          state.copyWith(deposito: deposito, respuestaMovimientos: respuesta.value);
+          return respuesta.value as List<DetalleInversionModel>;
+    }
+    else
+    {
+      return [];
+    }
+  }
 }

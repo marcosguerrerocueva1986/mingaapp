@@ -84,5 +84,4 @@ class PosicionConsolidadaController extends _$PosicionConsolidadaController {
           .where((element) => element.permiteUsoBancaElectronica)
           .toList();
   }
-
 }

@@ -376,12 +376,16 @@ _$ConsultaMovimientosInversionRequerimientoImpl
             Map<String, dynamic> json) =>
         _$ConsultaMovimientosInversionRequerimientoImpl(
           numeroCuenta: json['numeroCuenta'] as String? ?? '',
+          idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
+          numeroRegistros: (json['numeroRegistros'] as num?)?.toInt() ?? 0,
         );
 
 Map<String, dynamic> _$$ConsultaMovimientosInversionRequerimientoImplToJson(
         _$ConsultaMovimientosInversionRequerimientoImpl instance) =>
     <String, dynamic>{
       'numeroCuenta': instance.numeroCuenta,
+      'idUsuario': instance.idUsuario,
+      'numeroRegistros': instance.numeroRegistros,
     };
 
 _$ConsultaMovimientosInversionRespuestaImpl
@@ -969,6 +973,10 @@ _$DepositoDetalleStateImpl _$$DepositoDetalleStateImplFromJson(
           ? null
           : ConsultaDetalleInversionRespuesta.fromJson(
               json['respuestaDetalles'] as Map<String, dynamic>),
+      respuestaMovimientos: json['respuestaMovimientos'] == null
+          ? null
+          : ConsultaMovimientosInversionRespuesta.fromJson(
+              json['respuestaMovimientos'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$DepositoDetalleStateImplToJson(
@@ -976,6 +984,7 @@ Map<String, dynamic> _$$DepositoDetalleStateImplToJson(
     <String, dynamic>{
       'deposito': instance.deposito,
       'respuestaDetalles': instance.respuestaDetalles,
+      'respuestaMovimientos': instance.respuestaMovimientos,
     };
 
 _$PrestamoDetalleStateImpl _$$PrestamoDetalleStateImplFromJson(

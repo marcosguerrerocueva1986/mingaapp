@@ -33,7 +33,7 @@ class _SeleccionBeneficiarioPageState
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: context.theme.primaryColor,
+        backgroundColor: const Color.fromRGBO(0, 114, 181, 48),
         centerTitle: true,
         title: const Text(
           'Mis Beneficiarios',

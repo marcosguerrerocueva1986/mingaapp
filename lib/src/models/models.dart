@@ -232,7 +232,9 @@ class MovimientoCuentaModel with _$MovimientoCuentaModel {
 class ConsultaMovimientosInversionRequerimiento
     with _$ConsultaMovimientosInversionRequerimiento {
   factory ConsultaMovimientosInversionRequerimiento(
-          {@Default('') String numeroCuenta}) =
+          {@Default('') String numeroCuenta,
+           @Default(0) int idUsuario,
+           @Default(0) int numeroRegistros,}) =
       _ConsultaMovimientosInversionRequerimiento;
 
   factory ConsultaMovimientosInversionRequerimiento.fromJson(
@@ -615,7 +617,8 @@ class ConsultaDetalleInversionRespuesta
 class DepositoDetalleState with _$DepositoDetalleState {
   factory DepositoDetalleState(
           {InversionModel? deposito,
-          ConsultaDetalleInversionRespuesta? respuestaDetalles}) =
+          ConsultaDetalleInversionRespuesta? respuestaDetalles,
+          ConsultaMovimientosInversionRespuesta? respuestaMovimientos}) =
       _DepositoDetalleState;
 
   factory DepositoDetalleState.fromJson(Map<String, Object?> json) =>

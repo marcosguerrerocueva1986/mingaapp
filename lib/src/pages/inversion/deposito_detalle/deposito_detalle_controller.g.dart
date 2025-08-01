@@ -7,7 +7,7 @@ part of 'deposito_detalle_controller.dart';
 // **************************************************************************
 
 String _$depositoDetalleControllerHash() =>
-    r'e248f170535538a436c26a1209209765f465bd99';
+    r'655adeb92b122a1ec6837bccf407d706990381f7';
 
 /// See also [DepositoDetalleController].
 @ProviderFor(DepositoDetalleController)

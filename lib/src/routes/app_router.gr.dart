@@ -339,13 +339,13 @@ class BeneficiarioRoute extends PageRouteInfo<void> {
 class CuentaDetalleRoute extends PageRouteInfo<CuentaDetalleRouteArgs> {
   CuentaDetalleRoute({
     Key? key,
-    required CuentaModel? cuenta,
+    required CuentaModel cuenta,
     List<PageRouteInfo>? children,
   }) : super(
           CuentaDetalleRoute.name,
-            args: CuentaDetalleRouteArgs(
+          args: CuentaDetalleRouteArgs(
             key: key,
-            cuenta: cuenta!,
+            cuenta: cuenta,
           ),
           initialChildren: children,
         );

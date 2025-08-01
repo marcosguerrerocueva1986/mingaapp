@@ -103,4 +103,7 @@ class CuentaDetalleController extends _$CuentaDetalleController {
       ),
     );
   }
+  Future irPagoServicio() async {
+    appRouter.navigate(PagoServicioRoute(cuentaTransferenciaParametro: state.cuenta));
+  }
 }

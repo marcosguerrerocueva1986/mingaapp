@@ -4002,6 +4002,8 @@ ConsultaMovimientosInversionRequerimiento
 /// @nodoc
 mixin _$ConsultaMovimientosInversionRequerimiento {
   String get numeroCuenta => throw _privateConstructorUsedError;
+  int get idUsuario => throw _privateConstructorUsedError;
+  int get numeroRegistros => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4018,7 +4020,7 @@ abstract class $ConsultaMovimientosInversionRequerimientoCopyWith<$Res> {
       _$ConsultaMovimientosInversionRequerimientoCopyWithImpl<$Res,
           ConsultaMovimientosInversionRequerimiento>;
   @useResult
-  $Res call({String numeroCuenta});
+  $Res call({String numeroCuenta, int idUsuario, int numeroRegistros});
 }
 
 /// @nodoc
@@ -4037,12 +4039,22 @@ class _$ConsultaMovimientosInversionRequerimientoCopyWithImpl<$Res,
   @override
   $Res call({
     Object? numeroCuenta = null,
+    Object? idUsuario = null,
+    Object? numeroRegistros = null,
   }) {
     return _then(_value.copyWith(
       numeroCuenta: null == numeroCuenta
           ? _value.numeroCuenta
           : numeroCuenta // ignore: cast_nullable_to_non_nullable
               as String,
+      idUsuario: null == idUsuario
+          ? _value.idUsuario
+          : idUsuario // ignore: cast_nullable_to_non_nullable
+              as int,
+      numeroRegistros: null == numeroRegistros
+          ? _value.numeroRegistros
+          : numeroRegistros // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -4056,7 +4068,7 @@ abstract class _$$ConsultaMovimientosInversionRequerimientoImplCopyWith<$Res>
       __$$ConsultaMovimientosInversionRequerimientoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String numeroCuenta});
+  $Res call({String numeroCuenta, int idUsuario, int numeroRegistros});
 }
 
 /// @nodoc
@@ -4073,12 +4085,22 @@ class __$$ConsultaMovimientosInversionRequerimientoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? numeroCuenta = null,
+    Object? idUsuario = null,
+    Object? numeroRegistros = null,
   }) {
     return _then(_$ConsultaMovimientosInversionRequerimientoImpl(
       numeroCuenta: null == numeroCuenta
           ? _value.numeroCuenta
           : numeroCuenta // ignore: cast_nullable_to_non_nullable
               as String,
+      idUsuario: null == idUsuario
+          ? _value.idUsuario
+          : idUsuario // ignore: cast_nullable_to_non_nullable
+              as int,
+      numeroRegistros: null == numeroRegistros
+          ? _value.numeroRegistros
+          : numeroRegistros // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -4087,7 +4109,8 @@ class __$$ConsultaMovimientosInversionRequerimientoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ConsultaMovimientosInversionRequerimientoImpl
     implements _ConsultaMovimientosInversionRequerimiento {
-  _$ConsultaMovimientosInversionRequerimientoImpl({this.numeroCuenta = ''});
+  _$ConsultaMovimientosInversionRequerimientoImpl(
+      {this.numeroCuenta = '', this.idUsuario = 0, this.numeroRegistros = 0});
 
   factory _$ConsultaMovimientosInversionRequerimientoImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -4096,10 +4119,16 @@ class _$ConsultaMovimientosInversionRequerimientoImpl
   @override
   @JsonKey()
   final String numeroCuenta;
+  @override
+  @JsonKey()
+  final int idUsuario;
+  @override
+  @JsonKey()
+  final int numeroRegistros;
 
   @override
   String toString() {
-    return 'ConsultaMovimientosInversionRequerimiento(numeroCuenta: $numeroCuenta)';
+    return 'ConsultaMovimientosInversionRequerimiento(numeroCuenta: $numeroCuenta, idUsuario: $idUsuario, numeroRegistros: $numeroRegistros)';
   }
 
   @override
@@ -4108,12 +4137,17 @@ class _$ConsultaMovimientosInversionRequerimientoImpl
         (other.runtimeType == runtimeType &&
             other is _$ConsultaMovimientosInversionRequerimientoImpl &&
             (identical(other.numeroCuenta, numeroCuenta) ||
-                other.numeroCuenta == numeroCuenta));
+                other.numeroCuenta == numeroCuenta) &&
+            (identical(other.idUsuario, idUsuario) ||
+                other.idUsuario == idUsuario) &&
+            (identical(other.numeroRegistros, numeroRegistros) ||
+                other.numeroRegistros == numeroRegistros));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, numeroCuenta);
+  int get hashCode =>
+      Object.hash(runtimeType, numeroCuenta, idUsuario, numeroRegistros);
 
   @JsonKey(ignore: true)
   @override
@@ -4136,7 +4170,9 @@ class _$ConsultaMovimientosInversionRequerimientoImpl
 abstract class _ConsultaMovimientosInversionRequerimiento
     implements ConsultaMovimientosInversionRequerimiento {
   factory _ConsultaMovimientosInversionRequerimiento(
-          {final String numeroCuenta}) =
+          {final String numeroCuenta,
+          final int idUsuario,
+          final int numeroRegistros}) =
       _$ConsultaMovimientosInversionRequerimientoImpl;
 
   factory _ConsultaMovimientosInversionRequerimiento.fromJson(
@@ -4145,6 +4181,10 @@ abstract class _ConsultaMovimientosInversionRequerimiento
 
   @override
   String get numeroCuenta;
+  @override
+  int get idUsuario;
+  @override
+  int get numeroRegistros;
   @override
   @JsonKey(ignore: true)
   _$$ConsultaMovimientosInversionRequerimientoImplCopyWith<
@@ -10328,6 +10368,8 @@ mixin _$DepositoDetalleState {
   InversionModel? get deposito => throw _privateConstructorUsedError;
   ConsultaDetalleInversionRespuesta? get respuestaDetalles =>
       throw _privateConstructorUsedError;
+  ConsultaMovimientosInversionRespuesta? get respuestaMovimientos =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -10343,10 +10385,13 @@ abstract class $DepositoDetalleStateCopyWith<$Res> {
   @useResult
   $Res call(
       {InversionModel? deposito,
-      ConsultaDetalleInversionRespuesta? respuestaDetalles});
+      ConsultaDetalleInversionRespuesta? respuestaDetalles,
+      ConsultaMovimientosInversionRespuesta? respuestaMovimientos});
 
   $InversionModelCopyWith<$Res>? get deposito;
   $ConsultaDetalleInversionRespuestaCopyWith<$Res>? get respuestaDetalles;
+  $ConsultaMovimientosInversionRespuestaCopyWith<$Res>?
+      get respuestaMovimientos;
 }
 
 /// @nodoc
@@ -10365,6 +10410,7 @@ class _$DepositoDetalleStateCopyWithImpl<$Res,
   $Res call({
     Object? deposito = freezed,
     Object? respuestaDetalles = freezed,
+    Object? respuestaMovimientos = freezed,
   }) {
     return _then(_value.copyWith(
       deposito: freezed == deposito
@@ -10375,6 +10421,10 @@ class _$DepositoDetalleStateCopyWithImpl<$Res,
           ? _value.respuestaDetalles
           : respuestaDetalles // ignore: cast_nullable_to_non_nullable
               as ConsultaDetalleInversionRespuesta?,
+      respuestaMovimientos: freezed == respuestaMovimientos
+          ? _value.respuestaMovimientos
+          : respuestaMovimientos // ignore: cast_nullable_to_non_nullable
+              as ConsultaMovimientosInversionRespuesta?,
     ) as $Val);
   }
 
@@ -10402,6 +10452,20 @@ class _$DepositoDetalleStateCopyWithImpl<$Res,
       return _then(_value.copyWith(respuestaDetalles: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConsultaMovimientosInversionRespuestaCopyWith<$Res>?
+      get respuestaMovimientos {
+    if (_value.respuestaMovimientos == null) {
+      return null;
+    }
+
+    return $ConsultaMovimientosInversionRespuestaCopyWith<$Res>(
+        _value.respuestaMovimientos!, (value) {
+      return _then(_value.copyWith(respuestaMovimientos: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -10414,12 +10478,16 @@ abstract class _$$DepositoDetalleStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {InversionModel? deposito,
-      ConsultaDetalleInversionRespuesta? respuestaDetalles});
+      ConsultaDetalleInversionRespuesta? respuestaDetalles,
+      ConsultaMovimientosInversionRespuesta? respuestaMovimientos});
 
   @override
   $InversionModelCopyWith<$Res>? get deposito;
   @override
   $ConsultaDetalleInversionRespuestaCopyWith<$Res>? get respuestaDetalles;
+  @override
+  $ConsultaMovimientosInversionRespuestaCopyWith<$Res>?
+      get respuestaMovimientos;
 }
 
 /// @nodoc
@@ -10435,6 +10503,7 @@ class __$$DepositoDetalleStateImplCopyWithImpl<$Res>
   $Res call({
     Object? deposito = freezed,
     Object? respuestaDetalles = freezed,
+    Object? respuestaMovimientos = freezed,
   }) {
     return _then(_$DepositoDetalleStateImpl(
       deposito: freezed == deposito
@@ -10445,6 +10514,10 @@ class __$$DepositoDetalleStateImplCopyWithImpl<$Res>
           ? _value.respuestaDetalles
           : respuestaDetalles // ignore: cast_nullable_to_non_nullable
               as ConsultaDetalleInversionRespuesta?,
+      respuestaMovimientos: freezed == respuestaMovimientos
+          ? _value.respuestaMovimientos
+          : respuestaMovimientos // ignore: cast_nullable_to_non_nullable
+              as ConsultaMovimientosInversionRespuesta?,
     ));
   }
 }
@@ -10452,7 +10525,8 @@ class __$$DepositoDetalleStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DepositoDetalleStateImpl implements _DepositoDetalleState {
-  _$DepositoDetalleStateImpl({this.deposito, this.respuestaDetalles});
+  _$DepositoDetalleStateImpl(
+      {this.deposito, this.respuestaDetalles, this.respuestaMovimientos});
 
   factory _$DepositoDetalleStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$DepositoDetalleStateImplFromJson(json);
@@ -10461,10 +10535,12 @@ class _$DepositoDetalleStateImpl implements _DepositoDetalleState {
   final InversionModel? deposito;
   @override
   final ConsultaDetalleInversionRespuesta? respuestaDetalles;
+  @override
+  final ConsultaMovimientosInversionRespuesta? respuestaMovimientos;
 
   @override
   String toString() {
-    return 'DepositoDetalleState(deposito: $deposito, respuestaDetalles: $respuestaDetalles)';
+    return 'DepositoDetalleState(deposito: $deposito, respuestaDetalles: $respuestaDetalles, respuestaMovimientos: $respuestaMovimientos)';
   }
 
   @override
@@ -10475,12 +10551,15 @@ class _$DepositoDetalleStateImpl implements _DepositoDetalleState {
             (identical(other.deposito, deposito) ||
                 other.deposito == deposito) &&
             (identical(other.respuestaDetalles, respuestaDetalles) ||
-                other.respuestaDetalles == respuestaDetalles));
+                other.respuestaDetalles == respuestaDetalles) &&
+            (identical(other.respuestaMovimientos, respuestaMovimientos) ||
+                other.respuestaMovimientos == respuestaMovimientos));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, deposito, respuestaDetalles);
+  int get hashCode => Object.hash(
+      runtimeType, deposito, respuestaDetalles, respuestaMovimientos);
 
   @JsonKey(ignore: true)
   @override
@@ -10501,7 +10580,8 @@ class _$DepositoDetalleStateImpl implements _DepositoDetalleState {
 abstract class _DepositoDetalleState implements DepositoDetalleState {
   factory _DepositoDetalleState(
           {final InversionModel? deposito,
-          final ConsultaDetalleInversionRespuesta? respuestaDetalles}) =
+          final ConsultaDetalleInversionRespuesta? respuestaDetalles,
+          final ConsultaMovimientosInversionRespuesta? respuestaMovimientos}) =
       _$DepositoDetalleStateImpl;
 
   factory _DepositoDetalleState.fromJson(Map<String, dynamic> json) =
@@ -10511,6 +10591,8 @@ abstract class _DepositoDetalleState implements DepositoDetalleState {
   InversionModel? get deposito;
   @override
   ConsultaDetalleInversionRespuesta? get respuestaDetalles;
+  @override
+  ConsultaMovimientosInversionRespuesta? get respuestaMovimientos;
   @override
   @JsonKey(ignore: true)
   _$$DepositoDetalleStateImplCopyWith<_$DepositoDetalleStateImpl>

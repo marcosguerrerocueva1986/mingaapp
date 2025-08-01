@@ -12,23 +12,27 @@ class PrestamoDetallePage extends ConsumerStatefulWidget {
 }
 
 class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
+  late Future<List<DetalleInversionModel>> movimientos;
+  
   @override
   void initState() {
     super.initState();
     ref
         .read(prestamoDetalleControllerProvider.notifier)
         .actualizaInformacion(widget.prestamo);
+        //movimientos = ref.read(prestamoDetalleControllerProvider.notifier).movimientosInformacion(widget.prestamo);
   }
 
   @override
   Widget build(BuildContext context) {
     var controller = ref.read(prestamoDetalleControllerProvider.notifier);
     var provider = ref.watch(prestamoDetalleControllerProvider);
-
+    var loginProvider = ref.watch(loginControllerProvider);
+    var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: context.theme.primaryColor,
+        backgroundColor: const Color.fromRGBO(0, 114, 181, 48),
         centerTitle: true,
         title: const Text(
           'Mi Préstamo',
@@ -68,28 +72,35 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children:  <Widget> [
-                                  Text(
-                                    'CRÉDITO ${widget.prestamo.tipo}',
-                                    style: const TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.bold,
-                                      shadows: [
-                                        Shadow(
-                                          blurRadius: 2.0,
-                                          color: Colors.white70,
-                                          offset: Offset(1.0, 1.0)
-                                        ),
-                                      ],
+                                  SizedBox(
+                                    width: 300,
+                                    child: Text(
+                                      'CRÉDITO ${widget.prestamo.tipo.toUpperCase()}',
+                                       maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: true,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                        shadows: [
+                                          Shadow(
+                                            blurRadius: 2.0,
+                                            color: Colors.white,
+                                            offset: Offset(1.0, 1.0)
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
+                              const SizedBox(width: 8),
                               Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget> [
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(160, 0, 20, 0),
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                                   child: ElevatedButton (
                                     onPressed: () {},// onToggleVisibility,
                                       style: ElevatedButton.styleFrom(
@@ -113,15 +124,15 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                             ],
                           ),
                           Text(
-                              widget.prestamo.codigo,
+                              nombreCliente,
                               style: const TextStyle(
-                                color: Colors.white70,
-                                fontSize: 14.0,
+                                color: Colors.white,
+                                fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
                                 shadows: [
                                   Shadow(
                                     blurRadius: 2.0,
-                                    color: Colors.white70,
+                                    color: Colors.white,
                                     offset: Offset(1.0, 1.0)
                                   ),
                                 ],
@@ -130,15 +141,15 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                           Row(
                             children: [
                                   const Text(
-                                  'N° OPERACIÓN:',
+                                  'N° OPERACIÓN: ',
                                   style: TextStyle(
-                                  color: Colors.white70,
+                                  color: Colors.white,
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
                                   shadows: [
                                     Shadow(
                                       blurRadius: 2.0,
-                                      color: Colors.white70,
+                                      color: Colors.white,
                                       offset: Offset(1.0, 1.0)
                                     ),
                                   ],
@@ -147,13 +158,13 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                               Text(
                                   widget.prestamo.codigo,
                                   style: const TextStyle(
-                                  color: Colors.white70,
+                                  color: Colors.white,
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
                                   shadows: [
                                     Shadow(
                                       blurRadius: 2.0,
-                                      color: Colors.white70,
+                                      color: Colors.white,
                                       offset: Offset(1.0, 1.0)
                                     ),
                                   ],
@@ -171,13 +182,13 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                   const Text(
                                       'Saldo: ',
                                       style: TextStyle(
-                                        color: Colors.white70,
+                                        color: Colors.white,
                                         fontSize: 16.0,
                                         fontWeight: FontWeight.bold,
                                         shadows: [
                                           Shadow(
                                             blurRadius: 2.0,
-                                            color: Colors.white70,
+                                            color: Colors.white,
                                             offset: Offset(1.0, 1.0)
                                           ),
                                         ],
@@ -187,13 +198,13 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                       widget.prestamo.saldo.toMoney(),
                                       //isBalanceVisible ? '\$${balance.toStringAsFixed(2)}' : '********',
                                       style: const TextStyle(
-                                        color: Colors.white70,
+                                        color: Colors.white,
                                         fontSize: 28.0,
                                         fontWeight: FontWeight.bold,
                                         shadows: [
                                           Shadow(
                                           blurRadius: 2.0,
-                                          color: Colors.white70,
+                                          color: Colors.white,
                                           offset: Offset(1.0, 1.0)
                                         ),
                                       ],
@@ -246,11 +257,9 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                         child: TarjetaDetallesPrestamo(prestamo: widget.prestamo),
                       ),
                       TextButton(
-                        onPressed: () {
-                          print('Activar Cuenta');
-                        }, 
+                        onPressed: controller.irAbono,
                         style: TextButton.styleFrom(
-                          backgroundColor: Colors.blue,
+                          backgroundColor: const Color.fromRGBO(48, 155, 217, 25),
                           padding: const EdgeInsets.fromLTRB(40,1,40,1),
                         ),
                         child: const Text(
@@ -301,7 +310,7 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                     child: ListView(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      children: provider.respuestaDetalles!.detalles.map((detallePrestamo) => TarjetaPagosPrestamo(prestamo: detallePrestamo)).toList(),
+                      children: (provider.respuestaDetalles?.detalles ?? []).map((detallePrestamo) => TarjetaPagosPrestamo(prestamo: detallePrestamo)).toList(),
                     ),
                   ),
                 )
@@ -461,63 +470,25 @@ const TarjetaPagosPrestamo({super.key, required this.prestamo});
         crossAxisAlignment: CrossAxisAlignment.end, 
         children: [
           const SizedBox(height: 1),
-          _construirFilaPagosDetalle(
+          _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Traer detalle de la transaccion',
             valor: prestamo.capital.toMoney(),
             colorValor: Colors.grey,
           ),
-          _construirFilaPagosDetalle(
+          _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Fecha Transacción',
             valor: prestamo.fechaPago,
             colorValor: Colors.grey,
           ),
-          _construirDivisorPagosDetalle(),
+          _construirDivisor(),
         ],
       ),
     );
   }
 }
-Widget _construirFilaPagosDetalle({
-  required IconData icono, 
-  required String etiqueta, 
-  required String valor,
-  Color? colorValor, 
-  FontWeight? pesoFuenteValor, 
-}) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 5.0), 
-    child: Row(
-      children: [
-        Icon(icono, size: 16, color: Colors.blue), 
-        const SizedBox(width: 2), 
-        Expanded(
-          child: Text(
-            etiqueta,
-            style: const TextStyle(fontSize: 13, color: Colors.grey),
-          ),
-        ),
-        Text(
-          valor,
-          style: TextStyle(
-            fontSize: 14,
-            color: colorValor ?? Colors.black, 
-            fontWeight: pesoFuenteValor ?? FontWeight.normal, 
-          ),
-        ),
-      ],
-    ),
-  );
-}
-Widget _construirDivisorPagosDetalle() {
-  return const Divider(
-    height: 1, 
-    color: Colors.grey,
-    thickness: 0.6,
-    indent: 26, 
-  );
-}
+
 Widget prestamoItems(String fechaVencimiento, String numeroCuota,
         String saldo, String totalCuota, String fechaPago, String estado,
         {Color oddColour = Colors.white}) =>
