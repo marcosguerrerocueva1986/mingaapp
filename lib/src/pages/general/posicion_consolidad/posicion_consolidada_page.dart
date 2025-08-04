@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/general/posicion_consolidad/balance_visibility_controller.dart';
 import 'package:flutter/rendering.dart';
@@ -37,15 +39,33 @@ with SingleTickerProviderStateMixin {
   ];
   int _selectedIndex = 0; 
   late PageController _pageController;
-
+  late PageController _promoCarouselController;
+  int _currentPromoIndex = 0;
+  Timer? _promoCarouselTimer;
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _pageController = PageController(initialPage: _selectedIndex);
     ref.read(posicionConsolidadaControllerProvider.notifier).actualizaConsolidado();
+    _promoCarouselController = PageController(initialPage: 0);
+    _startPromoCarouselAutoPlay();
   }   
-
+  void _startPromoCarouselAutoPlay() {
+    _promoCarouselTimer = Timer.periodic(const Duration(seconds: 4), (Timer timer) {
+      if (_promoCarouselController.hasClients) { 
+        int nextPage = (_currentPromoIndex + 1) % _carouselImagePaths.length;
+        _promoCarouselController.animateToPage(
+          nextPage,
+          duration: const Duration(milliseconds: 800), 
+          curve: Curves.easeOut,
+        );
+        setState(() {
+          _currentPromoIndex = nextPage;
+        });
+      }
+    });
+  }
   @override
   void dispose() {
     _tabController.dispose();
@@ -53,6 +73,8 @@ with SingleTickerProviderStateMixin {
     _pageControllerInversiones.dispose();
     _pageControllerPrestamos.dispose();
     _pageController.dispose();
+    _promoCarouselTimer?.cancel(); 
+    _promoCarouselController.dispose();
     super.dispose();
   }
   void _onItemTapped(int index) {
@@ -125,6 +147,7 @@ with SingleTickerProviderStateMixin {
     var provider = ref.watch(posicionConsolidadaControllerProvider);
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
+
     if (provider.isLoading) {
       return const Center(
         child: CircularProgressIndicator(), 
@@ -244,11 +267,15 @@ with SingleTickerProviderStateMixin {
                   decoration: const BoxDecoration(
                     color: Colors.transparent,
                   ),
-                  
                   child: SizedBox(
                     child: PageView.builder(
-                      controller: PageController(viewportFraction: 1),
+                      controller: _promoCarouselController,
                       itemCount: _carouselImagePaths.length,
+                      onPageChanged: (int page) {
+                        setState(() {
+                          _currentPromoIndex = page;
+                        });
+                      },
                       itemBuilder: (context, index) {
                         final String imagePath = _carouselImagePaths[index];
                         return Padding(
