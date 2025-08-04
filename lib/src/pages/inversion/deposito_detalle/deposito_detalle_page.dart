@@ -1,4 +1,7 @@
 import 'package:bancamovilr/index.dart';
+import 'package:bancamovilr/src/pages/general/posicion_consolidad/balance_visibility_controller.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 @RoutePage()
 class DepositoDetallePage extends ConsumerStatefulWidget {
@@ -12,12 +15,12 @@ class DepositoDetallePage extends ConsumerStatefulWidget {
 }
 
 class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
-  late Future<List<DetalleInversionModel>> movimientos;
+  bool _mostrarDetallesYPago = true;
   @override
   void initState() {
     super.initState();
     ref.read(depositoDetalleControllerProvider.notifier).actualizaInformacion(widget.deposito);
-    movimientos = ref.read(depositoDetalleControllerProvider.notifier).movimientosInformacion(widget.deposito);
+    initializeDateFormatting('es', null);
   }
 
   @override
@@ -26,7 +29,8 @@ class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
     var provider = ref.watch(depositoDetalleControllerProvider);
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
-
+    final bool isBalanceVisible = ref.watch(balanceVisibilityProvider.notifier).isBalanceVisible(provider.deposito?.codigo ?? '');
+    onToggleVisibility() {ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();}
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -100,7 +104,7 @@ class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                                   child: ElevatedButton (
-                                    onPressed: () {},// onToggleVisibility,
+                                    onPressed: onToggleVisibility,
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.transparent, 
                                         foregroundColor: Colors.white, 
@@ -193,8 +197,7 @@ class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
                                       ),
                                     ),
                                     Text(
-                                      widget.deposito.monto.toMoney(),
-                                      //isBalanceVisible ? '\$${balance.toStringAsFixed(2)}' : '********',
+                                      isBalanceVisible ? '\$${widget.deposito.monto.toStringAsFixed(2)}' : '********',
                                       style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 28.0,
@@ -217,7 +220,9 @@ class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
                                   padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                                   child: ElevatedButton (
                                     onPressed: () {
-                                        print('ver más detalles');
+                                        setState(() {
+                                          _mostrarDetallesYPago = !_mostrarDetallesYPago;
+                                        });
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.transparent, 
@@ -244,91 +249,99 @@ class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
                     ),
                   ),
                 ),
-                Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                    ),
-                  child: Column(
-                    children: <Widget> [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
-                        child: TarjetaDetallesInversion(inversion: widget.deposito),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          appRouter.push(const MantenimientoRoute());
-                        }, 
-                        style: TextButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(48, 155, 217, 25),
-                          padding: const EdgeInsets.fromLTRB(40,1,40,1),
-                        ),
-                        child: const Text(
-                          'Renovar',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            decoration: TextDecoration.none,
-                            decorationThickness: 4.0,
-                            decorationColor: Colors.white,
-                            fontSize: 22,
-                            height: 2,
-                          ),
-                        )
-                      ),
-                    ]
-                  ),
-                ),
-                const SizedBox(height: defaultPadding / 2),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5.0), 
-                  child: Row(
+                if (_mostrarDetallesYPago)
+                  Column(
                     children: [
-                      SizedBox(width: 2), 
-                      Expanded(
-                        child: Text(
-                          'Tabla de Pagos',
-                          style: TextStyle(fontSize: 14, color: Colors.blue, fontWeight: FontWeight.bold),
+                      Container(
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          child: Column(
+                          children: <Widget> [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
+                              child: TarjetaDetallesInversion(inversion: widget.deposito),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                appRouter.push(const MantenimientoRoute());
+                              }, 
+                              style: TextButton.styleFrom(
+                                backgroundColor: const Color.fromRGBO(48, 155, 217, 25),
+                                padding: const EdgeInsets.fromLTRB(40,1,40,1),
+                              ),
+                              child: const Text(
+                                'Renovar',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  decoration: TextDecoration.none,
+                                  decorationThickness: 4.0,
+                                  decorationColor: Colors.white,
+                                  fontSize: 22,
+                                  height: 2,
+                                ),
+                              )
+                            ),
+                          ]
                         ),
                       ),
-                      Text(
-                        'VALOR',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.blue, 
-                          fontWeight: FontWeight.bold, 
+                      const SizedBox(height: defaultPadding / 2),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5.0), 
+                        child: Row(
+                          children: [
+                            SizedBox(width: 2), 
+                            Expanded(
+                              child: Text(
+                                'Tabla de Pagos',
+                                style: TextStyle(fontSize: 14, color: Color.fromRGBO(0, 96, 152, 20), fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Text(
+                              'VALOR',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color.fromRGBO(0, 96, 152, 20), 
+                                fontWeight: FontWeight.bold, 
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),              
+                      Container(
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                          ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 1, 20, 0), 
+                          child: FutureBuilder<ConsultaMovimientosInversionRespuesta>(
+                            future: controller.movimientosInformacion(widget.deposito),
+                            builder: (context, snapshot) {
+                              final List<MovimientoInversionModel> movimientosCargados = 
+                              snapshot.data?.movimientos ?? [];
+                              if (snapshot.connectionState == ConnectionState.waiting) {
+                                return const Center(child: CircularProgressIndicator());
+                              } else if (snapshot.hasError) {
+                                return Center(child: Text('Error al cargar movimientos: ${snapshot.error}')); 
+                              } else if (!snapshot.hasData || movimientosCargados.isEmpty) {
+                                return const Center(child: Text('No hay movimientos disponibles.', style: TextStyle(fontSize: 18, color: Colors.grey))); 
+                              } else {
+                                return ListView(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  children: movimientosCargados
+                                      .map((movimientoInversion) => TarjetaPagosInversion(inversion: movimientoInversion,
+                                      key: ValueKey(movimientoInversion.documento ?? UniqueKey()),))
+                                      .toList(),
+                                );
+                              }
+                            },
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),              
-                Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                    ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 1, 20, 0), 
-                    child: FutureBuilder<List<DetalleInversionModel>>(
-                      future: movimientos,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
-                          return const Center(child: CircularProgressIndicator());
-                        } else if (snapshot.hasError) {
-                          return Center(child: Text('Error al cargar movimientos: ${snapshot.error}')); 
-                        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                          return const Center(child: Text('No hay movimientos disponibles.', style: TextStyle(fontSize: 18, color: Colors.grey))); 
-                        } else {
-                          return ListView(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: snapshot.data!
-                                .map((detalleInversion) => TarjetaPagosInversion(inversion: detalleInversion))
-                                .toList(),
-                          );
-                        }
-                      },
-                    ),
-                  ),
-                )
               ],
             ),
           ),
@@ -342,6 +355,8 @@ const TarjetaDetallesInversion({super.key, required this.inversion});
   final InversionModel  inversion;
   @override
   Widget build(BuildContext context) {
+    String fechaFormateada = DateFormat('EEE. dd MMM. yyyy', 'es')
+                            .format(inversion.fechaVencimiento!);
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 5, 0, 0), // Relleno interno del contenedor
       decoration: BoxDecoration(
@@ -375,7 +390,7 @@ const TarjetaDetallesInversion({super.key, required this.inversion});
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue,
+                  color: Color.fromRGBO(0, 96, 152, 20),
                 ),
               ),
             ],
@@ -385,21 +400,22 @@ const TarjetaDetallesInversion({super.key, required this.inversion});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Plazo en días',
             valor: '${inversion.monto.toMoney()} días',
-            colorValor: Colors.blue,
+            colorValor: const Color.fromRGBO(0, 96, 152, 20),
           ),
           _construirDivisor(),
+          
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Fecha Vencimiento',
-            valor: 'vier. 11 jun. 2025',
-            colorValor: Colors.blue,
+            valor: fechaFormateada,
+            colorValor: const Color.fromRGBO(0, 96, 152, 20),
           ),
           _construirDivisor(),
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Tasa de Interés',
             valor: inversion.estado,
-            colorValor: Colors.blue,
+            colorValor: const Color.fromRGBO(0, 96, 152, 20),
             pesoFuenteValor: FontWeight.bold,
           ),
           _construirDivisor(),
@@ -407,7 +423,7 @@ const TarjetaDetallesInversion({super.key, required this.inversion});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Mónto a recibir',
             valor: inversion.totalRecibir.toMoney(),
-            colorValor: Colors.blue,
+            colorValor: const Color.fromRGBO(0, 96, 152, 20),
           ),
         ],
       ),
@@ -417,10 +433,12 @@ const TarjetaDetallesInversion({super.key, required this.inversion});
 
 class TarjetaPagosInversion extends StatelessWidget {
 const TarjetaPagosInversion({super.key, required this.inversion});
-  final DetalleInversionModel inversion;
+  final MovimientoInversionModel inversion;
 
   @override
   Widget build(BuildContext context) {
+    String fechaTransaccion = DateFormat('EEE. dd MMM. yyyy', 'es')
+                            .format(inversion.fecha!);
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 5, 5, 0), // Relleno interno del contenedor
       decoration: BoxDecoration(
@@ -442,15 +460,16 @@ const TarjetaPagosInversion({super.key, required this.inversion});
           const SizedBox(height: 1),
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
-            etiqueta: 'Traer detalle de la transaccion',
+            etiqueta: inversion.transaccion,
             valor: inversion.valor.toMoney(),
-            colorValor: Colors.grey,
+            colorValor: Colors.green,
+            pesoFuenteValor: FontWeight.bold,
           ),
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
-            etiqueta: 'Fecha Transacción',
-            valor: inversion.fecha.toString(),
-            colorValor: Colors.grey,
+            etiqueta: fechaTransaccion,
+            valor: inversion.saldo.toMoney(),
+            colorValor: const Color.fromRGBO(0, 96, 152, 20),
           ),
           _construirDivisor(),
         ],

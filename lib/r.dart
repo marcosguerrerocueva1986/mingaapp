@@ -29,6 +29,8 @@ class _Images {
   final String marcaagua = 'assets/images/marcaagua.png';
 
   final String onboardingDeuna = 'assets/images/onboarding-deuna.png';
+  
+  final String cargando = 'assets/images/cargando.png';
 
   final Map<String, String> $files = const {
     'errorDeunaQr': 'assets/images/error-deuna-qr.png',
@@ -38,6 +40,7 @@ class _Images {
     'logoDeunaMorado': 'assets/images/logo-deuna-morado.png',
     'marcaagua': 'assets/images/marcaagua.png',
     'onboardingDeuna': 'assets/images/onboarding-deuna.png',
+    'cargando': 'assets/images/cargando.png',
   };
 }
 
@@ -50,9 +53,12 @@ class _Svg {
   
   final String logoPantallas = 'assets/svg/logoPantallas.svg';
 
+  final String cargando = 'assets/svg/cargando.svg';
+
   final Map<String, String> $files = const {
     'logoBlack': 'assets/svg/logo-black.svg',
     'logo': 'assets/svg/logo.svg',
     'logoPantallas': 'assets/svg/logoPantallas.svg',
+    'cargando': 'assets/svg/cargando.svg',
   };
 }

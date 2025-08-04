@@ -257,7 +257,7 @@ class _LoginPrincipalState extends ConsumerState<LoginPrincipalPage> {
                     children: <Widget> [
                       TextButton(
                         onPressed: () {
-                          print('Activar Cuenta');
+                          appRouter.push(const ActivaCuentaRoute());
                         }, 
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.transparent,

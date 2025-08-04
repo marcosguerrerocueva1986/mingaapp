@@ -7,7 +7,7 @@ part of 'cuenta_detalle_controller.dart';
 // **************************************************************************
 
 String _$cuentaDetalleControllerHash() =>
-    r'e44f725425b7b00d5d330a894ab6ab4b65519673';
+    r'5aeb2ec938f05d2407d297d10dcb38ad31c52d3b';
 
 /// See also [CuentaDetalleController].
 @ProviderFor(CuentaDetalleController)

@@ -1,4 +1,7 @@
 import 'package:bancamovilr/index.dart';
+import 'package:bancamovilr/src/pages/general/posicion_consolidad/balance_visibility_controller.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 @RoutePage()
 class PrestamoDetallePage extends ConsumerStatefulWidget {
@@ -11,16 +14,15 @@ class PrestamoDetallePage extends ConsumerStatefulWidget {
   final PrestamoModel prestamo;
 }
 
-class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
-  late Future<List<DetalleInversionModel>> movimientos;
-  
+class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {  
+  bool _mostrarDetallesYPago = true;
   @override
   void initState() {
     super.initState();
     ref
         .read(prestamoDetalleControllerProvider.notifier)
         .actualizaInformacion(widget.prestamo);
-        //movimientos = ref.read(prestamoDetalleControllerProvider.notifier).movimientosInformacion(widget.prestamo);
+        initializeDateFormatting('es', null);
   }
 
   @override
@@ -29,6 +31,8 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
     var provider = ref.watch(prestamoDetalleControllerProvider);
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
+    final bool isBalanceVisible = ref.watch(balanceVisibilityProvider.notifier).isBalanceVisible(provider.prestamo?.codigo ?? '');
+    onToggleVisibility() {ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();}
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -102,7 +106,7 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                                   child: ElevatedButton (
-                                    onPressed: () {},// onToggleVisibility,
+                                    onPressed: onToggleVisibility,
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.transparent, 
                                         foregroundColor: Colors.white, 
@@ -195,8 +199,7 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                       ),
                                     ),
                                     Text(
-                                      widget.prestamo.saldo.toMoney(),
-                                      //isBalanceVisible ? '\$${balance.toStringAsFixed(2)}' : '********',
+                                      isBalanceVisible ? '\$${widget.prestamo.saldo.toStringAsFixed(2)}' : '********',
                                       style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 28.0,
@@ -219,7 +222,9 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                   padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                                   child: ElevatedButton (
                                     onPressed: () {
-                                        print('ver más detalles');
+                                        setState(() {
+                                          _mostrarDetallesYPago = !_mostrarDetallesYPago;
+                                        });
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.transparent, 
@@ -246,74 +251,96 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                       ),
                     ),
                 ),
-                Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                    ),
-                  child: Column(
-                    children: <Widget> [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
-                        child: TarjetaDetallesPrestamo(prestamo: widget.prestamo),
-                      ),
-                      TextButton(
-                        onPressed: controller.irAbono,
-                        style: TextButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(48, 155, 217, 25),
-                          padding: const EdgeInsets.fromLTRB(40,1,40,1),
+                if (_mostrarDetallesYPago)
+                Column(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
                         ),
-                        child: const Text(
-                          'Pagar Ahora',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            decoration: TextDecoration.none,
-                            decorationThickness: 2.0,
-                            decorationColor: Colors.white,
-                            fontSize: 20,
-                            height: 1.3,
+                      child: Column(
+                        children: <Widget> [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
+                            child: TarjetaDetallesPrestamo(prestamo: widget.prestamo),
                           ),
-                        )
+                          TextButton(
+                            onPressed: controller.irAbono,
+                            style: TextButton.styleFrom(
+                              backgroundColor: const Color.fromRGBO(48, 155, 217, 25),
+                              padding: const EdgeInsets.fromLTRB(40,1,40,1),
+                            ),
+                            child: const Text(
+                              'Pagar Ahora',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                decoration: TextDecoration.none,
+                                decorationThickness: 2.0,
+                                decorationColor: Colors.white,
+                                fontSize: 20,
+                                height: 1.3,
+                              ),
+                            )
+                          ),
+                        ]
                       ),
-                    ]
-                  ),
+                    ),
+                    const SizedBox(height: defaultPadding / 2),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5.0), 
+                      child: Row(
+                        children: [
+                          SizedBox(width: 2), 
+                          Expanded(
+                            child: Text(
+                              'Registro de Pagos',
+                              style: TextStyle(fontSize: 14, color: Color.fromRGBO(0, 96, 152, 20), fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Text(
+                            'VALOR',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(0, 96, 152, 20), 
+                              fontWeight: FontWeight.bold, 
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),              
+                    Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                        ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 1, 20, 0), 
+                        child: FutureBuilder<ConsultaMovimientosPrestamoRespuesta>(
+                          future: controller.movimientosPrestamo(widget.prestamo),
+                          builder: (context, snapshot) {
+                              final List<MovimientoPrestamoModel> movimientosCargados = 
+                              snapshot.data?.listaPrestamoMovimiento ?? [];
+                              if (snapshot.connectionState == ConnectionState.waiting) {
+                                return const Center(child: CircularProgressIndicator());
+                              } else if (snapshot.hasError) {
+                                return Center(child: Text('Error al cargar movimientos: ${snapshot.error}')); 
+                              } else if (!snapshot.hasData || movimientosCargados.isEmpty) {
+                                return const Center(child: Text('No hay movimientos disponibles.', style: TextStyle(fontSize: 18, color: Colors.grey))); 
+                              } else {
+                                return ListView(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                children: movimientosCargados
+                                .map((movimientosPrestamo) => TarjetaPagosPrestamo(prestamo: movimientosPrestamo,
+                                key: ValueKey(movimientosPrestamo.documento ?? UniqueKey()),)).toList(),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-                const SizedBox(height: defaultPadding / 2),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5.0), 
-                  child: Row(
-                    children: [
-                      SizedBox(width: 2), 
-                      Expanded(
-                        child: Text(
-                          'Registro de Pagos',
-                          style: TextStyle(fontSize: 14, color: Colors.blue, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Text(
-                        'VALOR',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.blue, 
-                          fontWeight: FontWeight.bold, 
-                        ),
-                      ),
-                    ],
-                  ),
-                ),              
-                Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                    ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 1, 20, 0), 
-                    child: ListView(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: (provider.respuestaDetalles?.detalles ?? []).map((detallePrestamo) => TarjetaPagosPrestamo(prestamo: detallePrestamo)).toList(),
-                    ),
-                  ),
-                )
               ],
             ),
           ),
@@ -361,7 +388,7 @@ const TarjetaDetallesPrestamo({super.key, required this.prestamo});
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue,
+                  color: Color.fromRGBO(0, 96, 152, 20),
                 ),
               ),
             ],
@@ -371,21 +398,23 @@ const TarjetaDetallesPrestamo({super.key, required this.prestamo});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Saldo Préstamo',
             valor: prestamo.saldo.toMoney(),
-            colorValor: Colors.blue,
+            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            pesoFuenteValor: FontWeight.bold
           ),
           _construirDivisor(),
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Próx. Pago',
             valor: 'vier. 11 jun. 2025',
-            colorValor: Colors.blue,
+            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            pesoFuenteValor: FontWeight.bold
           ),
           _construirDivisor(),
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Estado',
             valor: prestamo.estado,
-            colorValor: Colors.blue,
+            colorValor: const Color.fromRGBO(0, 96, 152, 20),
             pesoFuenteValor: FontWeight.bold,
           ),
           _construirDivisor(),
@@ -393,14 +422,16 @@ const TarjetaDetallesPrestamo({super.key, required this.prestamo});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Valor a pagar',
             valor: prestamo.valorParaEstarAlDia.toMoney(),
-            colorValor: Colors.blue,
+            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            pesoFuenteValor: FontWeight.bold
           ),
           _construirDivisor(),
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Cuotas canceladas',
             valor: '5/32',
-            colorValor: Colors.blue,
+            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            pesoFuenteValor: FontWeight.bold
           ),
         ],
       ),
@@ -418,7 +449,7 @@ Widget _construirFilaDetalle({
     padding: const EdgeInsets.symmetric(vertical: 5.0), 
     child: Row(
       children: [
-        Icon(icono, size: 16, color: Colors.blue), 
+        Icon(icono, size: 16, color: const Color.fromRGBO(0, 96, 152, 20)), 
         const SizedBox(width: 2), 
         Expanded(
           child: Text(
@@ -431,7 +462,7 @@ Widget _construirFilaDetalle({
           style: TextStyle(
             fontSize: 14,
             color: colorValor ?? Colors.black, 
-            fontWeight: pesoFuenteValor ?? FontWeight.normal, 
+            fontWeight: FontWeight.bold, 
           ),
         ),
       ],
@@ -448,9 +479,11 @@ Widget _construirDivisor() {
 }
 class TarjetaPagosPrestamo extends StatelessWidget {
 const TarjetaPagosPrestamo({super.key, required this.prestamo});
-  final DetallePrestamo prestamo;
+  final MovimientoPrestamoModel prestamo;
   @override
   Widget build(BuildContext context) {
+    String fechaTransaccion = DateFormat('EEE. dd MMM. yyyy', 'es')
+                            .format(prestamo.fechaSistema!);
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 5, 5, 0), // Relleno interno del contenedor
       decoration: BoxDecoration(
@@ -472,14 +505,15 @@ const TarjetaPagosPrestamo({super.key, required this.prestamo});
           const SizedBox(height: 1),
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
-            etiqueta: 'Traer detalle de la transaccion',
-            valor: prestamo.capital.toMoney(),
-            colorValor: Colors.grey,
+            etiqueta: prestamo.transaccion,
+            valor: prestamo.valor.toMoney(),
+            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            pesoFuenteValor: FontWeight.bold,
           ),
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
-            etiqueta: 'Fecha Transacción',
-            valor: prestamo.fechaPago,
+            etiqueta: fechaTransaccion,
+            valor: "",
             colorValor: Colors.grey,
           ),
           _construirDivisor(),

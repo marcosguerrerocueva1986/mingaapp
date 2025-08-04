@@ -25,6 +25,26 @@ class PrestamoDetalleController extends _$PrestamoDetalleController {
     }
   }
 
+  Future<ConsultaMovimientosPrestamoRespuesta> movimientosPrestamo(PrestamoModel prestamo) async {
+    var client = HttpClientHelper.getClient();
+
+    var respuesta = await guard(() async => await client
+        .consultaMovimientosPrestamo(ConsultaDetallePrestamoRequerimiento(
+            idUsuario: HttpClientHelper.idUsuario,
+            codigoPrestamo: prestamo.codigo,
+            fechaFin: DateTime.now(),
+            fechaInicio: DateTime.now(),
+            numeroRegistros: 15)));
+
+    if (respuesta.hasValue) {
+      return respuesta.value as ConsultaMovimientosPrestamoRespuesta;
+    }
+    else
+    {
+      return ConsultaMovimientosPrestamoRespuesta(listaPrestamoMovimiento: []);
+    }
+  }
+
   Future irAbono() async {
     appRouter.navigate(AbonoRoute(prestamoParametro: state.prestamo));
   }

@@ -50,7 +50,28 @@ class CuentaDetalleController extends _$CuentaDetalleController {
 
       if (respuesta.hasValue) {
         state = state.copyWith(respuestaMovimientos: respuesta.value);
+      } else {
+        return ConsultaMovimientosCuentaRespuesta(movimientos: []);
       }
+    }
+  }
+
+  Future<ConsultaMovimientosCuentaRespuesta> movimientosCuenta(
+      CuentaModel cuenta) async {
+    var client = HttpClientHelper.getClient();
+    DateTime now = DateTime.now();
+    var respuesta = await guard(() async => await client
+        .consultaMovimientosCuenta(ConsultaMovimientosCuentaRequerimiento(
+            idUsuario: HttpClientHelper.idUsuario,
+            codigoCuenta: state.cuenta?.codigo ?? '',
+            fechaDesde: DateTime(now.year, 5, 1),
+            //fechaDesde: DateTime(now.year, now.month, 1),
+            fechaHasta: DateTime.now())));
+
+    if (respuesta.hasValue) {
+      return respuesta.value as ConsultaMovimientosCuentaRespuesta;
+    } else {
+      return ConsultaMovimientosCuentaRespuesta(movimientos: []);
     }
   }
 
@@ -103,7 +124,9 @@ class CuentaDetalleController extends _$CuentaDetalleController {
       ),
     );
   }
+
   Future irPagoServicio() async {
-    appRouter.navigate(PagoServicioRoute(cuentaTransferenciaParametro: state.cuenta));
+    appRouter.navigate(
+        PagoServicioRoute(cuentaTransferenciaParametro: state.cuenta));
   }
 }
