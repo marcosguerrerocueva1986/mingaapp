@@ -3519,8 +3519,7 @@ ConsultaMovimientosCuentaRespuesta _$ConsultaMovimientosCuentaRespuestaFromJson(
 
 /// @nodoc
 mixin _$ConsultaMovimientosCuentaRespuesta {
-  List<MovimientoCuentaModel> get movimientos =>
-      throw _privateConstructorUsedError;
+  List<MovimientoModel> get movimientos => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3537,7 +3536,7 @@ abstract class $ConsultaMovimientosCuentaRespuestaCopyWith<$Res> {
       _$ConsultaMovimientosCuentaRespuestaCopyWithImpl<$Res,
           ConsultaMovimientosCuentaRespuesta>;
   @useResult
-  $Res call({List<MovimientoCuentaModel> movimientos});
+  $Res call({List<MovimientoModel> movimientos});
 }
 
 /// @nodoc
@@ -3560,7 +3559,7 @@ class _$ConsultaMovimientosCuentaRespuestaCopyWithImpl<$Res,
       movimientos: null == movimientos
           ? _value.movimientos
           : movimientos // ignore: cast_nullable_to_non_nullable
-              as List<MovimientoCuentaModel>,
+              as List<MovimientoModel>,
     ) as $Val);
   }
 }
@@ -3574,7 +3573,7 @@ abstract class _$$ConsultaMovimientosCuentaRespuestaImplCopyWith<$Res>
       __$$ConsultaMovimientosCuentaRespuestaImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<MovimientoCuentaModel> movimientos});
+  $Res call({List<MovimientoModel> movimientos});
 }
 
 /// @nodoc
@@ -3596,7 +3595,7 @@ class __$$ConsultaMovimientosCuentaRespuestaImplCopyWithImpl<$Res>
       movimientos: null == movimientos
           ? _value._movimientos
           : movimientos // ignore: cast_nullable_to_non_nullable
-              as List<MovimientoCuentaModel>,
+              as List<MovimientoModel>,
     ));
   }
 }
@@ -3606,17 +3605,17 @@ class __$$ConsultaMovimientosCuentaRespuestaImplCopyWithImpl<$Res>
 class _$ConsultaMovimientosCuentaRespuestaImpl
     implements _ConsultaMovimientosCuentaRespuesta {
   _$ConsultaMovimientosCuentaRespuestaImpl(
-      {final List<MovimientoCuentaModel> movimientos = const []})
+      {final List<MovimientoModel> movimientos = const []})
       : _movimientos = movimientos;
 
   factory _$ConsultaMovimientosCuentaRespuestaImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ConsultaMovimientosCuentaRespuestaImplFromJson(json);
 
-  final List<MovimientoCuentaModel> _movimientos;
+  final List<MovimientoModel> _movimientos;
   @override
   @JsonKey()
-  List<MovimientoCuentaModel> get movimientos {
+  List<MovimientoModel> get movimientos {
     if (_movimientos is EqualUnmodifiableListView) return _movimientos;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_movimientos);
@@ -3660,7 +3659,7 @@ class _$ConsultaMovimientosCuentaRespuestaImpl
 abstract class _ConsultaMovimientosCuentaRespuesta
     implements ConsultaMovimientosCuentaRespuesta {
   factory _ConsultaMovimientosCuentaRespuesta(
-          {final List<MovimientoCuentaModel> movimientos}) =
+          {final List<MovimientoModel> movimientos}) =
       _$ConsultaMovimientosCuentaRespuestaImpl;
 
   factory _ConsultaMovimientosCuentaRespuesta.fromJson(
@@ -3668,7 +3667,7 @@ abstract class _ConsultaMovimientosCuentaRespuesta
       _$ConsultaMovimientosCuentaRespuestaImpl.fromJson;
 
   @override
-  List<MovimientoCuentaModel> get movimientos;
+  List<MovimientoModel> get movimientos;
   @override
   @JsonKey(ignore: true)
   _$$ConsultaMovimientosCuentaRespuestaImplCopyWith<
@@ -3676,13 +3675,12 @@ abstract class _ConsultaMovimientosCuentaRespuesta
       get copyWith => throw _privateConstructorUsedError;
 }
 
-MovimientoCuentaModel _$MovimientoCuentaModelFromJson(
-    Map<String, dynamic> json) {
-  return _MovimientoCuentaModel.fromJson(json);
+MovimientoModel _$MovimientoModelFromJson(Map<String, dynamic> json) {
+  return _MovimientoModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$MovimientoCuentaModel {
+mixin _$MovimientoModel {
   int get id => throw _privateConstructorUsedError;
   DateTime? get fecha => throw _privateConstructorUsedError;
   String get transaccion => throw _privateConstructorUsedError;
@@ -3695,15 +3693,15 @@ mixin _$MovimientoCuentaModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MovimientoCuentaModelCopyWith<MovimientoCuentaModel> get copyWith =>
+  $MovimientoModelCopyWith<MovimientoModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MovimientoCuentaModelCopyWith<$Res> {
-  factory $MovimientoCuentaModelCopyWith(MovimientoCuentaModel value,
-          $Res Function(MovimientoCuentaModel) then) =
-      _$MovimientoCuentaModelCopyWithImpl<$Res, MovimientoCuentaModel>;
+abstract class $MovimientoModelCopyWith<$Res> {
+  factory $MovimientoModelCopyWith(
+          MovimientoModel value, $Res Function(MovimientoModel) then) =
+      _$MovimientoModelCopyWithImpl<$Res, MovimientoModel>;
   @useResult
   $Res call(
       {int id,
@@ -3718,10 +3716,9 @@ abstract class $MovimientoCuentaModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MovimientoCuentaModelCopyWithImpl<$Res,
-        $Val extends MovimientoCuentaModel>
-    implements $MovimientoCuentaModelCopyWith<$Res> {
-  _$MovimientoCuentaModelCopyWithImpl(this._value, this._then);
+class _$MovimientoModelCopyWithImpl<$Res, $Val extends MovimientoModel>
+    implements $MovimientoModelCopyWith<$Res> {
+  _$MovimientoModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -3783,12 +3780,11 @@ class _$MovimientoCuentaModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$MovimientoCuentaModelImplCopyWith<$Res>
-    implements $MovimientoCuentaModelCopyWith<$Res> {
-  factory _$$MovimientoCuentaModelImplCopyWith(
-          _$MovimientoCuentaModelImpl value,
-          $Res Function(_$MovimientoCuentaModelImpl) then) =
-      __$$MovimientoCuentaModelImplCopyWithImpl<$Res>;
+abstract class _$$MovimientoModelImplCopyWith<$Res>
+    implements $MovimientoModelCopyWith<$Res> {
+  factory _$$MovimientoModelImplCopyWith(_$MovimientoModelImpl value,
+          $Res Function(_$MovimientoModelImpl) then) =
+      __$$MovimientoModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -3804,12 +3800,11 @@ abstract class _$$MovimientoCuentaModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$MovimientoCuentaModelImplCopyWithImpl<$Res>
-    extends _$MovimientoCuentaModelCopyWithImpl<$Res,
-        _$MovimientoCuentaModelImpl>
-    implements _$$MovimientoCuentaModelImplCopyWith<$Res> {
-  __$$MovimientoCuentaModelImplCopyWithImpl(_$MovimientoCuentaModelImpl _value,
-      $Res Function(_$MovimientoCuentaModelImpl) _then)
+class __$$MovimientoModelImplCopyWithImpl<$Res>
+    extends _$MovimientoModelCopyWithImpl<$Res, _$MovimientoModelImpl>
+    implements _$$MovimientoModelImplCopyWith<$Res> {
+  __$$MovimientoModelImplCopyWithImpl(
+      _$MovimientoModelImpl _value, $Res Function(_$MovimientoModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3825,7 +3820,7 @@ class __$$MovimientoCuentaModelImplCopyWithImpl<$Res>
     Object? oficina = null,
     Object? documento = null,
   }) {
-    return _then(_$MovimientoCuentaModelImpl(
+    return _then(_$MovimientoModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -3868,8 +3863,8 @@ class __$$MovimientoCuentaModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$MovimientoCuentaModelImpl implements _MovimientoCuentaModel {
-  _$MovimientoCuentaModelImpl(
+class _$MovimientoModelImpl implements _MovimientoModel {
+  _$MovimientoModelImpl(
       {this.id = 0,
       this.fecha,
       this.transaccion = '',
@@ -3880,8 +3875,8 @@ class _$MovimientoCuentaModelImpl implements _MovimientoCuentaModel {
       this.oficina = '',
       this.documento = ''});
 
-  factory _$MovimientoCuentaModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MovimientoCuentaModelImplFromJson(json);
+  factory _$MovimientoModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MovimientoModelImplFromJson(json);
 
   @override
   @JsonKey()
@@ -3912,14 +3907,14 @@ class _$MovimientoCuentaModelImpl implements _MovimientoCuentaModel {
 
   @override
   String toString() {
-    return 'MovimientoCuentaModel(id: $id, fecha: $fecha, transaccion: $transaccion, cheque: $cheque, deposito: $deposito, retiro: $retiro, saldo: $saldo, oficina: $oficina, documento: $documento)';
+    return 'MovimientoModel(id: $id, fecha: $fecha, transaccion: $transaccion, cheque: $cheque, deposito: $deposito, retiro: $retiro, saldo: $saldo, oficina: $oficina, documento: $documento)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MovimientoCuentaModelImpl &&
+            other is _$MovimientoModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.fecha, fecha) || other.fecha == fecha) &&
             (identical(other.transaccion, transaccion) ||
@@ -3942,20 +3937,20 @@ class _$MovimientoCuentaModelImpl implements _MovimientoCuentaModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MovimientoCuentaModelImplCopyWith<_$MovimientoCuentaModelImpl>
-      get copyWith => __$$MovimientoCuentaModelImplCopyWithImpl<
-          _$MovimientoCuentaModelImpl>(this, _$identity);
+  _$$MovimientoModelImplCopyWith<_$MovimientoModelImpl> get copyWith =>
+      __$$MovimientoModelImplCopyWithImpl<_$MovimientoModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MovimientoCuentaModelImplToJson(
+    return _$$MovimientoModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _MovimientoCuentaModel implements MovimientoCuentaModel {
-  factory _MovimientoCuentaModel(
+abstract class _MovimientoModel implements MovimientoModel {
+  factory _MovimientoModel(
       {final int id,
       final DateTime? fecha,
       final String transaccion,
@@ -3964,10 +3959,10 @@ abstract class _MovimientoCuentaModel implements MovimientoCuentaModel {
       final double retiro,
       final double saldo,
       final String oficina,
-      final String documento}) = _$MovimientoCuentaModelImpl;
+      final String documento}) = _$MovimientoModelImpl;
 
-  factory _MovimientoCuentaModel.fromJson(Map<String, dynamic> json) =
-      _$MovimientoCuentaModelImpl.fromJson;
+  factory _MovimientoModel.fromJson(Map<String, dynamic> json) =
+      _$MovimientoModelImpl.fromJson;
 
   @override
   int get id;
@@ -3989,8 +3984,8 @@ abstract class _MovimientoCuentaModel implements MovimientoCuentaModel {
   String get documento;
   @override
   @JsonKey(ignore: true)
-  _$$MovimientoCuentaModelImplCopyWith<_$MovimientoCuentaModelImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$MovimientoModelImplCopyWith<_$MovimientoModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 ConsultaMovimientosInversionRequerimiento
@@ -4001,7 +3996,9 @@ ConsultaMovimientosInversionRequerimiento
 
 /// @nodoc
 mixin _$ConsultaMovimientosInversionRequerimiento {
-  String get numeroCuenta => throw _privateConstructorUsedError;
+  String get codigoCuenta => throw _privateConstructorUsedError;
+  int get idUsuario => throw _privateConstructorUsedError;
+  int get numeroRegistros => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4018,7 +4015,7 @@ abstract class $ConsultaMovimientosInversionRequerimientoCopyWith<$Res> {
       _$ConsultaMovimientosInversionRequerimientoCopyWithImpl<$Res,
           ConsultaMovimientosInversionRequerimiento>;
   @useResult
-  $Res call({String numeroCuenta});
+  $Res call({String codigoCuenta, int idUsuario, int numeroRegistros});
 }
 
 /// @nodoc
@@ -4036,13 +4033,23 @@ class _$ConsultaMovimientosInversionRequerimientoCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? numeroCuenta = null,
+    Object? codigoCuenta = null,
+    Object? idUsuario = null,
+    Object? numeroRegistros = null,
   }) {
     return _then(_value.copyWith(
-      numeroCuenta: null == numeroCuenta
-          ? _value.numeroCuenta
-          : numeroCuenta // ignore: cast_nullable_to_non_nullable
+      codigoCuenta: null == codigoCuenta
+          ? _value.codigoCuenta
+          : codigoCuenta // ignore: cast_nullable_to_non_nullable
               as String,
+      idUsuario: null == idUsuario
+          ? _value.idUsuario
+          : idUsuario // ignore: cast_nullable_to_non_nullable
+              as int,
+      numeroRegistros: null == numeroRegistros
+          ? _value.numeroRegistros
+          : numeroRegistros // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -4056,7 +4063,7 @@ abstract class _$$ConsultaMovimientosInversionRequerimientoImplCopyWith<$Res>
       __$$ConsultaMovimientosInversionRequerimientoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String numeroCuenta});
+  $Res call({String codigoCuenta, int idUsuario, int numeroRegistros});
 }
 
 /// @nodoc
@@ -4072,13 +4079,23 @@ class __$$ConsultaMovimientosInversionRequerimientoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? numeroCuenta = null,
+    Object? codigoCuenta = null,
+    Object? idUsuario = null,
+    Object? numeroRegistros = null,
   }) {
     return _then(_$ConsultaMovimientosInversionRequerimientoImpl(
-      numeroCuenta: null == numeroCuenta
-          ? _value.numeroCuenta
-          : numeroCuenta // ignore: cast_nullable_to_non_nullable
+      codigoCuenta: null == codigoCuenta
+          ? _value.codigoCuenta
+          : codigoCuenta // ignore: cast_nullable_to_non_nullable
               as String,
+      idUsuario: null == idUsuario
+          ? _value.idUsuario
+          : idUsuario // ignore: cast_nullable_to_non_nullable
+              as int,
+      numeroRegistros: null == numeroRegistros
+          ? _value.numeroRegistros
+          : numeroRegistros // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -4087,7 +4104,8 @@ class __$$ConsultaMovimientosInversionRequerimientoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ConsultaMovimientosInversionRequerimientoImpl
     implements _ConsultaMovimientosInversionRequerimiento {
-  _$ConsultaMovimientosInversionRequerimientoImpl({this.numeroCuenta = ''});
+  _$ConsultaMovimientosInversionRequerimientoImpl(
+      {this.codigoCuenta = '', this.idUsuario = 0, this.numeroRegistros = 0});
 
   factory _$ConsultaMovimientosInversionRequerimientoImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -4095,11 +4113,17 @@ class _$ConsultaMovimientosInversionRequerimientoImpl
 
   @override
   @JsonKey()
-  final String numeroCuenta;
+  final String codigoCuenta;
+  @override
+  @JsonKey()
+  final int idUsuario;
+  @override
+  @JsonKey()
+  final int numeroRegistros;
 
   @override
   String toString() {
-    return 'ConsultaMovimientosInversionRequerimiento(numeroCuenta: $numeroCuenta)';
+    return 'ConsultaMovimientosInversionRequerimiento(codigoCuenta: $codigoCuenta, idUsuario: $idUsuario, numeroRegistros: $numeroRegistros)';
   }
 
   @override
@@ -4107,13 +4131,18 @@ class _$ConsultaMovimientosInversionRequerimientoImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ConsultaMovimientosInversionRequerimientoImpl &&
-            (identical(other.numeroCuenta, numeroCuenta) ||
-                other.numeroCuenta == numeroCuenta));
+            (identical(other.codigoCuenta, codigoCuenta) ||
+                other.codigoCuenta == codigoCuenta) &&
+            (identical(other.idUsuario, idUsuario) ||
+                other.idUsuario == idUsuario) &&
+            (identical(other.numeroRegistros, numeroRegistros) ||
+                other.numeroRegistros == numeroRegistros));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, numeroCuenta);
+  int get hashCode =>
+      Object.hash(runtimeType, codigoCuenta, idUsuario, numeroRegistros);
 
   @JsonKey(ignore: true)
   @override
@@ -4136,7 +4165,9 @@ class _$ConsultaMovimientosInversionRequerimientoImpl
 abstract class _ConsultaMovimientosInversionRequerimiento
     implements ConsultaMovimientosInversionRequerimiento {
   factory _ConsultaMovimientosInversionRequerimiento(
-          {final String numeroCuenta}) =
+          {final String codigoCuenta,
+          final int idUsuario,
+          final int numeroRegistros}) =
       _$ConsultaMovimientosInversionRequerimientoImpl;
 
   factory _ConsultaMovimientosInversionRequerimiento.fromJson(
@@ -4144,11 +4175,771 @@ abstract class _ConsultaMovimientosInversionRequerimiento
       _$ConsultaMovimientosInversionRequerimientoImpl.fromJson;
 
   @override
-  String get numeroCuenta;
+  String get codigoCuenta;
+  @override
+  int get idUsuario;
+  @override
+  int get numeroRegistros;
   @override
   @JsonKey(ignore: true)
   _$$ConsultaMovimientosInversionRequerimientoImplCopyWith<
           _$ConsultaMovimientosInversionRequerimientoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ConsultaMovimientosPrestamoRespuesta
+    _$ConsultaMovimientosPrestamoRespuestaFromJson(Map<String, dynamic> json) {
+  return _ConsultaMovimientosPrestamoRespuesta.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ConsultaMovimientosPrestamoRespuesta {
+  List<MovimientoPrestamoModel> get listaPrestamoMovimiento =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ConsultaMovimientosPrestamoRespuestaCopyWith<
+          ConsultaMovimientosPrestamoRespuesta>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ConsultaMovimientosPrestamoRespuestaCopyWith<$Res> {
+  factory $ConsultaMovimientosPrestamoRespuestaCopyWith(
+          ConsultaMovimientosPrestamoRespuesta value,
+          $Res Function(ConsultaMovimientosPrestamoRespuesta) then) =
+      _$ConsultaMovimientosPrestamoRespuestaCopyWithImpl<$Res,
+          ConsultaMovimientosPrestamoRespuesta>;
+  @useResult
+  $Res call({List<MovimientoPrestamoModel> listaPrestamoMovimiento});
+}
+
+/// @nodoc
+class _$ConsultaMovimientosPrestamoRespuestaCopyWithImpl<$Res,
+        $Val extends ConsultaMovimientosPrestamoRespuesta>
+    implements $ConsultaMovimientosPrestamoRespuestaCopyWith<$Res> {
+  _$ConsultaMovimientosPrestamoRespuestaCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? listaPrestamoMovimiento = null,
+  }) {
+    return _then(_value.copyWith(
+      listaPrestamoMovimiento: null == listaPrestamoMovimiento
+          ? _value.listaPrestamoMovimiento
+          : listaPrestamoMovimiento // ignore: cast_nullable_to_non_nullable
+              as List<MovimientoPrestamoModel>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ConsultaMovimientosPrestamoRespuestaImplCopyWith<$Res>
+    implements $ConsultaMovimientosPrestamoRespuestaCopyWith<$Res> {
+  factory _$$ConsultaMovimientosPrestamoRespuestaImplCopyWith(
+          _$ConsultaMovimientosPrestamoRespuestaImpl value,
+          $Res Function(_$ConsultaMovimientosPrestamoRespuestaImpl) then) =
+      __$$ConsultaMovimientosPrestamoRespuestaImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<MovimientoPrestamoModel> listaPrestamoMovimiento});
+}
+
+/// @nodoc
+class __$$ConsultaMovimientosPrestamoRespuestaImplCopyWithImpl<$Res>
+    extends _$ConsultaMovimientosPrestamoRespuestaCopyWithImpl<$Res,
+        _$ConsultaMovimientosPrestamoRespuestaImpl>
+    implements _$$ConsultaMovimientosPrestamoRespuestaImplCopyWith<$Res> {
+  __$$ConsultaMovimientosPrestamoRespuestaImplCopyWithImpl(
+      _$ConsultaMovimientosPrestamoRespuestaImpl _value,
+      $Res Function(_$ConsultaMovimientosPrestamoRespuestaImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? listaPrestamoMovimiento = null,
+  }) {
+    return _then(_$ConsultaMovimientosPrestamoRespuestaImpl(
+      listaPrestamoMovimiento: null == listaPrestamoMovimiento
+          ? _value._listaPrestamoMovimiento
+          : listaPrestamoMovimiento // ignore: cast_nullable_to_non_nullable
+              as List<MovimientoPrestamoModel>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ConsultaMovimientosPrestamoRespuestaImpl
+    implements _ConsultaMovimientosPrestamoRespuesta {
+  _$ConsultaMovimientosPrestamoRespuestaImpl(
+      {final List<MovimientoPrestamoModel> listaPrestamoMovimiento = const []})
+      : _listaPrestamoMovimiento = listaPrestamoMovimiento;
+
+  factory _$ConsultaMovimientosPrestamoRespuestaImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ConsultaMovimientosPrestamoRespuestaImplFromJson(json);
+
+  final List<MovimientoPrestamoModel> _listaPrestamoMovimiento;
+  @override
+  @JsonKey()
+  List<MovimientoPrestamoModel> get listaPrestamoMovimiento {
+    if (_listaPrestamoMovimiento is EqualUnmodifiableListView)
+      return _listaPrestamoMovimiento;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listaPrestamoMovimiento);
+  }
+
+  @override
+  String toString() {
+    return 'ConsultaMovimientosPrestamoRespuesta(listaPrestamoMovimiento: $listaPrestamoMovimiento)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConsultaMovimientosPrestamoRespuestaImpl &&
+            const DeepCollectionEquality().equals(
+                other._listaPrestamoMovimiento, _listaPrestamoMovimiento));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_listaPrestamoMovimiento));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConsultaMovimientosPrestamoRespuestaImplCopyWith<
+          _$ConsultaMovimientosPrestamoRespuestaImpl>
+      get copyWith => __$$ConsultaMovimientosPrestamoRespuestaImplCopyWithImpl<
+          _$ConsultaMovimientosPrestamoRespuestaImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ConsultaMovimientosPrestamoRespuestaImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ConsultaMovimientosPrestamoRespuesta
+    implements ConsultaMovimientosPrestamoRespuesta {
+  factory _ConsultaMovimientosPrestamoRespuesta(
+          {final List<MovimientoPrestamoModel> listaPrestamoMovimiento}) =
+      _$ConsultaMovimientosPrestamoRespuestaImpl;
+
+  factory _ConsultaMovimientosPrestamoRespuesta.fromJson(
+          Map<String, dynamic> json) =
+      _$ConsultaMovimientosPrestamoRespuestaImpl.fromJson;
+
+  @override
+  List<MovimientoPrestamoModel> get listaPrestamoMovimiento;
+  @override
+  @JsonKey(ignore: true)
+  _$$ConsultaMovimientosPrestamoRespuestaImplCopyWith<
+          _$ConsultaMovimientosPrestamoRespuestaImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+MovimientoPrestamoModel _$MovimientoPrestamoModelFromJson(
+    Map<String, dynamic> json) {
+  return _MovimientoPrestamoModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$MovimientoPrestamoModel {
+  DateTime? get fechaProceso => throw _privateConstructorUsedError;
+  DateTime? get fechaSistema => throw _privateConstructorUsedError;
+  String get documento => throw _privateConstructorUsedError;
+  String get transaccion => throw _privateConstructorUsedError;
+  double get valor => throw _privateConstructorUsedError;
+  double get saldo => throw _privateConstructorUsedError;
+  String get tipo => throw _privateConstructorUsedError;
+  String get agencia => throw _privateConstructorUsedError;
+  String get usuario => throw _privateConstructorUsedError;
+  List<RubroMovimientoPrestamoModel> get listaRubroMovimiento =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $MovimientoPrestamoModelCopyWith<MovimientoPrestamoModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MovimientoPrestamoModelCopyWith<$Res> {
+  factory $MovimientoPrestamoModelCopyWith(MovimientoPrestamoModel value,
+          $Res Function(MovimientoPrestamoModel) then) =
+      _$MovimientoPrestamoModelCopyWithImpl<$Res, MovimientoPrestamoModel>;
+  @useResult
+  $Res call(
+      {DateTime? fechaProceso,
+      DateTime? fechaSistema,
+      String documento,
+      String transaccion,
+      double valor,
+      double saldo,
+      String tipo,
+      String agencia,
+      String usuario,
+      List<RubroMovimientoPrestamoModel> listaRubroMovimiento});
+}
+
+/// @nodoc
+class _$MovimientoPrestamoModelCopyWithImpl<$Res,
+        $Val extends MovimientoPrestamoModel>
+    implements $MovimientoPrestamoModelCopyWith<$Res> {
+  _$MovimientoPrestamoModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fechaProceso = freezed,
+    Object? fechaSistema = freezed,
+    Object? documento = null,
+    Object? transaccion = null,
+    Object? valor = null,
+    Object? saldo = null,
+    Object? tipo = null,
+    Object? agencia = null,
+    Object? usuario = null,
+    Object? listaRubroMovimiento = null,
+  }) {
+    return _then(_value.copyWith(
+      fechaProceso: freezed == fechaProceso
+          ? _value.fechaProceso
+          : fechaProceso // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      fechaSistema: freezed == fechaSistema
+          ? _value.fechaSistema
+          : fechaSistema // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      documento: null == documento
+          ? _value.documento
+          : documento // ignore: cast_nullable_to_non_nullable
+              as String,
+      transaccion: null == transaccion
+          ? _value.transaccion
+          : transaccion // ignore: cast_nullable_to_non_nullable
+              as String,
+      valor: null == valor
+          ? _value.valor
+          : valor // ignore: cast_nullable_to_non_nullable
+              as double,
+      saldo: null == saldo
+          ? _value.saldo
+          : saldo // ignore: cast_nullable_to_non_nullable
+              as double,
+      tipo: null == tipo
+          ? _value.tipo
+          : tipo // ignore: cast_nullable_to_non_nullable
+              as String,
+      agencia: null == agencia
+          ? _value.agencia
+          : agencia // ignore: cast_nullable_to_non_nullable
+              as String,
+      usuario: null == usuario
+          ? _value.usuario
+          : usuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      listaRubroMovimiento: null == listaRubroMovimiento
+          ? _value.listaRubroMovimiento
+          : listaRubroMovimiento // ignore: cast_nullable_to_non_nullable
+              as List<RubroMovimientoPrestamoModel>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$MovimientoPrestamoModelImplCopyWith<$Res>
+    implements $MovimientoPrestamoModelCopyWith<$Res> {
+  factory _$$MovimientoPrestamoModelImplCopyWith(
+          _$MovimientoPrestamoModelImpl value,
+          $Res Function(_$MovimientoPrestamoModelImpl) then) =
+      __$$MovimientoPrestamoModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {DateTime? fechaProceso,
+      DateTime? fechaSistema,
+      String documento,
+      String transaccion,
+      double valor,
+      double saldo,
+      String tipo,
+      String agencia,
+      String usuario,
+      List<RubroMovimientoPrestamoModel> listaRubroMovimiento});
+}
+
+/// @nodoc
+class __$$MovimientoPrestamoModelImplCopyWithImpl<$Res>
+    extends _$MovimientoPrestamoModelCopyWithImpl<$Res,
+        _$MovimientoPrestamoModelImpl>
+    implements _$$MovimientoPrestamoModelImplCopyWith<$Res> {
+  __$$MovimientoPrestamoModelImplCopyWithImpl(
+      _$MovimientoPrestamoModelImpl _value,
+      $Res Function(_$MovimientoPrestamoModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fechaProceso = freezed,
+    Object? fechaSistema = freezed,
+    Object? documento = null,
+    Object? transaccion = null,
+    Object? valor = null,
+    Object? saldo = null,
+    Object? tipo = null,
+    Object? agencia = null,
+    Object? usuario = null,
+    Object? listaRubroMovimiento = null,
+  }) {
+    return _then(_$MovimientoPrestamoModelImpl(
+      fechaProceso: freezed == fechaProceso
+          ? _value.fechaProceso
+          : fechaProceso // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      fechaSistema: freezed == fechaSistema
+          ? _value.fechaSistema
+          : fechaSistema // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      documento: null == documento
+          ? _value.documento
+          : documento // ignore: cast_nullable_to_non_nullable
+              as String,
+      transaccion: null == transaccion
+          ? _value.transaccion
+          : transaccion // ignore: cast_nullable_to_non_nullable
+              as String,
+      valor: null == valor
+          ? _value.valor
+          : valor // ignore: cast_nullable_to_non_nullable
+              as double,
+      saldo: null == saldo
+          ? _value.saldo
+          : saldo // ignore: cast_nullable_to_non_nullable
+              as double,
+      tipo: null == tipo
+          ? _value.tipo
+          : tipo // ignore: cast_nullable_to_non_nullable
+              as String,
+      agencia: null == agencia
+          ? _value.agencia
+          : agencia // ignore: cast_nullable_to_non_nullable
+              as String,
+      usuario: null == usuario
+          ? _value.usuario
+          : usuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      listaRubroMovimiento: null == listaRubroMovimiento
+          ? _value._listaRubroMovimiento
+          : listaRubroMovimiento // ignore: cast_nullable_to_non_nullable
+              as List<RubroMovimientoPrestamoModel>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$MovimientoPrestamoModelImpl implements _MovimientoPrestamoModel {
+  _$MovimientoPrestamoModelImpl(
+      {this.fechaProceso,
+      this.fechaSistema,
+      this.documento = '',
+      this.transaccion = '',
+      this.valor = 0.00,
+      this.saldo = 0.00,
+      this.tipo = '',
+      this.agencia = '',
+      this.usuario = '',
+      final List<RubroMovimientoPrestamoModel> listaRubroMovimiento = const []})
+      : _listaRubroMovimiento = listaRubroMovimiento;
+
+  factory _$MovimientoPrestamoModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MovimientoPrestamoModelImplFromJson(json);
+
+  @override
+  final DateTime? fechaProceso;
+  @override
+  final DateTime? fechaSistema;
+  @override
+  @JsonKey()
+  final String documento;
+  @override
+  @JsonKey()
+  final String transaccion;
+  @override
+  @JsonKey()
+  final double valor;
+  @override
+  @JsonKey()
+  final double saldo;
+  @override
+  @JsonKey()
+  final String tipo;
+  @override
+  @JsonKey()
+  final String agencia;
+  @override
+  @JsonKey()
+  final String usuario;
+  final List<RubroMovimientoPrestamoModel> _listaRubroMovimiento;
+  @override
+  @JsonKey()
+  List<RubroMovimientoPrestamoModel> get listaRubroMovimiento {
+    if (_listaRubroMovimiento is EqualUnmodifiableListView)
+      return _listaRubroMovimiento;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listaRubroMovimiento);
+  }
+
+  @override
+  String toString() {
+    return 'MovimientoPrestamoModel(fechaProceso: $fechaProceso, fechaSistema: $fechaSistema, documento: $documento, transaccion: $transaccion, valor: $valor, saldo: $saldo, tipo: $tipo, agencia: $agencia, usuario: $usuario, listaRubroMovimiento: $listaRubroMovimiento)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MovimientoPrestamoModelImpl &&
+            (identical(other.fechaProceso, fechaProceso) ||
+                other.fechaProceso == fechaProceso) &&
+            (identical(other.fechaSistema, fechaSistema) ||
+                other.fechaSistema == fechaSistema) &&
+            (identical(other.documento, documento) ||
+                other.documento == documento) &&
+            (identical(other.transaccion, transaccion) ||
+                other.transaccion == transaccion) &&
+            (identical(other.valor, valor) || other.valor == valor) &&
+            (identical(other.saldo, saldo) || other.saldo == saldo) &&
+            (identical(other.tipo, tipo) || other.tipo == tipo) &&
+            (identical(other.agencia, agencia) || other.agencia == agencia) &&
+            (identical(other.usuario, usuario) || other.usuario == usuario) &&
+            const DeepCollectionEquality()
+                .equals(other._listaRubroMovimiento, _listaRubroMovimiento));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      fechaProceso,
+      fechaSistema,
+      documento,
+      transaccion,
+      valor,
+      saldo,
+      tipo,
+      agencia,
+      usuario,
+      const DeepCollectionEquality().hash(_listaRubroMovimiento));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MovimientoPrestamoModelImplCopyWith<_$MovimientoPrestamoModelImpl>
+      get copyWith => __$$MovimientoPrestamoModelImplCopyWithImpl<
+          _$MovimientoPrestamoModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$MovimientoPrestamoModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _MovimientoPrestamoModel implements MovimientoPrestamoModel {
+  factory _MovimientoPrestamoModel(
+          {final DateTime? fechaProceso,
+          final DateTime? fechaSistema,
+          final String documento,
+          final String transaccion,
+          final double valor,
+          final double saldo,
+          final String tipo,
+          final String agencia,
+          final String usuario,
+          final List<RubroMovimientoPrestamoModel> listaRubroMovimiento}) =
+      _$MovimientoPrestamoModelImpl;
+
+  factory _MovimientoPrestamoModel.fromJson(Map<String, dynamic> json) =
+      _$MovimientoPrestamoModelImpl.fromJson;
+
+  @override
+  DateTime? get fechaProceso;
+  @override
+  DateTime? get fechaSistema;
+  @override
+  String get documento;
+  @override
+  String get transaccion;
+  @override
+  double get valor;
+  @override
+  double get saldo;
+  @override
+  String get tipo;
+  @override
+  String get agencia;
+  @override
+  String get usuario;
+  @override
+  List<RubroMovimientoPrestamoModel> get listaRubroMovimiento;
+  @override
+  @JsonKey(ignore: true)
+  _$$MovimientoPrestamoModelImplCopyWith<_$MovimientoPrestamoModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+RubroMovimientoPrestamoModel _$RubroMovimientoPrestamoModelFromJson(
+    Map<String, dynamic> json) {
+  return _RubroMovimientoPrestamoModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RubroMovimientoPrestamoModel {
+  int get indice => throw _privateConstructorUsedError;
+  String get documento => throw _privateConstructorUsedError;
+  int get cuota => throw _privateConstructorUsedError;
+  String get rubro => throw _privateConstructorUsedError;
+  double get valor => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RubroMovimientoPrestamoModelCopyWith<RubroMovimientoPrestamoModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RubroMovimientoPrestamoModelCopyWith<$Res> {
+  factory $RubroMovimientoPrestamoModelCopyWith(
+          RubroMovimientoPrestamoModel value,
+          $Res Function(RubroMovimientoPrestamoModel) then) =
+      _$RubroMovimientoPrestamoModelCopyWithImpl<$Res,
+          RubroMovimientoPrestamoModel>;
+  @useResult
+  $Res call(
+      {int indice, String documento, int cuota, String rubro, double valor});
+}
+
+/// @nodoc
+class _$RubroMovimientoPrestamoModelCopyWithImpl<$Res,
+        $Val extends RubroMovimientoPrestamoModel>
+    implements $RubroMovimientoPrestamoModelCopyWith<$Res> {
+  _$RubroMovimientoPrestamoModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? indice = null,
+    Object? documento = null,
+    Object? cuota = null,
+    Object? rubro = null,
+    Object? valor = null,
+  }) {
+    return _then(_value.copyWith(
+      indice: null == indice
+          ? _value.indice
+          : indice // ignore: cast_nullable_to_non_nullable
+              as int,
+      documento: null == documento
+          ? _value.documento
+          : documento // ignore: cast_nullable_to_non_nullable
+              as String,
+      cuota: null == cuota
+          ? _value.cuota
+          : cuota // ignore: cast_nullable_to_non_nullable
+              as int,
+      rubro: null == rubro
+          ? _value.rubro
+          : rubro // ignore: cast_nullable_to_non_nullable
+              as String,
+      valor: null == valor
+          ? _value.valor
+          : valor // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RubroMovimientoPrestamoModelImplCopyWith<$Res>
+    implements $RubroMovimientoPrestamoModelCopyWith<$Res> {
+  factory _$$RubroMovimientoPrestamoModelImplCopyWith(
+          _$RubroMovimientoPrestamoModelImpl value,
+          $Res Function(_$RubroMovimientoPrestamoModelImpl) then) =
+      __$$RubroMovimientoPrestamoModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int indice, String documento, int cuota, String rubro, double valor});
+}
+
+/// @nodoc
+class __$$RubroMovimientoPrestamoModelImplCopyWithImpl<$Res>
+    extends _$RubroMovimientoPrestamoModelCopyWithImpl<$Res,
+        _$RubroMovimientoPrestamoModelImpl>
+    implements _$$RubroMovimientoPrestamoModelImplCopyWith<$Res> {
+  __$$RubroMovimientoPrestamoModelImplCopyWithImpl(
+      _$RubroMovimientoPrestamoModelImpl _value,
+      $Res Function(_$RubroMovimientoPrestamoModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? indice = null,
+    Object? documento = null,
+    Object? cuota = null,
+    Object? rubro = null,
+    Object? valor = null,
+  }) {
+    return _then(_$RubroMovimientoPrestamoModelImpl(
+      indice: null == indice
+          ? _value.indice
+          : indice // ignore: cast_nullable_to_non_nullable
+              as int,
+      documento: null == documento
+          ? _value.documento
+          : documento // ignore: cast_nullable_to_non_nullable
+              as String,
+      cuota: null == cuota
+          ? _value.cuota
+          : cuota // ignore: cast_nullable_to_non_nullable
+              as int,
+      rubro: null == rubro
+          ? _value.rubro
+          : rubro // ignore: cast_nullable_to_non_nullable
+              as String,
+      valor: null == valor
+          ? _value.valor
+          : valor // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RubroMovimientoPrestamoModelImpl
+    implements _RubroMovimientoPrestamoModel {
+  _$RubroMovimientoPrestamoModelImpl(
+      {this.indice = 0,
+      this.documento = '',
+      this.cuota = 0,
+      this.rubro = '',
+      this.valor = 0.00});
+
+  factory _$RubroMovimientoPrestamoModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$RubroMovimientoPrestamoModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int indice;
+  @override
+  @JsonKey()
+  final String documento;
+  @override
+  @JsonKey()
+  final int cuota;
+  @override
+  @JsonKey()
+  final String rubro;
+  @override
+  @JsonKey()
+  final double valor;
+
+  @override
+  String toString() {
+    return 'RubroMovimientoPrestamoModel(indice: $indice, documento: $documento, cuota: $cuota, rubro: $rubro, valor: $valor)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RubroMovimientoPrestamoModelImpl &&
+            (identical(other.indice, indice) || other.indice == indice) &&
+            (identical(other.documento, documento) ||
+                other.documento == documento) &&
+            (identical(other.cuota, cuota) || other.cuota == cuota) &&
+            (identical(other.rubro, rubro) || other.rubro == rubro) &&
+            (identical(other.valor, valor) || other.valor == valor));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, indice, documento, cuota, rubro, valor);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RubroMovimientoPrestamoModelImplCopyWith<
+          _$RubroMovimientoPrestamoModelImpl>
+      get copyWith => __$$RubroMovimientoPrestamoModelImplCopyWithImpl<
+          _$RubroMovimientoPrestamoModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RubroMovimientoPrestamoModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RubroMovimientoPrestamoModel
+    implements RubroMovimientoPrestamoModel {
+  factory _RubroMovimientoPrestamoModel(
+      {final int indice,
+      final String documento,
+      final int cuota,
+      final String rubro,
+      final double valor}) = _$RubroMovimientoPrestamoModelImpl;
+
+  factory _RubroMovimientoPrestamoModel.fromJson(Map<String, dynamic> json) =
+      _$RubroMovimientoPrestamoModelImpl.fromJson;
+
+  @override
+  int get indice;
+  @override
+  String get documento;
+  @override
+  int get cuota;
+  @override
+  String get rubro;
+  @override
+  double get valor;
+  @override
+  @JsonKey(ignore: true)
+  _$$RubroMovimientoPrestamoModelImplCopyWith<
+          _$RubroMovimientoPrestamoModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -4581,6 +5372,7 @@ mixin _$ConsultaDetallePrestamoRequerimiento {
   int get idUsuario => throw _privateConstructorUsedError;
   DateTime? get fechaInicio => throw _privateConstructorUsedError;
   DateTime? get fechaFin => throw _privateConstructorUsedError;
+  int get numeroRegistros => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4601,7 +5393,8 @@ abstract class $ConsultaDetallePrestamoRequerimientoCopyWith<$Res> {
       {String codigoPrestamo,
       int idUsuario,
       DateTime? fechaInicio,
-      DateTime? fechaFin});
+      DateTime? fechaFin,
+      int numeroRegistros});
 }
 
 /// @nodoc
@@ -4622,6 +5415,7 @@ class _$ConsultaDetallePrestamoRequerimientoCopyWithImpl<$Res,
     Object? idUsuario = null,
     Object? fechaInicio = freezed,
     Object? fechaFin = freezed,
+    Object? numeroRegistros = null,
   }) {
     return _then(_value.copyWith(
       codigoPrestamo: null == codigoPrestamo
@@ -4640,6 +5434,10 @@ class _$ConsultaDetallePrestamoRequerimientoCopyWithImpl<$Res,
           ? _value.fechaFin
           : fechaFin // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      numeroRegistros: null == numeroRegistros
+          ? _value.numeroRegistros
+          : numeroRegistros // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -4657,7 +5455,8 @@ abstract class _$$ConsultaDetallePrestamoRequerimientoImplCopyWith<$Res>
       {String codigoPrestamo,
       int idUsuario,
       DateTime? fechaInicio,
-      DateTime? fechaFin});
+      DateTime? fechaFin,
+      int numeroRegistros});
 }
 
 /// @nodoc
@@ -4677,6 +5476,7 @@ class __$$ConsultaDetallePrestamoRequerimientoImplCopyWithImpl<$Res>
     Object? idUsuario = null,
     Object? fechaInicio = freezed,
     Object? fechaFin = freezed,
+    Object? numeroRegistros = null,
   }) {
     return _then(_$ConsultaDetallePrestamoRequerimientoImpl(
       codigoPrestamo: null == codigoPrestamo
@@ -4695,6 +5495,10 @@ class __$$ConsultaDetallePrestamoRequerimientoImplCopyWithImpl<$Res>
           ? _value.fechaFin
           : fechaFin // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      numeroRegistros: null == numeroRegistros
+          ? _value.numeroRegistros
+          : numeroRegistros // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -4707,7 +5511,8 @@ class _$ConsultaDetallePrestamoRequerimientoImpl
       {this.codigoPrestamo = '',
       this.idUsuario = 0,
       this.fechaInicio,
-      this.fechaFin});
+      this.fechaFin,
+      this.numeroRegistros = 0});
 
   factory _$ConsultaDetallePrestamoRequerimientoImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -4723,10 +5528,13 @@ class _$ConsultaDetallePrestamoRequerimientoImpl
   final DateTime? fechaInicio;
   @override
   final DateTime? fechaFin;
+  @override
+  @JsonKey()
+  final int numeroRegistros;
 
   @override
   String toString() {
-    return 'ConsultaDetallePrestamoRequerimiento(codigoPrestamo: $codigoPrestamo, idUsuario: $idUsuario, fechaInicio: $fechaInicio, fechaFin: $fechaFin)';
+    return 'ConsultaDetallePrestamoRequerimiento(codigoPrestamo: $codigoPrestamo, idUsuario: $idUsuario, fechaInicio: $fechaInicio, fechaFin: $fechaFin, numeroRegistros: $numeroRegistros)';
   }
 
   @override
@@ -4741,13 +5549,15 @@ class _$ConsultaDetallePrestamoRequerimientoImpl
             (identical(other.fechaInicio, fechaInicio) ||
                 other.fechaInicio == fechaInicio) &&
             (identical(other.fechaFin, fechaFin) ||
-                other.fechaFin == fechaFin));
+                other.fechaFin == fechaFin) &&
+            (identical(other.numeroRegistros, numeroRegistros) ||
+                other.numeroRegistros == numeroRegistros));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, codigoPrestamo, idUsuario, fechaInicio, fechaFin);
+  int get hashCode => Object.hash(runtimeType, codigoPrestamo, idUsuario,
+      fechaInicio, fechaFin, numeroRegistros);
 
   @JsonKey(ignore: true)
   @override
@@ -4771,7 +5581,8 @@ abstract class _ConsultaDetallePrestamoRequerimiento
       {final String codigoPrestamo,
       final int idUsuario,
       final DateTime? fechaInicio,
-      final DateTime? fechaFin}) = _$ConsultaDetallePrestamoRequerimientoImpl;
+      final DateTime? fechaFin,
+      final int numeroRegistros}) = _$ConsultaDetallePrestamoRequerimientoImpl;
 
   factory _ConsultaDetallePrestamoRequerimiento.fromJson(
           Map<String, dynamic> json) =
@@ -4785,6 +5596,8 @@ abstract class _ConsultaDetallePrestamoRequerimiento
   DateTime? get fechaInicio;
   @override
   DateTime? get fechaFin;
+  @override
+  int get numeroRegistros;
   @override
   @JsonKey(ignore: true)
   _$$ConsultaDetallePrestamoRequerimientoImplCopyWith<
@@ -10328,6 +11141,8 @@ mixin _$DepositoDetalleState {
   InversionModel? get deposito => throw _privateConstructorUsedError;
   ConsultaDetalleInversionRespuesta? get respuestaDetalles =>
       throw _privateConstructorUsedError;
+  ConsultaMovimientosInversionRespuesta? get respuestaMovimientos =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -10343,10 +11158,13 @@ abstract class $DepositoDetalleStateCopyWith<$Res> {
   @useResult
   $Res call(
       {InversionModel? deposito,
-      ConsultaDetalleInversionRespuesta? respuestaDetalles});
+      ConsultaDetalleInversionRespuesta? respuestaDetalles,
+      ConsultaMovimientosInversionRespuesta? respuestaMovimientos});
 
   $InversionModelCopyWith<$Res>? get deposito;
   $ConsultaDetalleInversionRespuestaCopyWith<$Res>? get respuestaDetalles;
+  $ConsultaMovimientosInversionRespuestaCopyWith<$Res>?
+      get respuestaMovimientos;
 }
 
 /// @nodoc
@@ -10365,6 +11183,7 @@ class _$DepositoDetalleStateCopyWithImpl<$Res,
   $Res call({
     Object? deposito = freezed,
     Object? respuestaDetalles = freezed,
+    Object? respuestaMovimientos = freezed,
   }) {
     return _then(_value.copyWith(
       deposito: freezed == deposito
@@ -10375,6 +11194,10 @@ class _$DepositoDetalleStateCopyWithImpl<$Res,
           ? _value.respuestaDetalles
           : respuestaDetalles // ignore: cast_nullable_to_non_nullable
               as ConsultaDetalleInversionRespuesta?,
+      respuestaMovimientos: freezed == respuestaMovimientos
+          ? _value.respuestaMovimientos
+          : respuestaMovimientos // ignore: cast_nullable_to_non_nullable
+              as ConsultaMovimientosInversionRespuesta?,
     ) as $Val);
   }
 
@@ -10402,6 +11225,20 @@ class _$DepositoDetalleStateCopyWithImpl<$Res,
       return _then(_value.copyWith(respuestaDetalles: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConsultaMovimientosInversionRespuestaCopyWith<$Res>?
+      get respuestaMovimientos {
+    if (_value.respuestaMovimientos == null) {
+      return null;
+    }
+
+    return $ConsultaMovimientosInversionRespuestaCopyWith<$Res>(
+        _value.respuestaMovimientos!, (value) {
+      return _then(_value.copyWith(respuestaMovimientos: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -10414,12 +11251,16 @@ abstract class _$$DepositoDetalleStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {InversionModel? deposito,
-      ConsultaDetalleInversionRespuesta? respuestaDetalles});
+      ConsultaDetalleInversionRespuesta? respuestaDetalles,
+      ConsultaMovimientosInversionRespuesta? respuestaMovimientos});
 
   @override
   $InversionModelCopyWith<$Res>? get deposito;
   @override
   $ConsultaDetalleInversionRespuestaCopyWith<$Res>? get respuestaDetalles;
+  @override
+  $ConsultaMovimientosInversionRespuestaCopyWith<$Res>?
+      get respuestaMovimientos;
 }
 
 /// @nodoc
@@ -10435,6 +11276,7 @@ class __$$DepositoDetalleStateImplCopyWithImpl<$Res>
   $Res call({
     Object? deposito = freezed,
     Object? respuestaDetalles = freezed,
+    Object? respuestaMovimientos = freezed,
   }) {
     return _then(_$DepositoDetalleStateImpl(
       deposito: freezed == deposito
@@ -10445,6 +11287,10 @@ class __$$DepositoDetalleStateImplCopyWithImpl<$Res>
           ? _value.respuestaDetalles
           : respuestaDetalles // ignore: cast_nullable_to_non_nullable
               as ConsultaDetalleInversionRespuesta?,
+      respuestaMovimientos: freezed == respuestaMovimientos
+          ? _value.respuestaMovimientos
+          : respuestaMovimientos // ignore: cast_nullable_to_non_nullable
+              as ConsultaMovimientosInversionRespuesta?,
     ));
   }
 }
@@ -10452,7 +11298,8 @@ class __$$DepositoDetalleStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DepositoDetalleStateImpl implements _DepositoDetalleState {
-  _$DepositoDetalleStateImpl({this.deposito, this.respuestaDetalles});
+  _$DepositoDetalleStateImpl(
+      {this.deposito, this.respuestaDetalles, this.respuestaMovimientos});
 
   factory _$DepositoDetalleStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$DepositoDetalleStateImplFromJson(json);
@@ -10461,10 +11308,12 @@ class _$DepositoDetalleStateImpl implements _DepositoDetalleState {
   final InversionModel? deposito;
   @override
   final ConsultaDetalleInversionRespuesta? respuestaDetalles;
+  @override
+  final ConsultaMovimientosInversionRespuesta? respuestaMovimientos;
 
   @override
   String toString() {
-    return 'DepositoDetalleState(deposito: $deposito, respuestaDetalles: $respuestaDetalles)';
+    return 'DepositoDetalleState(deposito: $deposito, respuestaDetalles: $respuestaDetalles, respuestaMovimientos: $respuestaMovimientos)';
   }
 
   @override
@@ -10475,12 +11324,15 @@ class _$DepositoDetalleStateImpl implements _DepositoDetalleState {
             (identical(other.deposito, deposito) ||
                 other.deposito == deposito) &&
             (identical(other.respuestaDetalles, respuestaDetalles) ||
-                other.respuestaDetalles == respuestaDetalles));
+                other.respuestaDetalles == respuestaDetalles) &&
+            (identical(other.respuestaMovimientos, respuestaMovimientos) ||
+                other.respuestaMovimientos == respuestaMovimientos));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, deposito, respuestaDetalles);
+  int get hashCode => Object.hash(
+      runtimeType, deposito, respuestaDetalles, respuestaMovimientos);
 
   @JsonKey(ignore: true)
   @override
@@ -10501,7 +11353,8 @@ class _$DepositoDetalleStateImpl implements _DepositoDetalleState {
 abstract class _DepositoDetalleState implements DepositoDetalleState {
   factory _DepositoDetalleState(
           {final InversionModel? deposito,
-          final ConsultaDetalleInversionRespuesta? respuestaDetalles}) =
+          final ConsultaDetalleInversionRespuesta? respuestaDetalles,
+          final ConsultaMovimientosInversionRespuesta? respuestaMovimientos}) =
       _$DepositoDetalleStateImpl;
 
   factory _DepositoDetalleState.fromJson(Map<String, dynamic> json) =
@@ -10511,6 +11364,8 @@ abstract class _DepositoDetalleState implements DepositoDetalleState {
   InversionModel? get deposito;
   @override
   ConsultaDetalleInversionRespuesta? get respuestaDetalles;
+  @override
+  ConsultaMovimientosInversionRespuesta? get respuestaMovimientos;
   @override
   @JsonKey(ignore: true)
   _$$DepositoDetalleStateImplCopyWith<_$DepositoDetalleStateImpl>
@@ -10525,6 +11380,8 @@ PrestamoDetalleState _$PrestamoDetalleStateFromJson(Map<String, dynamic> json) {
 mixin _$PrestamoDetalleState {
   PrestamoModel? get prestamo => throw _privateConstructorUsedError;
   ConsultaDetalePrestamoRespuesta? get respuestaDetalles =>
+      throw _privateConstructorUsedError;
+  ConsultaMovimientosInversionRespuesta? get respuestaMovimientos =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -10541,10 +11398,13 @@ abstract class $PrestamoDetalleStateCopyWith<$Res> {
   @useResult
   $Res call(
       {PrestamoModel? prestamo,
-      ConsultaDetalePrestamoRespuesta? respuestaDetalles});
+      ConsultaDetalePrestamoRespuesta? respuestaDetalles,
+      ConsultaMovimientosInversionRespuesta? respuestaMovimientos});
 
   $PrestamoModelCopyWith<$Res>? get prestamo;
   $ConsultaDetalePrestamoRespuestaCopyWith<$Res>? get respuestaDetalles;
+  $ConsultaMovimientosInversionRespuestaCopyWith<$Res>?
+      get respuestaMovimientos;
 }
 
 /// @nodoc
@@ -10563,6 +11423,7 @@ class _$PrestamoDetalleStateCopyWithImpl<$Res,
   $Res call({
     Object? prestamo = freezed,
     Object? respuestaDetalles = freezed,
+    Object? respuestaMovimientos = freezed,
   }) {
     return _then(_value.copyWith(
       prestamo: freezed == prestamo
@@ -10573,6 +11434,10 @@ class _$PrestamoDetalleStateCopyWithImpl<$Res,
           ? _value.respuestaDetalles
           : respuestaDetalles // ignore: cast_nullable_to_non_nullable
               as ConsultaDetalePrestamoRespuesta?,
+      respuestaMovimientos: freezed == respuestaMovimientos
+          ? _value.respuestaMovimientos
+          : respuestaMovimientos // ignore: cast_nullable_to_non_nullable
+              as ConsultaMovimientosInversionRespuesta?,
     ) as $Val);
   }
 
@@ -10600,6 +11465,20 @@ class _$PrestamoDetalleStateCopyWithImpl<$Res,
       return _then(_value.copyWith(respuestaDetalles: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConsultaMovimientosInversionRespuestaCopyWith<$Res>?
+      get respuestaMovimientos {
+    if (_value.respuestaMovimientos == null) {
+      return null;
+    }
+
+    return $ConsultaMovimientosInversionRespuestaCopyWith<$Res>(
+        _value.respuestaMovimientos!, (value) {
+      return _then(_value.copyWith(respuestaMovimientos: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -10612,12 +11491,16 @@ abstract class _$$PrestamoDetalleStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {PrestamoModel? prestamo,
-      ConsultaDetalePrestamoRespuesta? respuestaDetalles});
+      ConsultaDetalePrestamoRespuesta? respuestaDetalles,
+      ConsultaMovimientosInversionRespuesta? respuestaMovimientos});
 
   @override
   $PrestamoModelCopyWith<$Res>? get prestamo;
   @override
   $ConsultaDetalePrestamoRespuestaCopyWith<$Res>? get respuestaDetalles;
+  @override
+  $ConsultaMovimientosInversionRespuestaCopyWith<$Res>?
+      get respuestaMovimientos;
 }
 
 /// @nodoc
@@ -10633,6 +11516,7 @@ class __$$PrestamoDetalleStateImplCopyWithImpl<$Res>
   $Res call({
     Object? prestamo = freezed,
     Object? respuestaDetalles = freezed,
+    Object? respuestaMovimientos = freezed,
   }) {
     return _then(_$PrestamoDetalleStateImpl(
       prestamo: freezed == prestamo
@@ -10643,6 +11527,10 @@ class __$$PrestamoDetalleStateImplCopyWithImpl<$Res>
           ? _value.respuestaDetalles
           : respuestaDetalles // ignore: cast_nullable_to_non_nullable
               as ConsultaDetalePrestamoRespuesta?,
+      respuestaMovimientos: freezed == respuestaMovimientos
+          ? _value.respuestaMovimientos
+          : respuestaMovimientos // ignore: cast_nullable_to_non_nullable
+              as ConsultaMovimientosInversionRespuesta?,
     ));
   }
 }
@@ -10650,7 +11538,8 @@ class __$$PrestamoDetalleStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PrestamoDetalleStateImpl implements _PrestamoDetalleState {
-  _$PrestamoDetalleStateImpl({this.prestamo, this.respuestaDetalles});
+  _$PrestamoDetalleStateImpl(
+      {this.prestamo, this.respuestaDetalles, this.respuestaMovimientos});
 
   factory _$PrestamoDetalleStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$PrestamoDetalleStateImplFromJson(json);
@@ -10659,10 +11548,12 @@ class _$PrestamoDetalleStateImpl implements _PrestamoDetalleState {
   final PrestamoModel? prestamo;
   @override
   final ConsultaDetalePrestamoRespuesta? respuestaDetalles;
+  @override
+  final ConsultaMovimientosInversionRespuesta? respuestaMovimientos;
 
   @override
   String toString() {
-    return 'PrestamoDetalleState(prestamo: $prestamo, respuestaDetalles: $respuestaDetalles)';
+    return 'PrestamoDetalleState(prestamo: $prestamo, respuestaDetalles: $respuestaDetalles, respuestaMovimientos: $respuestaMovimientos)';
   }
 
   @override
@@ -10673,12 +11564,15 @@ class _$PrestamoDetalleStateImpl implements _PrestamoDetalleState {
             (identical(other.prestamo, prestamo) ||
                 other.prestamo == prestamo) &&
             (identical(other.respuestaDetalles, respuestaDetalles) ||
-                other.respuestaDetalles == respuestaDetalles));
+                other.respuestaDetalles == respuestaDetalles) &&
+            (identical(other.respuestaMovimientos, respuestaMovimientos) ||
+                other.respuestaMovimientos == respuestaMovimientos));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, prestamo, respuestaDetalles);
+  int get hashCode => Object.hash(
+      runtimeType, prestamo, respuestaDetalles, respuestaMovimientos);
 
   @JsonKey(ignore: true)
   @override
@@ -10699,7 +11593,8 @@ class _$PrestamoDetalleStateImpl implements _PrestamoDetalleState {
 abstract class _PrestamoDetalleState implements PrestamoDetalleState {
   factory _PrestamoDetalleState(
           {final PrestamoModel? prestamo,
-          final ConsultaDetalePrestamoRespuesta? respuestaDetalles}) =
+          final ConsultaDetalePrestamoRespuesta? respuestaDetalles,
+          final ConsultaMovimientosInversionRespuesta? respuestaMovimientos}) =
       _$PrestamoDetalleStateImpl;
 
   factory _PrestamoDetalleState.fromJson(Map<String, dynamic> json) =
@@ -10709,6 +11604,8 @@ abstract class _PrestamoDetalleState implements PrestamoDetalleState {
   PrestamoModel? get prestamo;
   @override
   ConsultaDetalePrestamoRespuesta? get respuestaDetalles;
+  @override
+  ConsultaMovimientosInversionRespuesta? get respuestaMovimientos;
   @override
   @JsonKey(ignore: true)
   _$$PrestamoDetalleStateImplCopyWith<_$PrestamoDetalleStateImpl>

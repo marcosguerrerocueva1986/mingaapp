@@ -2,14 +2,14 @@ import 'package:bancamovilr/index.dart';
 import 'package:pinput/pinput.dart';
 
 @RoutePage()
-class LoginPage extends ConsumerStatefulWidget {
-  const LoginPage({super.key});
+class ActivaCuentaPage extends ConsumerStatefulWidget {
+  const ActivaCuentaPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _ActivaCuentaPageState();
 }
 
-class _LoginPageState extends ConsumerState<LoginPage> {
+class _ActivaCuentaPageState extends ConsumerState<ActivaCuentaPage> {
   @override
   Widget build(BuildContext context) {
     var controller = ref.read(loginControllerProvider.notifier);
@@ -51,7 +51,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               )),
                           const SizedBox(height: defaultPadding * 2),
                           Pinput(
-                            key: const ValueKey('pinput_login_confirmacion'),
+                            key: const ValueKey('pinput_activacioncuenta_confirmacion'),
                             androidSmsAutofillMethod:
                                 AndroidSmsAutofillMethod.smsUserConsentApi,
                             length: 6,
@@ -80,34 +80,40 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           //   height: defaultPadding,
                           // ),
                           ProcessButton(
-                            key: const ValueKey('regresar_login_button'),
+                            key: const ValueKey('regresar_activacuenta_button'),
                             isSecondary: false,
                             onPressed: controller.cancelar,
                             text: 'Regresar'.toUpperCase(),
                           ),
 
                         ] else ...[
-                          const Text(
-                            "Ingrese con su usuario y contraseña de Minga Online",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Color.fromRGBO(0, 114, 181, 48),
-                              fontWeight: FontWeight.bold,
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(20, 5, 10, 0),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Activa tu Cuenta",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Color.fromRGBO(0, 114, 181, 48),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ),
                           ),
-                          const SizedBox(height: 50),
+                          const SizedBox(height: 25),
                           const Padding(
                             padding: EdgeInsets.fromLTRB(20, 5, 0, 5),
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Usuario",
+                                "Número de Identificación",
                                 style: TextStyle(fontSize: 17, color: Colors.grey),
                               ),
                             ),
                           ),
                           ReactiveTextField(
-                            key: const ValueKey('usuario'),
+                            key: const ValueKey('usuarioactivacuenta'),
                             formControlName: 'codigoUsuario',
                             readOnly: !provider.permiteEditarUsuario,
                             decoration: InputDecoration(
@@ -118,6 +124,49 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 ),
                                 contentPadding: const EdgeInsets.fromLTRB(
                                     20.0, 15.0, 20.0, 15.0),
+                                hintText: "Ingrese su identificación",
+                                errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.red.withOpacity(0.3)),
+                                    borderRadius: BorderRadius.circular(32.0)),
+                                focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.red.withOpacity(0.3)),
+                                    borderRadius: BorderRadius.circular(32.0)),
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(0.7)),
+                                    borderRadius: BorderRadius.circular(32.0)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(0.7)),
+                                    borderRadius: BorderRadius.circular(32.0)),
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(0.7)),
+                                    borderRadius: BorderRadius.circular(32.0))),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(20, 5, 0, 5),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Usuario",
+                                style: TextStyle(fontSize: 17, color: Colors.grey),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          ReactiveTextField(
+                            key: const ValueKey('passwordactivacuenta'),
+                            formControlName: 'pwdUsuario',
+                            obscureText: provider.obscurecerClave,
+                            decoration: InputDecoration(
+                                prefixIcon: const Icon(
+                                  Icons.lock_outline,
+                                  size: 15.0,
+                                ),
+                                contentPadding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
                                 hintText: "Ingrese su usuario",
                                 errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
@@ -140,114 +189,20 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                         color: Colors.grey.withOpacity(0.7)),
                                     borderRadius: BorderRadius.circular(32.0))),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              appRouter.push(const RecuperarUsuarioRoute());
-                            },
-                            child: const Padding(
-                              padding: EdgeInsets.fromLTRB(20, 5, 10, 0),
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  "¿Olvidó su usuario?",
-                                  style: TextStyle(fontSize: 14, color: Colors.grey),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: defaultPadding,
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.fromLTRB(20, 5, 0, 5),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "Contraseña",
-                                style: TextStyle(fontSize: 17, color: Colors.grey),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          ReactiveTextField(
-                            key: const ValueKey('password'),
-                            formControlName: 'pwdUsuario',
-                            obscureText: provider.obscurecerClave,
-                            decoration: InputDecoration(
-                                prefixIcon: const Icon(
-                                  Icons.lock_outline,
-                                  size: 15.0,
-                                ),
-                                suffixIcon: GestureDetector(
-                                  onTap: controller.toggleOscurecerClave,
-                                  child: Icon(
-                                    provider.obscurecerClave
-                                        ? Icons.remove_red_eye
-                                        : Icons.remove_red_eye_outlined,
-                                    size: 24.0,
-                                  ),
-                                ),
-                                contentPadding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
-                                hintText: "Clave",
-                                errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.red.withOpacity(0.3)),
-                                    borderRadius: BorderRadius.circular(32.0)),
-                                focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.red.withOpacity(0.3)),
-                                    borderRadius: BorderRadius.circular(32.0)),
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.grey.withOpacity(0.7)),
-                                    borderRadius: BorderRadius.circular(32.0)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.grey.withOpacity(0.7)),
-                                    borderRadius: BorderRadius.circular(32.0)),
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.grey.withOpacity(0.7)),
-                                    borderRadius: BorderRadius.circular(32.0))),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              appRouter.push(const RecuperarContraseniaRoute());
-                            },
-                            child: const Padding(
-                              padding: EdgeInsets.fromLTRB(20, 15, 10, 0),
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  "¿Olvidó su contraseña?",
-                                  style: TextStyle(fontSize: 14, color: Colors.grey),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: defaultPadding,
-                          ),
+                          const SizedBox(height: 50,),
                           ProcessButton(
-                            onPressed: controller.login,
-                            text: 'Iniciar Sesión'.toUpperCase(),
+                            key: const ValueKey('continuaractivacuenta'),
+                            onPressed: () {appRouter.push(const MantenimientoRoute());},
+                            text: 'Continuar'.toUpperCase(),
+                          ),
+                          const SizedBox(height: 2,),
+                          ProcessButton(
+                            key: const ValueKey('regresaractivacuenta'),
+                            onPressed: () {appRouter.pop();},
+                            text: 'Regresar'.toUpperCase(),
                           ),
                           const SizedBox(height: defaultPadding * 4),
-                          GestureDetector(
-                            onTap: () {
-                              appRouter.push(const ActivaCuentaRoute());
-                            },
-                            child: const Text(
-                              "Activa tu cuenta",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
                         ],
-                        const SizedBox(height: defaultPadding * 6),
                       ],
                     ),
                   ),

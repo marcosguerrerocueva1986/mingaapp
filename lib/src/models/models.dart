@@ -203,7 +203,7 @@ class ConsultaMovimientosCuentaRequerimiento
 class ConsultaMovimientosCuentaRespuesta
     with _$ConsultaMovimientosCuentaRespuesta {
   factory ConsultaMovimientosCuentaRespuesta(
-          {@Default([]) List<MovimientoCuentaModel> movimientos}) =
+          {@Default([]) List<MovimientoModel> movimientos}) =
       _ConsultaMovimientosCuentaRespuesta;
 
   factory ConsultaMovimientosCuentaRespuesta.fromJson(
@@ -212,8 +212,8 @@ class ConsultaMovimientosCuentaRespuesta
 }
 
 @freezed
-class MovimientoCuentaModel with _$MovimientoCuentaModel {
-  factory MovimientoCuentaModel(
+class MovimientoModel with _$MovimientoModel {
+  factory MovimientoModel(
       {@Default(0) int id,
       DateTime? fecha,
       @Default('') String transaccion,
@@ -222,22 +222,69 @@ class MovimientoCuentaModel with _$MovimientoCuentaModel {
       @Default(0.00) double retiro,
       @Default(0.00) double saldo,
       @Default('') String oficina,
-      @Default('') String documento}) = _MovimientoCuentaModel;
+      @Default('') String documento}) = _MovimientoModel;
 
-  factory MovimientoCuentaModel.fromJson(Map<String, Object?> json) =>
-      _$MovimientoCuentaModelFromJson(json);
+  factory MovimientoModel.fromJson(Map<String, Object?> json) =>
+      _$MovimientoModelFromJson(json);
 }
 
 @freezed
 class ConsultaMovimientosInversionRequerimiento
     with _$ConsultaMovimientosInversionRequerimiento {
   factory ConsultaMovimientosInversionRequerimiento(
-          {@Default('') String numeroCuenta}) =
+          {@Default('') String codigoCuenta,
+           @Default(0) int idUsuario,
+           @Default(0) int numeroRegistros,}) =
       _ConsultaMovimientosInversionRequerimiento;
 
   factory ConsultaMovimientosInversionRequerimiento.fromJson(
           Map<String, Object?> json) =>
       _$ConsultaMovimientosInversionRequerimientoFromJson(json);
+}
+
+@freezed
+class ConsultaMovimientosPrestamoRespuesta
+    with _$ConsultaMovimientosPrestamoRespuesta {
+  factory ConsultaMovimientosPrestamoRespuesta(
+          {@Default([]) List<MovimientoPrestamoModel> listaPrestamoMovimiento}) =
+      _ConsultaMovimientosPrestamoRespuesta;
+
+  factory ConsultaMovimientosPrestamoRespuesta.fromJson(
+          Map<String, Object?> json) =>
+      _$ConsultaMovimientosPrestamoRespuestaFromJson(json);
+}
+
+@freezed
+class MovimientoPrestamoModel with _$MovimientoPrestamoModel {
+  factory MovimientoPrestamoModel({
+    DateTime? fechaProceso,
+    DateTime? fechaSistema,
+    @Default('') String documento,
+    @Default('') String transaccion,
+    @Default(0.00) double valor, 
+    @Default(0.00) double saldo,   
+    @Default('') String tipo,
+    @Default('') String agencia,
+    @Default('') String usuario,
+    @Default([]) List<RubroMovimientoPrestamoModel> listaRubroMovimiento, 
+  }) = _MovimientoPrestamoModel;
+
+  factory MovimientoPrestamoModel.fromJson(Map<String, Object?> json) =>
+      _$MovimientoPrestamoModelFromJson(json);
+}
+
+@freezed
+class RubroMovimientoPrestamoModel with _$RubroMovimientoPrestamoModel {
+  factory RubroMovimientoPrestamoModel({
+    @Default(0) int indice,
+    @Default('') String documento,
+    @Default(0) int cuota,
+    @Default('') String rubro,
+    @Default(0.00) double valor, 
+  }) = _RubroMovimientoPrestamoModel;
+
+  factory RubroMovimientoPrestamoModel.fromJson(Map<String, Object?> json) =>
+      _$RubroMovimientoPrestamoModelFromJson(json);
 }
 
 @freezed
@@ -273,7 +320,8 @@ class ConsultaDetallePrestamoRequerimiento
       {@Default('') String codigoPrestamo,
       @Default(0) int idUsuario,
       DateTime? fechaInicio,
-      DateTime? fechaFin}) = _ConsultaDetallePrestamoRequerimiento;
+      DateTime? fechaFin,
+      @Default(0) int numeroRegistros}) = _ConsultaDetallePrestamoRequerimiento;
 
   factory ConsultaDetallePrestamoRequerimiento.fromJson(
           Map<String, Object?> json) =>
@@ -615,7 +663,8 @@ class ConsultaDetalleInversionRespuesta
 class DepositoDetalleState with _$DepositoDetalleState {
   factory DepositoDetalleState(
           {InversionModel? deposito,
-          ConsultaDetalleInversionRespuesta? respuestaDetalles}) =
+          ConsultaDetalleInversionRespuesta? respuestaDetalles,
+          ConsultaMovimientosInversionRespuesta? respuestaMovimientos}) =
       _DepositoDetalleState;
 
   factory DepositoDetalleState.fromJson(Map<String, Object?> json) =>
@@ -626,7 +675,8 @@ class DepositoDetalleState with _$DepositoDetalleState {
 class PrestamoDetalleState with _$PrestamoDetalleState {
   factory PrestamoDetalleState(
           {PrestamoModel? prestamo,
-          ConsultaDetalePrestamoRespuesta? respuestaDetalles}) =
+          ConsultaDetalePrestamoRespuesta? respuestaDetalles,
+          ConsultaMovimientosInversionRespuesta? respuestaMovimientos}) =
       _PrestamoDetalleState;
 
   factory PrestamoDetalleState.fromJson(Map<String, Object?> json) =>

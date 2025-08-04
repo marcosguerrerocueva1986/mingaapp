@@ -26,6 +26,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    ActivaCuentaRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ActivaCuentaPage(),
+      );
+    },
     AgenciaRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -166,6 +172,18 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const QrScannerPage(),
       );
     },
+    RecuperarContraseniaRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RecuperarContraseniaPage(),
+      );
+    },
+    RecuperarUsuarioRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RecuperarUsuarioPage(),
+      );
+    },
     SeleccionBeneficiarioRoute.name: (routeData) {
       final args = routeData.argsAs<SeleccionBeneficiarioRouteArgs>();
       return AutoRoutePage<BeneficiarioModel?>(
@@ -260,6 +278,20 @@ class AbonoRouteArgs {
   String toString() {
     return 'AbonoRouteArgs{key: $key, prestamoParametro: $prestamoParametro}';
   }
+}
+
+/// generated route for
+/// [ActivaCuentaPage]
+class ActivaCuentaRoute extends PageRouteInfo<void> {
+  const ActivaCuentaRoute({List<PageRouteInfo>? children})
+      : super(
+          ActivaCuentaRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ActivaCuentaRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -689,6 +721,34 @@ class QrScannerRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'QrScannerRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RecuperarContraseniaPage]
+class RecuperarContraseniaRoute extends PageRouteInfo<void> {
+  const RecuperarContraseniaRoute({List<PageRouteInfo>? children})
+      : super(
+          RecuperarContraseniaRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RecuperarContraseniaRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RecuperarUsuarioPage]
+class RecuperarUsuarioRoute extends PageRouteInfo<void> {
+  const RecuperarUsuarioRoute({List<PageRouteInfo>? children})
+      : super(
+          RecuperarUsuarioRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RecuperarUsuarioRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

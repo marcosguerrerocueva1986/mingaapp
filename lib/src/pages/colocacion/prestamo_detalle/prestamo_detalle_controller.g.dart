@@ -7,7 +7,7 @@ part of 'prestamo_detalle_controller.dart';
 // **************************************************************************
 
 String _$prestamoDetalleControllerHash() =>
-    r'ac1ff1e04e7eb6bc7e3274bcc6741ddc96b79247';
+    r'1a5c66acf149a1379309b418f24c488c52f448f8';
 
 /// See also [PrestamoDetalleController].
 @ProviderFor(PrestamoDetalleController)

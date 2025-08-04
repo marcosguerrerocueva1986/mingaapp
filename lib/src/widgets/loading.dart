@@ -87,7 +87,7 @@ class ProgressIndicatorButton extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: Colors.transparent,
+                color: Colors.white,
                 width: borderWidth - 2,
               ),
             ),
@@ -104,13 +104,13 @@ class ProgressIndicatorButton extends StatelessWidget {
                     height:
                         buttonSize - (lerpDouble(5, 25, animationValue) ?? 5),
                     decoration: const BoxDecoration(
-                      // color: active,
+                      color: Colors.white,
                       shape: BoxShape.circle,
                     ),
                     child: SvgPicture.asset(
                         Theme.of(context).brightness == Brightness.dark
                             ? R.svg.logoBlack
-                            : R.svg.logo,
+                            : R.svg.cargando,
                         height: double.infinity,
                         width: double.infinity)),
               ),

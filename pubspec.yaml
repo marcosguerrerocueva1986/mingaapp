@@ -134,6 +134,9 @@ flutter:
     - assets/images/estadocuenta.png
     - assets/images/bienvenidos.png
     - assets/images/verdetalles.png
+    - assets/images/cargando.png
+    - assets/svg/cargando.svg
+
 
     # mek_assets
   # An image asset can refer to one or more resolution-specific "variants", see

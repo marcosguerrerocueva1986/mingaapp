@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/general/posicion_consolidad/balance_visibility_controller.dart';
 import 'package:flutter/rendering.dart';
@@ -37,15 +39,33 @@ with SingleTickerProviderStateMixin {
   ];
   int _selectedIndex = 0; 
   late PageController _pageController;
-
+  late PageController _promoCarouselController;
+  int _currentPromoIndex = 0;
+  Timer? _promoCarouselTimer;
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _pageController = PageController(initialPage: _selectedIndex);
     ref.read(posicionConsolidadaControllerProvider.notifier).actualizaConsolidado();
+    _promoCarouselController = PageController(initialPage: 0);
+    _startPromoCarouselAutoPlay();
   }   
-
+  void _startPromoCarouselAutoPlay() {
+    _promoCarouselTimer = Timer.periodic(const Duration(seconds: 4), (Timer timer) {
+      if (_promoCarouselController.hasClients) { 
+        int nextPage = (_currentPromoIndex + 1) % _carouselImagePaths.length;
+        _promoCarouselController.animateToPage(
+          nextPage,
+          duration: const Duration(milliseconds: 800), 
+          curve: Curves.easeOut,
+        );
+        setState(() {
+          _currentPromoIndex = nextPage;
+        });
+      }
+    });
+  }
   @override
   void dispose() {
     _tabController.dispose();
@@ -53,6 +73,8 @@ with SingleTickerProviderStateMixin {
     _pageControllerInversiones.dispose();
     _pageControllerPrestamos.dispose();
     _pageController.dispose();
+    _promoCarouselTimer?.cancel(); 
+    _promoCarouselController.dispose();
     super.dispose();
   }
   void _onItemTapped(int index) {
@@ -125,6 +147,7 @@ with SingleTickerProviderStateMixin {
     var provider = ref.watch(posicionConsolidadaControllerProvider);
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
+
     if (provider.isLoading) {
       return const Center(
         child: CircularProgressIndicator(), 
@@ -227,8 +250,8 @@ with SingleTickerProviderStateMixin {
                             children: <Widget> [
                               Text(nombreCliente.toUpperCase(), 
                                 style: const TextStyle(
-                                color: Colors.blue,
-                                fontSize: 14,
+                                color: Color.fromRGBO(0, 96, 153, 10),
+                                fontSize: 13,
                                 fontWeight: FontWeight.bold
                               ),
                             ),
@@ -244,11 +267,15 @@ with SingleTickerProviderStateMixin {
                   decoration: const BoxDecoration(
                     color: Colors.transparent,
                   ),
-                  
                   child: SizedBox(
                     child: PageView.builder(
-                      controller: PageController(viewportFraction: 1),
+                      controller: _promoCarouselController,
                       itemCount: _carouselImagePaths.length,
+                      onPageChanged: (int page) {
+                        setState(() {
+                          _currentPromoIndex = page;
+                        });
+                      },
                       itemBuilder: (context, index) {
                         final String imagePath = _carouselImagePaths[index];
                         return Padding(
@@ -264,8 +291,6 @@ with SingleTickerProviderStateMixin {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text('Clic en ${imagePath.split('/').last}')),
                                   );
-                                  //Puedes navegar a otra pantalla, mostrar un diálogo, etc.
-                                  //context.router.push(MiNuevaRuta(imagen: imagePath));
                                 },
                               ),
                             ),
@@ -306,14 +331,14 @@ with SingleTickerProviderStateMixin {
                         dividerColor: Colors.transparent,
                         indicator: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
-                          color: Colors.blue,
+                          color: const Color.fromRGBO(48, 155, 217, 1),
                         ),
                         labelColor: Colors.white, 
                         labelStyle: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold
                         ),
-                        unselectedLabelColor: Colors.blue, 
+                        unselectedLabelColor: const Color.fromRGBO(48, 155, 217, 1), 
                         tabs: const [
                           Tab(text: 'Ahorros'),
                           Tab(text: 'Créditos'),
@@ -394,7 +419,7 @@ with SingleTickerProviderStateMixin {
                                 provider.posicionConsolidada?.inversiones ?? [],
                                 _pageControllerInversiones,
                                 (item) => CardInformacion(
-                                  title: item.estado ?? 'Inversión', 
+                                  title: item.tipo.toString().toUpperCase() ?? 'Inversión', 
                                   detalle: 'N° OPERACIÓN: ',
                                   accountHolder: nombreCliente,
                                   accountNumber: item.codigo ?? 'N/A',
@@ -477,7 +502,7 @@ with SingleTickerProviderStateMixin {
         itemCount: items.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0),
+            padding: const EdgeInsets.fromLTRB(0,0,0,0),
             child: cardBuilder(items[index]),
           );
         },
@@ -516,7 +541,7 @@ with SingleTickerProviderStateMixin {
     }
   }
 
-  class CardInformacion extends StatelessWidget {
+class CardInformacion extends StatelessWidget {
     final String title;
     final String detalle;
     final String accountHolder;
@@ -548,9 +573,9 @@ with SingleTickerProviderStateMixin {
         onTap: onTap,
         child: Card(
           elevation: 0,
-          margin: EdgeInsets.zero,
+          margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
+            borderRadius: BorderRadius.circular(5.0),
           ),
           color: Colors.transparent,
           child: Container(
@@ -572,19 +597,25 @@ with SingleTickerProviderStateMixin {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children:  <Widget> [
-                          Text(
-                            title,
-                            style: const TextStyle(
-                              color: Colors.white70,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              shadows: [
-                                Shadow(
-                                  blurRadius: 2.0,
-                                  color: Colors.white70,
-                                  offset: Offset(1.0, 1.0)
-                                ),
-                              ],
+                          SizedBox(
+                            width: 250,
+                            child: Text(
+                              title,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: true,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                                shadows: [
+                                  Shadow(
+                                    blurRadius: 2.0,
+                                    color: Colors.white,
+                                    offset: Offset(1.0, 1.0)
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -617,13 +648,13 @@ with SingleTickerProviderStateMixin {
                   Text(
                       accountHolder,
                       style: const TextStyle(
-                        color: Colors.white70,
+                        color: Colors.white,
                         fontSize: 14.0,
                         fontWeight: FontWeight.bold,
                         shadows: [
                           Shadow(
                             blurRadius: 2.0,
-                            color: Colors.white70,
+                            color: Colors.white,
                             offset: Offset(1.0, 1.0)
                           ),
                         ],
@@ -634,13 +665,13 @@ with SingleTickerProviderStateMixin {
                           Text(
                           detalle,
                           style: const TextStyle(
-                          color: Colors.white70,
+                          color: Colors.white,
                           fontSize: 13.0,
                           fontWeight: FontWeight.bold,
                           shadows: [
                             Shadow(
                               blurRadius: 2.0,
-                              color: Colors.white70,
+                              color: Colors.white,
                               offset: Offset(1.0, 1.0)
                             ),
                           ],
@@ -649,13 +680,13 @@ with SingleTickerProviderStateMixin {
                       Text(
                           accountNumber,
                           style: const TextStyle(
-                          color: Colors.white70,
+                          color: Colors.white,
                           fontSize: 13.0,
                           fontWeight: FontWeight.bold,
                           shadows: [
                             Shadow(
                               blurRadius: 2.0,
-                              color: Colors.white70,
+                              color: Colors.white,
                               offset: Offset(1.0, 1.0)
                             ),
                           ],
@@ -663,7 +694,7 @@ with SingleTickerProviderStateMixin {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 50.0),
+                  const SizedBox(height: 40.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget> [
@@ -673,13 +704,13 @@ with SingleTickerProviderStateMixin {
                           const Text(
                               'Saldo Disponible: ',
                               style: TextStyle(
-                                color: Colors.white70,
+                                color: Colors.white,
                                 fontSize: 13.0,
                                 fontWeight: FontWeight.bold,
                                 shadows: [
                                   Shadow(
                                     blurRadius: 2.0,
-                                    color: Colors.white70,
+                                    color: Colors.white,
                                     offset: Offset(1.0, 1.0)
                                   ),
                                 ],
@@ -688,13 +719,13 @@ with SingleTickerProviderStateMixin {
                             Text(
                               isBalanceVisible ? '\$${balance.toStringAsFixed(2)}' : '********',
                               style: const TextStyle(
-                                color: Colors.white70,
+                                color: Colors.white,
                                 fontSize: 26.0,
                                 fontWeight: FontWeight.bold,
                                 shadows: [
                                   Shadow(
                                   blurRadius: 2.0,
-                                  color: Colors.white70,
+                                  color: Colors.white,
                                   offset: Offset(1.0, 1.0)
                                 ),
                               ],
@@ -731,61 +762,89 @@ with SingleTickerProviderStateMixin {
                   ),
                 ],
               ),
-              ),
-            
             ),
+          ),
         ),
       );
     }
   }
 
-  class ServiciosWidget extends StatelessWidget {
-    const ServiciosWidget({super.key});
+class ServiciosWidget extends ConsumerWidget {
+const ServiciosWidget({super.key});
 
-    @override
-    Widget build(BuildContext context){
-      return Container(
-        margin: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-        decoration: const BoxDecoration(
-          color: Colors.transparent,
-        ),
-        child: GridView.count(
-          crossAxisCount: 3,
-          crossAxisSpacing: 20.0,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          children: listaServicios.map((servicio) => ElevatedButton(
+  @override
+  Widget build(BuildContext context, WidgetRef ref){
+    final appRouter = AutoRouter.of(context);
+    var controller = ref.read(cuentaDetalleControllerProvider.notifier);
+    return Container(
+      margin: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+      decoration: const BoxDecoration(
+        color: Colors.transparent,
+      ),
+      child: GridView.count(
+        crossAxisCount: 3,
+        crossAxisSpacing: 20.0,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        children: listaServicios.map((servicios) => 
+            ElevatedButton(
               onPressed: () {
-                appRouter.push(const MantenimientoRoute());
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.transparent,            
-                elevation: 0,
-                padding: EdgeInsets.zero,
-                shadowColor: Colors.transparent,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: Ink.image(
-                image: AssetImage(servicio),
-                fit: BoxFit.fill,
-                width: 70,
-                height: 70,
+              switch (servicios.actionRouteName) {
+                case "transferirdineroRoute":
+                  controller.irATransferencia(); 
+                  break;
+                case "estadocuentaRoute":
+                  appRouter.push(const MantenimientoRoute()); 
+                  break;
+                case "deunaRoute":
+                  appRouter.push(const MantenimientoRoute()); 
+                  break;
+                case "pagarserviciosRoute":
+                  controller.irPagoServicio(); 
+                  break;
+                case "nuestrasagenciasRoute":
+                  appRouter.push(const AgenciaRoute()); 
+                  break;
+                default:
+                print("Ruta no definida para: ${servicios.actionRouteName}");
+                appRouter.push(const MantenimientoRoute()); 
+                break;
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,            
+              elevation: 0,
+              padding: EdgeInsets.zero,
+              shadowColor: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
             ),
-          ).toList(),
-        ),
-      );
-    }
+            child: Ink.image(
+              image: AssetImage(servicios.imagePath),
+              fit: BoxFit.fill,
+              width: 70,
+              height: 70,
+            ),
+          ),
+        ).toList(),
+      ),
+    );
   }
+}
+class Servicio {
+final String imagePath;
+final String title;
+final String actionRouteName; 
 
+Servicio({required this.imagePath, required this.title, required this.actionRouteName});
+}
   final List listaServicios = [
-    "assets/images/transferirdinero.png",
-    "assets/images/estadocuenta.png",
-    "assets/images/deuna.png",
-    "assets/images/pagarservicios.png",
-    "assets/images/nuestrasagencias.png",
+    Servicio(imagePath: "assets/images/transferirdinero.png", title:"Tranferir dinero", actionRouteName:"transferirdineroRoute"),
+    Servicio(imagePath: "assets/images/estadocuenta.png", title:"Estado cuenta", actionRouteName:"estadocuentaRoute"),
+    Servicio(imagePath: "assets/images/deuna.png", title:"De una", actionRouteName:"deunaRoute"),
+    Servicio(imagePath: "assets/images/pagarservicios.png", title:"Pagar servicios", actionRouteName:"pagarserviciosRoute"),
+    Servicio(imagePath: "assets/images/nuestrasagencias.png", title:"Nuestras agencias", actionRouteName:"nuestrasagenciasRoute"),
   ];
 
   class TitleSectionWidget extends StatelessWidget {

@@ -15,6 +15,10 @@ class LoginController extends _$LoginController {
 late final AuthStorageService _authStorageService;
   @override
   LoginState build() {
+    ref.onDispose(() {
+      form.dispose();
+      print('✅ LoginController: FormGroup dispose llamado.');
+    });
     _authStorageService = ref.read(authStorageServiceProvider);
     return LoginState(permiteEditarUsuario: true, obscurecerClave: true);
   }
@@ -57,7 +61,49 @@ late final AuthStorageService _authStorageService;
         NotificationService.showError(text: 'Credenciales Incorrectas');
       }
     } else {
-      NotificationService.showError(text: 'Ingrese credenciales');
+      NotificationService.showError(text: 'Ingrese sus credenciales');
+    }
+  }
+
+  void restaurarContrasenia() async {
+    if (form.valid) {
+      var requerimiento = LoginRequerimiento.fromJson(form.value);
+      HttpClientHelper.testMode =
+          requerimiento.codigoUsuario == Configs.userTest;
+
+      var client = HttpClientHelper.getClient();
+      var respuesta =
+          await guard(() async => await client.validarUsuario(requerimiento));
+
+      if (respuesta.hasValue) {
+        state = state.copyWith(
+            estaValidado: true,
+            permiteEditarUsuario: false,
+            informacionValidada: respuesta.value);
+      }
+      if (state.estaValidado) {
+        var respuesta =
+            await guard(() async => await client.login(requerimiento));
+
+        if (respuesta.hasValue) {      
+          if (respuesta.value?.realizaCambioClave ?? true) {
+            NotificationService.showError(
+                text: 'Require cambio de Clave, realizar en sitio web');
+          } else {
+            HttpClientHelper.idUsuario = respuesta.value?.id ?? 0;
+            HttpClientHelper.idRegistro = respuesta.value?.idRegistro ?? 0;
+            if (respuesta.value?.id != null) {
+              await _authStorageService.saveUserId(respuesta.value!.id);
+            }
+            state = state.copyWith(
+                modoConfirmacion: true, loginRespuesta: respuesta.value);
+          }
+        }
+      } else {
+        NotificationService.showError(text: 'No existe el usuario ingresado');
+      }
+    } else {
+      NotificationService.showError(text: 'Ingrese sus credenciales');
     }
   }
 

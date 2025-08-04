@@ -8,6 +8,9 @@ import 'package:bancamovilr/src/pages/general/posicion_consolidad/mis_productos_
 import 'package:bancamovilr/src/pages/general/posicion_consolidad/mis_productos_router_page.dart';
 import 'package:bancamovilr/src/pages/loginprincipal_page.dart';
 import 'package:bancamovilr/src/pages/mantenimientopage.dart';
+import 'package:bancamovilr/src/pages/seguridades/login/activacuenta_page.dart';
+import 'package:bancamovilr/src/pages/seguridades/login/recuperarcontrasenia_page.dart';
+import 'package:bancamovilr/src/pages/seguridades/login/recuperarusuario_page.dart';
 import 'package:bancamovilr/src/pages/splash.dart';
 
 import '../../index.dart';
@@ -115,6 +118,18 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: MantenimientoRoute.page,
+          initial: false,
+        ),
+        AutoRoute(
+          page: RecuperarContraseniaRoute.page,
+          initial: false,
+        ),
+        AutoRoute(
+          page: RecuperarUsuarioRoute.page,
+          initial: false,
+        ),
+        AutoRoute(
+          page: ActivaCuentaRoute.page,
           initial: false,
         ),
         AutoRoute(
