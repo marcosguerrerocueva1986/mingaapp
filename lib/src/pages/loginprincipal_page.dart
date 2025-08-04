@@ -1,3 +1,5 @@
+import 'dart:math';
+import 'dart:async';
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/providers/auth_storage_provider.dart';
 import 'package:bancamovilr/src/services/auth_storage_service.dart';
@@ -16,14 +18,19 @@ class LoginPrincipalPage extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginPrincipalState();
 }
 
-class _LoginPrincipalState extends ConsumerState<LoginPrincipalPage> {
+class _LoginPrincipalState extends ConsumerState<LoginPrincipalPage> 
+with TickerProviderStateMixin {
   String? _errorMessage;
   bool _isLoading = false;
   final LocalAuthentication auth = LocalAuthentication();
   bool _isBiometricAvailable = false;
-
+  late AnimationController _logoMitadAnimationController;
+  late Animation<double> _logoMitadScaleAnimation;
+  static const double _logoMitadWidth = 350.0;
+  static const double _logoMitadHeight = 350.0;
   @override
   void dispose() {
+    _logoMitadAnimationController.dispose();
     super.dispose();
   }
 
@@ -31,6 +38,17 @@ class _LoginPrincipalState extends ConsumerState<LoginPrincipalPage> {
   void initState() {
     super.initState();
     _checkBiometrics();
+    _logoMitadAnimationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    )..repeat(reverse: true); 
+
+    _logoMitadScaleAnimation = Tween<double>(begin: 0.8, end: 1.05).animate( 
+      CurvedAnimation(
+        parent: _logoMitadAnimationController,
+        curve: Curves.easeInOut, 
+      ),
+    );
   }
 
   Future<void> _checkBiometrics() async {
@@ -57,7 +75,7 @@ class _LoginPrincipalState extends ConsumerState<LoginPrincipalPage> {
   Future<void> _loginConHuellaDactilar() async {
     try {
       setState(() {
-        _errorMessage = null; // Limpiar mensaje de error anterior
+        _errorMessage = null; 
         _isLoading = true;
       });
       if (!_isBiometricAvailable) {
@@ -177,9 +195,19 @@ class _LoginPrincipalState extends ConsumerState<LoginPrincipalPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset('assets/images/logomitad.png',
-                  width: 350,
-                  height: 350,
+                  AnimatedBuilder(
+                    animation: _logoMitadAnimationController,
+                    builder: (context, child) {
+                      return Transform.scale(
+                        scale: _logoMitadScaleAnimation.value,
+                        child: child,
+                      );
+                    },
+                    child: Image.asset( 
+                      'assets/images/logomitad.png',
+                      width: _logoMitadWidth, 
+                      height: _logoMitadHeight,
+                    ),
                   ),
                   const SizedBox(height: 10,),
                   Row(

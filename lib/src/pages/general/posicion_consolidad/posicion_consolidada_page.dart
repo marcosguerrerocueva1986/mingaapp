@@ -291,8 +291,6 @@ with SingleTickerProviderStateMixin {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text('Clic en ${imagePath.split('/').last}')),
                                   );
-                                  //Puedes navegar a otra pantalla, mostrar un diálogo, etc.
-                                  //context.router.push(MiNuevaRuta(imagen: imagePath));
                                 },
                               ),
                             ),
