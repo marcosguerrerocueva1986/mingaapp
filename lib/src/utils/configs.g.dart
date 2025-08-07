@@ -12,7 +12,7 @@ final class _Configs {
   static const String baseUrl =
       'https://mingaonline.coopminga.com/services/api/v2/';
 
-  static const String baseUrlTest = 'http://181.39.19.77:9092/api/v2/';
+  static const String baseUrlTest = 'http://192.168.100.214:3003/api/v2/';
 
   static const String baseUrlSite = 'https://mingaonline.coopminga.com/';
 

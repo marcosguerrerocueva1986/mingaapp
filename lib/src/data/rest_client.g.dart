@@ -156,6 +156,40 @@ class _RestClient implements RestClient {
   }
 
   @override
+  Future<BaseRespuesta> validaCodigoOtpRegistro(
+      RegistroRequerimiento requerimiento) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requerimiento;
+    final _options = _setStreamType<BaseRespuesta>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/validaOtpRegistro',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BaseRespuesta _value;
+    try {
+      _value = BaseRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<PosicionConsolidadaRespuesta> consultaConsolidado(
       BaseRequerimiento requerimiento) async {
     final _extra = <String, dynamic>{};
@@ -812,6 +846,108 @@ class _RestClient implements RestClient {
   }
 
   @override
+  Future<BaseRespuesta> cambioClave(
+      CambioClaveRequerimiento requerimiento) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requerimiento;
+    final _options = _setStreamType<BaseRespuesta>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/cambioClave',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BaseRespuesta _value;
+    try {
+      _value = BaseRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<BaseRespuesta> olvideUsuario(
+      RegistroRequerimiento requerimiento) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requerimiento;
+    final _options = _setStreamType<BaseRespuesta>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/olvideUsuario',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BaseRespuesta _value;
+    try {
+      _value = BaseRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<BaseRespuesta> generaClaveTemporalCambioContrasenia(
+      RegistroRequerimiento requerimiento) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requerimiento;
+    final _options = _setStreamType<BaseRespuesta>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/generaClaveTemporalCambioContrasenia',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BaseRespuesta _value;
+    try {
+      _value = BaseRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<ConsultaCuentaVinculadaQRRespuesta> consultaCuentaVinculadaQR(
       ConsultaCuentaVinculadaQRRequerimiento requerimiento) async {
     final _extra = <String, dynamic>{};
@@ -1120,6 +1256,40 @@ class _RestClient implements RestClient {
     late ConsultaConceptosRespuesta _value;
     try {
       _value = ConsultaConceptosRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<BaseRespuesta> activaCuenta(
+      RegistroRequerimiento requerimiento) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requerimiento;
+    final _options = _setStreamType<BaseRespuesta>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/registro',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BaseRespuesta _value;
+    try {
+      _value = BaseRespuesta.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

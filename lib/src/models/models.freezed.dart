@@ -153,6 +153,725 @@ abstract class _BaseRequerimiento implements BaseRequerimiento {
       throw _privateConstructorUsedError;
 }
 
+RegistroRequerimiento _$RegistroRequerimientoFromJson(
+    Map<String, dynamic> json) {
+  return _RegistroRequerimiento.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RegistroRequerimiento {
+  String get identificacion => throw _privateConstructorUsedError;
+  String get codigoUsuario => throw _privateConstructorUsedError;
+  String get imagen => throw _privateConstructorUsedError;
+  String get frase => throw _privateConstructorUsedError;
+  String get otpIngresado => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RegistroRequerimientoCopyWith<RegistroRequerimiento> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RegistroRequerimientoCopyWith<$Res> {
+  factory $RegistroRequerimientoCopyWith(RegistroRequerimiento value,
+          $Res Function(RegistroRequerimiento) then) =
+      _$RegistroRequerimientoCopyWithImpl<$Res, RegistroRequerimiento>;
+  @useResult
+  $Res call(
+      {String identificacion,
+      String codigoUsuario,
+      String imagen,
+      String frase,
+      String otpIngresado});
+}
+
+/// @nodoc
+class _$RegistroRequerimientoCopyWithImpl<$Res,
+        $Val extends RegistroRequerimiento>
+    implements $RegistroRequerimientoCopyWith<$Res> {
+  _$RegistroRequerimientoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? identificacion = null,
+    Object? codigoUsuario = null,
+    Object? imagen = null,
+    Object? frase = null,
+    Object? otpIngresado = null,
+  }) {
+    return _then(_value.copyWith(
+      identificacion: null == identificacion
+          ? _value.identificacion
+          : identificacion // ignore: cast_nullable_to_non_nullable
+              as String,
+      codigoUsuario: null == codigoUsuario
+          ? _value.codigoUsuario
+          : codigoUsuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagen: null == imagen
+          ? _value.imagen
+          : imagen // ignore: cast_nullable_to_non_nullable
+              as String,
+      frase: null == frase
+          ? _value.frase
+          : frase // ignore: cast_nullable_to_non_nullable
+              as String,
+      otpIngresado: null == otpIngresado
+          ? _value.otpIngresado
+          : otpIngresado // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RegistroRequerimientoImplCopyWith<$Res>
+    implements $RegistroRequerimientoCopyWith<$Res> {
+  factory _$$RegistroRequerimientoImplCopyWith(
+          _$RegistroRequerimientoImpl value,
+          $Res Function(_$RegistroRequerimientoImpl) then) =
+      __$$RegistroRequerimientoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String identificacion,
+      String codigoUsuario,
+      String imagen,
+      String frase,
+      String otpIngresado});
+}
+
+/// @nodoc
+class __$$RegistroRequerimientoImplCopyWithImpl<$Res>
+    extends _$RegistroRequerimientoCopyWithImpl<$Res,
+        _$RegistroRequerimientoImpl>
+    implements _$$RegistroRequerimientoImplCopyWith<$Res> {
+  __$$RegistroRequerimientoImplCopyWithImpl(_$RegistroRequerimientoImpl _value,
+      $Res Function(_$RegistroRequerimientoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? identificacion = null,
+    Object? codigoUsuario = null,
+    Object? imagen = null,
+    Object? frase = null,
+    Object? otpIngresado = null,
+  }) {
+    return _then(_$RegistroRequerimientoImpl(
+      identificacion: null == identificacion
+          ? _value.identificacion
+          : identificacion // ignore: cast_nullable_to_non_nullable
+              as String,
+      codigoUsuario: null == codigoUsuario
+          ? _value.codigoUsuario
+          : codigoUsuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagen: null == imagen
+          ? _value.imagen
+          : imagen // ignore: cast_nullable_to_non_nullable
+              as String,
+      frase: null == frase
+          ? _value.frase
+          : frase // ignore: cast_nullable_to_non_nullable
+              as String,
+      otpIngresado: null == otpIngresado
+          ? _value.otpIngresado
+          : otpIngresado // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RegistroRequerimientoImpl implements _RegistroRequerimiento {
+  _$RegistroRequerimientoImpl(
+      {this.identificacion = '',
+      this.codigoUsuario = '',
+      this.imagen = '',
+      this.frase = '',
+      this.otpIngresado = ''});
+
+  factory _$RegistroRequerimientoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RegistroRequerimientoImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String identificacion;
+  @override
+  @JsonKey()
+  final String codigoUsuario;
+  @override
+  @JsonKey()
+  final String imagen;
+  @override
+  @JsonKey()
+  final String frase;
+  @override
+  @JsonKey()
+  final String otpIngresado;
+
+  @override
+  String toString() {
+    return 'RegistroRequerimiento(identificacion: $identificacion, codigoUsuario: $codigoUsuario, imagen: $imagen, frase: $frase, otpIngresado: $otpIngresado)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RegistroRequerimientoImpl &&
+            (identical(other.identificacion, identificacion) ||
+                other.identificacion == identificacion) &&
+            (identical(other.codigoUsuario, codigoUsuario) ||
+                other.codigoUsuario == codigoUsuario) &&
+            (identical(other.imagen, imagen) || other.imagen == imagen) &&
+            (identical(other.frase, frase) || other.frase == frase) &&
+            (identical(other.otpIngresado, otpIngresado) ||
+                other.otpIngresado == otpIngresado));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, identificacion, codigoUsuario, imagen, frase, otpIngresado);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RegistroRequerimientoImplCopyWith<_$RegistroRequerimientoImpl>
+      get copyWith => __$$RegistroRequerimientoImplCopyWithImpl<
+          _$RegistroRequerimientoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RegistroRequerimientoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RegistroRequerimiento implements RegistroRequerimiento {
+  factory _RegistroRequerimiento(
+      {final String identificacion,
+      final String codigoUsuario,
+      final String imagen,
+      final String frase,
+      final String otpIngresado}) = _$RegistroRequerimientoImpl;
+
+  factory _RegistroRequerimiento.fromJson(Map<String, dynamic> json) =
+      _$RegistroRequerimientoImpl.fromJson;
+
+  @override
+  String get identificacion;
+  @override
+  String get codigoUsuario;
+  @override
+  String get imagen;
+  @override
+  String get frase;
+  @override
+  String get otpIngresado;
+  @override
+  @JsonKey(ignore: true)
+  _$$RegistroRequerimientoImplCopyWith<_$RegistroRequerimientoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+BaseRespuesta _$BaseRespuestaFromJson(Map<String, dynamic> json) {
+  return _BaseRespuesta.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BaseRespuesta {
+  String get mbCodigoUsuario => throw _privateConstructorUsedError;
+  String get mbPwdUsuario => throw _privateConstructorUsedError;
+  String get mbMaquina => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sF_ExisteError')
+  bool get existeError => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sF_Error')
+  String get error => throw _privateConstructorUsedError;
+  String get stackTrace => throw _privateConstructorUsedError;
+  bool get sfConCabecera => throw _privateConstructorUsedError;
+  String get mensajeError => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BaseRespuestaCopyWith<BaseRespuesta> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BaseRespuestaCopyWith<$Res> {
+  factory $BaseRespuestaCopyWith(
+          BaseRespuesta value, $Res Function(BaseRespuesta) then) =
+      _$BaseRespuestaCopyWithImpl<$Res, BaseRespuesta>;
+  @useResult
+  $Res call(
+      {String mbCodigoUsuario,
+      String mbPwdUsuario,
+      String mbMaquina,
+      @JsonKey(name: 'sF_ExisteError') bool existeError,
+      @JsonKey(name: 'sF_Error') String error,
+      String stackTrace,
+      bool sfConCabecera,
+      String mensajeError});
+}
+
+/// @nodoc
+class _$BaseRespuestaCopyWithImpl<$Res, $Val extends BaseRespuesta>
+    implements $BaseRespuestaCopyWith<$Res> {
+  _$BaseRespuestaCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? mbCodigoUsuario = null,
+    Object? mbPwdUsuario = null,
+    Object? mbMaquina = null,
+    Object? existeError = null,
+    Object? error = null,
+    Object? stackTrace = null,
+    Object? sfConCabecera = null,
+    Object? mensajeError = null,
+  }) {
+    return _then(_value.copyWith(
+      mbCodigoUsuario: null == mbCodigoUsuario
+          ? _value.mbCodigoUsuario
+          : mbCodigoUsuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      mbPwdUsuario: null == mbPwdUsuario
+          ? _value.mbPwdUsuario
+          : mbPwdUsuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      mbMaquina: null == mbMaquina
+          ? _value.mbMaquina
+          : mbMaquina // ignore: cast_nullable_to_non_nullable
+              as String,
+      existeError: null == existeError
+          ? _value.existeError
+          : existeError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+      stackTrace: null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as String,
+      sfConCabecera: null == sfConCabecera
+          ? _value.sfConCabecera
+          : sfConCabecera // ignore: cast_nullable_to_non_nullable
+              as bool,
+      mensajeError: null == mensajeError
+          ? _value.mensajeError
+          : mensajeError // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BaseRespuestaImplCopyWith<$Res>
+    implements $BaseRespuestaCopyWith<$Res> {
+  factory _$$BaseRespuestaImplCopyWith(
+          _$BaseRespuestaImpl value, $Res Function(_$BaseRespuestaImpl) then) =
+      __$$BaseRespuestaImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String mbCodigoUsuario,
+      String mbPwdUsuario,
+      String mbMaquina,
+      @JsonKey(name: 'sF_ExisteError') bool existeError,
+      @JsonKey(name: 'sF_Error') String error,
+      String stackTrace,
+      bool sfConCabecera,
+      String mensajeError});
+}
+
+/// @nodoc
+class __$$BaseRespuestaImplCopyWithImpl<$Res>
+    extends _$BaseRespuestaCopyWithImpl<$Res, _$BaseRespuestaImpl>
+    implements _$$BaseRespuestaImplCopyWith<$Res> {
+  __$$BaseRespuestaImplCopyWithImpl(
+      _$BaseRespuestaImpl _value, $Res Function(_$BaseRespuestaImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? mbCodigoUsuario = null,
+    Object? mbPwdUsuario = null,
+    Object? mbMaquina = null,
+    Object? existeError = null,
+    Object? error = null,
+    Object? stackTrace = null,
+    Object? sfConCabecera = null,
+    Object? mensajeError = null,
+  }) {
+    return _then(_$BaseRespuestaImpl(
+      mbCodigoUsuario: null == mbCodigoUsuario
+          ? _value.mbCodigoUsuario
+          : mbCodigoUsuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      mbPwdUsuario: null == mbPwdUsuario
+          ? _value.mbPwdUsuario
+          : mbPwdUsuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      mbMaquina: null == mbMaquina
+          ? _value.mbMaquina
+          : mbMaquina // ignore: cast_nullable_to_non_nullable
+              as String,
+      existeError: null == existeError
+          ? _value.existeError
+          : existeError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+      stackTrace: null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as String,
+      sfConCabecera: null == sfConCabecera
+          ? _value.sfConCabecera
+          : sfConCabecera // ignore: cast_nullable_to_non_nullable
+              as bool,
+      mensajeError: null == mensajeError
+          ? _value.mensajeError
+          : mensajeError // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BaseRespuestaImpl implements _BaseRespuesta {
+  _$BaseRespuestaImpl(
+      {this.mbCodigoUsuario = '',
+      this.mbPwdUsuario = '',
+      this.mbMaquina = '',
+      @JsonKey(name: 'sF_ExisteError') this.existeError = false,
+      @JsonKey(name: 'sF_Error') this.error = '',
+      this.stackTrace = '',
+      this.sfConCabecera = false,
+      this.mensajeError = ''});
+
+  factory _$BaseRespuestaImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BaseRespuestaImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String mbCodigoUsuario;
+  @override
+  @JsonKey()
+  final String mbPwdUsuario;
+  @override
+  @JsonKey()
+  final String mbMaquina;
+  @override
+  @JsonKey(name: 'sF_ExisteError')
+  final bool existeError;
+  @override
+  @JsonKey(name: 'sF_Error')
+  final String error;
+  @override
+  @JsonKey()
+  final String stackTrace;
+  @override
+  @JsonKey()
+  final bool sfConCabecera;
+  @override
+  @JsonKey()
+  final String mensajeError;
+
+  @override
+  String toString() {
+    return 'BaseRespuesta(mbCodigoUsuario: $mbCodigoUsuario, mbPwdUsuario: $mbPwdUsuario, mbMaquina: $mbMaquina, existeError: $existeError, error: $error, stackTrace: $stackTrace, sfConCabecera: $sfConCabecera, mensajeError: $mensajeError)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BaseRespuestaImpl &&
+            (identical(other.mbCodigoUsuario, mbCodigoUsuario) ||
+                other.mbCodigoUsuario == mbCodigoUsuario) &&
+            (identical(other.mbPwdUsuario, mbPwdUsuario) ||
+                other.mbPwdUsuario == mbPwdUsuario) &&
+            (identical(other.mbMaquina, mbMaquina) ||
+                other.mbMaquina == mbMaquina) &&
+            (identical(other.existeError, existeError) ||
+                other.existeError == existeError) &&
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace) &&
+            (identical(other.sfConCabecera, sfConCabecera) ||
+                other.sfConCabecera == sfConCabecera) &&
+            (identical(other.mensajeError, mensajeError) ||
+                other.mensajeError == mensajeError));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, mbCodigoUsuario, mbPwdUsuario,
+      mbMaquina, existeError, error, stackTrace, sfConCabecera, mensajeError);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BaseRespuestaImplCopyWith<_$BaseRespuestaImpl> get copyWith =>
+      __$$BaseRespuestaImplCopyWithImpl<_$BaseRespuestaImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BaseRespuestaImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BaseRespuesta implements BaseRespuesta {
+  factory _BaseRespuesta(
+      {final String mbCodigoUsuario,
+      final String mbPwdUsuario,
+      final String mbMaquina,
+      @JsonKey(name: 'sF_ExisteError') final bool existeError,
+      @JsonKey(name: 'sF_Error') final String error,
+      final String stackTrace,
+      final bool sfConCabecera,
+      final String mensajeError}) = _$BaseRespuestaImpl;
+
+  factory _BaseRespuesta.fromJson(Map<String, dynamic> json) =
+      _$BaseRespuestaImpl.fromJson;
+
+  @override
+  String get mbCodigoUsuario;
+  @override
+  String get mbPwdUsuario;
+  @override
+  String get mbMaquina;
+  @override
+  @JsonKey(name: 'sF_ExisteError')
+  bool get existeError;
+  @override
+  @JsonKey(name: 'sF_Error')
+  String get error;
+  @override
+  String get stackTrace;
+  @override
+  bool get sfConCabecera;
+  @override
+  String get mensajeError;
+  @override
+  @JsonKey(ignore: true)
+  _$$BaseRespuestaImplCopyWith<_$BaseRespuestaImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CambioClaveRequerimiento _$CambioClaveRequerimientoFromJson(
+    Map<String, dynamic> json) {
+  return _CambioClaveRequerimiento.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CambioClaveRequerimiento {
+  String get codigoUsuario => throw _privateConstructorUsedError;
+  String get pwdAnterior => throw _privateConstructorUsedError;
+  String get pwdNueva => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CambioClaveRequerimientoCopyWith<CambioClaveRequerimiento> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CambioClaveRequerimientoCopyWith<$Res> {
+  factory $CambioClaveRequerimientoCopyWith(CambioClaveRequerimiento value,
+          $Res Function(CambioClaveRequerimiento) then) =
+      _$CambioClaveRequerimientoCopyWithImpl<$Res, CambioClaveRequerimiento>;
+  @useResult
+  $Res call({String codigoUsuario, String pwdAnterior, String pwdNueva});
+}
+
+/// @nodoc
+class _$CambioClaveRequerimientoCopyWithImpl<$Res,
+        $Val extends CambioClaveRequerimiento>
+    implements $CambioClaveRequerimientoCopyWith<$Res> {
+  _$CambioClaveRequerimientoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codigoUsuario = null,
+    Object? pwdAnterior = null,
+    Object? pwdNueva = null,
+  }) {
+    return _then(_value.copyWith(
+      codigoUsuario: null == codigoUsuario
+          ? _value.codigoUsuario
+          : codigoUsuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      pwdAnterior: null == pwdAnterior
+          ? _value.pwdAnterior
+          : pwdAnterior // ignore: cast_nullable_to_non_nullable
+              as String,
+      pwdNueva: null == pwdNueva
+          ? _value.pwdNueva
+          : pwdNueva // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CambioClaveRequerimientoImplCopyWith<$Res>
+    implements $CambioClaveRequerimientoCopyWith<$Res> {
+  factory _$$CambioClaveRequerimientoImplCopyWith(
+          _$CambioClaveRequerimientoImpl value,
+          $Res Function(_$CambioClaveRequerimientoImpl) then) =
+      __$$CambioClaveRequerimientoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String codigoUsuario, String pwdAnterior, String pwdNueva});
+}
+
+/// @nodoc
+class __$$CambioClaveRequerimientoImplCopyWithImpl<$Res>
+    extends _$CambioClaveRequerimientoCopyWithImpl<$Res,
+        _$CambioClaveRequerimientoImpl>
+    implements _$$CambioClaveRequerimientoImplCopyWith<$Res> {
+  __$$CambioClaveRequerimientoImplCopyWithImpl(
+      _$CambioClaveRequerimientoImpl _value,
+      $Res Function(_$CambioClaveRequerimientoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codigoUsuario = null,
+    Object? pwdAnterior = null,
+    Object? pwdNueva = null,
+  }) {
+    return _then(_$CambioClaveRequerimientoImpl(
+      codigoUsuario: null == codigoUsuario
+          ? _value.codigoUsuario
+          : codigoUsuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      pwdAnterior: null == pwdAnterior
+          ? _value.pwdAnterior
+          : pwdAnterior // ignore: cast_nullable_to_non_nullable
+              as String,
+      pwdNueva: null == pwdNueva
+          ? _value.pwdNueva
+          : pwdNueva // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CambioClaveRequerimientoImpl implements _CambioClaveRequerimiento {
+  _$CambioClaveRequerimientoImpl(
+      {this.codigoUsuario = '', this.pwdAnterior = '', this.pwdNueva = ''});
+
+  factory _$CambioClaveRequerimientoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CambioClaveRequerimientoImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String codigoUsuario;
+  @override
+  @JsonKey()
+  final String pwdAnterior;
+  @override
+  @JsonKey()
+  final String pwdNueva;
+
+  @override
+  String toString() {
+    return 'CambioClaveRequerimiento(codigoUsuario: $codigoUsuario, pwdAnterior: $pwdAnterior, pwdNueva: $pwdNueva)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CambioClaveRequerimientoImpl &&
+            (identical(other.codigoUsuario, codigoUsuario) ||
+                other.codigoUsuario == codigoUsuario) &&
+            (identical(other.pwdAnterior, pwdAnterior) ||
+                other.pwdAnterior == pwdAnterior) &&
+            (identical(other.pwdNueva, pwdNueva) ||
+                other.pwdNueva == pwdNueva));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, codigoUsuario, pwdAnterior, pwdNueva);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CambioClaveRequerimientoImplCopyWith<_$CambioClaveRequerimientoImpl>
+      get copyWith => __$$CambioClaveRequerimientoImplCopyWithImpl<
+          _$CambioClaveRequerimientoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CambioClaveRequerimientoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CambioClaveRequerimiento implements CambioClaveRequerimiento {
+  factory _CambioClaveRequerimiento(
+      {final String codigoUsuario,
+      final String pwdAnterior,
+      final String pwdNueva}) = _$CambioClaveRequerimientoImpl;
+
+  factory _CambioClaveRequerimiento.fromJson(Map<String, dynamic> json) =
+      _$CambioClaveRequerimientoImpl.fromJson;
+
+  @override
+  String get codigoUsuario;
+  @override
+  String get pwdAnterior;
+  @override
+  String get pwdNueva;
+  @override
+  @JsonKey(ignore: true)
+  _$$CambioClaveRequerimientoImplCopyWith<_$CambioClaveRequerimientoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 LoginRequerimiento _$LoginRequerimientoFromJson(Map<String, dynamic> json) {
   return _LoginRequerimiento.fromJson(json);
 }

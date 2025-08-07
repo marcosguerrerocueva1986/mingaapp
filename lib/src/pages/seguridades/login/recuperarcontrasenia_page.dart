@@ -38,53 +38,6 @@ class _RecuperarContraseniaPageState extends ConsumerState<RecuperarContraseniaP
                         width: 80,
                       ),
                       const SizedBox(height: defaultPadding * 2),
-                      if (provider.modoConfirmacion) ...[
-                        const SizedBox(height: defaultPadding * 5),
-                        const Text(
-                            "Ingrese el código temporal de seguridad que fue enviado a su correo y/o celular.",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            )),
-                        const SizedBox(height: defaultPadding * 2),
-                        Pinput(
-                          key: const ValueKey('pinput_recuperacioncontrasenia_confirmacion'),
-                          androidSmsAutofillMethod:
-                              AndroidSmsAutofillMethod.smsUserConsentApi,
-                          length: 6,
-                          // controller: controller,
-                          // focusNode: focusNode,
-                          defaultPinTheme: defaultPinTheme,
-                          onCompleted: controller.confimarOtpIngreso,
-                          focusedPinTheme: defaultPinTheme.copyWith(
-                            height: 68,
-                            width: 64,
-                            decoration: defaultPinTheme.decoration,
-                          ),
-                          errorPinTheme: defaultPinTheme.copyWith(
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(255, 234, 238, 1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: defaultPadding * 10),
-                        // ProcessButton(
-                        //   onPressed: controller.login,
-                        //   text: 'Confirmar'.toUpperCase(),
-                        // ),
-                        // const SizedBox(
-                        //   height: defaultPadding,
-                        // ),
-                        ProcessButton(
-                          isSecondary: false,
-                          onPressed: controller.cancelar,
-                          text: 'Regresar'.toUpperCase(),
-                        ),
-                  
-                      ] else ...[
                         const Padding(
                           padding: EdgeInsets.fromLTRB(20, 5, 10, 0),
                           child: Align(
@@ -112,8 +65,8 @@ class _RecuperarContraseniaPageState extends ConsumerState<RecuperarContraseniaP
                           ),
                         ),
                         ReactiveTextField(
-                          key: const ValueKey('identificacionrecuperacontrasenia'),
-                          formControlName: 'pwdUsuario',
+                          key: const ValueKey('usuariorecuperacontrasenia'),
+                          formControlName: 'codigoUsuario',
                           readOnly: !provider.permiteEditarUsuario,
                           decoration: InputDecoration(
                               prefixIcon: const Icon(
@@ -151,7 +104,7 @@ class _RecuperarContraseniaPageState extends ConsumerState<RecuperarContraseniaP
                         ProcessButton(
                           key: const ValueKey('continuar_recuperarcontrasenia_button'),
                           onPressed: (){
-                            appRouter.push(const MantenimientoRoute());
+                            controller.validarUsuarioCambioContrasenia();
                           },
                           text: 'Continuar'.toUpperCase(),
                         ),
@@ -164,9 +117,8 @@ class _RecuperarContraseniaPageState extends ConsumerState<RecuperarContraseniaP
                           text: 'Regresar'.toUpperCase(),
                         ),
                       ],
-                      const SizedBox(height: defaultPadding * 2),
-                    ],
                   ),
+                  
                                     ),                
                 ),
               );

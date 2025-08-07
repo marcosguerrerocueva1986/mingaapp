@@ -113,8 +113,8 @@ class _RecuperarUsuarioPageState extends ConsumerState<RecuperarUsuarioPage> {
                           ),
                         ),
                         ReactiveTextField(
-                          key: const ValueKey('usuariorecuperacion'),
-                          formControlName: 'codigoUsuario',
+                          key: const ValueKey('identificacionusuariorecuperacion'),
+                          formControlName: 'identificacion',
                           readOnly: !provider.permiteEditarUsuario,
                           decoration: InputDecoration(
                               prefixIcon: const Icon(
@@ -152,7 +152,7 @@ class _RecuperarUsuarioPageState extends ConsumerState<RecuperarUsuarioPage> {
                         ProcessButton(
                           key: const ValueKey('continuar_recuperar_button'),
                           onPressed: (){
-                            appRouter.push(const MantenimientoRoute());
+                            controller.olvideUsuario();
                           },
                           text: 'Continuar'.toUpperCase(),
                         ),

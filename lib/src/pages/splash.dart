@@ -119,7 +119,7 @@ class _SplashPageState extends ConsumerState<SplashPage> with SingleTickerProvid
   }
   Future<void> _initializeApp() async {
     await Future.delayed(const Duration(seconds: 2));
-    appRouter.pushAndPopUntil(const LoginPrincipalRoute(), predicate: (_) => false);
+    appRouter.replace(const LoginPrincipalRoute());
   }
 
   // Helper para crear una sombra flotante

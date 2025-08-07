@@ -20,10 +20,8 @@ class _CuentaDetallePageState extends ConsumerState<CuentaDetallePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(cuentaDetalleControllerProvider.notifier)
         .actualizaInformacion(widget.cuenta);
-    });
     initializeDateFormatting('es', null);
   }
 
@@ -33,8 +31,8 @@ class _CuentaDetallePageState extends ConsumerState<CuentaDetallePage> {
     var provider = ref.watch(cuentaDetalleControllerProvider);
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
-    final bool isBalanceVisible = ref.watch(balanceVisibilityProvider.notifier).isBalanceVisible(provider.cuenta?.codigo ?? '');
-    onToggleVisibility() {ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();}
+    final balanceController = ref.watch(balanceVisibilityProvider);
+    final bool isBalanceVisible = balanceController.isBalanceVisible(provider.cuenta?.codigo ?? '');
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -108,7 +106,9 @@ class _CuentaDetallePageState extends ConsumerState<CuentaDetallePage> {
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                                   child: ElevatedButton (
-                                    onPressed: onToggleVisibility,
+                                    onPressed: () { 
+                                        ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();
+                                      },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.transparent, 
                                         foregroundColor: Colors.white, 

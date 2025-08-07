@@ -15,6 +15,45 @@ class BaseRequerimiento with _$BaseRequerimiento {
 }
 
 @freezed
+class RegistroRequerimiento with _$RegistroRequerimiento {
+  factory RegistroRequerimiento(
+    {@Default('') String identificacion,
+    @Default('') String codigoUsuario,
+    @Default('') String imagen,
+    @Default('') String frase,
+    @Default('') String otpIngresado}) = _RegistroRequerimiento;
+    
+  factory RegistroRequerimiento.fromJson(Map<String, Object?> json) =>
+  _$RegistroRequerimientoFromJson(json);
+}
+
+@freezed
+class BaseRespuesta with _$BaseRespuesta {
+  factory BaseRespuesta(
+    {@Default('') String mbCodigoUsuario,
+    @Default('') String mbPwdUsuario,
+    @Default('') String mbMaquina,
+    @Default(false) @JsonKey(name: 'sF_ExisteError') bool existeError,
+    @Default('') @JsonKey(name: 'sF_Error') String error,
+    @Default('') String stackTrace,
+    @Default(false) bool sfConCabecera,
+    @Default('') String mensajeError}) = _BaseRespuesta;
+    
+  factory BaseRespuesta.fromJson(Map<String, Object?> json) =>
+  _$BaseRespuestaFromJson(json);
+}
+
+@freezed
+class CambioClaveRequerimiento with _$CambioClaveRequerimiento {
+  factory CambioClaveRequerimiento(
+    {@Default('') String codigoUsuario,
+    @Default('') String pwdAnterior,
+    @Default('') String pwdNueva}) = _CambioClaveRequerimiento;
+  factory CambioClaveRequerimiento.fromJson(Map<String, Object?> json) =>
+  _$CambioClaveRequerimientoFromJson(json);
+}
+
+@freezed
 class LoginRequerimiento with _$LoginRequerimiento {
   factory LoginRequerimiento(
       {@Default(0) int idUsuario,

@@ -11,6 +11,12 @@ import 'package:bancamovilr/src/pages/mantenimientopage.dart';
 import 'package:bancamovilr/src/pages/seguridades/login/activacuenta_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/login/recuperarcontrasenia_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/login/recuperarusuario_page.dart';
+import 'package:bancamovilr/src/pages/seguridades/login/cambiarcontrasenialogin_page.dart';
+import 'package:bancamovilr/src/pages/seguridades/perfil/cambiarcontrasenia_page.dart';
+import 'package:bancamovilr/src/pages/seguridades/perfil/datospersonales_page.dart';
+import 'package:bancamovilr/src/pages/seguridades/perfil/miperfil_page.dart';
+import 'package:bancamovilr/src/pages/seguridades/perfil/montosmaximos_page.dart';
+import 'package:bancamovilr/src/pages/seguridades/perfil/terminoscondiciones_page.dart';
 import 'package:bancamovilr/src/pages/splash.dart';
 
 import '../../index.dart';
@@ -29,27 +35,11 @@ class AppRouter extends _$AppRouter {
           initial: true,
         ),
         AutoRoute(
-          page: LoginPrincipalRoute.page,
+          page: LoginPrincipalRoute.page, path: '/login-principal',
           initial: false,
         ),
         AutoRoute(
-          page: LoginRoute.page,
-          initial: false,
-        ),
-        AutoRoute(
-          page: PosicionConsolidadaRoute.page,
-          initial: false,
-        ),
-        AutoRoute(
-          page: CuentaDetalleRoute.page,
-          initial: false,
-        ),
-        AutoRoute(
-          page: DepositoDetalleRoute.page,
-          initial: false,
-        ),
-        AutoRoute(
-          page: PrestamoDetalleRoute.page,
+          page: LoginRoute.page, path: '/login',
           initial: false,
         ),
         AutoRoute(
@@ -133,22 +123,42 @@ class AppRouter extends _$AppRouter {
           initial: false,
         ),
         AutoRoute(
+          page: DatosPersonalesRoute.page,
+          initial: false,
+        ),
+        AutoRoute(
+          page: MontosMaximosRoute.page,
+          initial: false,
+        ),
+        AutoRoute(
+          page: CambiarContraseniaRoute.page,
+          initial: false,
+        ),
+        AutoRoute(
+          page: TerminosCondicionesRoute.page,
+          initial: false,
+        ),
+        AutoRoute(
+          page: CambiarContraseniaLoginRoute.page,
+          initial: false,
+        ),
+        AutoRoute(
           page: PosicionConsolidadaRoute.page, 
-          initial: false, 
+          path: '/app', 
           children: [
-          AutoRoute(page: PosicionConsolidadaRoute.page, path: 'home'),
+          AutoRoute(page: PosicionConsolidadaRoute.page, path: '', initial: true),
           AutoRoute(
             page: MisProductosRouterRoute.page, 
             path: 'mis-productos',
             children: [
-              AutoRoute(page: MisProductosOverviewRoute.page), 
-              AutoRoute(page: CuentaDetalleRoute.page), 
-              AutoRoute(page: PrestamoDetalleRoute.page),
-              AutoRoute(page: DepositoDetalleRoute.page),
+              AutoRoute(page: MisProductosOverviewRoute.page, path: '', initial: true), 
+              AutoRoute(page: CuentaDetalleRoute.page,path: 'cuenta/:id'), 
+              AutoRoute(page: PrestamoDetalleRoute.page,path: 'prestamo/:id'),
+              AutoRoute(page: DepositoDetalleRoute.page,path: 'deposito/:id'),
             ],
           ),
           //AutoRoute(page: SolicitudesRoute.page, path: 'solicitudes'), // Si tienes estas rutas
-          //AutoRoute(page: PerfilRoute.page, path: 'perfil'), // Si tienes estas rutas
+          AutoRoute(page: MiPerfilRoute.page, path: 'perfil'), // Si tienes estas rutas
         ]),
       ];
 }

@@ -31,8 +31,8 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
     var provider = ref.watch(prestamoDetalleControllerProvider);
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
-    final bool isBalanceVisible = ref.watch(balanceVisibilityProvider.notifier).isBalanceVisible(provider.prestamo?.codigo ?? '');
-    onToggleVisibility() {ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();}
+    final balanceController = ref.watch(balanceVisibilityProvider);
+    final isBalanceVisible = balanceController.isBalanceVisible(provider.prestamo?.codigo ?? '');
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -106,7 +106,9 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                                   child: ElevatedButton (
-                                    onPressed: onToggleVisibility,
+                                    onPressed: () { 
+                                        ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();
+                                      },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.transparent, 
                                         foregroundColor: Colors.white, 
@@ -117,6 +119,7 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                       ),
                                       child: Ink.image(
                                         image: const AssetImage('assets/images/ojocuenta.png'),
+                                        //image: AssetImage(isBalanceVisible ? 'assets/images/ojocuenta.png' : 'assets/images/ojocuenta_cerrado.png'),
                                         fit: BoxFit.fill,
                                         width: 24,
                                         height: 15,

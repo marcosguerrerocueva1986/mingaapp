@@ -21,6 +21,10 @@ abstract class RestClient {
   Future<ValidacionOtpAccesoRespuesta> validaCodigoOtpIngreso(
       @Body() LoginRequerimiento requerimiento);
 
+    @POST("/validaOtpRegistro")
+  Future<BaseRespuesta> validaCodigoOtpRegistro(
+      @Body() RegistroRequerimiento requerimiento);
+
   @POST("/consultaConsolidado")
   Future<PosicionConsolidadaRespuesta> consultaConsolidado(
       @Body() BaseRequerimiento requerimiento);
@@ -97,6 +101,18 @@ abstract class RestClient {
   @POST("/validaPinAcceso")
   Future<ValidacionOtpAccesoRespuesta> validaPinAcceso(
       @Body() ValidaPinAccesoRequerimiento requerimiento);
+  
+  @POST("/cambioClave")
+  Future<BaseRespuesta> cambioClave(
+      @Body() CambioClaveRequerimiento requerimiento);
+  
+  @POST("/olvideUsuario")
+  Future<BaseRespuesta> olvideUsuario(
+      @Body() RegistroRequerimiento requerimiento);
+
+  @POST("/generaClaveTemporalCambioContrasenia")
+  Future<BaseRespuesta> generaClaveTemporalCambioContrasenia(
+      @Body() RegistroRequerimiento requerimiento);
 
   @POST("/consultaCuentaVinculadaQR")
   Future<ConsultaCuentaVinculadaQRRespuesta> consultaCuentaVinculadaQR(
@@ -132,9 +148,12 @@ abstract class RestClient {
   Future<ConsultaRequisitosTransferenciasRespuesta>
       consultaRequisitosTransferenciaInterbancaria(
           @Body() BaseRequerimiento requerimiento);
-
-          
+      
   @POST("/consultaConceptos")
   Future<ConsultaConceptosRespuesta> consultaConceptos(
       @Body() BaseRequerimiento requerimiento);
+  
+  @POST("/registro")
+  Future<BaseRespuesta> activaCuenta(
+      @Body() RegistroRequerimiento requerimiento);
 }

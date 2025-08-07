@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/general/posicion_consolidad/balance_visibility_controller.dart';
+import 'package:bancamovilr/src/pages/seguridades/perfil/miperfil_page.dart';
 import 'package:flutter/rendering.dart';
 
 @RoutePage()
@@ -52,7 +53,7 @@ with SingleTickerProviderStateMixin {
     _startPromoCarouselAutoPlay();
   }   
   void _startPromoCarouselAutoPlay() {
-    _promoCarouselTimer = Timer.periodic(const Duration(seconds: 4), (Timer timer) {
+    _promoCarouselTimer = Timer.periodic(const Duration(seconds: 8), (Timer timer) {
       if (_promoCarouselController.hasClients) { 
         int nextPage = (_currentPromoIndex + 1) % _carouselImagePaths.length;
         _promoCarouselController.animateToPage(
@@ -98,7 +99,7 @@ with SingleTickerProviderStateMixin {
       ],
     ),
     const Center(child: Text('Pantalla de Solicitudes', style: TextStyle(fontSize: 24))),
-    const Center(child: Text('Pantalla de Perfil', style: TextStyle(fontSize: 24))),
+    AutoRouter.declarative(routes: (context) => [ const MiPerfilRoute()])
   ];
 
     return ScaffoldBootstrap(

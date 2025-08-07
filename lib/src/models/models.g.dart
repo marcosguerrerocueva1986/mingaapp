@@ -18,6 +18,66 @@ Map<String, dynamic> _$$BaseRequerimientoImplToJson(
       'idUsuario': instance.idUsuario,
     };
 
+_$RegistroRequerimientoImpl _$$RegistroRequerimientoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RegistroRequerimientoImpl(
+      identificacion: json['identificacion'] as String? ?? '',
+      codigoUsuario: json['codigoUsuario'] as String? ?? '',
+      imagen: json['imagen'] as String? ?? '',
+      frase: json['frase'] as String? ?? '',
+      otpIngresado: json['otpIngresado'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$RegistroRequerimientoImplToJson(
+        _$RegistroRequerimientoImpl instance) =>
+    <String, dynamic>{
+      'identificacion': instance.identificacion,
+      'codigoUsuario': instance.codigoUsuario,
+      'imagen': instance.imagen,
+      'frase': instance.frase,
+      'otpIngresado': instance.otpIngresado,
+    };
+
+_$BaseRespuestaImpl _$$BaseRespuestaImplFromJson(Map<String, dynamic> json) =>
+    _$BaseRespuestaImpl(
+      mbCodigoUsuario: json['mbCodigoUsuario'] as String? ?? '',
+      mbPwdUsuario: json['mbPwdUsuario'] as String? ?? '',
+      mbMaquina: json['mbMaquina'] as String? ?? '',
+      existeError: json['sF_ExisteError'] as bool? ?? false,
+      error: json['sF_Error'] as String? ?? '',
+      stackTrace: json['stackTrace'] as String? ?? '',
+      sfConCabecera: json['sfConCabecera'] as bool? ?? false,
+      mensajeError: json['mensajeError'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$BaseRespuestaImplToJson(_$BaseRespuestaImpl instance) =>
+    <String, dynamic>{
+      'mbCodigoUsuario': instance.mbCodigoUsuario,
+      'mbPwdUsuario': instance.mbPwdUsuario,
+      'mbMaquina': instance.mbMaquina,
+      'sF_ExisteError': instance.existeError,
+      'sF_Error': instance.error,
+      'stackTrace': instance.stackTrace,
+      'sfConCabecera': instance.sfConCabecera,
+      'mensajeError': instance.mensajeError,
+    };
+
+_$CambioClaveRequerimientoImpl _$$CambioClaveRequerimientoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CambioClaveRequerimientoImpl(
+      codigoUsuario: json['codigoUsuario'] as String? ?? '',
+      pwdAnterior: json['pwdAnterior'] as String? ?? '',
+      pwdNueva: json['pwdNueva'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$CambioClaveRequerimientoImplToJson(
+        _$CambioClaveRequerimientoImpl instance) =>
+    <String, dynamic>{
+      'codigoUsuario': instance.codigoUsuario,
+      'pwdAnterior': instance.pwdAnterior,
+      'pwdNueva': instance.pwdNueva,
+    };
+
 _$LoginRequerimientoImpl _$$LoginRequerimientoImplFromJson(
         Map<String, dynamic> json) =>
     _$LoginRequerimientoImpl(

@@ -11,7 +11,12 @@ class LoginController extends _$LoginController {
   final form = fb.group({
     'codigoUsuario': ['', Validators.required],
     'pwdUsuario': [''],
-  });
+    'pwdAnterior': [''],
+    'pwdNueva': ['', Validators.required, Validators.minLength(8)],
+    'pwdNuevaConfirmar': ['', Validators.required, Validators.minLength(8)],
+    'identificacion': [''],
+  },[Validators.mustMatch('pwdNueva', 'pwdNuevaConfirmar')]
+  );
 late final AuthStorageService _authStorageService;
   @override
   LoginState build() {
@@ -24,7 +29,7 @@ late final AuthStorageService _authStorageService;
   }
 
   void login() async {
-    if (form.valid) {
+    //if (form.valid) {
       var requerimiento = LoginRequerimiento.fromJson(form.value);
       HttpClientHelper.testMode =
           requerimiento.codigoUsuario == Configs.userTest;
@@ -60,13 +65,82 @@ late final AuthStorageService _authStorageService;
       } else {
         NotificationService.showError(text: 'Credenciales Incorrectas');
       }
+    //} else {
+      //NotificationService.showError(text: 'Ingrese sus credenciales');
+    //}
+  }
+
+  void activarCuenta() async {
+    var client = HttpClientHelper.getClient();
+    var requerimiento = RegistroRequerimiento.fromJson(form.value);
+    HttpClientHelper.testMode = requerimiento.codigoUsuario == Configs.userTest;
+    var respuesta =  await guard(() async => await client.activaCuenta(requerimiento));
+    if (respuesta.hasValue) {      
+        state = state.copyWith(modoConfirmacion: true);
     } else {
-      NotificationService.showError(text: 'Ingrese sus credenciales');
+      print("El usuario no esta disponible");
     }
   }
 
+   void cambiarContrasenia() async {
+    if (form.valid)
+    {
+      var client = HttpClientHelper.getClient();
+      var requerimiento = CambioClaveRequerimiento.fromJson(form.value);
+      HttpClientHelper.testMode = requerimiento.codigoUsuario == Configs.userTest;
+      var respuesta =  await guard(() async => await client.cambioClave(requerimiento));
+      if (respuesta.hasValue) {    
+          state = state.copyWith(modoConfirmacion: false);  
+          NotificationService.showError(text: 'Cuenta Activada. Por favor ingresa con tu usuario y contraseña');
+          appRouter.replace(const LoginRoute());
+      } else {
+        print("El usuario no esta disponible");
+      }
+    }
+    else {
+      form.markAllAsTouched();
+    }
+  }
+
+  void olvideUsuario() async {
+    var client = HttpClientHelper.getClient();
+    var requerimiento = RegistroRequerimiento.fromJson(form.value);
+    requerimiento.codigoUsuario == Configs.userTest;
+    HttpClientHelper.testMode = requerimiento.codigoUsuario == Configs.userTest;
+    var respuesta =  await guard(() async => await client.olvideUsuario(requerimiento));
+    if (respuesta.hasValue) {    
+        state = state.copyWith(modoConfirmacion: false);  
+        NotificationService.showError(text: 'Se ha enviado el usuario a su correo');
+        appRouter.replace(const LoginRoute());
+    } else {
+      print("El usuario no esta disponible");
+    }
+  }
+  void validarUsuarioCambioContrasenia() async {
+      var requerimiento = LoginRequerimiento.fromJson(form.value);
+      HttpClientHelper.testMode =
+          requerimiento.codigoUsuario == Configs.userTest;
+
+      var client = HttpClientHelper.getClient();
+      var respuesta =
+          await guard(() async => await client.validarUsuario(requerimiento));
+
+      if (respuesta.hasValue) {
+        state = state.copyWith(
+            estaValidado: true,
+            permiteEditarUsuario: false,
+            informacionValidada: respuesta.value);
+      }
+      if (state.estaValidado) {
+        var requerimiento = RegistroRequerimiento.fromJson(form.value);
+        var respuesta =
+            await guard(() async => await client.generaClaveTemporalCambioContrasenia(requerimiento));
+        if (respuesta.hasValue) {   
+          appRouter.replace(const CambiarContraseniaLoginRoute());
+        }
+    }
+  }
   void restaurarContrasenia() async {
-    if (form.valid) {
       var requerimiento = LoginRequerimiento.fromJson(form.value);
       HttpClientHelper.testMode =
           requerimiento.codigoUsuario == Configs.userTest;
@@ -102,9 +176,6 @@ late final AuthStorageService _authStorageService;
       } else {
         NotificationService.showError(text: 'No existe el usuario ingresado');
       }
-    } else {
-      NotificationService.showError(text: 'Ingrese sus credenciales');
-    }
   }
 
   void confimarOtpIngreso(String otp) async {
@@ -131,7 +202,26 @@ late final AuthStorageService _authStorageService;
             modoConfirmacion: false);
         form.patchValue({'pwdUsuario': ''});
         preferences.idRegistro.val = state.loginRespuesta?.idRegistro ?? 0;
-        appRouter.replace(const PosicionConsolidadaRoute());
+        appRouter.replaceNamed('/app');
+      }
+    }
+  }
+
+  void confimarOtpRegistro(String otp) async {
+    if (state.modoConfirmacion) {
+      SharedPreferences preferences = SharedPreferences();
+
+      var client = HttpClientHelper.getClient();
+      var requerimiento = RegistroRequerimiento.fromJson(form.value);
+
+      requerimiento = requerimiento.copyWith(
+          otpIngresado: otp);
+
+      var respuesta = await guard(
+          () async => await client.validaCodigoOtpRegistro(requerimiento));
+
+      if (respuesta.hasValue) {
+        appRouter.replace(const CambiarContraseniaLoginRoute());
       }
     }
   }
@@ -194,5 +284,8 @@ late final AuthStorageService _authStorageService;
     SharedPreferences preferences = SharedPreferences();
 
     return Future.value(preferences.accesoPorHuellaHabilitado.val);
+  }
+  Future irACambioContrasenia() async {
+    appRouter.replace(const CambiarContraseniaLoginRoute());
   }
 }

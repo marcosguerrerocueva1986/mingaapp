@@ -55,6 +55,18 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const BeneficiarioPage(),
       );
     },
+    CambiarContraseniaLoginRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CambiarContraseniaLoginPage(),
+      );
+    },
+    CambiarContraseniaRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CambiarContraseniaPage(),
+      );
+    },
     CuentaDetalleRoute.name: (routeData) {
       final args = routeData.argsAs<CuentaDetalleRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -63,6 +75,12 @@ abstract class _$AppRouter extends RootStackRouter {
           key: args.key,
           cuenta: args.cuenta,
         ),
+      );
+    },
+    DatosPersonalesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DatosPersonalesPage(),
       );
     },
     DepositoDetalleRoute.name: (routeData) {
@@ -93,6 +111,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MantenimientoPage(),
       );
     },
+    MiPerfilRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MiPerfilPage(),
+      );
+    },
     MisProductosOverviewRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -103,6 +127,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const MisProductosRouterPage(),
+      );
+    },
+    MontosMaximosRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MontosMaximosPage(),
       );
     },
     OnboardingRoute.name: (routeData) {
@@ -216,6 +246,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SplashPage(),
+      );
+    },
+    TerminosCondicionesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TerminosCondicionesPage(),
       );
     },
     TransaccionDeunaErrorRoute.name: (routeData) {
@@ -367,6 +403,34 @@ class BeneficiarioRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CambiarContraseniaLoginPage]
+class CambiarContraseniaLoginRoute extends PageRouteInfo<void> {
+  const CambiarContraseniaLoginRoute({List<PageRouteInfo>? children})
+      : super(
+          CambiarContraseniaLoginRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CambiarContraseniaLoginRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CambiarContraseniaPage]
+class CambiarContraseniaRoute extends PageRouteInfo<void> {
+  const CambiarContraseniaRoute({List<PageRouteInfo>? children})
+      : super(
+          CambiarContraseniaRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CambiarContraseniaRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [CuentaDetallePage]
 class CuentaDetalleRoute extends PageRouteInfo<CuentaDetalleRouteArgs> {
   CuentaDetalleRoute({
@@ -402,6 +466,20 @@ class CuentaDetalleRouteArgs {
   String toString() {
     return 'CuentaDetalleRouteArgs{key: $key, cuenta: $cuenta}';
   }
+}
+
+/// generated route for
+/// [DatosPersonalesPage]
+class DatosPersonalesRoute extends PageRouteInfo<void> {
+  const DatosPersonalesRoute({List<PageRouteInfo>? children})
+      : super(
+          DatosPersonalesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DatosPersonalesRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -485,6 +563,20 @@ class MantenimientoRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MiPerfilPage]
+class MiPerfilRoute extends PageRouteInfo<void> {
+  const MiPerfilRoute({List<PageRouteInfo>? children})
+      : super(
+          MiPerfilRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MiPerfilRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [MisProductosOverviewPage]
 class MisProductosOverviewRoute extends PageRouteInfo<void> {
   const MisProductosOverviewRoute({List<PageRouteInfo>? children})
@@ -508,6 +600,20 @@ class MisProductosRouterRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MisProductosRouterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MontosMaximosPage]
+class MontosMaximosRoute extends PageRouteInfo<void> {
+  const MontosMaximosRoute({List<PageRouteInfo>? children})
+      : super(
+          MontosMaximosRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MontosMaximosRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -844,6 +950,20 @@ class SplashRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TerminosCondicionesPage]
+class TerminosCondicionesRoute extends PageRouteInfo<void> {
+  const TerminosCondicionesRoute({List<PageRouteInfo>? children})
+      : super(
+          TerminosCondicionesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TerminosCondicionesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

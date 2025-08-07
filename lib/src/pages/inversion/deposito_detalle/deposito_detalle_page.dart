@@ -29,8 +29,8 @@ class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
     var provider = ref.watch(depositoDetalleControllerProvider);
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
-    final bool isBalanceVisible = ref.watch(balanceVisibilityProvider.notifier).isBalanceVisible(provider.deposito?.codigo ?? '');
-    onToggleVisibility() {ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();}
+    final balanceController = ref.watch(balanceVisibilityProvider);
+    final isBalanceVisible = balanceController.isBalanceVisible(provider.deposito?.codigo ?? '');
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -104,7 +104,9 @@ class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                                   child: ElevatedButton (
-                                    onPressed: onToggleVisibility,
+                                    onPressed: () { 
+                                        ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();
+                                      },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.transparent, 
                                         foregroundColor: Colors.white, 
@@ -182,7 +184,7 @@ class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget> [
                                   const Text(
-                                      'Saldo: ',
+                                      'Monto: ',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 16.0,

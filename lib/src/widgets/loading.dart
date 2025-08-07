@@ -43,7 +43,7 @@ class _LoadingState extends State<Loading> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.height + 150,
+      height: widget.height + 300,
       child: AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
