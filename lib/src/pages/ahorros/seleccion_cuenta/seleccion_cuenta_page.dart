@@ -35,6 +35,12 @@ class _SeleccionCuentaPageState extends ConsumerState<SeleccionCuentaPage> {
           'Mis Cuentas',
           style: TextStyle(color: Colors.white),
         ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            context.router.pop();
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(defaultPadding),
@@ -46,7 +52,7 @@ class _SeleccionCuentaPageState extends ConsumerState<SeleccionCuentaPage> {
               itemBuilder: (context, index) {
                 var cuenta = cuentasTransaccionales?[index];
                 return GestureDetector(
-                  onTap: () => appRouter.pop<CuentaModel?>(cuenta),
+                  onTap: () => context.router.pop<CuentaModel?>(cuenta),
                   behavior: HitTestBehavior.translucent,
                   child: CuentaItemWidget(cuenta: cuenta),
                 );

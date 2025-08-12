@@ -212,6 +212,116 @@ Map<String, dynamic> _$$LoginStateImplToJson(_$LoginStateImpl instance) =>
       'validacionOtpRespuesta': instance.validacionOtpRespuesta,
     };
 
+_$RecuperarContraseniaStateImpl _$$RecuperarContraseniaStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RecuperarContraseniaStateImpl(
+      estaValidado: json['estaValidado'] as bool? ?? false,
+      obscurecerClave: json['obscurecerClave'] as bool? ?? false,
+      modoConfirmacion: json['modoConfirmacion'] as bool? ?? false,
+      permiteEditarUsuario: json['permiteEditarUsuario'] as bool,
+    );
+
+Map<String, dynamic> _$$RecuperarContraseniaStateImplToJson(
+        _$RecuperarContraseniaStateImpl instance) =>
+    <String, dynamic>{
+      'estaValidado': instance.estaValidado,
+      'obscurecerClave': instance.obscurecerClave,
+      'modoConfirmacion': instance.modoConfirmacion,
+      'permiteEditarUsuario': instance.permiteEditarUsuario,
+    };
+
+_$RecuperarUsuarioStateImpl _$$RecuperarUsuarioStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RecuperarUsuarioStateImpl(
+      estaValidado: json['estaValidado'] as bool? ?? false,
+      obscurecerClave: json['obscurecerClave'] as bool? ?? false,
+      modoConfirmacion: json['modoConfirmacion'] as bool? ?? false,
+      permiteEditarUsuario: json['permiteEditarUsuario'] as bool,
+    );
+
+Map<String, dynamic> _$$RecuperarUsuarioStateImplToJson(
+        _$RecuperarUsuarioStateImpl instance) =>
+    <String, dynamic>{
+      'estaValidado': instance.estaValidado,
+      'obscurecerClave': instance.obscurecerClave,
+      'modoConfirmacion': instance.modoConfirmacion,
+      'permiteEditarUsuario': instance.permiteEditarUsuario,
+    };
+
+_$ActivaCuentaStateImpl _$$ActivaCuentaStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ActivaCuentaStateImpl(
+      estaValidado: json['estaValidado'] as bool? ?? false,
+      obscurecerClave: json['obscurecerClave'] as bool? ?? false,
+      modoConfirmacion: json['modoConfirmacion'] as bool? ?? false,
+      permiteEditarUsuario: json['permiteEditarUsuario'] as bool,
+    );
+
+Map<String, dynamic> _$$ActivaCuentaStateImplToJson(
+        _$ActivaCuentaStateImpl instance) =>
+    <String, dynamic>{
+      'estaValidado': instance.estaValidado,
+      'obscurecerClave': instance.obscurecerClave,
+      'modoConfirmacion': instance.modoConfirmacion,
+      'permiteEditarUsuario': instance.permiteEditarUsuario,
+    };
+
+_$CambiarContraseniaStateImpl _$$CambiarContraseniaStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CambiarContraseniaStateImpl(
+      modoConfirmacion: json['modoConfirmacion'] as bool? ?? false,
+      obscurecerClave: json['obscurecerClave'] as bool? ?? false,
+      permiteEditarUsuario: json['permiteEditarUsuario'] as bool,
+    );
+
+Map<String, dynamic> _$$CambiarContraseniaStateImplToJson(
+        _$CambiarContraseniaStateImpl instance) =>
+    <String, dynamic>{
+      'modoConfirmacion': instance.modoConfirmacion,
+      'obscurecerClave': instance.obscurecerClave,
+      'permiteEditarUsuario': instance.permiteEditarUsuario,
+    };
+
+_$CambiarContraseniaLoginStateImpl _$$CambiarContraseniaLoginStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CambiarContraseniaLoginStateImpl(
+      modoConfirmacion: json['modoConfirmacion'] as bool? ?? false,
+      obscurecerClave: json['obscurecerClave'] as bool? ?? false,
+      permiteEditarUsuario: json['permiteEditarUsuario'] as bool,
+    );
+
+Map<String, dynamic> _$$CambiarContraseniaLoginStateImplToJson(
+        _$CambiarContraseniaLoginStateImpl instance) =>
+    <String, dynamic>{
+      'modoConfirmacion': instance.modoConfirmacion,
+      'obscurecerClave': instance.obscurecerClave,
+      'permiteEditarUsuario': instance.permiteEditarUsuario,
+    };
+
+_$PersonaModelImpl _$$PersonaModelImplFromJson(Map<String, dynamic> json) =>
+    _$PersonaModelImpl(
+      identificacion: json['identificacion'] as String? ?? '',
+      nombre: json['nombre'] as String? ?? '',
+      estadoCivil: json['estadoCivil'] as String? ?? '',
+      direccion: json['direccion'] as String? ?? '',
+      telefono: json['telefono'] as String? ?? '',
+      fechaNacimiento: json['fechaNacimiento'] == null
+          ? null
+          : DateTime.parse(json['fechaNacimiento'] as String),
+      email: json['email'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$PersonaModelImplToJson(_$PersonaModelImpl instance) =>
+    <String, dynamic>{
+      'identificacion': instance.identificacion,
+      'nombre': instance.nombre,
+      'estadoCivil': instance.estadoCivil,
+      'direccion': instance.direccion,
+      'telefono': instance.telefono,
+      'fechaNacimiento': instance.fechaNacimiento?.toIso8601String(),
+      'email': instance.email,
+    };
+
 _$PosicionConsolidadaRespuestaImpl _$$PosicionConsolidadaRespuestaImplFromJson(
         Map<String, dynamic> json) =>
     _$PosicionConsolidadaRespuestaImpl(
@@ -227,6 +337,9 @@ _$PosicionConsolidadaRespuestaImpl _$$PosicionConsolidadaRespuestaImplFromJson(
               ?.map((e) => PrestamoModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      persona: json['persona'] == null
+          ? null
+          : PersonaModel.fromJson(json['persona'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PosicionConsolidadaRespuestaImplToJson(
@@ -235,6 +348,7 @@ Map<String, dynamic> _$$PosicionConsolidadaRespuestaImplToJson(
       'cuentas': instance.cuentas,
       'inversiones': instance.inversiones,
       'prestamos': instance.prestamos,
+      'persona': instance.persona,
     };
 
 _$CuentaModelImpl _$$CuentaModelImplFromJson(Map<String, dynamic> json) =>
@@ -268,6 +382,7 @@ _$InversionModelImpl _$$InversionModelImplFromJson(Map<String, dynamic> json) =>
       nombre: json['nombre'] as String? ?? '',
       tipo: json['tipo'] as String? ?? '',
       monto: (json['monto'] as num?)?.toDouble() ?? 0.00,
+      plazo: (json['plazo'] as num?)?.toInt() ?? 0,
       fechaVencimiento: json['fechaVencimiento'] == null
           ? null
           : DateTime.parse(json['fechaVencimiento'] as String),
@@ -283,6 +398,7 @@ Map<String, dynamic> _$$InversionModelImplToJson(
       'nombre': instance.nombre,
       'tipo': instance.tipo,
       'monto': instance.monto,
+      'plazo': instance.plazo,
       'fechaVencimiento': instance.fechaVencimiento?.toIso8601String(),
       'estado': instance.estado,
       'totalRecibir': instance.totalRecibir,
@@ -305,6 +421,10 @@ _$PrestamoModelImpl _$$PrestamoModelImplFromJson(Map<String, dynamic> json) =>
       valorCuota: (json['valorCuota'] as num?)?.toDouble() ?? 0.00,
       valorCancelarPrestamo:
           (json['valorCancelarPrestamo'] as num?)?.toDouble() ?? 0.00,
+      fechaProximoPago: json['fechaProximoPago'] == null
+          ? null
+          : DateTime.parse(json['fechaProximoPago'] as String),
+      cuotasCanceladas: json['cuotasCanceladas'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$PrestamoModelImplToJson(_$PrestamoModelImpl instance) =>
@@ -319,6 +439,8 @@ Map<String, dynamic> _$$PrestamoModelImplToJson(_$PrestamoModelImpl instance) =>
       'valorParaEstarAlDia': instance.valorParaEstarAlDia,
       'valorCuota': instance.valorCuota,
       'valorCancelarPrestamo': instance.valorCancelarPrestamo,
+      'fechaProximoPago': instance.fechaProximoPago?.toIso8601String(),
+      'cuotasCanceladas': instance.cuotasCanceladas,
     };
 
 _$PosicionConsolidadaStateImpl _$$PosicionConsolidadaStateImplFromJson(

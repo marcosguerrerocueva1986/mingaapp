@@ -6,6 +6,7 @@ import 'package:bancamovilr/src/pages/deuna/pago/qrdeuna_error_page.dart';
 import 'package:bancamovilr/src/pages/deuna/scanner/qr_scanner_page.dart';
 import 'package:bancamovilr/src/pages/general/posicion_consolidad/mis_productos_page.dart';
 import 'package:bancamovilr/src/pages/general/posicion_consolidad/mis_productos_router_page.dart';
+import 'package:bancamovilr/src/pages/general/posicion_consolidad/solicitudes_page.dart';
 import 'package:bancamovilr/src/pages/loginprincipal_page.dart';
 import 'package:bancamovilr/src/pages/mantenimientopage.dart';
 import 'package:bancamovilr/src/pages/seguridades/login/activacuenta_page.dart';
@@ -32,6 +33,7 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: SplashRoute.page,
+          path: '/',
           initial: true,
         ),
         AutoRoute(
@@ -147,18 +149,16 @@ class AppRouter extends _$AppRouter {
           path: '/app', 
           children: [
           AutoRoute(page: PosicionConsolidadaRoute.page, path: '', initial: true),
-          AutoRoute(
-            page: MisProductosRouterRoute.page, 
-            path: 'mis-productos',
+          AutoRoute(page: MisProductosRouterRoute.page,  path: 'mis-productos',      
             children: [
               AutoRoute(page: MisProductosOverviewRoute.page, path: '', initial: true), 
-              AutoRoute(page: CuentaDetalleRoute.page,path: 'cuenta/:id'), 
-              AutoRoute(page: PrestamoDetalleRoute.page,path: 'prestamo/:id'),
-              AutoRoute(page: DepositoDetalleRoute.page,path: 'deposito/:id'),
+              AutoRoute(page: CuentaDetalleRoute.page), 
+              AutoRoute(page: PrestamoDetalleRoute.page),
+              AutoRoute(page: DepositoDetalleRoute.page),
             ],
           ),
-          //AutoRoute(page: SolicitudesRoute.page, path: 'solicitudes'), // Si tienes estas rutas
-          AutoRoute(page: MiPerfilRoute.page, path: 'perfil'), // Si tienes estas rutas
+          AutoRoute(page: SolicitudesRoute.page, path: 'solicitudes'), 
+          AutoRoute(page: MiPerfilRoute.page, path: 'perfil'), 
         ]),
       ];
 }

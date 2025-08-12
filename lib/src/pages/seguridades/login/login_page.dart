@@ -109,7 +109,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           ReactiveTextField(
                             key: const ValueKey('usuario'),
                             formControlName: 'codigoUsuario',
-                            readOnly: !provider.permiteEditarUsuario,
+                            readOnly: false,//!provider.permiteEditarUsuario,
                             decoration: InputDecoration(
                                 prefixIcon: const Icon(
                                   Icons.verified_user_outlined,

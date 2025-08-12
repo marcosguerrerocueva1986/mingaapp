@@ -20,6 +20,19 @@ class _MisProductosOverviewPageState extends ConsumerState<MisProductosOverviewP
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Mis Productos',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: ContextExtension(context).getTitlePrimaryColor(), 
+                ),
+              ),
+            ),
+          ),
           _buildCategoryTabs(),
           Expanded(
               child: SingleChildScrollView(
@@ -85,11 +98,9 @@ class _MisProductosOverviewPageState extends ConsumerState<MisProductosOverviewP
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios, color: Color.fromRGBO(0, 96, 153, 10)),
-        onPressed: () => Navigator.of(context).pop(),
-      ),
-      title: const Text('Mis Productos', style: TextStyle(color: Color.fromRGBO(0, 96, 153, 10))),
+      title: const Padding(
+        padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+        child: Text('', style: TextStyle(color: Color.fromRGBO(0, 96, 153, 10)))),
     );
   }
 
@@ -99,32 +110,35 @@ class _MisProductosOverviewPageState extends ConsumerState<MisProductosOverviewP
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: Row(
-          children: categories.map((category) {
-            final isSelected = _selectedCategory == category;
-            return Padding(
-              padding: const EdgeInsets.only(right: 12.0),
-              child: GestureDetector( 
-                onTap: () {
-                  setState(() {
-                    _selectedCategory = category; 
-                  });
-                },
-                child: Chip(
-                  label: Text(
-                    category,
-                    style: TextStyle(
-                      color: isSelected ? Colors.white : const Color.fromRGBO(48, 155, 217, 1),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+          child: Row(
+            children: categories.map((category) {
+              final isSelected = _selectedCategory == category;
+              return Padding(
+                padding: const EdgeInsets.only(right: 12.0),
+                child: GestureDetector( 
+                  onTap: () {
+                    setState(() {
+                      _selectedCategory = category; 
+                    });
+                  },
+                  child: Chip(
+                    label: Text(
+                      category,
+                      style: TextStyle(
+                        color: isSelected ? Colors.white : const Color.fromRGBO(48, 155, 217, 1),
+                      ),
                     ),
+                    backgroundColor: isSelected ? const Color.fromRGBO(48, 155, 217, 1) : Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                    side: const BorderSide(color: Color.fromRGBO(48, 155, 217, 1)),
                   ),
-                  backgroundColor: isSelected ? const Color.fromRGBO(48, 155, 217, 1) : Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                  side: const BorderSide(color: Color.fromRGBO(48, 155, 217, 1)),
                 ),
-              ),
-            );
-          }).toList(),
+              );
+            }).toList(),
+          ),
         ),
       ),
     );

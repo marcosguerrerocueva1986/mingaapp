@@ -66,9 +66,7 @@ class TransferenciaController extends _$TransferenciaController {
   }
 
   Future seleccionarBeneficiario(TipoTransferencia tipoTransferencia) async {
-    var respuesta = await appRouter.push<BeneficiarioModel?>(
-        SeleccionBeneficiarioRoute(tipoTransferencia: tipoTransferencia));
-
+    var respuesta = await appRouter.push<BeneficiarioModel?>(const SeleccionBeneficiarioRoute());
     if (respuesta != null) {
       form.patchValue({'emailEnvio': respuesta.email});
       state = state.copyWith(beneficiario: respuesta);

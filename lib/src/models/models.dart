@@ -2,7 +2,6 @@
 
 import 'package:bancamovilr/index.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 part 'models.g.dart';
 part 'models.freezed.dart';
 
@@ -137,11 +136,84 @@ class LoginState with _$LoginState {
 }
 
 @freezed
+class RecuperarContraseniaState with _$RecuperarContraseniaState {
+  factory RecuperarContraseniaState(
+      {@Default(false) bool estaValidado,
+      @Default(false) bool obscurecerClave,
+      @Default(false) bool modoConfirmacion,
+      required bool permiteEditarUsuario}) = _RecuperarContraseniaState;
+
+  factory RecuperarContraseniaState.fromJson(Map<String, Object?> json) =>
+      _$RecuperarContraseniaStateFromJson(json);
+}
+
+@freezed
+class RecuperarUsuarioState with _$RecuperarUsuarioState {
+  factory RecuperarUsuarioState(
+      {@Default(false) bool estaValidado,
+      @Default(false) bool obscurecerClave,
+      @Default(false) bool modoConfirmacion,
+      required bool permiteEditarUsuario}) = _RecuperarUsuarioState;
+
+  factory RecuperarUsuarioState.fromJson(Map<String, Object?> json) =>
+      _$RecuperarUsuarioStateFromJson(json);
+}
+
+@freezed
+class ActivaCuentaState with _$ActivaCuentaState {
+  factory ActivaCuentaState(
+      {@Default(false) bool estaValidado,
+      @Default(false) bool obscurecerClave,
+      @Default(false) bool modoConfirmacion,
+      required bool permiteEditarUsuario}) = _ActivaCuentaState;
+
+  factory ActivaCuentaState.fromJson(Map<String, Object?> json) =>
+      _$ActivaCuentaStateFromJson(json);
+}
+
+@freezed
+class CambiarContraseniaState with _$CambiarContraseniaState {
+  factory CambiarContraseniaState(
+  {@Default(false) bool modoConfirmacion,
+  @Default(false) bool obscurecerClave,
+    required bool permiteEditarUsuario,}) = _CambiarContraseniaState;
+    factory CambiarContraseniaState.fromJson(Map<String, Object?> json) =>
+      _$CambiarContraseniaStateFromJson(json);
+}
+
+@freezed
+class CambiarContraseniaLoginState with _$CambiarContraseniaLoginState {
+  factory CambiarContraseniaLoginState(
+  {@Default(false) bool modoConfirmacion,
+  @Default(false) bool obscurecerClave,
+    required bool permiteEditarUsuario,}) = _CambiarContraseniaLoginState;
+    factory CambiarContraseniaLoginState.fromJson(Map<String, Object?> json) =>
+      _$CambiarContraseniaLoginStateFromJson(json);
+}
+
+@freezed
+class PersonaModel with _$PersonaModel {
+  factory PersonaModel({
+    @Default('') String identificacion,
+    @Default('') String nombre,
+    @Default('') String estadoCivil,
+    @Default('') String direccion,
+    @Default('') String telefono,
+    DateTime? fechaNacimiento,
+    @Default('') String email,
+  }) = _PersonaModel;
+
+  factory PersonaModel.fromJson(Map<String, Object?> json) =>
+      _$PersonaModelFromJson(json);
+}
+
+@freezed
 class PosicionConsolidadaRespuesta with _$PosicionConsolidadaRespuesta {
   factory PosicionConsolidadaRespuesta(
           {@Default([]) List<CuentaModel> cuentas,
           @Default([]) List<InversionModel> inversiones,
-          @Default([]) List<PrestamoModel> prestamos}) =
+          @Default([]) List<PrestamoModel> prestamos,
+          PersonaModel? persona}) =
       _PosicionConsolidadaRespuesta;
 
   factory PosicionConsolidadaRespuesta.fromJson(Map<String, Object?> json) =>
@@ -172,6 +244,7 @@ class InversionModel with _$InversionModel {
       @Default('') String nombre,
       @Default('') String tipo,
       @Default(0.00) double monto,
+      @Default(0) int plazo,
       DateTime? fechaVencimiento,
       @Default('') String estado,
       @Default(0.00) double totalRecibir,
@@ -194,11 +267,15 @@ class PrestamoModel with _$PrestamoModel {
     @Default(0.00) double valorParaEstarAlDia,
     @Default(0.00) double valorCuota,
     @Default(0.00) double valorCancelarPrestamo,
+    DateTime? fechaProximoPago,
+    @Default('') String cuotasCanceladas,
   }) = _PrestamoModel;
 
   factory PrestamoModel.fromJson(Map<String, Object?> json) =>
       _$PrestamoModelFromJson(json);
 }
+
+
 
 @freezed
 class PosicionConsolidadaState with _$PosicionConsolidadaState {

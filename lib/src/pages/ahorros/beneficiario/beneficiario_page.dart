@@ -48,12 +48,12 @@ class _BeneficiarioPageState extends ConsumerState<BeneficiarioPage> {
                 indicatorColor: Colors.white,
                 tabs: [
                   Tab(
-                      text: "Internos",
+                      text: "COAC. Minga Ltda.",
                       icon: Icon(
                         Icons.person,
                       )),
                   Tab(
-                      text: "Externos",
+                      text: "Otros Bancos y Coops.",
                       icon: Icon(
                         Icons.supervised_user_circle,
                       )),

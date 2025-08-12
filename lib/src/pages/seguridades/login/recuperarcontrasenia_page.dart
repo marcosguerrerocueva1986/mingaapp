@@ -1,4 +1,5 @@
 import 'package:bancamovilr/index.dart';
+import 'package:bancamovilr/src/pages/seguridades/login/recuperarcontrasenia_controller.dart';
 import 'package:pinput/pinput.dart';
 
 @RoutePage()
@@ -12,8 +13,8 @@ class RecuperarContraseniaPage extends ConsumerStatefulWidget {
 class _RecuperarContraseniaPageState extends ConsumerState<RecuperarContraseniaPage> {
   @override
   Widget build(BuildContext context) {
-    var controller = ref.read(loginControllerProvider.notifier);
-    var provider = ref.watch(loginControllerProvider);
+    var controller = ref.read(recuperarContraseniaControllerProvider.notifier);
+    var provider = ref.watch(recuperarContraseniaControllerProvider);
 
     return ScaffoldBootstrap(
       body: Padding(

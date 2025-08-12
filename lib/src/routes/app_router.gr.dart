@@ -215,13 +215,9 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     SeleccionBeneficiarioRoute.name: (routeData) {
-      final args = routeData.argsAs<SeleccionBeneficiarioRouteArgs>();
       return AutoRoutePage<BeneficiarioModel?>(
         routeData: routeData,
-        child: SeleccionBeneficiarioPage(
-          args.tipoTransferencia,
-          key: args.key,
-        ),
+        child: const SeleccionBeneficiarioPage(),
       );
     },
     SeleccionConceptoRoute.name: (routeData) {
@@ -240,6 +236,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<PrestamoModel?>(
         routeData: routeData,
         child: const SeleccionPrestamoPage(),
+      );
+    },
+    SolicitudesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SolicitudesPage(),
       );
     },
     SplashRoute.name: (routeData) {
@@ -273,6 +275,7 @@ abstract class _$AppRouter extends RootStackRouter {
           key: args.key,
           tipoTransferencia: args.tipoTransferencia,
           cuentaTransferenciaParametro: args.cuentaTransferenciaParametro,
+          beneficiario: args.beneficiario,
         ),
       );
     },
@@ -861,41 +864,16 @@ class RecuperarUsuarioRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SeleccionBeneficiarioPage]
-class SeleccionBeneficiarioRoute
-    extends PageRouteInfo<SeleccionBeneficiarioRouteArgs> {
-  SeleccionBeneficiarioRoute({
-    required TipoTransferencia tipoTransferencia,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
+class SeleccionBeneficiarioRoute extends PageRouteInfo<void> {
+  const SeleccionBeneficiarioRoute({List<PageRouteInfo>? children})
+      : super(
           SeleccionBeneficiarioRoute.name,
-          args: SeleccionBeneficiarioRouteArgs(
-            tipoTransferencia: tipoTransferencia,
-            key: key,
-          ),
           initialChildren: children,
         );
 
   static const String name = 'SeleccionBeneficiarioRoute';
 
-  static const PageInfo<SeleccionBeneficiarioRouteArgs> page =
-      PageInfo<SeleccionBeneficiarioRouteArgs>(name);
-}
-
-class SeleccionBeneficiarioRouteArgs {
-  const SeleccionBeneficiarioRouteArgs({
-    required this.tipoTransferencia,
-    this.key,
-  });
-
-  final TipoTransferencia tipoTransferencia;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'SeleccionBeneficiarioRouteArgs{tipoTransferencia: $tipoTransferencia, key: $key}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -936,6 +914,20 @@ class SeleccionPrestamoRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SeleccionPrestamoRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SolicitudesPage]
+class SolicitudesRoute extends PageRouteInfo<void> {
+  const SolicitudesRoute({List<PageRouteInfo>? children})
+      : super(
+          SolicitudesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SolicitudesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -1014,6 +1006,7 @@ class TransferenciaRoute extends PageRouteInfo<TransferenciaRouteArgs> {
     Key? key,
     required TipoTransferencia tipoTransferencia,
     CuentaModel? cuentaTransferenciaParametro,
+    BeneficiarioModel? beneficiario,
     List<PageRouteInfo>? children,
   }) : super(
           TransferenciaRoute.name,
@@ -1021,6 +1014,7 @@ class TransferenciaRoute extends PageRouteInfo<TransferenciaRouteArgs> {
             key: key,
             tipoTransferencia: tipoTransferencia,
             cuentaTransferenciaParametro: cuentaTransferenciaParametro,
+            beneficiario: beneficiario,
           ),
           initialChildren: children,
         );
@@ -1036,6 +1030,7 @@ class TransferenciaRouteArgs {
     this.key,
     required this.tipoTransferencia,
     this.cuentaTransferenciaParametro,
+    this.beneficiario,
   });
 
   final Key? key;
@@ -1044,8 +1039,10 @@ class TransferenciaRouteArgs {
 
   final CuentaModel? cuentaTransferenciaParametro;
 
+  final BeneficiarioModel? beneficiario;
+
   @override
   String toString() {
-    return 'TransferenciaRouteArgs{key: $key, tipoTransferencia: $tipoTransferencia, cuentaTransferenciaParametro: $cuentaTransferenciaParametro}';
+    return 'TransferenciaRouteArgs{key: $key, tipoTransferencia: $tipoTransferencia, cuentaTransferenciaParametro: $cuentaTransferenciaParametro, beneficiario: $beneficiario}';
   }
 }

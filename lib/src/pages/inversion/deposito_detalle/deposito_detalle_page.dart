@@ -29,8 +29,7 @@ class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
     var provider = ref.watch(depositoDetalleControllerProvider);
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
-    final balanceController = ref.watch(balanceVisibilityProvider);
-    final isBalanceVisible = balanceController.isBalanceVisible(provider.deposito?.codigo ?? '');
+    
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -198,21 +197,27 @@ class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
                                         ],
                                       ),
                                     ),
-                                    Text(
-                                      isBalanceVisible ? '\$${widget.deposito.monto.toStringAsFixed(2)}' : '********',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 28.0,
-                                        fontWeight: FontWeight.bold,
-                                        shadows: [
-                                          Shadow(
-                                          blurRadius: 2.0,
-                                          color: Colors.white,
-                                          offset: Offset(1.0, 1.0)
+                                    Consumer(
+                                      builder: (context, ref, child) {
+                                        final balanceController = ref.watch(balanceVisibilityProvider);
+                                        final isBalanceVisible = balanceController.isBalanceVisible(provider.deposito?.codigo ?? '');
+                                        return Text(
+                                          isBalanceVisible ? '\$${widget.deposito.monto.toStringAsFixed(2)}' : '********',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 28.0,
+                                            fontWeight: FontWeight.bold,
+                                            shadows: [
+                                              Shadow(
+                                              blurRadius: 2.0,
+                                              color: Colors.white,
+                                              offset: Offset(1.0, 1.0)
+                                            ),
+                                          ],
                                         ),
-                                      ],
+                                                                          );
+                                      }
                                     ),
-                                  ),
                                 ],
                               ),
                               Column(
@@ -401,7 +406,7 @@ const TarjetaDetallesInversion({super.key, required this.inversion});
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Plazo en días',
-            valor: '${inversion.monto.toMoney()} días',
+            valor: '${inversion.plazo} días',
             colorValor: const Color.fromRGBO(0, 96, 152, 20),
           ),
           _construirDivisor(),

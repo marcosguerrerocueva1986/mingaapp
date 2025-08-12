@@ -100,11 +100,11 @@ class _DatosPersonalesPageState extends ConsumerState<DatosPersonalesPage> {
                   ],
                 ),
               ),
-              _buildInfoItem(title: 'Estado Civil', value: 'SOLTERO'),
-              _buildInfoItem(title: 'Fecha nacimiento', value: '13/06/1989'),
-              _buildInfoItem(title: 'Telefono', value: '0989650204'),
-              _buildInfoItem(title: 'Direccion', value: 'Av Pedro Vicente Maldonado'),
-              _buildInfoItem(title: 'Correo', value: 'dannydaniel1389@gmail.com'),
+              _buildInfoItem(title: 'Estado Civil', value: provider.posicionConsolidada?.persona?.estadoCivil),
+              _buildInfoItem(title: 'Fecha nacimiento', value: provider.posicionConsolidada?.persona?.fechaNacimiento.toString()),
+              _buildInfoItem(title: 'Telefono', value: provider.posicionConsolidada?.persona?.telefono),
+              _buildInfoItem(title: 'Direccion', value: provider.posicionConsolidada?.persona?.direccion),
+              _buildInfoItem(title: 'Correo', value: provider.posicionConsolidada?.persona?.email),
             ],
           ),
         ),
@@ -112,7 +112,7 @@ class _DatosPersonalesPageState extends ConsumerState<DatosPersonalesPage> {
     );
   }
 
-  Widget _buildInfoItem({required String title, required String value}) {
+  Widget _buildInfoItem({required String title, required String? value}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -131,7 +131,7 @@ class _DatosPersonalesPageState extends ConsumerState<DatosPersonalesPage> {
         Padding(
           padding: const EdgeInsets.only(left: 10),
           child: Text(
-            value,
+            value!,
             style: const TextStyle(
               fontSize: 16,
               color: Colors.grey,

@@ -2429,6 +2429,1300 @@ abstract class _LoginState implements LoginState {
       throw _privateConstructorUsedError;
 }
 
+RecuperarContraseniaState _$RecuperarContraseniaStateFromJson(
+    Map<String, dynamic> json) {
+  return _RecuperarContraseniaState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RecuperarContraseniaState {
+  bool get estaValidado => throw _privateConstructorUsedError;
+  bool get obscurecerClave => throw _privateConstructorUsedError;
+  bool get modoConfirmacion => throw _privateConstructorUsedError;
+  bool get permiteEditarUsuario => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RecuperarContraseniaStateCopyWith<RecuperarContraseniaState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RecuperarContraseniaStateCopyWith<$Res> {
+  factory $RecuperarContraseniaStateCopyWith(RecuperarContraseniaState value,
+          $Res Function(RecuperarContraseniaState) then) =
+      _$RecuperarContraseniaStateCopyWithImpl<$Res, RecuperarContraseniaState>;
+  @useResult
+  $Res call(
+      {bool estaValidado,
+      bool obscurecerClave,
+      bool modoConfirmacion,
+      bool permiteEditarUsuario});
+}
+
+/// @nodoc
+class _$RecuperarContraseniaStateCopyWithImpl<$Res,
+        $Val extends RecuperarContraseniaState>
+    implements $RecuperarContraseniaStateCopyWith<$Res> {
+  _$RecuperarContraseniaStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? estaValidado = null,
+    Object? obscurecerClave = null,
+    Object? modoConfirmacion = null,
+    Object? permiteEditarUsuario = null,
+  }) {
+    return _then(_value.copyWith(
+      estaValidado: null == estaValidado
+          ? _value.estaValidado
+          : estaValidado // ignore: cast_nullable_to_non_nullable
+              as bool,
+      obscurecerClave: null == obscurecerClave
+          ? _value.obscurecerClave
+          : obscurecerClave // ignore: cast_nullable_to_non_nullable
+              as bool,
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      permiteEditarUsuario: null == permiteEditarUsuario
+          ? _value.permiteEditarUsuario
+          : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RecuperarContraseniaStateImplCopyWith<$Res>
+    implements $RecuperarContraseniaStateCopyWith<$Res> {
+  factory _$$RecuperarContraseniaStateImplCopyWith(
+          _$RecuperarContraseniaStateImpl value,
+          $Res Function(_$RecuperarContraseniaStateImpl) then) =
+      __$$RecuperarContraseniaStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool estaValidado,
+      bool obscurecerClave,
+      bool modoConfirmacion,
+      bool permiteEditarUsuario});
+}
+
+/// @nodoc
+class __$$RecuperarContraseniaStateImplCopyWithImpl<$Res>
+    extends _$RecuperarContraseniaStateCopyWithImpl<$Res,
+        _$RecuperarContraseniaStateImpl>
+    implements _$$RecuperarContraseniaStateImplCopyWith<$Res> {
+  __$$RecuperarContraseniaStateImplCopyWithImpl(
+      _$RecuperarContraseniaStateImpl _value,
+      $Res Function(_$RecuperarContraseniaStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? estaValidado = null,
+    Object? obscurecerClave = null,
+    Object? modoConfirmacion = null,
+    Object? permiteEditarUsuario = null,
+  }) {
+    return _then(_$RecuperarContraseniaStateImpl(
+      estaValidado: null == estaValidado
+          ? _value.estaValidado
+          : estaValidado // ignore: cast_nullable_to_non_nullable
+              as bool,
+      obscurecerClave: null == obscurecerClave
+          ? _value.obscurecerClave
+          : obscurecerClave // ignore: cast_nullable_to_non_nullable
+              as bool,
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      permiteEditarUsuario: null == permiteEditarUsuario
+          ? _value.permiteEditarUsuario
+          : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RecuperarContraseniaStateImpl implements _RecuperarContraseniaState {
+  _$RecuperarContraseniaStateImpl(
+      {this.estaValidado = false,
+      this.obscurecerClave = false,
+      this.modoConfirmacion = false,
+      required this.permiteEditarUsuario});
+
+  factory _$RecuperarContraseniaStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RecuperarContraseniaStateImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool estaValidado;
+  @override
+  @JsonKey()
+  final bool obscurecerClave;
+  @override
+  @JsonKey()
+  final bool modoConfirmacion;
+  @override
+  final bool permiteEditarUsuario;
+
+  @override
+  String toString() {
+    return 'RecuperarContraseniaState(estaValidado: $estaValidado, obscurecerClave: $obscurecerClave, modoConfirmacion: $modoConfirmacion, permiteEditarUsuario: $permiteEditarUsuario)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RecuperarContraseniaStateImpl &&
+            (identical(other.estaValidado, estaValidado) ||
+                other.estaValidado == estaValidado) &&
+            (identical(other.obscurecerClave, obscurecerClave) ||
+                other.obscurecerClave == obscurecerClave) &&
+            (identical(other.modoConfirmacion, modoConfirmacion) ||
+                other.modoConfirmacion == modoConfirmacion) &&
+            (identical(other.permiteEditarUsuario, permiteEditarUsuario) ||
+                other.permiteEditarUsuario == permiteEditarUsuario));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, estaValidado, obscurecerClave,
+      modoConfirmacion, permiteEditarUsuario);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RecuperarContraseniaStateImplCopyWith<_$RecuperarContraseniaStateImpl>
+      get copyWith => __$$RecuperarContraseniaStateImplCopyWithImpl<
+          _$RecuperarContraseniaStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RecuperarContraseniaStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RecuperarContraseniaState implements RecuperarContraseniaState {
+  factory _RecuperarContraseniaState(
+          {final bool estaValidado,
+          final bool obscurecerClave,
+          final bool modoConfirmacion,
+          required final bool permiteEditarUsuario}) =
+      _$RecuperarContraseniaStateImpl;
+
+  factory _RecuperarContraseniaState.fromJson(Map<String, dynamic> json) =
+      _$RecuperarContraseniaStateImpl.fromJson;
+
+  @override
+  bool get estaValidado;
+  @override
+  bool get obscurecerClave;
+  @override
+  bool get modoConfirmacion;
+  @override
+  bool get permiteEditarUsuario;
+  @override
+  @JsonKey(ignore: true)
+  _$$RecuperarContraseniaStateImplCopyWith<_$RecuperarContraseniaStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+RecuperarUsuarioState _$RecuperarUsuarioStateFromJson(
+    Map<String, dynamic> json) {
+  return _RecuperarUsuarioState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RecuperarUsuarioState {
+  bool get estaValidado => throw _privateConstructorUsedError;
+  bool get obscurecerClave => throw _privateConstructorUsedError;
+  bool get modoConfirmacion => throw _privateConstructorUsedError;
+  bool get permiteEditarUsuario => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RecuperarUsuarioStateCopyWith<RecuperarUsuarioState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RecuperarUsuarioStateCopyWith<$Res> {
+  factory $RecuperarUsuarioStateCopyWith(RecuperarUsuarioState value,
+          $Res Function(RecuperarUsuarioState) then) =
+      _$RecuperarUsuarioStateCopyWithImpl<$Res, RecuperarUsuarioState>;
+  @useResult
+  $Res call(
+      {bool estaValidado,
+      bool obscurecerClave,
+      bool modoConfirmacion,
+      bool permiteEditarUsuario});
+}
+
+/// @nodoc
+class _$RecuperarUsuarioStateCopyWithImpl<$Res,
+        $Val extends RecuperarUsuarioState>
+    implements $RecuperarUsuarioStateCopyWith<$Res> {
+  _$RecuperarUsuarioStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? estaValidado = null,
+    Object? obscurecerClave = null,
+    Object? modoConfirmacion = null,
+    Object? permiteEditarUsuario = null,
+  }) {
+    return _then(_value.copyWith(
+      estaValidado: null == estaValidado
+          ? _value.estaValidado
+          : estaValidado // ignore: cast_nullable_to_non_nullable
+              as bool,
+      obscurecerClave: null == obscurecerClave
+          ? _value.obscurecerClave
+          : obscurecerClave // ignore: cast_nullable_to_non_nullable
+              as bool,
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      permiteEditarUsuario: null == permiteEditarUsuario
+          ? _value.permiteEditarUsuario
+          : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RecuperarUsuarioStateImplCopyWith<$Res>
+    implements $RecuperarUsuarioStateCopyWith<$Res> {
+  factory _$$RecuperarUsuarioStateImplCopyWith(
+          _$RecuperarUsuarioStateImpl value,
+          $Res Function(_$RecuperarUsuarioStateImpl) then) =
+      __$$RecuperarUsuarioStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool estaValidado,
+      bool obscurecerClave,
+      bool modoConfirmacion,
+      bool permiteEditarUsuario});
+}
+
+/// @nodoc
+class __$$RecuperarUsuarioStateImplCopyWithImpl<$Res>
+    extends _$RecuperarUsuarioStateCopyWithImpl<$Res,
+        _$RecuperarUsuarioStateImpl>
+    implements _$$RecuperarUsuarioStateImplCopyWith<$Res> {
+  __$$RecuperarUsuarioStateImplCopyWithImpl(_$RecuperarUsuarioStateImpl _value,
+      $Res Function(_$RecuperarUsuarioStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? estaValidado = null,
+    Object? obscurecerClave = null,
+    Object? modoConfirmacion = null,
+    Object? permiteEditarUsuario = null,
+  }) {
+    return _then(_$RecuperarUsuarioStateImpl(
+      estaValidado: null == estaValidado
+          ? _value.estaValidado
+          : estaValidado // ignore: cast_nullable_to_non_nullable
+              as bool,
+      obscurecerClave: null == obscurecerClave
+          ? _value.obscurecerClave
+          : obscurecerClave // ignore: cast_nullable_to_non_nullable
+              as bool,
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      permiteEditarUsuario: null == permiteEditarUsuario
+          ? _value.permiteEditarUsuario
+          : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RecuperarUsuarioStateImpl implements _RecuperarUsuarioState {
+  _$RecuperarUsuarioStateImpl(
+      {this.estaValidado = false,
+      this.obscurecerClave = false,
+      this.modoConfirmacion = false,
+      required this.permiteEditarUsuario});
+
+  factory _$RecuperarUsuarioStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RecuperarUsuarioStateImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool estaValidado;
+  @override
+  @JsonKey()
+  final bool obscurecerClave;
+  @override
+  @JsonKey()
+  final bool modoConfirmacion;
+  @override
+  final bool permiteEditarUsuario;
+
+  @override
+  String toString() {
+    return 'RecuperarUsuarioState(estaValidado: $estaValidado, obscurecerClave: $obscurecerClave, modoConfirmacion: $modoConfirmacion, permiteEditarUsuario: $permiteEditarUsuario)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RecuperarUsuarioStateImpl &&
+            (identical(other.estaValidado, estaValidado) ||
+                other.estaValidado == estaValidado) &&
+            (identical(other.obscurecerClave, obscurecerClave) ||
+                other.obscurecerClave == obscurecerClave) &&
+            (identical(other.modoConfirmacion, modoConfirmacion) ||
+                other.modoConfirmacion == modoConfirmacion) &&
+            (identical(other.permiteEditarUsuario, permiteEditarUsuario) ||
+                other.permiteEditarUsuario == permiteEditarUsuario));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, estaValidado, obscurecerClave,
+      modoConfirmacion, permiteEditarUsuario);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RecuperarUsuarioStateImplCopyWith<_$RecuperarUsuarioStateImpl>
+      get copyWith => __$$RecuperarUsuarioStateImplCopyWithImpl<
+          _$RecuperarUsuarioStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RecuperarUsuarioStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RecuperarUsuarioState implements RecuperarUsuarioState {
+  factory _RecuperarUsuarioState(
+      {final bool estaValidado,
+      final bool obscurecerClave,
+      final bool modoConfirmacion,
+      required final bool permiteEditarUsuario}) = _$RecuperarUsuarioStateImpl;
+
+  factory _RecuperarUsuarioState.fromJson(Map<String, dynamic> json) =
+      _$RecuperarUsuarioStateImpl.fromJson;
+
+  @override
+  bool get estaValidado;
+  @override
+  bool get obscurecerClave;
+  @override
+  bool get modoConfirmacion;
+  @override
+  bool get permiteEditarUsuario;
+  @override
+  @JsonKey(ignore: true)
+  _$$RecuperarUsuarioStateImplCopyWith<_$RecuperarUsuarioStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ActivaCuentaState _$ActivaCuentaStateFromJson(Map<String, dynamic> json) {
+  return _ActivaCuentaState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ActivaCuentaState {
+  bool get estaValidado => throw _privateConstructorUsedError;
+  bool get obscurecerClave => throw _privateConstructorUsedError;
+  bool get modoConfirmacion => throw _privateConstructorUsedError;
+  bool get permiteEditarUsuario => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ActivaCuentaStateCopyWith<ActivaCuentaState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ActivaCuentaStateCopyWith<$Res> {
+  factory $ActivaCuentaStateCopyWith(
+          ActivaCuentaState value, $Res Function(ActivaCuentaState) then) =
+      _$ActivaCuentaStateCopyWithImpl<$Res, ActivaCuentaState>;
+  @useResult
+  $Res call(
+      {bool estaValidado,
+      bool obscurecerClave,
+      bool modoConfirmacion,
+      bool permiteEditarUsuario});
+}
+
+/// @nodoc
+class _$ActivaCuentaStateCopyWithImpl<$Res, $Val extends ActivaCuentaState>
+    implements $ActivaCuentaStateCopyWith<$Res> {
+  _$ActivaCuentaStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? estaValidado = null,
+    Object? obscurecerClave = null,
+    Object? modoConfirmacion = null,
+    Object? permiteEditarUsuario = null,
+  }) {
+    return _then(_value.copyWith(
+      estaValidado: null == estaValidado
+          ? _value.estaValidado
+          : estaValidado // ignore: cast_nullable_to_non_nullable
+              as bool,
+      obscurecerClave: null == obscurecerClave
+          ? _value.obscurecerClave
+          : obscurecerClave // ignore: cast_nullable_to_non_nullable
+              as bool,
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      permiteEditarUsuario: null == permiteEditarUsuario
+          ? _value.permiteEditarUsuario
+          : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ActivaCuentaStateImplCopyWith<$Res>
+    implements $ActivaCuentaStateCopyWith<$Res> {
+  factory _$$ActivaCuentaStateImplCopyWith(_$ActivaCuentaStateImpl value,
+          $Res Function(_$ActivaCuentaStateImpl) then) =
+      __$$ActivaCuentaStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool estaValidado,
+      bool obscurecerClave,
+      bool modoConfirmacion,
+      bool permiteEditarUsuario});
+}
+
+/// @nodoc
+class __$$ActivaCuentaStateImplCopyWithImpl<$Res>
+    extends _$ActivaCuentaStateCopyWithImpl<$Res, _$ActivaCuentaStateImpl>
+    implements _$$ActivaCuentaStateImplCopyWith<$Res> {
+  __$$ActivaCuentaStateImplCopyWithImpl(_$ActivaCuentaStateImpl _value,
+      $Res Function(_$ActivaCuentaStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? estaValidado = null,
+    Object? obscurecerClave = null,
+    Object? modoConfirmacion = null,
+    Object? permiteEditarUsuario = null,
+  }) {
+    return _then(_$ActivaCuentaStateImpl(
+      estaValidado: null == estaValidado
+          ? _value.estaValidado
+          : estaValidado // ignore: cast_nullable_to_non_nullable
+              as bool,
+      obscurecerClave: null == obscurecerClave
+          ? _value.obscurecerClave
+          : obscurecerClave // ignore: cast_nullable_to_non_nullable
+              as bool,
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      permiteEditarUsuario: null == permiteEditarUsuario
+          ? _value.permiteEditarUsuario
+          : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ActivaCuentaStateImpl implements _ActivaCuentaState {
+  _$ActivaCuentaStateImpl(
+      {this.estaValidado = false,
+      this.obscurecerClave = false,
+      this.modoConfirmacion = false,
+      required this.permiteEditarUsuario});
+
+  factory _$ActivaCuentaStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ActivaCuentaStateImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool estaValidado;
+  @override
+  @JsonKey()
+  final bool obscurecerClave;
+  @override
+  @JsonKey()
+  final bool modoConfirmacion;
+  @override
+  final bool permiteEditarUsuario;
+
+  @override
+  String toString() {
+    return 'ActivaCuentaState(estaValidado: $estaValidado, obscurecerClave: $obscurecerClave, modoConfirmacion: $modoConfirmacion, permiteEditarUsuario: $permiteEditarUsuario)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ActivaCuentaStateImpl &&
+            (identical(other.estaValidado, estaValidado) ||
+                other.estaValidado == estaValidado) &&
+            (identical(other.obscurecerClave, obscurecerClave) ||
+                other.obscurecerClave == obscurecerClave) &&
+            (identical(other.modoConfirmacion, modoConfirmacion) ||
+                other.modoConfirmacion == modoConfirmacion) &&
+            (identical(other.permiteEditarUsuario, permiteEditarUsuario) ||
+                other.permiteEditarUsuario == permiteEditarUsuario));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, estaValidado, obscurecerClave,
+      modoConfirmacion, permiteEditarUsuario);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ActivaCuentaStateImplCopyWith<_$ActivaCuentaStateImpl> get copyWith =>
+      __$$ActivaCuentaStateImplCopyWithImpl<_$ActivaCuentaStateImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ActivaCuentaStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ActivaCuentaState implements ActivaCuentaState {
+  factory _ActivaCuentaState(
+      {final bool estaValidado,
+      final bool obscurecerClave,
+      final bool modoConfirmacion,
+      required final bool permiteEditarUsuario}) = _$ActivaCuentaStateImpl;
+
+  factory _ActivaCuentaState.fromJson(Map<String, dynamic> json) =
+      _$ActivaCuentaStateImpl.fromJson;
+
+  @override
+  bool get estaValidado;
+  @override
+  bool get obscurecerClave;
+  @override
+  bool get modoConfirmacion;
+  @override
+  bool get permiteEditarUsuario;
+  @override
+  @JsonKey(ignore: true)
+  _$$ActivaCuentaStateImplCopyWith<_$ActivaCuentaStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CambiarContraseniaState _$CambiarContraseniaStateFromJson(
+    Map<String, dynamic> json) {
+  return _CambiarContraseniaState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CambiarContraseniaState {
+  bool get modoConfirmacion => throw _privateConstructorUsedError;
+  bool get obscurecerClave => throw _privateConstructorUsedError;
+  bool get permiteEditarUsuario => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CambiarContraseniaStateCopyWith<CambiarContraseniaState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CambiarContraseniaStateCopyWith<$Res> {
+  factory $CambiarContraseniaStateCopyWith(CambiarContraseniaState value,
+          $Res Function(CambiarContraseniaState) then) =
+      _$CambiarContraseniaStateCopyWithImpl<$Res, CambiarContraseniaState>;
+  @useResult
+  $Res call(
+      {bool modoConfirmacion, bool obscurecerClave, bool permiteEditarUsuario});
+}
+
+/// @nodoc
+class _$CambiarContraseniaStateCopyWithImpl<$Res,
+        $Val extends CambiarContraseniaState>
+    implements $CambiarContraseniaStateCopyWith<$Res> {
+  _$CambiarContraseniaStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? modoConfirmacion = null,
+    Object? obscurecerClave = null,
+    Object? permiteEditarUsuario = null,
+  }) {
+    return _then(_value.copyWith(
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      obscurecerClave: null == obscurecerClave
+          ? _value.obscurecerClave
+          : obscurecerClave // ignore: cast_nullable_to_non_nullable
+              as bool,
+      permiteEditarUsuario: null == permiteEditarUsuario
+          ? _value.permiteEditarUsuario
+          : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CambiarContraseniaStateImplCopyWith<$Res>
+    implements $CambiarContraseniaStateCopyWith<$Res> {
+  factory _$$CambiarContraseniaStateImplCopyWith(
+          _$CambiarContraseniaStateImpl value,
+          $Res Function(_$CambiarContraseniaStateImpl) then) =
+      __$$CambiarContraseniaStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool modoConfirmacion, bool obscurecerClave, bool permiteEditarUsuario});
+}
+
+/// @nodoc
+class __$$CambiarContraseniaStateImplCopyWithImpl<$Res>
+    extends _$CambiarContraseniaStateCopyWithImpl<$Res,
+        _$CambiarContraseniaStateImpl>
+    implements _$$CambiarContraseniaStateImplCopyWith<$Res> {
+  __$$CambiarContraseniaStateImplCopyWithImpl(
+      _$CambiarContraseniaStateImpl _value,
+      $Res Function(_$CambiarContraseniaStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? modoConfirmacion = null,
+    Object? obscurecerClave = null,
+    Object? permiteEditarUsuario = null,
+  }) {
+    return _then(_$CambiarContraseniaStateImpl(
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      obscurecerClave: null == obscurecerClave
+          ? _value.obscurecerClave
+          : obscurecerClave // ignore: cast_nullable_to_non_nullable
+              as bool,
+      permiteEditarUsuario: null == permiteEditarUsuario
+          ? _value.permiteEditarUsuario
+          : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CambiarContraseniaStateImpl implements _CambiarContraseniaState {
+  _$CambiarContraseniaStateImpl(
+      {this.modoConfirmacion = false,
+      this.obscurecerClave = false,
+      required this.permiteEditarUsuario});
+
+  factory _$CambiarContraseniaStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CambiarContraseniaStateImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool modoConfirmacion;
+  @override
+  @JsonKey()
+  final bool obscurecerClave;
+  @override
+  final bool permiteEditarUsuario;
+
+  @override
+  String toString() {
+    return 'CambiarContraseniaState(modoConfirmacion: $modoConfirmacion, obscurecerClave: $obscurecerClave, permiteEditarUsuario: $permiteEditarUsuario)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CambiarContraseniaStateImpl &&
+            (identical(other.modoConfirmacion, modoConfirmacion) ||
+                other.modoConfirmacion == modoConfirmacion) &&
+            (identical(other.obscurecerClave, obscurecerClave) ||
+                other.obscurecerClave == obscurecerClave) &&
+            (identical(other.permiteEditarUsuario, permiteEditarUsuario) ||
+                other.permiteEditarUsuario == permiteEditarUsuario));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, modoConfirmacion, obscurecerClave, permiteEditarUsuario);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CambiarContraseniaStateImplCopyWith<_$CambiarContraseniaStateImpl>
+      get copyWith => __$$CambiarContraseniaStateImplCopyWithImpl<
+          _$CambiarContraseniaStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CambiarContraseniaStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CambiarContraseniaState implements CambiarContraseniaState {
+  factory _CambiarContraseniaState(
+          {final bool modoConfirmacion,
+          final bool obscurecerClave,
+          required final bool permiteEditarUsuario}) =
+      _$CambiarContraseniaStateImpl;
+
+  factory _CambiarContraseniaState.fromJson(Map<String, dynamic> json) =
+      _$CambiarContraseniaStateImpl.fromJson;
+
+  @override
+  bool get modoConfirmacion;
+  @override
+  bool get obscurecerClave;
+  @override
+  bool get permiteEditarUsuario;
+  @override
+  @JsonKey(ignore: true)
+  _$$CambiarContraseniaStateImplCopyWith<_$CambiarContraseniaStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+CambiarContraseniaLoginState _$CambiarContraseniaLoginStateFromJson(
+    Map<String, dynamic> json) {
+  return _CambiarContraseniaLoginState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CambiarContraseniaLoginState {
+  bool get modoConfirmacion => throw _privateConstructorUsedError;
+  bool get obscurecerClave => throw _privateConstructorUsedError;
+  bool get permiteEditarUsuario => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CambiarContraseniaLoginStateCopyWith<CambiarContraseniaLoginState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CambiarContraseniaLoginStateCopyWith<$Res> {
+  factory $CambiarContraseniaLoginStateCopyWith(
+          CambiarContraseniaLoginState value,
+          $Res Function(CambiarContraseniaLoginState) then) =
+      _$CambiarContraseniaLoginStateCopyWithImpl<$Res,
+          CambiarContraseniaLoginState>;
+  @useResult
+  $Res call(
+      {bool modoConfirmacion, bool obscurecerClave, bool permiteEditarUsuario});
+}
+
+/// @nodoc
+class _$CambiarContraseniaLoginStateCopyWithImpl<$Res,
+        $Val extends CambiarContraseniaLoginState>
+    implements $CambiarContraseniaLoginStateCopyWith<$Res> {
+  _$CambiarContraseniaLoginStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? modoConfirmacion = null,
+    Object? obscurecerClave = null,
+    Object? permiteEditarUsuario = null,
+  }) {
+    return _then(_value.copyWith(
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      obscurecerClave: null == obscurecerClave
+          ? _value.obscurecerClave
+          : obscurecerClave // ignore: cast_nullable_to_non_nullable
+              as bool,
+      permiteEditarUsuario: null == permiteEditarUsuario
+          ? _value.permiteEditarUsuario
+          : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CambiarContraseniaLoginStateImplCopyWith<$Res>
+    implements $CambiarContraseniaLoginStateCopyWith<$Res> {
+  factory _$$CambiarContraseniaLoginStateImplCopyWith(
+          _$CambiarContraseniaLoginStateImpl value,
+          $Res Function(_$CambiarContraseniaLoginStateImpl) then) =
+      __$$CambiarContraseniaLoginStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool modoConfirmacion, bool obscurecerClave, bool permiteEditarUsuario});
+}
+
+/// @nodoc
+class __$$CambiarContraseniaLoginStateImplCopyWithImpl<$Res>
+    extends _$CambiarContraseniaLoginStateCopyWithImpl<$Res,
+        _$CambiarContraseniaLoginStateImpl>
+    implements _$$CambiarContraseniaLoginStateImplCopyWith<$Res> {
+  __$$CambiarContraseniaLoginStateImplCopyWithImpl(
+      _$CambiarContraseniaLoginStateImpl _value,
+      $Res Function(_$CambiarContraseniaLoginStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? modoConfirmacion = null,
+    Object? obscurecerClave = null,
+    Object? permiteEditarUsuario = null,
+  }) {
+    return _then(_$CambiarContraseniaLoginStateImpl(
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      obscurecerClave: null == obscurecerClave
+          ? _value.obscurecerClave
+          : obscurecerClave // ignore: cast_nullable_to_non_nullable
+              as bool,
+      permiteEditarUsuario: null == permiteEditarUsuario
+          ? _value.permiteEditarUsuario
+          : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CambiarContraseniaLoginStateImpl
+    implements _CambiarContraseniaLoginState {
+  _$CambiarContraseniaLoginStateImpl(
+      {this.modoConfirmacion = false,
+      this.obscurecerClave = false,
+      required this.permiteEditarUsuario});
+
+  factory _$CambiarContraseniaLoginStateImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$CambiarContraseniaLoginStateImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool modoConfirmacion;
+  @override
+  @JsonKey()
+  final bool obscurecerClave;
+  @override
+  final bool permiteEditarUsuario;
+
+  @override
+  String toString() {
+    return 'CambiarContraseniaLoginState(modoConfirmacion: $modoConfirmacion, obscurecerClave: $obscurecerClave, permiteEditarUsuario: $permiteEditarUsuario)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CambiarContraseniaLoginStateImpl &&
+            (identical(other.modoConfirmacion, modoConfirmacion) ||
+                other.modoConfirmacion == modoConfirmacion) &&
+            (identical(other.obscurecerClave, obscurecerClave) ||
+                other.obscurecerClave == obscurecerClave) &&
+            (identical(other.permiteEditarUsuario, permiteEditarUsuario) ||
+                other.permiteEditarUsuario == permiteEditarUsuario));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, modoConfirmacion, obscurecerClave, permiteEditarUsuario);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CambiarContraseniaLoginStateImplCopyWith<
+          _$CambiarContraseniaLoginStateImpl>
+      get copyWith => __$$CambiarContraseniaLoginStateImplCopyWithImpl<
+          _$CambiarContraseniaLoginStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CambiarContraseniaLoginStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CambiarContraseniaLoginState
+    implements CambiarContraseniaLoginState {
+  factory _CambiarContraseniaLoginState(
+          {final bool modoConfirmacion,
+          final bool obscurecerClave,
+          required final bool permiteEditarUsuario}) =
+      _$CambiarContraseniaLoginStateImpl;
+
+  factory _CambiarContraseniaLoginState.fromJson(Map<String, dynamic> json) =
+      _$CambiarContraseniaLoginStateImpl.fromJson;
+
+  @override
+  bool get modoConfirmacion;
+  @override
+  bool get obscurecerClave;
+  @override
+  bool get permiteEditarUsuario;
+  @override
+  @JsonKey(ignore: true)
+  _$$CambiarContraseniaLoginStateImplCopyWith<
+          _$CambiarContraseniaLoginStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+PersonaModel _$PersonaModelFromJson(Map<String, dynamic> json) {
+  return _PersonaModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PersonaModel {
+  String get identificacion => throw _privateConstructorUsedError;
+  String get nombre => throw _privateConstructorUsedError;
+  String get estadoCivil => throw _privateConstructorUsedError;
+  String get direccion => throw _privateConstructorUsedError;
+  String get telefono => throw _privateConstructorUsedError;
+  DateTime? get fechaNacimiento => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PersonaModelCopyWith<PersonaModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PersonaModelCopyWith<$Res> {
+  factory $PersonaModelCopyWith(
+          PersonaModel value, $Res Function(PersonaModel) then) =
+      _$PersonaModelCopyWithImpl<$Res, PersonaModel>;
+  @useResult
+  $Res call(
+      {String identificacion,
+      String nombre,
+      String estadoCivil,
+      String direccion,
+      String telefono,
+      DateTime? fechaNacimiento,
+      String email});
+}
+
+/// @nodoc
+class _$PersonaModelCopyWithImpl<$Res, $Val extends PersonaModel>
+    implements $PersonaModelCopyWith<$Res> {
+  _$PersonaModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? identificacion = null,
+    Object? nombre = null,
+    Object? estadoCivil = null,
+    Object? direccion = null,
+    Object? telefono = null,
+    Object? fechaNacimiento = freezed,
+    Object? email = null,
+  }) {
+    return _then(_value.copyWith(
+      identificacion: null == identificacion
+          ? _value.identificacion
+          : identificacion // ignore: cast_nullable_to_non_nullable
+              as String,
+      nombre: null == nombre
+          ? _value.nombre
+          : nombre // ignore: cast_nullable_to_non_nullable
+              as String,
+      estadoCivil: null == estadoCivil
+          ? _value.estadoCivil
+          : estadoCivil // ignore: cast_nullable_to_non_nullable
+              as String,
+      direccion: null == direccion
+          ? _value.direccion
+          : direccion // ignore: cast_nullable_to_non_nullable
+              as String,
+      telefono: null == telefono
+          ? _value.telefono
+          : telefono // ignore: cast_nullable_to_non_nullable
+              as String,
+      fechaNacimiento: freezed == fechaNacimiento
+          ? _value.fechaNacimiento
+          : fechaNacimiento // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PersonaModelImplCopyWith<$Res>
+    implements $PersonaModelCopyWith<$Res> {
+  factory _$$PersonaModelImplCopyWith(
+          _$PersonaModelImpl value, $Res Function(_$PersonaModelImpl) then) =
+      __$$PersonaModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String identificacion,
+      String nombre,
+      String estadoCivil,
+      String direccion,
+      String telefono,
+      DateTime? fechaNacimiento,
+      String email});
+}
+
+/// @nodoc
+class __$$PersonaModelImplCopyWithImpl<$Res>
+    extends _$PersonaModelCopyWithImpl<$Res, _$PersonaModelImpl>
+    implements _$$PersonaModelImplCopyWith<$Res> {
+  __$$PersonaModelImplCopyWithImpl(
+      _$PersonaModelImpl _value, $Res Function(_$PersonaModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? identificacion = null,
+    Object? nombre = null,
+    Object? estadoCivil = null,
+    Object? direccion = null,
+    Object? telefono = null,
+    Object? fechaNacimiento = freezed,
+    Object? email = null,
+  }) {
+    return _then(_$PersonaModelImpl(
+      identificacion: null == identificacion
+          ? _value.identificacion
+          : identificacion // ignore: cast_nullable_to_non_nullable
+              as String,
+      nombre: null == nombre
+          ? _value.nombre
+          : nombre // ignore: cast_nullable_to_non_nullable
+              as String,
+      estadoCivil: null == estadoCivil
+          ? _value.estadoCivil
+          : estadoCivil // ignore: cast_nullable_to_non_nullable
+              as String,
+      direccion: null == direccion
+          ? _value.direccion
+          : direccion // ignore: cast_nullable_to_non_nullable
+              as String,
+      telefono: null == telefono
+          ? _value.telefono
+          : telefono // ignore: cast_nullable_to_non_nullable
+              as String,
+      fechaNacimiento: freezed == fechaNacimiento
+          ? _value.fechaNacimiento
+          : fechaNacimiento // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PersonaModelImpl implements _PersonaModel {
+  _$PersonaModelImpl(
+      {this.identificacion = '',
+      this.nombre = '',
+      this.estadoCivil = '',
+      this.direccion = '',
+      this.telefono = '',
+      this.fechaNacimiento,
+      this.email = ''});
+
+  factory _$PersonaModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PersonaModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String identificacion;
+  @override
+  @JsonKey()
+  final String nombre;
+  @override
+  @JsonKey()
+  final String estadoCivil;
+  @override
+  @JsonKey()
+  final String direccion;
+  @override
+  @JsonKey()
+  final String telefono;
+  @override
+  final DateTime? fechaNacimiento;
+  @override
+  @JsonKey()
+  final String email;
+
+  @override
+  String toString() {
+    return 'PersonaModel(identificacion: $identificacion, nombre: $nombre, estadoCivil: $estadoCivil, direccion: $direccion, telefono: $telefono, fechaNacimiento: $fechaNacimiento, email: $email)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PersonaModelImpl &&
+            (identical(other.identificacion, identificacion) ||
+                other.identificacion == identificacion) &&
+            (identical(other.nombre, nombre) || other.nombre == nombre) &&
+            (identical(other.estadoCivil, estadoCivil) ||
+                other.estadoCivil == estadoCivil) &&
+            (identical(other.direccion, direccion) ||
+                other.direccion == direccion) &&
+            (identical(other.telefono, telefono) ||
+                other.telefono == telefono) &&
+            (identical(other.fechaNacimiento, fechaNacimiento) ||
+                other.fechaNacimiento == fechaNacimiento) &&
+            (identical(other.email, email) || other.email == email));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, identificacion, nombre,
+      estadoCivil, direccion, telefono, fechaNacimiento, email);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PersonaModelImplCopyWith<_$PersonaModelImpl> get copyWith =>
+      __$$PersonaModelImplCopyWithImpl<_$PersonaModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PersonaModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PersonaModel implements PersonaModel {
+  factory _PersonaModel(
+      {final String identificacion,
+      final String nombre,
+      final String estadoCivil,
+      final String direccion,
+      final String telefono,
+      final DateTime? fechaNacimiento,
+      final String email}) = _$PersonaModelImpl;
+
+  factory _PersonaModel.fromJson(Map<String, dynamic> json) =
+      _$PersonaModelImpl.fromJson;
+
+  @override
+  String get identificacion;
+  @override
+  String get nombre;
+  @override
+  String get estadoCivil;
+  @override
+  String get direccion;
+  @override
+  String get telefono;
+  @override
+  DateTime? get fechaNacimiento;
+  @override
+  String get email;
+  @override
+  @JsonKey(ignore: true)
+  _$$PersonaModelImplCopyWith<_$PersonaModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 PosicionConsolidadaRespuesta _$PosicionConsolidadaRespuestaFromJson(
     Map<String, dynamic> json) {
   return _PosicionConsolidadaRespuesta.fromJson(json);
@@ -2439,6 +3733,7 @@ mixin _$PosicionConsolidadaRespuesta {
   List<CuentaModel> get cuentas => throw _privateConstructorUsedError;
   List<InversionModel> get inversiones => throw _privateConstructorUsedError;
   List<PrestamoModel> get prestamos => throw _privateConstructorUsedError;
+  PersonaModel? get persona => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2457,7 +3752,10 @@ abstract class $PosicionConsolidadaRespuestaCopyWith<$Res> {
   $Res call(
       {List<CuentaModel> cuentas,
       List<InversionModel> inversiones,
-      List<PrestamoModel> prestamos});
+      List<PrestamoModel> prestamos,
+      PersonaModel? persona});
+
+  $PersonaModelCopyWith<$Res>? get persona;
 }
 
 /// @nodoc
@@ -2477,6 +3775,7 @@ class _$PosicionConsolidadaRespuestaCopyWithImpl<$Res,
     Object? cuentas = null,
     Object? inversiones = null,
     Object? prestamos = null,
+    Object? persona = freezed,
   }) {
     return _then(_value.copyWith(
       cuentas: null == cuentas
@@ -2491,7 +3790,23 @@ class _$PosicionConsolidadaRespuestaCopyWithImpl<$Res,
           ? _value.prestamos
           : prestamos // ignore: cast_nullable_to_non_nullable
               as List<PrestamoModel>,
+      persona: freezed == persona
+          ? _value.persona
+          : persona // ignore: cast_nullable_to_non_nullable
+              as PersonaModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PersonaModelCopyWith<$Res>? get persona {
+    if (_value.persona == null) {
+      return null;
+    }
+
+    return $PersonaModelCopyWith<$Res>(_value.persona!, (value) {
+      return _then(_value.copyWith(persona: value) as $Val);
+    });
   }
 }
 
@@ -2507,7 +3822,11 @@ abstract class _$$PosicionConsolidadaRespuestaImplCopyWith<$Res>
   $Res call(
       {List<CuentaModel> cuentas,
       List<InversionModel> inversiones,
-      List<PrestamoModel> prestamos});
+      List<PrestamoModel> prestamos,
+      PersonaModel? persona});
+
+  @override
+  $PersonaModelCopyWith<$Res>? get persona;
 }
 
 /// @nodoc
@@ -2526,6 +3845,7 @@ class __$$PosicionConsolidadaRespuestaImplCopyWithImpl<$Res>
     Object? cuentas = null,
     Object? inversiones = null,
     Object? prestamos = null,
+    Object? persona = freezed,
   }) {
     return _then(_$PosicionConsolidadaRespuestaImpl(
       cuentas: null == cuentas
@@ -2540,6 +3860,10 @@ class __$$PosicionConsolidadaRespuestaImplCopyWithImpl<$Res>
           ? _value._prestamos
           : prestamos // ignore: cast_nullable_to_non_nullable
               as List<PrestamoModel>,
+      persona: freezed == persona
+          ? _value.persona
+          : persona // ignore: cast_nullable_to_non_nullable
+              as PersonaModel?,
     ));
   }
 }
@@ -2551,7 +3875,8 @@ class _$PosicionConsolidadaRespuestaImpl
   _$PosicionConsolidadaRespuestaImpl(
       {final List<CuentaModel> cuentas = const [],
       final List<InversionModel> inversiones = const [],
-      final List<PrestamoModel> prestamos = const []})
+      final List<PrestamoModel> prestamos = const [],
+      this.persona})
       : _cuentas = cuentas,
         _inversiones = inversiones,
         _prestamos = prestamos;
@@ -2588,8 +3913,11 @@ class _$PosicionConsolidadaRespuestaImpl
   }
 
   @override
+  final PersonaModel? persona;
+
+  @override
   String toString() {
-    return 'PosicionConsolidadaRespuesta(cuentas: $cuentas, inversiones: $inversiones, prestamos: $prestamos)';
+    return 'PosicionConsolidadaRespuesta(cuentas: $cuentas, inversiones: $inversiones, prestamos: $prestamos, persona: $persona)';
   }
 
   @override
@@ -2601,7 +3929,8 @@ class _$PosicionConsolidadaRespuestaImpl
             const DeepCollectionEquality()
                 .equals(other._inversiones, _inversiones) &&
             const DeepCollectionEquality()
-                .equals(other._prestamos, _prestamos));
+                .equals(other._prestamos, _prestamos) &&
+            (identical(other.persona, persona) || other.persona == persona));
   }
 
   @JsonKey(ignore: true)
@@ -2610,7 +3939,8 @@ class _$PosicionConsolidadaRespuestaImpl
       runtimeType,
       const DeepCollectionEquality().hash(_cuentas),
       const DeepCollectionEquality().hash(_inversiones),
-      const DeepCollectionEquality().hash(_prestamos));
+      const DeepCollectionEquality().hash(_prestamos),
+      persona);
 
   @JsonKey(ignore: true)
   @override
@@ -2631,10 +3961,10 @@ class _$PosicionConsolidadaRespuestaImpl
 abstract class _PosicionConsolidadaRespuesta
     implements PosicionConsolidadaRespuesta {
   factory _PosicionConsolidadaRespuesta(
-          {final List<CuentaModel> cuentas,
-          final List<InversionModel> inversiones,
-          final List<PrestamoModel> prestamos}) =
-      _$PosicionConsolidadaRespuestaImpl;
+      {final List<CuentaModel> cuentas,
+      final List<InversionModel> inversiones,
+      final List<PrestamoModel> prestamos,
+      final PersonaModel? persona}) = _$PosicionConsolidadaRespuestaImpl;
 
   factory _PosicionConsolidadaRespuesta.fromJson(Map<String, dynamic> json) =
       _$PosicionConsolidadaRespuestaImpl.fromJson;
@@ -2645,6 +3975,8 @@ abstract class _PosicionConsolidadaRespuesta
   List<InversionModel> get inversiones;
   @override
   List<PrestamoModel> get prestamos;
+  @override
+  PersonaModel? get persona;
   @override
   @JsonKey(ignore: true)
   _$$PosicionConsolidadaRespuestaImplCopyWith<
@@ -2955,6 +4287,7 @@ mixin _$InversionModel {
   String get nombre => throw _privateConstructorUsedError;
   String get tipo => throw _privateConstructorUsedError;
   double get monto => throw _privateConstructorUsedError;
+  int get plazo => throw _privateConstructorUsedError;
   DateTime? get fechaVencimiento => throw _privateConstructorUsedError;
   String get estado => throw _privateConstructorUsedError;
   double get totalRecibir => throw _privateConstructorUsedError;
@@ -2977,6 +4310,7 @@ abstract class $InversionModelCopyWith<$Res> {
       String nombre,
       String tipo,
       double monto,
+      int plazo,
       DateTime? fechaVencimiento,
       String estado,
       double totalRecibir,
@@ -3000,6 +4334,7 @@ class _$InversionModelCopyWithImpl<$Res, $Val extends InversionModel>
     Object? nombre = null,
     Object? tipo = null,
     Object? monto = null,
+    Object? plazo = null,
     Object? fechaVencimiento = freezed,
     Object? estado = null,
     Object? totalRecibir = null,
@@ -3022,6 +4357,10 @@ class _$InversionModelCopyWithImpl<$Res, $Val extends InversionModel>
           ? _value.monto
           : monto // ignore: cast_nullable_to_non_nullable
               as double,
+      plazo: null == plazo
+          ? _value.plazo
+          : plazo // ignore: cast_nullable_to_non_nullable
+              as int,
       fechaVencimiento: freezed == fechaVencimiento
           ? _value.fechaVencimiento
           : fechaVencimiento // ignore: cast_nullable_to_non_nullable
@@ -3055,6 +4394,7 @@ abstract class _$$InversionModelImplCopyWith<$Res>
       String nombre,
       String tipo,
       double monto,
+      int plazo,
       DateTime? fechaVencimiento,
       String estado,
       double totalRecibir,
@@ -3076,6 +4416,7 @@ class __$$InversionModelImplCopyWithImpl<$Res>
     Object? nombre = null,
     Object? tipo = null,
     Object? monto = null,
+    Object? plazo = null,
     Object? fechaVencimiento = freezed,
     Object? estado = null,
     Object? totalRecibir = null,
@@ -3098,6 +4439,10 @@ class __$$InversionModelImplCopyWithImpl<$Res>
           ? _value.monto
           : monto // ignore: cast_nullable_to_non_nullable
               as double,
+      plazo: null == plazo
+          ? _value.plazo
+          : plazo // ignore: cast_nullable_to_non_nullable
+              as int,
       fechaVencimiento: freezed == fechaVencimiento
           ? _value.fechaVencimiento
           : fechaVencimiento // ignore: cast_nullable_to_non_nullable
@@ -3126,6 +4471,7 @@ class _$InversionModelImpl implements _InversionModel {
       this.nombre = '',
       this.tipo = '',
       this.monto = 0.00,
+      this.plazo = 0,
       this.fechaVencimiento,
       this.estado = '',
       this.totalRecibir = 0.00,
@@ -3147,6 +4493,9 @@ class _$InversionModelImpl implements _InversionModel {
   @JsonKey()
   final double monto;
   @override
+  @JsonKey()
+  final int plazo;
+  @override
   final DateTime? fechaVencimiento;
   @override
   @JsonKey()
@@ -3160,7 +4509,7 @@ class _$InversionModelImpl implements _InversionModel {
 
   @override
   String toString() {
-    return 'InversionModel(codigo: $codigo, nombre: $nombre, tipo: $tipo, monto: $monto, fechaVencimiento: $fechaVencimiento, estado: $estado, totalRecibir: $totalRecibir, oficina: $oficina)';
+    return 'InversionModel(codigo: $codigo, nombre: $nombre, tipo: $tipo, monto: $monto, plazo: $plazo, fechaVencimiento: $fechaVencimiento, estado: $estado, totalRecibir: $totalRecibir, oficina: $oficina)';
   }
 
   @override
@@ -3172,6 +4521,7 @@ class _$InversionModelImpl implements _InversionModel {
             (identical(other.nombre, nombre) || other.nombre == nombre) &&
             (identical(other.tipo, tipo) || other.tipo == tipo) &&
             (identical(other.monto, monto) || other.monto == monto) &&
+            (identical(other.plazo, plazo) || other.plazo == plazo) &&
             (identical(other.fechaVencimiento, fechaVencimiento) ||
                 other.fechaVencimiento == fechaVencimiento) &&
             (identical(other.estado, estado) || other.estado == estado) &&
@@ -3183,7 +4533,7 @@ class _$InversionModelImpl implements _InversionModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, codigo, nombre, tipo, monto,
-      fechaVencimiento, estado, totalRecibir, oficina);
+      plazo, fechaVencimiento, estado, totalRecibir, oficina);
 
   @JsonKey(ignore: true)
   @override
@@ -3206,6 +4556,7 @@ abstract class _InversionModel implements InversionModel {
       final String nombre,
       final String tipo,
       final double monto,
+      final int plazo,
       final DateTime? fechaVencimiento,
       final String estado,
       final double totalRecibir,
@@ -3222,6 +4573,8 @@ abstract class _InversionModel implements InversionModel {
   String get tipo;
   @override
   double get monto;
+  @override
+  int get plazo;
   @override
   DateTime? get fechaVencimiento;
   @override
@@ -3252,6 +4605,8 @@ mixin _$PrestamoModel {
   double get valorParaEstarAlDia => throw _privateConstructorUsedError;
   double get valorCuota => throw _privateConstructorUsedError;
   double get valorCancelarPrestamo => throw _privateConstructorUsedError;
+  DateTime? get fechaProximoPago => throw _privateConstructorUsedError;
+  String get cuotasCanceladas => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3275,7 +4630,9 @@ abstract class $PrestamoModelCopyWith<$Res> {
       String oficina,
       double valorParaEstarAlDia,
       double valorCuota,
-      double valorCancelarPrestamo});
+      double valorCancelarPrestamo,
+      DateTime? fechaProximoPago,
+      String cuotasCanceladas});
 }
 
 /// @nodoc
@@ -3301,6 +4658,8 @@ class _$PrestamoModelCopyWithImpl<$Res, $Val extends PrestamoModel>
     Object? valorParaEstarAlDia = null,
     Object? valorCuota = null,
     Object? valorCancelarPrestamo = null,
+    Object? fechaProximoPago = freezed,
+    Object? cuotasCanceladas = null,
   }) {
     return _then(_value.copyWith(
       codigo: null == codigo
@@ -3343,6 +4702,14 @@ class _$PrestamoModelCopyWithImpl<$Res, $Val extends PrestamoModel>
           ? _value.valorCancelarPrestamo
           : valorCancelarPrestamo // ignore: cast_nullable_to_non_nullable
               as double,
+      fechaProximoPago: freezed == fechaProximoPago
+          ? _value.fechaProximoPago
+          : fechaProximoPago // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      cuotasCanceladas: null == cuotasCanceladas
+          ? _value.cuotasCanceladas
+          : cuotasCanceladas // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -3365,7 +4732,9 @@ abstract class _$$PrestamoModelImplCopyWith<$Res>
       String oficina,
       double valorParaEstarAlDia,
       double valorCuota,
-      double valorCancelarPrestamo});
+      double valorCancelarPrestamo,
+      DateTime? fechaProximoPago,
+      String cuotasCanceladas});
 }
 
 /// @nodoc
@@ -3389,6 +4758,8 @@ class __$$PrestamoModelImplCopyWithImpl<$Res>
     Object? valorParaEstarAlDia = null,
     Object? valorCuota = null,
     Object? valorCancelarPrestamo = null,
+    Object? fechaProximoPago = freezed,
+    Object? cuotasCanceladas = null,
   }) {
     return _then(_$PrestamoModelImpl(
       codigo: null == codigo
@@ -3431,6 +4802,14 @@ class __$$PrestamoModelImplCopyWithImpl<$Res>
           ? _value.valorCancelarPrestamo
           : valorCancelarPrestamo // ignore: cast_nullable_to_non_nullable
               as double,
+      fechaProximoPago: freezed == fechaProximoPago
+          ? _value.fechaProximoPago
+          : fechaProximoPago // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      cuotasCanceladas: null == cuotasCanceladas
+          ? _value.cuotasCanceladas
+          : cuotasCanceladas // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -3448,7 +4827,9 @@ class _$PrestamoModelImpl implements _PrestamoModel {
       this.oficina = '',
       this.valorParaEstarAlDia = 0.00,
       this.valorCuota = 0.00,
-      this.valorCancelarPrestamo = 0.00});
+      this.valorCancelarPrestamo = 0.00,
+      this.fechaProximoPago,
+      this.cuotasCanceladas = ''});
 
   factory _$PrestamoModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PrestamoModelImplFromJson(json);
@@ -3482,10 +4863,15 @@ class _$PrestamoModelImpl implements _PrestamoModel {
   @override
   @JsonKey()
   final double valorCancelarPrestamo;
+  @override
+  final DateTime? fechaProximoPago;
+  @override
+  @JsonKey()
+  final String cuotasCanceladas;
 
   @override
   String toString() {
-    return 'PrestamoModel(codigo: $codigo, tipo: $tipo, deudaInicial: $deudaInicial, saldo: $saldo, fechaAdjudicacion: $fechaAdjudicacion, estado: $estado, oficina: $oficina, valorParaEstarAlDia: $valorParaEstarAlDia, valorCuota: $valorCuota, valorCancelarPrestamo: $valorCancelarPrestamo)';
+    return 'PrestamoModel(codigo: $codigo, tipo: $tipo, deudaInicial: $deudaInicial, saldo: $saldo, fechaAdjudicacion: $fechaAdjudicacion, estado: $estado, oficina: $oficina, valorParaEstarAlDia: $valorParaEstarAlDia, valorCuota: $valorCuota, valorCancelarPrestamo: $valorCancelarPrestamo, fechaProximoPago: $fechaProximoPago, cuotasCanceladas: $cuotasCanceladas)';
   }
 
   @override
@@ -3507,7 +4893,11 @@ class _$PrestamoModelImpl implements _PrestamoModel {
             (identical(other.valorCuota, valorCuota) ||
                 other.valorCuota == valorCuota) &&
             (identical(other.valorCancelarPrestamo, valorCancelarPrestamo) ||
-                other.valorCancelarPrestamo == valorCancelarPrestamo));
+                other.valorCancelarPrestamo == valorCancelarPrestamo) &&
+            (identical(other.fechaProximoPago, fechaProximoPago) ||
+                other.fechaProximoPago == fechaProximoPago) &&
+            (identical(other.cuotasCanceladas, cuotasCanceladas) ||
+                other.cuotasCanceladas == cuotasCanceladas));
   }
 
   @JsonKey(ignore: true)
@@ -3523,7 +4913,9 @@ class _$PrestamoModelImpl implements _PrestamoModel {
       oficina,
       valorParaEstarAlDia,
       valorCuota,
-      valorCancelarPrestamo);
+      valorCancelarPrestamo,
+      fechaProximoPago,
+      cuotasCanceladas);
 
   @JsonKey(ignore: true)
   @override
@@ -3550,7 +4942,9 @@ abstract class _PrestamoModel implements PrestamoModel {
       final String oficina,
       final double valorParaEstarAlDia,
       final double valorCuota,
-      final double valorCancelarPrestamo}) = _$PrestamoModelImpl;
+      final double valorCancelarPrestamo,
+      final DateTime? fechaProximoPago,
+      final String cuotasCanceladas}) = _$PrestamoModelImpl;
 
   factory _PrestamoModel.fromJson(Map<String, dynamic> json) =
       _$PrestamoModelImpl.fromJson;
@@ -3575,6 +4969,10 @@ abstract class _PrestamoModel implements PrestamoModel {
   double get valorCuota;
   @override
   double get valorCancelarPrestamo;
+  @override
+  DateTime? get fechaProximoPago;
+  @override
+  String get cuotasCanceladas;
   @override
   @JsonKey(ignore: true)
   _$$PrestamoModelImplCopyWith<_$PrestamoModelImpl> get copyWith =>

@@ -26,19 +26,14 @@ class SeleccionBeneficiarioController
     // bootstrapNotifier.isDisabledLoading = false;
   }
 
-  List<BeneficiarioModel> listaBeneficarioPorTipoTransferencia(
-      TipoTransferencia tipoTransferencia) {
-    if (tipoTransferencia == TipoTransferencia.interbancaria) {
-      return state.beneficiarios
-          .where((element) => !element.esInterno)
-          .toList();
-    } else if (tipoTransferencia == TipoTransferencia.directa) {
-      return state.beneficiarios.where((element) => element.esInterno).toList();
+  List<BeneficiarioModel> listaBeneficarioPorTipoTransferencia() {
+    var beneficiarios =  state.beneficiarios.toList();
+
+    if (beneficiarios.count() > 0){
+      return beneficiarios.toList();
     } else {
-      var posicionConsolidadaController =
-          ref.read(posicionConsolidadaControllerProvider);
-      var misCuentas =
-          posicionConsolidadaController.posicionConsolidada?.cuentas ?? [];
+      var posicionConsolidadaController = ref.read(posicionConsolidadaControllerProvider);
+      var misCuentas = posicionConsolidadaController.posicionConsolidada?.cuentas ?? [];
 
       return misCuentas
           .map((e) => BeneficiarioModel(

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bancamovilr/index.dart';
+import 'package:bancamovilr/src/pages/seguridades/login/cambiarcontrasenialogin_controller.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -33,8 +34,8 @@ class _CambiarContraseniaLoginPageState extends ConsumerState<CambiarContrasenia
 
   @override
   Widget build(BuildContext context) {
-    var controller = ref.read(loginControllerProvider.notifier);
-    var provider = ref.watch(loginControllerProvider);   
+    var controller = ref.read(cambiarContraseniaLoginControllerProvider.notifier);
+    var provider = ref.watch(cambiarContraseniaLoginControllerProvider);   
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/images/logopantallamenu.png', width: 120, height: 80),
@@ -229,7 +230,7 @@ class _CambiarContraseniaLoginPageState extends ConsumerState<CambiarContrasenia
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      controller.cambiarContrasenia();
+                      controller.cambiarContraseniaLogin();
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 0,

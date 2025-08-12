@@ -2,7 +2,7 @@ import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/general/posicion_consolidad/balance_visibility_controller.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
+
 
 @RoutePage()
 class CuentaDetallePage extends ConsumerStatefulWidget {
@@ -31,8 +31,6 @@ class _CuentaDetallePageState extends ConsumerState<CuentaDetallePage> {
     var provider = ref.watch(cuentaDetalleControllerProvider);
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
-    final balanceController = ref.watch(balanceVisibilityProvider);
-    final bool isBalanceVisible = balanceController.isBalanceVisible(provider.cuenta?.codigo ?? '');
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -200,21 +198,27 @@ class _CuentaDetallePageState extends ConsumerState<CuentaDetallePage> {
                                         ],
                                       ),
                                     ),
-                                    Text(
-                                      isBalanceVisible ? '\$${widget.cuenta.saldo.toStringAsFixed(2)}' : '********',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 28.0,
-                                        fontWeight: FontWeight.bold,
-                                        shadows: [
-                                          Shadow(
-                                          blurRadius: 2.0,
-                                          color: Colors.white,
-                                          offset: Offset(1.0, 1.0)
+                                    Consumer(
+                                      builder: (context, ref, child) {
+                                        final balanceController = ref.watch(balanceVisibilityProvider);
+                                        final bool isBalanceVisible = balanceController.isBalanceVisible(provider.cuenta?.codigo ?? '');
+                                        return Text(
+                                          isBalanceVisible ? '\$${widget.cuenta.saldo.toStringAsFixed(2)}' : '********',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 28.0,
+                                            fontWeight: FontWeight.bold,
+                                            shadows: [
+                                              Shadow(
+                                              blurRadius: 2.0,
+                                              color: Colors.white,
+                                              offset: Offset(1.0, 1.0)
+                                            ),
+                                          ],
                                         ),
-                                      ],
+                                                                          );
+                                      }
                                     ),
-                                  ),
                                 ],
                               ),
                               Column(
@@ -268,7 +272,7 @@ class _CuentaDetallePageState extends ConsumerState<CuentaDetallePage> {
                         ),
                         TextButton(
                           onPressed: () {
-                            appRouter.push(const MantenimientoRoute());
+                            appRouter.push(TransferenciaRoute(tipoTransferencia: TipoTransferencia.directa, cuentaTransferenciaParametro: widget.cuenta));
                           }, 
                           style: TextButton.styleFrom(
                             backgroundColor: const Color.fromRGBO(48, 155, 217, 25),

@@ -31,8 +31,6 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
     var provider = ref.watch(prestamoDetalleControllerProvider);
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
-    final balanceController = ref.watch(balanceVisibilityProvider);
-    final isBalanceVisible = balanceController.isBalanceVisible(provider.prestamo?.codigo ?? '');
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -201,21 +199,27 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                         ],
                                       ),
                                     ),
-                                    Text(
-                                      isBalanceVisible ? '\$${widget.prestamo.saldo.toStringAsFixed(2)}' : '********',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 28.0,
-                                        fontWeight: FontWeight.bold,
-                                        shadows: [
-                                          Shadow(
-                                          blurRadius: 2.0,
-                                          color: Colors.white,
-                                          offset: Offset(1.0, 1.0)
+                                    Consumer(
+                                      builder: (context, ref, child) {
+                                        final balanceController = ref.watch(balanceVisibilityProvider);
+                                        final isBalanceVisible = balanceController.isBalanceVisible(provider.prestamo?.codigo ?? '');
+                                        return Text(
+                                          isBalanceVisible ? '\$${widget.prestamo.saldo.toStringAsFixed(2)}' : '********',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 28.0,
+                                            fontWeight: FontWeight.bold,
+                                            shadows: [
+                                              Shadow(
+                                              blurRadius: 2.0,
+                                              color: Colors.white,
+                                              offset: Offset(1.0, 1.0)
+                                            ),
+                                          ],
                                         ),
-                                      ],
+                                                                          );
+                                      }
                                     ),
-                                  ),
                                 ],
                               ),
                               Column(
@@ -358,8 +362,10 @@ const TarjetaDetallesPrestamo({super.key, required this.prestamo});
   final PrestamoModel  prestamo;
   @override
   Widget build(BuildContext context) {
+    String fechaFormateada = DateFormat('EEE. dd MMM. yyyy', 'es')
+                            .format(prestamo.fechaProximoPago ?? DateTime.now());
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 5, 0, 0), // Relleno interno del contenedor
+      padding: const EdgeInsets.fromLTRB(20, 5, 0, 0), 
       decoration: BoxDecoration(
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(0), 
@@ -408,7 +414,7 @@ const TarjetaDetallesPrestamo({super.key, required this.prestamo});
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Próx. Pago',
-            valor: 'vier. 11 jun. 2025',
+            valor: fechaFormateada,
             colorValor: const Color.fromRGBO(0, 96, 152, 20),
             pesoFuenteValor: FontWeight.bold
           ),
@@ -432,7 +438,7 @@ const TarjetaDetallesPrestamo({super.key, required this.prestamo});
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Cuotas canceladas',
-            valor: '5/32',
+            valor: prestamo.cuotasCanceladas,
             colorValor: const Color.fromRGBO(0, 96, 152, 20),
             pesoFuenteValor: FontWeight.bold
           ),

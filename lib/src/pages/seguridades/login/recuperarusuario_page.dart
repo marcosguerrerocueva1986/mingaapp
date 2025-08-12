@@ -1,4 +1,5 @@
 import 'package:bancamovilr/index.dart';
+import 'package:bancamovilr/src/pages/seguridades/login/recuperarusuario_controller.dart';
 import 'package:pinput/pinput.dart';
 
 @RoutePage()
@@ -12,8 +13,8 @@ class RecuperarUsuarioPage extends ConsumerStatefulWidget {
 class _RecuperarUsuarioPageState extends ConsumerState<RecuperarUsuarioPage> {
   @override
   Widget build(BuildContext context) {
-    var controller = ref.read(loginControllerProvider.notifier);
-    var provider = ref.watch(loginControllerProvider);
+    var controller = ref.read(recuperarUsuarioControllerProvider.notifier);
+    var provider = ref.watch(recuperarUsuarioControllerProvider);
 
     return ScaffoldBootstrap(
       body: Padding(
@@ -38,54 +39,7 @@ class _RecuperarUsuarioPageState extends ConsumerState<RecuperarUsuarioPage> {
                         width: 80,
                       ),
                       const SizedBox(height: defaultPadding * 2),
-                      if (provider.modoConfirmacion) ...[
-                        const SizedBox(height: defaultPadding * 5),
-                        const Text(
-                            "Ingrese el código temporal de seguridad que fue enviado a su correo y/o celular.",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            )),
-                        const SizedBox(height: defaultPadding * 2),
-                        Pinput(
-                          key: const ValueKey('pinput_codigo_seguridad'),
-                          androidSmsAutofillMethod:
-                              AndroidSmsAutofillMethod.smsUserConsentApi,
-                          length: 6,
-                          // controller: controller,
-                          // focusNode: focusNode,
-                          defaultPinTheme: defaultPinTheme,
-                          onCompleted: controller.confimarOtpIngreso,
-                          focusedPinTheme: defaultPinTheme.copyWith(
-                            height: 68,
-                            width: 64,
-                            decoration: defaultPinTheme.decoration,
-                          ),
-                          errorPinTheme: defaultPinTheme.copyWith(
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(255, 234, 238, 1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: defaultPadding * 10),
-                        // ProcessButton(
-                        //   onPressed: controller.login,
-                        //   text: 'Confirmar'.toUpperCase(),
-                        // ),
-                        // const SizedBox(
-                        //   height: defaultPadding,
-                        // ),
-                        ProcessButton(
-                          key: const ValueKey('regresar_confirmacion_button'),
-                          isSecondary: false,
-                          onPressed: controller.cancelar,
-                          text: 'Regresar'.toUpperCase(),
-                        ),
-                  
-                      ] else ...[
+                      
                         const Padding(
                           padding: EdgeInsets.fromLTRB(20, 5, 10, 0),
                           child: Align(
@@ -165,8 +119,6 @@ class _RecuperarUsuarioPageState extends ConsumerState<RecuperarUsuarioPage> {
                           text: 'Regresar'.toUpperCase(),
                         ),
                       ],
-                      const SizedBox(height: defaultPadding * 2),
-                    ],
                   ),
                                     ),                
                 ),

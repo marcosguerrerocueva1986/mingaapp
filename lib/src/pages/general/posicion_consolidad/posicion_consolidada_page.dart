@@ -58,7 +58,7 @@ with SingleTickerProviderStateMixin {
         int nextPage = (_currentPromoIndex + 1) % _carouselImagePaths.length;
         _promoCarouselController.animateToPage(
           nextPage,
-          duration: const Duration(milliseconds: 800), 
+          duration: const Duration(milliseconds: 10), 
           curve: Curves.easeOut,
         );
         setState(() {
@@ -84,7 +84,7 @@ with SingleTickerProviderStateMixin {
     });
     _pageController.animateToPage(
       index,
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 10),
       curve: Curves.ease,
     );
   }
@@ -98,48 +98,82 @@ with SingleTickerProviderStateMixin {
         const MisProductosOverviewRoute(), 
       ],
     ),
-    const Center(child: Text('Pantalla de Solicitudes', style: TextStyle(fontSize: 24))),
+    AutoRouter.declarative(routes: (context) => [ const SolicitudesRoute()]),
     AutoRouter.declarative(routes: (context) => [ const MiPerfilRoute()])
   ];
 
-    return ScaffoldBootstrap(
-      body: SafeArea(
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
-          children: screens,
+  return WillPopScope(
+  onWillPop: () async {
+    if (_selectedIndex != 0) {
+      _onItemTapped(0);
+      return false; 
+    }
+    final bool? shouldLogout = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Cerrar sesión'),
+          content: const Text('¿Estás seguro de que quieres cerrar sesión?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: const Text('Sí'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (shouldLogout == true) {
+      context.router.replaceAll([
+        const LoginPrincipalRoute() 
+      ]);
+    }
+    return false;
+  },
+  child: ScaffoldBootstrap(
+    body: SafeArea(
+      child: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        children: screens,
+      ),
+    ),
+    bottomNavigationBar: BottomNavigationBar(
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home_outlined), 
+          label: 'Inicio',
         ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.post_add_rounded), 
+          label: 'Mis Productos',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.description_outlined), 
+          label: 'Solicitudes',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person_outline), 
+          label: 'Perfil',
+        ),
+      ],
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.grey,
+      onTap: _onItemTapped,
+      backgroundColor: Colors.white,
+      type: BottomNavigationBarType.fixed,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined), 
-            label: 'Inicio',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.post_add_rounded), 
-            label: 'Mis Productos',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.description_outlined), 
-            label: 'Solicitudes',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline), 
-            label: 'Perfil',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        onTap: _onItemTapped,
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-      ),
+    ),
     );
   }
 
@@ -369,11 +403,12 @@ with SingleTickerProviderStateMixin {
                                   },
                                   onTap: () {
                                     _onItemTapped(1);
-                                    Future.delayed(const Duration(milliseconds: 100), () {
-                                      context.router.navigate(
-                                        MisProductosRouterRoute(children: [
-                                          CuentaDetalleRoute(cuenta: item),
-                                        ]),
+                                      Future.delayed(const Duration(milliseconds: 100), () {
+                                        context.router.navigate(
+                                          MisProductosRouterRoute(children: [
+                                            CuentaDetalleRoute(cuenta: item),
+                                          ],
+                                        ),
                                       );
                                     });
                                   },
@@ -401,7 +436,7 @@ with SingleTickerProviderStateMixin {
                                     },
                                     onTap: () {
                                       _onItemTapped(1);
-                                      Future.delayed(const Duration(milliseconds: 200), () {
+                                      Future.delayed(const Duration(milliseconds: 100), () {
                                         context.router.navigate(
                                           MisProductosRouterRoute(children: [
                                             PrestamoDetalleRoute(prestamo: item),
@@ -432,7 +467,7 @@ with SingleTickerProviderStateMixin {
                                   },
                                   onTap: () {
                                     _onItemTapped(1);
-                                    Future.delayed(const Duration(milliseconds: 200), () {
+                                    Future.delayed(const Duration(milliseconds: 100), () {
                                       context.router.navigate(
                                         MisProductosRouterRoute(children: [
                                           DepositoDetalleRoute(deposito: item),
@@ -777,6 +812,7 @@ const ServiciosWidget({super.key});
   Widget build(BuildContext context, WidgetRef ref){
     final appRouter = AutoRouter.of(context);
     var controller = ref.read(cuentaDetalleControllerProvider.notifier);
+    var provider = ref.watch(transferenciaControllerProvider);
     return Container(
       margin: const EdgeInsets.fromLTRB(30, 0, 30, 0),
       decoration: const BoxDecoration(
@@ -792,7 +828,7 @@ const ServiciosWidget({super.key});
               onPressed: () {
               switch (servicios.actionRouteName) {
                 case "transferirdineroRoute":
-                  controller.irATransferencia(); 
+                  appRouter.push(const SeleccionBeneficiarioRoute()); 
                   break;
                 case "estadocuentaRoute":
                   appRouter.push(const MantenimientoRoute()); 
@@ -851,7 +887,7 @@ Servicio({required this.imagePath, required this.title, required this.actionRout
   class TitleSectionWidget extends StatelessWidget {
     const TitleSectionWidget({
       super.key,
-      required this.title,
+      required this.title,f
     });
 
     final String title;

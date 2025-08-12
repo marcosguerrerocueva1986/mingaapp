@@ -12,6 +12,7 @@ class TransferenciaPage extends ConsumerStatefulWidget {
     super.key,
     required this.tipoTransferencia,
     this.cuentaTransferenciaParametro,
+    this.beneficiario
   });
 
   @override
@@ -20,6 +21,7 @@ class TransferenciaPage extends ConsumerStatefulWidget {
 
   final TipoTransferencia tipoTransferencia;
   final CuentaModel? cuentaTransferenciaParametro;
+  final BeneficiarioModel? beneficiario;
 }
 
 class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
@@ -44,7 +46,12 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
 
     return ScaffoldBootstrap(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            context.router.pop();
+          },
+        ),
         backgroundColor: context.theme.primaryColor,
         centerTitle: true,
         title: Text(
@@ -167,18 +174,16 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                                       EtiquetaValorRecibo(
                                           etiqueta: 'Beneficiario',
                                           valor:
-                                              ('${provider.beneficiario?.apellido ?? ''} ${provider.beneficiario?.nombre ?? ''}')),
+                                              ('${widget.beneficiario?.apellido ?? ''} ${widget.beneficiario?.nombre ?? ''}')),
                                       EtiquetaValorRecibo(
                                           etiqueta: 'Cuenta Destino',
-                                          valor: provider
-                                                  .beneficiario?.numeroCuenta ??
+                                          valor: widget.beneficiario?.numeroCuenta ??
                                               ''),
                                       if (widget.tipoTransferencia ==
                                           TipoTransferencia.interbancaria) ...[
                                         EtiquetaValorRecibo(
                                             etiqueta: 'Institución',
-                                            valor: provider.beneficiario
-                                                    ?.institucion ??
+                                            valor: widget.beneficiario?.institucion ??
                                                 ''),
                                       ],
                                       if (provider.respuestaProceso !=
@@ -261,16 +266,16 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                           EtiquetaValorRecibo(
                               etiqueta: 'Beneficiario',
                               valor:
-                                  ('${provider.beneficiario?.nombre ?? ''} ${provider.beneficiario?.apellido ?? ''}')),
+                                  ('${widget.beneficiario?.nombre ?? ''} ${widget.beneficiario?.apellido ?? ''}')),
                           EtiquetaValorRecibo(
                               etiqueta: 'Cuenta Destino',
-                              valor: provider.beneficiario?.numeroCuenta ?? ''),
+                              valor: widget.beneficiario?.numeroCuenta ?? ''),
                           if (widget.tipoTransferencia ==
                               TipoTransferencia.interbancaria) ...[
                             EtiquetaValorRecibo(
                                 etiqueta: 'Institución',
                                 valor:
-                                    provider.beneficiario?.institucion ?? ''),
+                                    widget.beneficiario?.institucion ?? ''),
                           ]
                         ]),
                         const SizedBox(
@@ -387,11 +392,10 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                               text: 'Seleccione un beneficiario',
                               subTitle:
                                   'Beneficario que recibirá la transferencia',
-                              isEmpty: provider.beneficiario == null,
-                              onTap: () => controller.seleccionarBeneficiario(
-                                  widget.tipoTransferencia),
+                              isEmpty: widget.beneficiario == null,
+                              onTap: () => controller.seleccionarBeneficiario(widget.tipoTransferencia),
                               child: BeneficiarioItemWidget(
-                                beneficiario: provider.beneficiario,
+                                beneficiario: widget.beneficiario,
                                 muestraAvatar: false,
                                 flat: true,
                               ),

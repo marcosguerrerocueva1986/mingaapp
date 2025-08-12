@@ -4,12 +4,24 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 @RoutePage()
-class MiPerfilPage extends ConsumerWidget {
+class MiPerfilPage extends ConsumerStatefulWidget {
   const MiPerfilPage({super.key});
+
+  @override 
+  ConsumerState<ConsumerStatefulWidget> createState() => _MiPerfilPageState();
+}
+class _MiPerfilPageState extends ConsumerState<MiPerfilPage> {
   
+  @override
+  void initState() {
+    super.initState();
+    ref
+        .read(posicionConsolidadaControllerProvider.notifier)
+        .actualizaConsolidado();
+  }
+
   String convertirStringAFechaFormateada(String fechaString) {
     initializeDateFormatting('es', null);
-
     if (fechaString == null || fechaString.isEmpty) {
       return 'Fecha no disponible';
     }
@@ -25,7 +37,7 @@ class MiPerfilPage extends ConsumerWidget {
     }
   }
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     var controller = ref.read(posicionConsolidadaControllerProvider.notifier);
     var provider = ref.watch(posicionConsolidadaControllerProvider);
     var loginProvider = ref.watch(loginControllerProvider);
@@ -115,7 +127,7 @@ class MiPerfilPage extends ConsumerWidget {
                 icon: Icons.contacts_outlined,
                 title: 'Mis contactos',
                 onTap: () {
-                  context.router.push(const MantenimientoRoute());
+                  context.router.push(const SeleccionBeneficiarioRoute());
                 },
               ),
               const SizedBox(height: 24),

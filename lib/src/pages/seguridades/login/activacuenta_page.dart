@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bancamovilr/index.dart';
+import 'package:bancamovilr/src/pages/seguridades/login/activacuenta_controller.dart';
 import 'package:pinput/pinput.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -22,7 +23,7 @@ class _ActivaCuentaPageState extends ConsumerState<ActivaCuentaPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final provider = ref.watch(loginControllerProvider);
+    final provider = ref.watch(activaCuentaControllerProvider);
     if (provider.modoConfirmacion && _timer == null) {
       startTimer();
     }
@@ -31,7 +32,7 @@ class _ActivaCuentaPageState extends ConsumerState<ActivaCuentaPage> {
 @override
 void didUpdateWidget(covariant ActivaCuentaPage oldWidget) {
 super.didUpdateWidget(oldWidget);
-final newProvider = ref.read(loginControllerProvider);
+final newProvider = ref.read(activaCuentaControllerProvider);
 if (newProvider.modoConfirmacion && (_timer == null || !_timer!.isActive)) {
   startTimer();
 } else if (!newProvider.modoConfirmacion && _timer != null) {
@@ -84,8 +85,8 @@ _showResendButton = false;
 
   @override
   Widget build(BuildContext context) {
-    final controller = ref.read(loginControllerProvider.notifier);
-    final provider = ref.watch(loginControllerProvider);
+    final controller = ref.read(activaCuentaControllerProvider.notifier);
+    final provider = ref.watch(activaCuentaControllerProvider);
     if (provider.modoConfirmacion && _timer == null) {
       startTimer();
     }

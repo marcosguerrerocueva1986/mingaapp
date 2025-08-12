@@ -7,7 +7,7 @@ part of 'seleccion_beneficiario_controller.dart';
 // **************************************************************************
 
 String _$seleccionBeneficiarioControllerHash() =>
-    r'5f22ad72b3cc0af388d302fe99bd50ea75b74443';
+    r'950e7090bc494d42d1565934d21d58e55a2caea4';
 
 /// See also [SeleccionBeneficiarioController].
 @ProviderFor(SeleccionBeneficiarioController)
