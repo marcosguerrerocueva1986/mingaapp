@@ -67,6 +67,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CambiarContraseniaPage(),
       );
     },
+    ContactenosRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ContactenosPage(),
+      );
+    },
     CuentaDetalleRoute.name: (routeData) {
       final args = routeData.argsAs<CuentaDetalleRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -429,6 +435,20 @@ class CambiarContraseniaRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CambiarContraseniaRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ContactenosPage]
+class ContactenosRoute extends PageRouteInfo<void> {
+  const ContactenosRoute({List<PageRouteInfo>? children})
+      : super(
+          ContactenosRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ContactenosRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

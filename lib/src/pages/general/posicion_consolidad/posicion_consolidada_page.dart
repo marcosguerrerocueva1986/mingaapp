@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/general/posicion_consolidad/balance_visibility_controller.dart';
+import 'package:bancamovilr/src/pages/general/posicion_consolidad/mis_productos_page.dart';
+import 'package:bancamovilr/src/pages/general/posicion_consolidad/solicitudes_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/perfil/miperfil_page.dart';
 import 'package:flutter/rendering.dart';
 
@@ -58,7 +60,7 @@ with SingleTickerProviderStateMixin {
         int nextPage = (_currentPromoIndex + 1) % _carouselImagePaths.length;
         _promoCarouselController.animateToPage(
           nextPage,
-          duration: const Duration(milliseconds: 10), 
+          duration: const Duration(milliseconds: 300), 
           curve: Curves.easeOut,
         );
         setState(() {
@@ -84,7 +86,7 @@ with SingleTickerProviderStateMixin {
     });
     _pageController.animateToPage(
       index,
-      duration: const Duration(milliseconds: 10),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.ease,
     );
   }
@@ -169,7 +171,13 @@ with SingleTickerProviderStateMixin {
       currentIndex: _selectedIndex,
       selectedItemColor: Colors.black,
       unselectedItemColor: Colors.grey,
-      onTap: _onItemTapped,
+      onTap: (index) {
+           _pageController.animateToPage(
+          index,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.ease,
+        );
+      },
       backgroundColor: Colors.white,
       type: BottomNavigationBarType.fixed,
       ),
@@ -402,15 +410,15 @@ with SingleTickerProviderStateMixin {
                                     ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();
                                   },
                                   onTap: () {
-                                    _onItemTapped(1);
-                                      Future.delayed(const Duration(milliseconds: 100), () {
-                                        context.router.navigate(
-                                          MisProductosRouterRoute(children: [
-                                            CuentaDetalleRoute(cuenta: item),
-                                          ],
-                                        ),
-                                      );
-                                    });
+                                    _pageController.animateToPage(1,duration: const Duration(milliseconds: 300),
+                                          curve: Curves.ease,
+                                      ).then((_) {
+                                          context.router.navigate(
+                                              MisProductosRouterRoute(children: [
+                                                  CuentaDetalleRoute(cuenta: item),
+                                              ]),
+                                          );
+                                      });
                                   },
                                 ),
                                 'No hay cuentas de ahorro disponibles.',
@@ -435,14 +443,15 @@ with SingleTickerProviderStateMixin {
                                       ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();
                                     },
                                     onTap: () {
-                                      _onItemTapped(1);
-                                      Future.delayed(const Duration(milliseconds: 100), () {
-                                        context.router.navigate(
-                                          MisProductosRouterRoute(children: [
-                                            PrestamoDetalleRoute(prestamo: item),
-                                          ]),
-                                        );
-                                      });
+                                        _pageController.animateToPage(1, duration: const Duration(milliseconds: 300),
+                                            curve: Curves.ease,
+                                        ).then((_) {
+                                            context.router.navigate(
+                                                MisProductosRouterRoute(children: [
+                                                    PrestamoDetalleRoute(prestamo: item),
+                                                ]),
+                                            );
+                                        });
                                     },
                                   ),
                                   'No hay créditos disponibles.',
@@ -466,14 +475,15 @@ with SingleTickerProviderStateMixin {
                                     ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();
                                   },
                                   onTap: () {
-                                    _onItemTapped(1);
-                                    Future.delayed(const Duration(milliseconds: 100), () {
-                                      context.router.navigate(
-                                        MisProductosRouterRoute(children: [
-                                          DepositoDetalleRoute(deposito: item),
-                                        ]),
-                                      );
-                                    });
+                                      _pageController.animateToPage(1,duration: const Duration(milliseconds: 300),
+                                          curve: Curves.ease,
+                                      ).then((_) {
+                                          context.router.navigate(
+                                              MisProductosRouterRoute(children: [
+                                                  DepositoDetalleRoute(deposito: item),
+                                              ]),
+                                          );
+                                      });
                                   },
                                 ),  
                                 'No hay inversiones disponibles.',

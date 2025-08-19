@@ -14,6 +14,7 @@ import 'package:bancamovilr/src/pages/seguridades/login/recuperarcontrasenia_pag
 import 'package:bancamovilr/src/pages/seguridades/login/recuperarusuario_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/login/cambiarcontrasenialogin_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/perfil/cambiarcontrasenia_page.dart';
+import 'package:bancamovilr/src/pages/seguridades/perfil/contactenos_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/perfil/datospersonales_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/perfil/miperfil_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/perfil/montosmaximos_page.dart';
@@ -142,6 +143,10 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: CambiarContraseniaLoginRoute.page,
+          initial: false,
+        ),
+        AutoRoute(
+          page: ContactenosRoute.page,
           initial: false,
         ),
         AutoRoute(

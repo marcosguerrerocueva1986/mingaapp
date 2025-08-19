@@ -43,7 +43,7 @@ class _MiPerfilPageState extends ConsumerState<MiPerfilPage> {
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
     var fechaUltimoAccesoSF = loginProvider.validacionOtpRespuesta?.usuario?.fechaUltimoAcceso ?? '';
-    final fechaFormateada = convertirStringAFechaFormateada(fechaUltimoAccesoSF ?? '');
+    final fechaFormateada = convertirStringAFechaFormateada(fechaUltimoAccesoSF);
   
     return Scaffold(
       appBar: AppBar(
@@ -180,14 +180,23 @@ class _MiPerfilPageState extends ConsumerState<MiPerfilPage> {
                 icon: Icons.contact_mail_outlined,
                 title: 'Contactenos',
                 onTap: () {
-                  context.router.push(const MantenimientoRoute());
+                  context.router.push(const ContactenosRoute());
                 },
               ),
+              _buildListTile(
+                icon: Icons.logout,
+                title: 'Cerrar Sesión',
+                onTap: () {
+                  ref.read(loginControllerProvider.notifier).logout(context);
+                },
+              ),
+              const SizedBox(height: 10),
             ],
           ),
         ),
       ),
     );
+    
   }
 
   Widget _buildListTile({

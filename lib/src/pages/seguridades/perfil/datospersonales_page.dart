@@ -38,7 +38,7 @@ class _DatosPersonalesPageState extends ConsumerState<DatosPersonalesPage> {
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
     var fechaUltimoAccesoSF = loginProvider.validacionOtpRespuesta?.usuario?.fechaUltimoAcceso ?? '';
-    final fechaFormateada = convertirStringAFechaFormateada(fechaUltimoAccesoSF ?? '');
+    final fechaFormateada = convertirStringAFechaFormateada(fechaUltimoAccesoSF);
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/images/logopantallamenu.png', width: 120, height: 80),
@@ -131,7 +131,7 @@ class _DatosPersonalesPageState extends ConsumerState<DatosPersonalesPage> {
         Padding(
           padding: const EdgeInsets.only(left: 10),
           child: Text(
-            value!,
+            value ?? 'Información no disponible', 
             style: const TextStyle(
               fontSize: 16,
               color: Colors.grey,

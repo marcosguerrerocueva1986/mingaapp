@@ -213,4 +213,8 @@ late final AuthStorageService _authStorageService;
   Future irACambioContrasenia() async {
     appRouter.replace(const CambiarContraseniaLoginRoute());
   }
+  void logout(BuildContext context) {
+    state = LoginState(permiteEditarUsuario: true); 
+    context.router.replaceAll([const LoginPrincipalRoute()]);
+  }
 }
