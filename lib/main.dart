@@ -44,7 +44,7 @@ class _MyAppState extends ConsumerState<MyApp> {
     _timer = Timer(Duration(seconds: Configuracion.segundosInactividad), () {
       if (HttpClientHelper.token != '') {
         HttpClientHelper.token = '';
-        appRouter.pushAndPopUntil(const LoginRoute(), predicate: (_) => false);
+        appRouter.pushAndPopUntil(const LoginPrincipalRoute(), predicate: (_) => false);
       }
     });
   }
@@ -56,7 +56,7 @@ class _MyAppState extends ConsumerState<MyApp> {
     _timer = Timer(Duration(seconds: Configuracion.segundosInactividad), () {
       if (HttpClientHelper.token != '') {
         HttpClientHelper.token = '';
-        appRouter.pushAndPopUntil(const LoginRoute(), predicate: (_) => false);
+        appRouter.pushAndPopUntil(const LoginPrincipalRoute(), predicate: (_) => false);
       }
     });
   }

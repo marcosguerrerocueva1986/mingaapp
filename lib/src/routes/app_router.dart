@@ -153,7 +153,7 @@ class AppRouter extends _$AppRouter {
           page: PosicionConsolidadaRoute.page, 
           path: '/app', 
           children: [
-          AutoRoute(page: PosicionConsolidadaRoute.page, path: '', initial: true),
+          //AutoRoute(page: PosicionConsolidadaRoute.page, path: '', initial: true),
           AutoRoute(page: MisProductosRouterRoute.page,  path: 'mis-productos',      
             children: [
               AutoRoute(page: MisProductosOverviewRoute.page, path: '', initial: true), 
