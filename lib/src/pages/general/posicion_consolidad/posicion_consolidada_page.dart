@@ -658,7 +658,7 @@ class CardInformacion extends StatelessWidget {
                                   Shadow(
                                     blurRadius: 2.0,
                                     color: Colors.white,
-                                    offset: Offset(1.0, 1.0)
+                                    offset: Offset.zero
                                   ),
                                 ],
                               ),
@@ -701,7 +701,7 @@ class CardInformacion extends StatelessWidget {
                           Shadow(
                             blurRadius: 2.0,
                             color: Colors.white,
-                            offset: Offset(1.0, 1.0)
+                            offset: Offset.zero
                           ),
                         ],
                       ),
@@ -718,7 +718,7 @@ class CardInformacion extends StatelessWidget {
                             Shadow(
                               blurRadius: 2.0,
                               color: Colors.white,
-                              offset: Offset(1.0, 1.0)
+                              offset: Offset.zero
                             ),
                           ],
                         ),
@@ -733,7 +733,7 @@ class CardInformacion extends StatelessWidget {
                             Shadow(
                               blurRadius: 2.0,
                               color: Colors.white,
-                              offset: Offset(1.0, 1.0)
+                              offset: Offset.zero
                             ),
                           ],
                         ),
@@ -757,7 +757,7 @@ class CardInformacion extends StatelessWidget {
                                   Shadow(
                                     blurRadius: 2.0,
                                     color: Colors.white,
-                                    offset: Offset(1.0, 1.0)
+                                    offset: Offset.zero
                                   ),
                                 ],
                               ),
@@ -772,7 +772,7 @@ class CardInformacion extends StatelessWidget {
                                   Shadow(
                                   blurRadius: 2.0,
                                   color: Colors.white,
-                                  offset: Offset(1.0, 1.0)
+                                  offset: Offset.zero
                                 ),
                               ],
                             ),
