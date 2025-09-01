@@ -10,7 +10,6 @@ class TransferenciaController extends _$TransferenciaController {
     'descripcion': ['', Validators.required],
     'emailEnvio': ['', Validators.required],
   });
-
   double monto = 0.00;
   WidgetsToImageController controller = WidgetsToImageController();
 
@@ -65,7 +64,7 @@ class TransferenciaController extends _$TransferenciaController {
     }
   }
 
-  Future seleccionarBeneficiario(TipoTransferencia tipoTransferencia) async {
+  Future<void> seleccionarBeneficiario(TipoTransferencia tipoTransferencia) async {
     var respuesta = await appRouter.push<BeneficiarioModel?>(const SeleccionBeneficiarioRoute());
     if (respuesta != null) {
       form.patchValue({'emailEnvio': respuesta.email});
@@ -90,7 +89,7 @@ class TransferenciaController extends _$TransferenciaController {
                     cuentaOrigen: state.cuenta?.codigo ?? '',
                     cuentaDestino: (state.beneficiario?.id ?? 0) == 0
                         ? (state.beneficiario?.numeroCuenta ?? '')
-                        : '',
+                        : (state.beneficiario?.numeroCuenta ?? ''),
                    codigoConcepto: (state.concepto?.codigo ?? ''),
                     esDirecta:
                         tipoTransferencia != TipoTransferencia.interbancaria,
@@ -113,8 +112,9 @@ class TransferenciaController extends _$TransferenciaController {
     }
   }
 
-  Future continuar(TipoTransferencia tipoTransferencia) async {
+  Future continuar(TipoTransferencia tipoTransferencia, BeneficiarioModel beneficiario) async {
     if (!state.esValidacion) {
+      state = state.copyWith(beneficiario: beneficiario);
       validaTransferencia(tipoTransferencia);
     }
   }

@@ -174,16 +174,16 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                                       EtiquetaValorRecibo(
                                           etiqueta: 'Beneficiario',
                                           valor:
-                                              ('${widget.beneficiario?.apellido ?? ''} ${widget.beneficiario?.nombre ?? ''}')),
+                                              ('${provider.beneficiario?.apellido ?? ''} ${provider.beneficiario?.nombre ?? ''}')),
                                       EtiquetaValorRecibo(
                                           etiqueta: 'Cuenta Destino',
-                                          valor: widget.beneficiario?.numeroCuenta ??
+                                          valor: provider.beneficiario?.numeroCuenta ??
                                               ''),
                                       if (widget.tipoTransferencia ==
                                           TipoTransferencia.interbancaria) ...[
                                         EtiquetaValorRecibo(
                                             etiqueta: 'Institución',
-                                            valor: widget.beneficiario?.institucion ??
+                                            valor: provider.beneficiario?.institucion ??
                                                 ''),
                                       ],
                                       if (provider.respuestaProceso !=
@@ -266,16 +266,16 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                           EtiquetaValorRecibo(
                               etiqueta: 'Beneficiario',
                               valor:
-                                  ('${widget.beneficiario?.nombre ?? ''} ${widget.beneficiario?.apellido ?? ''}')),
+                                  ('${provider.beneficiario?.nombre ?? ''} ${provider.beneficiario?.apellido ?? ''}')),
                           EtiquetaValorRecibo(
                               etiqueta: 'Cuenta Destino',
-                              valor: widget.beneficiario?.numeroCuenta ?? ''),
+                              valor: provider.beneficiario?.numeroCuenta ?? ''),
                           if (widget.tipoTransferencia ==
                               TipoTransferencia.interbancaria) ...[
                             EtiquetaValorRecibo(
                                 etiqueta: 'Institución',
                                 valor:
-                                    widget.beneficiario?.institucion ?? ''),
+                                    provider.beneficiario?.institucion ?? ''),
                           ]
                         ]),
                         const SizedBox(
@@ -524,7 +524,7 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                         text: 'CONTINUAR',
                         onPressed: form.valid
                             ? () =>
-                                controller.continuar(widget.tipoTransferencia)
+                                controller.continuar(widget.tipoTransferencia, widget.beneficiario!)
                             : null);
                   }),
                   const SizedBox(
