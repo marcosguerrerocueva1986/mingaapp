@@ -19,11 +19,18 @@ class TransferenciaController extends _$TransferenciaController {
   }
 
   Future inicializa(CuentaModel? primerCuenta) async {
+    state = TransferenciaState();
+    form.reset(); 
     primerCuenta ??= ref
           .read(posicionConsolidadaControllerProvider)
           .posicionConsolidada
           ?.cuentas.where((element) => element.permiteUsoBancaElectronica)
           .firstOrNull;
+
+    state = state.copyWith(
+      esComprobante: false,
+      esValidacion: false,  
+    );
 
     if (primerCuenta != null) {
       form
@@ -32,7 +39,7 @@ class TransferenciaController extends _$TransferenciaController {
       form.control('monto').updateValueAndValidity();
 
       var client = HttpClientHelper.getClient();
-
+      state = state.copyWith(cuenta: primerCuenta);
       bootstrapNotifier.isDisabledLoading = true;
 
       var respuesta = await guard(() async =>

@@ -17,8 +17,8 @@ class LoginPrincipalController extends _$LoginPrincipalController {
   }
 
   void accesoPorHuella(String signedData) async {
-    var client = HttpClientHelper.getClient();
     SharedPreferences preferences = SharedPreferences();
+    var client = HttpClientHelper.getClient();
 
     try {
       DateTime now = DateTime.now();
@@ -29,6 +29,7 @@ class LoginPrincipalController extends _$LoginPrincipalController {
 
       var respuesta = await guard(() async => await client.validaPinAcceso(
           ValidaPinAccesoRequerimiento(
+              idUsuario: int.parse(signedData),
               idRegistro: int.parse(signedData),
               firma: signedData,
               textoOriginal: encodedText)));

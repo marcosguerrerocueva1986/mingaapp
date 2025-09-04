@@ -16,6 +16,7 @@ late final AuthStorageService _authStorageService;
   @override
   LoginState build() {
     ref.onDispose(() {
+      form.reset(); 
       form.dispose();
       print('✅ LoginController: FormGroup dispose llamado.');
     });
@@ -152,8 +153,8 @@ late final AuthStorageService _authStorageService;
   }
 
   void accesoPorHuella() async {
-    var client = HttpClientHelper.getClient();
     SharedPreferences preferences = SharedPreferences();
+    var client = HttpClientHelper.getClient();
 
     try {
       DateTime now = DateTime.now();
@@ -167,6 +168,7 @@ late final AuthStorageService _authStorageService;
           reason: 'Pon tu dedo en el sensor para acceder');
       var respuesta = await guard(() async => await client.validaPinAcceso(
           ValidaPinAccesoRequerimiento(
+              idUsuario : preferences.idRegistro.val,
               idRegistro: preferences.idRegistro.val,
               firma: signedData,
               textoOriginal: encodedText)));

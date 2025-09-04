@@ -921,7 +921,8 @@ class RegistroPinAccesoRequerimiento with _$RegistroPinAccesoRequerimiento {
 @freezed
 class ValidaPinAccesoRequerimiento with _$ValidaPinAccesoRequerimiento {
   factory ValidaPinAccesoRequerimiento(
-      {@Default(0) int idRegistro,
+      {@Default(0) int idUsuario,
+        @Default(0) int idRegistro,
       @Default('') String textoOriginal,
       @Default('') String firma}) = _ValidaPinAccesoRequerimiento;
 

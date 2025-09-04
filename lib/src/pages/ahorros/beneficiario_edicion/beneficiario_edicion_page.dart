@@ -14,13 +14,18 @@ class BeneficiarioEdicionPage extends ConsumerStatefulWidget {
   final bool esInterno;
 }
 
-class _BeneficiarioEdicionPageState extends ConsumerState<BeneficiarioEdicionPage> {
+class _BeneficiarioEdicionPageState extends ConsumerState<BeneficiarioEdicionPage> 
+with SingleTickerProviderStateMixin {
+  late TabController _tabController;
   final TextEditingController _numeroCuentaController = TextEditingController();
   final TextEditingController _correoElectronicoController = TextEditingController();
   bool _guardarContacto = false;
+
   @override
   void initState() {
     super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.index = widget.esInterno ? 0 : 1;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(beneficiarioEdicionControllerProvider.notifier).inicializa(widget.id, widget.esInterno);
     });
@@ -28,6 +33,7 @@ class _BeneficiarioEdicionPageState extends ConsumerState<BeneficiarioEdicionPag
 
   @override
   void dispose() {
+    _tabController.dispose();
     _numeroCuentaController.dispose();
     _correoElectronicoController.dispose();
     super.dispose();
@@ -57,61 +63,55 @@ class _BeneficiarioEdicionPageState extends ConsumerState<BeneficiarioEdicionPag
 
   @override
   Widget build(BuildContext context) {
-    var controller = ref.read(beneficiarioEdicionControllerProvider.notifier);
-    var provider = ref.watch(beneficiarioEdicionControllerProvider);
-
     return ScaffoldBootstrap(
       appBar: AppBar(
-        title: const Text('', style: TextStyle(color: Color.fromRGBO(0, 96, 153, 10))),
-        backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(color: Colors.white),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Color.fromRGBO(0, 96, 153, 10)),
-          onPressed: () => context.router.pop(),
+        bottom: TabBar(
+          controller: _tabController,
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        indicatorPadding: const EdgeInsets.fromLTRB(10,0,10,0),
+                        dividerColor: Colors.transparent,
+                        indicator: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: const Color.fromRGBO(0, 96, 153, 10),
+                        ),
+                        labelColor: Colors.white, 
+                        labelStyle: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold
+                        ),
+                        unselectedLabelColor: const Color.fromRGBO(48, 155, 217, 1), 
+          tabs: const [
+            Tab(text: "COAC. Minga Ltda."),
+            Tab(text: "Otros Bancos y Coops."),
+          ],
         ),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: ReactiveForm(
+      body: TabBarView(
+        controller: _tabController,
+        children: const [
+          _FormularioInterno(),
+          _FormularioExterno(),
+        ],
+      ),
+    );
+  }
+}
+
+class _FormularioInterno extends ConsumerWidget {
+  const _FormularioInterno();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.read(beneficiarioEdicionControllerProvider.notifier);
+    final provider = ref.watch(beneficiarioEdicionControllerProvider);
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(defaultPadding),
+      child: ReactiveForm(
           formGroup: controller.form,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                      },
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: const Color.fromRGBO(0, 114, 181, 1),
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      child: const Text('COAC. Minga Ltda.'),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () {
-                      },
-                      style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: Color.fromRGBO(0, 114, 181, 1)),
-                        foregroundColor: const Color.fromRGBO(0, 114, 181, 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      child: const Text('Otros Bancos y Coops.'),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 10),
               const Text(
                 'Información de la Cuenta:',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromRGBO(0, 96, 153, 10)),
@@ -128,7 +128,6 @@ class _BeneficiarioEdicionPageState extends ConsumerState<BeneficiarioEdicionPag
                     flex: 2,
                     child: ReactiveTextField(
                       formControlName: 'numeroCuenta',
-                      controller: _numeroCuentaController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -220,7 +219,7 @@ class _BeneficiarioEdicionPageState extends ConsumerState<BeneficiarioEdicionPag
                             const SizedBox(
                               height: defaultPadding * 2,
                             ),
-                            if (_guardarContacto) ...[
+                            if (provider.esValidacion) ...[
                               const Text(
                                   "Ingrese el código temporal de seguridad que fue enviado a su correo y/o celular.",
                                   textAlign: TextAlign.center),
@@ -269,7 +268,7 @@ class _BeneficiarioEdicionPageState extends ConsumerState<BeneficiarioEdicionPag
               ),
               const SizedBox(height: 8),
               TextField(
-                controller: _correoElectronicoController,
+                key: const ValueKey('correoelectronicobeneficiarioingreso'),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -291,41 +290,285 @@ class _BeneficiarioEdicionPageState extends ConsumerState<BeneficiarioEdicionPag
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 16),
-              CheckboxListTile(
-                title: const Text('Guardar Contacto'),
-                secondary: const Icon(Icons.person),
-                value: _guardarContacto,
-                onChanged: (bool? value) {
-                  setState(() {
-                    _guardarContacto = value ?? false;
-                  });
-                },
-                controlAffinity: ListTileControlAffinity.trailing,
-                contentPadding: EdgeInsets.zero,
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.blue, 
+                    width: 0.5,        
+                  ),
+                  borderRadius: BorderRadius.circular(10), 
+                ),
+                child: ReactiveCheckboxListTile(
+                  key: const ValueKey('guardarContacto'),
+                  formControlName: 'guardarContacto',
+                  title: const Text('Guardar Contacto'),
+                  secondary: const Icon(Icons.person),
+                  controlAffinity: ListTileControlAffinity.trailing,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16.0), 
+                ),
               ),
-              
               const SizedBox(height: defaultPadding*2),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () => _continuar(provider.beneficiario),
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    backgroundColor: const Color.fromRGBO(0, 96, 153, 10),
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: const Text(
-                    'Continuar',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
+                child: ReactiveFormConsumer(
+                  builder: (context, form, child) {
+                    return ElevatedButton(
+                      onPressed: form.valid ? () => controller.irInicio() : null,
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        backgroundColor: const Color.fromRGBO(0, 96, 153, 10),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      child: const Text('Continuar',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
           ),
+        ),
+    );
+  }
+}
+class _FormularioExterno extends ConsumerWidget {
+  const _FormularioExterno();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.read(beneficiarioEdicionControllerProvider.notifier);
+    final provider = ref.watch(beneficiarioEdicionControllerProvider);
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(defaultPadding),
+      child: ReactiveForm(
+        formGroup: controller.form,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Información de la Cuenta', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromRGBO(0, 96, 153, 10))),
+            const SizedBox(height: defaultPadding),
+            ReactiveDropdownField<int>(
+              key: const ValueKey('idInstitucionBeneficiario'),
+              formControlName: 'idInstitucion',
+              items: (provider.requisitosRespuesta?.institucionesFinancieras ?? [])
+                  .map((banco) => DropdownMenuItem<int>(
+                        value: banco.id,
+                        child: Text(banco.nombre),
+                      ))
+                  .toList(),
+              decoration: InputDecoration(
+                labelText: 'Coop. de A. y C. Chibuleo LTDA',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    color: Colors.blue, 
+                    width: 0.5,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    color: Colors.blue,
+                    width: 0.5,
+                  ),
+                ),
+                fillColor: Colors.transparent,
+                filled: true,
+              ),
+            ),
+            const SizedBox(height: defaultPadding),
+            const Text('Nombre de la persona', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
+            const SizedBox(height: defaultPadding),
+            ReactiveTextField(
+              formControlName: 'nombre',
+              decoration: InputDecoration(
+                hintText: 'Por ejemplo: Juan, Pedro, etc.',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    color: Colors.blue, 
+                    width: 0.5,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Colors.blue,
+                            width: 0.5,
+                          ),
+                        ),
+                        fillColor: Colors.transparent,
+                        filled: true,
+              ),
+            ),
+            const SizedBox(height: defaultPadding),
+            const Text('Tipo de Identificacion', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
+            const SizedBox(height: defaultPadding),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                   child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: Colors.blue), 
+                      foregroundColor: Colors.grey, 
+                      padding: const EdgeInsets.symmetric(vertical: 11),
+                    ),
+                    onPressed: () {}, 
+                    child: const Text('Cédula', style: TextStyle(color: Colors.grey)),                              
+                  ),
+                ),
+                const SizedBox(width: defaultPadding),
+                Expanded(
+                  flex: 1,
+                   child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: Colors.blue), 
+                      foregroundColor: Colors.grey, 
+                      padding: const EdgeInsets.symmetric(vertical: 11),
+                    ),
+                    onPressed: () {}, child: const Text('Ruc', style: TextStyle(color: Colors.grey))),
+                ),
+                const SizedBox(width: defaultPadding),
+                Expanded(
+                  flex: 1,
+                   child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: Colors.blue), 
+                      foregroundColor: Colors.grey, 
+                      padding: const EdgeInsets.symmetric(vertical: 11),
+                    ),
+                    onPressed: () {}, child: const Text('Pasaporte', style: TextStyle(color: Colors.grey))),
+                ),
+              ],
+            ),
+            const SizedBox(height: defaultPadding),
+            const Text('Numero de identificación', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
+            const SizedBox(height: defaultPadding),
+            ReactiveTextField(
+              key: const ValueKey('identificacionBeneficiarioNuevo'),
+              formControlName: 'identificacion',
+              decoration: InputDecoration(
+                hintText: 'Ej: 1234567890',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    color: Colors.blue, 
+                    width: 0.5,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Colors.blue,
+                            width: 0.5,
+                          ),
+                        ),
+                        fillColor: Colors.transparent,
+                        filled: true,
+              ),
+            ),
+            const SizedBox(height: defaultPadding),
+            const Text('Tipo de cuenta', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
+            const SizedBox(height: defaultPadding),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                   child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: Colors.blue), 
+                      foregroundColor: Colors.grey, 
+                      padding: const EdgeInsets.symmetric(vertical: 11),
+                    ),
+                    onPressed: () {}, child: const Text('De Ahorros', style: TextStyle(color: Colors.grey))),
+                ),
+                const SizedBox(width: defaultPadding),
+                Expanded(
+                  flex: 1,
+                   child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: Colors.blue), 
+                      foregroundColor: Colors.grey, 
+                      padding: const EdgeInsets.symmetric(vertical: 11),
+                    ),
+                    onPressed: () {}, child: const Text('Corriente', style: TextStyle(color: Colors.grey))),
+                ),
+              ],
+            ),
+            const SizedBox(height: defaultPadding),
+            const Text('Numero de cuenta', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
+            const SizedBox(height: defaultPadding),
+            ReactiveTextField(
+              formControlName: 'numeroCuenta',
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    color: Colors.blue, 
+                    width: 0.5,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    color: Colors.blue,
+                    width: 0.5,
+                  ),
+                ),
+                fillColor: Colors.transparent,
+                filled: true,
+              ),
+            ),
+            const SizedBox(height: defaultPadding * 2),
+            const Text('Información personal', style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 96, 153, 10))),
+            const SizedBox(height: defaultPadding),
+            ReactiveTextField(
+              formControlName: 'email',
+              decoration: InputDecoration(
+                labelText: 'Correo electrónico',
+                hintText: 'ejemplo@correo.com',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    color: Colors.blue, 
+                    width: 0.5,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    color: Colors.blue,
+                    width: 0.5,
+                  ),
+                ),
+                fillColor: Colors.transparent,
+                filled: true,
+              ),
+            ),
+            const SizedBox(height: defaultPadding),
+            ReactiveCheckboxListTile(
+              formControlName: 'guardarContacto',
+              title: const Text('Guardar Contacto'),
+              secondary: const Icon(Icons.person),
+              controlAffinity: ListTileControlAffinity.trailing,
+              contentPadding: EdgeInsets.zero,
+            ),
+            const SizedBox(height: defaultPadding * 2),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () => controller.irInicio(),
+                child: const Text('Continuar'),
+              ),
+            ),
+          ],
         ),
       ),
     );

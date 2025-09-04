@@ -13,13 +13,14 @@ class BeneficiarioEdicionController extends _$BeneficiarioEdicionController {
     'codigoTipoCuenta': [''],
     'codigoTipoId': [''],
     'idInstitucion': [0],
+    'guardarContacto': <bool>[false],
   });
 
   @override
   BeneficiarioEdicionState build() {
     return BeneficiarioEdicionState();
   }
-
+  
   Future inicializa(int id, bool esInterno) async {
     state = state.copyWith(esInterno: esInterno);
 
@@ -105,7 +106,7 @@ class BeneficiarioEdicionController extends _$BeneficiarioEdicionController {
       }
     }
   }
-
+  
   irInicio() async {
     appRouter.navigate(const PosicionConsolidadaRoute());
   }

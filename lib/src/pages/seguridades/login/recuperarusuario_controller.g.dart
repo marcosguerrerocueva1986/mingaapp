@@ -7,7 +7,7 @@ part of 'recuperarusuario_controller.dart';
 // **************************************************************************
 
 String _$recuperarUsuarioControllerHash() =>
-    r'b61464bbf4668e9151cad5a3d1fe2c867ad4424f';
+    r'c146315c04bf3cc4ea952c523d44f19f238c9811';
 
 /// See also [RecuperarUsuarioController].
 @ProviderFor(RecuperarUsuarioController)
