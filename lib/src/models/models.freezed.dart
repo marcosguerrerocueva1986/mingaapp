@@ -15927,6 +15927,7 @@ ValidaPinAccesoRequerimiento _$ValidaPinAccesoRequerimientoFromJson(
 
 /// @nodoc
 mixin _$ValidaPinAccesoRequerimiento {
+  int get idUsuario => throw _privateConstructorUsedError;
   int get idRegistro => throw _privateConstructorUsedError;
   String get textoOriginal => throw _privateConstructorUsedError;
   String get firma => throw _privateConstructorUsedError;
@@ -15945,7 +15946,8 @@ abstract class $ValidaPinAccesoRequerimientoCopyWith<$Res> {
       _$ValidaPinAccesoRequerimientoCopyWithImpl<$Res,
           ValidaPinAccesoRequerimiento>;
   @useResult
-  $Res call({int idRegistro, String textoOriginal, String firma});
+  $Res call(
+      {int idUsuario, int idRegistro, String textoOriginal, String firma});
 }
 
 /// @nodoc
@@ -15962,11 +15964,16 @@ class _$ValidaPinAccesoRequerimientoCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? idUsuario = null,
     Object? idRegistro = null,
     Object? textoOriginal = null,
     Object? firma = null,
   }) {
     return _then(_value.copyWith(
+      idUsuario: null == idUsuario
+          ? _value.idUsuario
+          : idUsuario // ignore: cast_nullable_to_non_nullable
+              as int,
       idRegistro: null == idRegistro
           ? _value.idRegistro
           : idRegistro // ignore: cast_nullable_to_non_nullable
@@ -15992,7 +15999,8 @@ abstract class _$$ValidaPinAccesoRequerimientoImplCopyWith<$Res>
       __$$ValidaPinAccesoRequerimientoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int idRegistro, String textoOriginal, String firma});
+  $Res call(
+      {int idUsuario, int idRegistro, String textoOriginal, String firma});
 }
 
 /// @nodoc
@@ -16008,11 +16016,16 @@ class __$$ValidaPinAccesoRequerimientoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? idUsuario = null,
     Object? idRegistro = null,
     Object? textoOriginal = null,
     Object? firma = null,
   }) {
     return _then(_$ValidaPinAccesoRequerimientoImpl(
+      idUsuario: null == idUsuario
+          ? _value.idUsuario
+          : idUsuario // ignore: cast_nullable_to_non_nullable
+              as int,
       idRegistro: null == idRegistro
           ? _value.idRegistro
           : idRegistro // ignore: cast_nullable_to_non_nullable
@@ -16034,12 +16047,18 @@ class __$$ValidaPinAccesoRequerimientoImplCopyWithImpl<$Res>
 class _$ValidaPinAccesoRequerimientoImpl
     implements _ValidaPinAccesoRequerimiento {
   _$ValidaPinAccesoRequerimientoImpl(
-      {this.idRegistro = 0, this.textoOriginal = '', this.firma = ''});
+      {this.idUsuario = 0,
+      this.idRegistro = 0,
+      this.textoOriginal = '',
+      this.firma = ''});
 
   factory _$ValidaPinAccesoRequerimientoImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ValidaPinAccesoRequerimientoImplFromJson(json);
 
+  @override
+  @JsonKey()
+  final int idUsuario;
   @override
   @JsonKey()
   final int idRegistro;
@@ -16052,7 +16071,7 @@ class _$ValidaPinAccesoRequerimientoImpl
 
   @override
   String toString() {
-    return 'ValidaPinAccesoRequerimiento(idRegistro: $idRegistro, textoOriginal: $textoOriginal, firma: $firma)';
+    return 'ValidaPinAccesoRequerimiento(idUsuario: $idUsuario, idRegistro: $idRegistro, textoOriginal: $textoOriginal, firma: $firma)';
   }
 
   @override
@@ -16060,6 +16079,8 @@ class _$ValidaPinAccesoRequerimientoImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ValidaPinAccesoRequerimientoImpl &&
+            (identical(other.idUsuario, idUsuario) ||
+                other.idUsuario == idUsuario) &&
             (identical(other.idRegistro, idRegistro) ||
                 other.idRegistro == idRegistro) &&
             (identical(other.textoOriginal, textoOriginal) ||
@@ -16070,7 +16091,7 @@ class _$ValidaPinAccesoRequerimientoImpl
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, idRegistro, textoOriginal, firma);
+      Object.hash(runtimeType, idUsuario, idRegistro, textoOriginal, firma);
 
   @JsonKey(ignore: true)
   @override
@@ -16091,13 +16112,16 @@ class _$ValidaPinAccesoRequerimientoImpl
 abstract class _ValidaPinAccesoRequerimiento
     implements ValidaPinAccesoRequerimiento {
   factory _ValidaPinAccesoRequerimiento(
-      {final int idRegistro,
+      {final int idUsuario,
+      final int idRegistro,
       final String textoOriginal,
       final String firma}) = _$ValidaPinAccesoRequerimientoImpl;
 
   factory _ValidaPinAccesoRequerimiento.fromJson(Map<String, dynamic> json) =
       _$ValidaPinAccesoRequerimientoImpl.fromJson;
 
+  @override
+  int get idUsuario;
   @override
   int get idRegistro;
   @override

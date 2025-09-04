@@ -14,6 +14,7 @@ class RecuperarUsuarioController extends _$RecuperarUsuarioController {
   @override
   RecuperarUsuarioState build() {
     ref.onDispose(() {
+      form.reset(); 
       form.dispose();
       print('✅ RecuperarUsuarioController: FormGroup dispose llamado.');
     });

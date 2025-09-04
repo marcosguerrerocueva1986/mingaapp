@@ -14,6 +14,7 @@ class RecuperarContraseniaController extends _$RecuperarContraseniaController {
   @override
   RecuperarContraseniaState build() {
     ref.onDispose(() {
+      form.reset(); 
       form.dispose();
       print('✅ RecuperarContraseniaController: FormGroup dispose llamado.');
     });

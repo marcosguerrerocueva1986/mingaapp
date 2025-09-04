@@ -1481,6 +1481,7 @@ Map<String, dynamic> _$$RegistroPinAccesoRequerimientoImplToJson(
 _$ValidaPinAccesoRequerimientoImpl _$$ValidaPinAccesoRequerimientoImplFromJson(
         Map<String, dynamic> json) =>
     _$ValidaPinAccesoRequerimientoImpl(
+      idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
       idRegistro: (json['idRegistro'] as num?)?.toInt() ?? 0,
       textoOriginal: json['textoOriginal'] as String? ?? '',
       firma: json['firma'] as String? ?? '',
@@ -1489,6 +1490,7 @@ _$ValidaPinAccesoRequerimientoImpl _$$ValidaPinAccesoRequerimientoImplFromJson(
 Map<String, dynamic> _$$ValidaPinAccesoRequerimientoImplToJson(
         _$ValidaPinAccesoRequerimientoImpl instance) =>
     <String, dynamic>{
+      'idUsuario': instance.idUsuario,
       'idRegistro': instance.idRegistro,
       'textoOriginal': instance.textoOriginal,
       'firma': instance.firma,

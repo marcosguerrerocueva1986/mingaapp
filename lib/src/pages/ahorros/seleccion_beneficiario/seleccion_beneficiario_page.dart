@@ -183,7 +183,7 @@ class BeneficiarioCard extends StatelessWidget {
             ],
           ),
           onTap: () {
-            appRouter.push(TransferenciaRoute(tipoTransferencia: TipoTransferencia.directa, beneficiario: beneficiario));
+            appRouter.push(TransferenciaRoute(tipoTransferencia: beneficiario.esInterno == true ? TipoTransferencia.directa : TipoTransferencia.interbancaria, beneficiario: beneficiario));
           },
         ),
       ),

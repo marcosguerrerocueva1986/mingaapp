@@ -14,6 +14,7 @@ class ActivaCuentaController extends _$ActivaCuentaController {
   @override
   ActivaCuentaState build() {
     ref.onDispose(() {
+      form.reset(); 
       form.dispose();
       print('✅ ActivaCuentaController: FormGroup dispose llamado.');
     });

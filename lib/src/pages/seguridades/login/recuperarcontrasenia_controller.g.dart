@@ -7,7 +7,7 @@ part of 'recuperarcontrasenia_controller.dart';
 // **************************************************************************
 
 String _$recuperarContraseniaControllerHash() =>
-    r'0db4946d1322136c3cb019cc0abe9a7c56e4ead5';
+    r'0f4696748b90bb26d3a91bfd6f50dfd8104b82b4';
 
 /// See also [RecuperarContraseniaController].
 @ProviderFor(RecuperarContraseniaController)
