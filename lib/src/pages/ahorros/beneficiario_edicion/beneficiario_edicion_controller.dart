@@ -68,7 +68,19 @@ class BeneficiarioEdicionController extends _$BeneficiarioEdicionController {
       }
     }
   }
+Future validaCuentaBeneficiario() async {
+    if (!form.invalid) {
+      var client = HttpClientHelper.getClient();
+      String cuentabeneficiario = form.control('numeroCuenta').value as String;
+      var respuesta = await guard(() async => await client
+          .validaBeneficiarioCuentaInterno(ConsultaBeneficiarioRequerimiento(
+              numeroCuenta: cuentabeneficiario)));
 
+      if (respuesta.hasValue) {
+          state = state.copyWith(beneficiario: respuesta.value?.beneficiario, esValidacion: false);
+      }
+    }
+  }
   Future eliminarBeneficiario() async {
     NotificationService.showConfirm(
         text:
@@ -81,7 +93,6 @@ class BeneficiarioEdicionController extends _$BeneficiarioEdicionController {
           if (respuesta.hasValue) {
             await actualizaListaBeneficiarios();
             // await appRouter.navigate(const BeneficiarioRoute());
-            await appRouter.pop();
             await appRouter.pop();
             NotificationService.showSuccess(text: 'Beneficiario eliminado');
           }

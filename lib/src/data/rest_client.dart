@@ -49,6 +49,10 @@ abstract class RestClient {
   Future<ConsultaDetalePrestamoRespuesta> consultaDetallePrestamo(
       @Body() ConsultaDetallePrestamoRequerimiento requerimiento);
 
+  @POST("/validaBeneficiarioCuentaInterno")
+  Future<MantenimientoBeneficiarioRequerimiento> validaBeneficiarioCuentaInterno(
+      @Body() ConsultaBeneficiarioRequerimiento requerimiento);
+
   @POST("/consultaBeneficiarios")
   Future<ConsultaBeneficiariosRespuesta> consultaBeneficiarios(
       @Body() BaseRequerimiento requerimiento);
@@ -101,6 +105,10 @@ abstract class RestClient {
   @POST("/validaPinAcceso")
   Future<ValidacionOtpAccesoRespuesta> validaPinAcceso(
       @Body() ValidaPinAccesoRequerimiento requerimiento);
+  
+  @POST("/validaAccesoBiometrico")
+  Future<ValidacionOtpAccesoRespuesta> validaAccesoBiometrico(
+      @Body() ValidacionOtpAccesoRespuesta requerimiento);
   
   @POST("/cambioClave")
   Future<BaseRespuesta> cambioClave(
@@ -156,4 +164,8 @@ abstract class RestClient {
   @POST("/registro")
   Future<BaseRespuesta> activaCuenta(
       @Body() RegistroRequerimiento requerimiento);
+  
+  @POST("/validaBeneficiarioInterno")
+  Future<MantenimientoBeneficiarioRespuesta> validaCuentaBeneficiarioInterno(
+      @Body() ConsultaBeneficiarioRequerimiento requerimiento);
 }

@@ -20,7 +20,7 @@ class CambiarContraseniaController extends _$CambiarContraseniaController {
   }
   void confimarOtpRegistroCambioContrasenia(String otp) async {
     if (state.modoConfirmacion) {
-      SharedPreferences preferences = SharedPreferences();
+      SharedPreference preferences = SharedPreference();
 
       var client = HttpClientHelper.getClient();
       var requerimiento = RegistroRequerimiento.fromJson(form.value);

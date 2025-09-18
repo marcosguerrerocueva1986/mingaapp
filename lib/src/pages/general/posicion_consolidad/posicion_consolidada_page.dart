@@ -666,26 +666,31 @@ class CardInformacion extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Spacer(),
-                      Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget> [
-                        ElevatedButton (
-                          onPressed: onToggleVisibility,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent, 
-                              foregroundColor: Colors.white, 
-                              elevation: 0, 
-                              padding: EdgeInsets.zero, 
-                              minimumSize: Size.zero, 
-                              tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
-                            ),
-                            child: Ink.image(
-                              image: const AssetImage('assets/images/ojocuenta.png'),
-                              fit: BoxFit.fill,
-                              width: 24,
-                              height: 15,
-                            ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget> [
+                            const SizedBox(width: 8),
+                            ElevatedButton (
+                              onPressed: onToggleVisibility,
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.transparent, 
+                                  foregroundColor: Colors.white, 
+                                  elevation: 0, 
+                                  padding: EdgeInsets.zero, 
+                                  minimumSize: Size.zero, 
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
+                                ),
+                                child: Ink.image(
+                                  image: const AssetImage('assets/images/ojocuenta.png'),
+                                  fit: BoxFit.fill,
+                                  width: 24,
+                                  height: 15,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -779,28 +784,33 @@ class CardInformacion extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Spacer(),
-                      Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget> [
-                        ElevatedButton (
-                          onPressed: () {
-                              print('compartir cuenta');
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent, 
-                              foregroundColor: Colors.white, 
-                              elevation: 0, 
-                              padding: EdgeInsets.zero, 
-                              minimumSize: Size.zero, 
-                              tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
-                            ),
-                            child: Ink.image(
-                              image: const AssetImage('assets/images/compartircuenta.png'),
-                              fit: BoxFit.fill,
-                              width: 140,
-                              height: 20,
-                            ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const SizedBox(width: 8),
+                          Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget> [
+                            ElevatedButton (
+                              onPressed: () {
+                                  print('compartir cuenta');
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.transparent, 
+                                  foregroundColor: Colors.white, 
+                                  elevation: 0, 
+                                  padding: EdgeInsets.zero, 
+                                  minimumSize: Size.zero, 
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
+                                ),
+                                child: Ink.image(
+                                  image: const AssetImage('assets/images/compartircuenta.png'),
+                                  fit: BoxFit.fill,
+                                  width: 140,
+                                  height: 20,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),

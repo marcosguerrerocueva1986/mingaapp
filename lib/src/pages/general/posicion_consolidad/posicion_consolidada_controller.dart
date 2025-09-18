@@ -28,7 +28,7 @@ class PosicionConsolidadaController extends _$PosicionConsolidadaController {
 
   Future toogleAccesoPorHuella() async {
     try {
-      SharedPreferences preferences = SharedPreferences();
+      SharedPreference preferences = SharedPreference();
       bool habilitado = preferences.accesoPorHuellaHabilitado.val;
 
       if (!habilitado) {
@@ -62,7 +62,7 @@ class PosicionConsolidadaController extends _$PosicionConsolidadaController {
   }
 
   void eliminarAccesoHuella() {
-    SharedPreferences preferences = SharedPreferences();
+    SharedPreference preferences = SharedPreference();
     preferences.idRegistro.val = 0;
     preferences.accesoPorHuellaHabilitado.val = false;
 

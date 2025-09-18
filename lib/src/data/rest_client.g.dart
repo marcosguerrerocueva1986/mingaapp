@@ -396,6 +396,42 @@ class _RestClient implements RestClient {
   }
 
   @override
+  Future<MantenimientoBeneficiarioRequerimiento>
+      validaBeneficiarioCuentaInterno(
+          ConsultaBeneficiarioRequerimiento requerimiento) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requerimiento;
+    final _options =
+        _setStreamType<MantenimientoBeneficiarioRequerimiento>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/validaBeneficiarioCuentaInterno',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late MantenimientoBeneficiarioRequerimiento _value;
+    try {
+      _value = MantenimientoBeneficiarioRequerimiento.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<ConsultaBeneficiariosRespuesta> consultaBeneficiarios(
       BaseRequerimiento requerimiento) async {
     final _extra = <String, dynamic>{};
@@ -826,6 +862,40 @@ class _RestClient implements RestClient {
         .compose(
           _dio.options,
           '/validaPinAcceso',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ValidacionOtpAccesoRespuesta _value;
+    try {
+      _value = ValidacionOtpAccesoRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ValidacionOtpAccesoRespuesta> validaAccesoBiometrico(
+      ValidacionOtpAccesoRespuesta requerimiento) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requerimiento;
+    final _options = _setStreamType<ValidacionOtpAccesoRespuesta>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/validaAccesoBiometrico',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -1290,6 +1360,40 @@ class _RestClient implements RestClient {
     late BaseRespuesta _value;
     try {
       _value = BaseRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<MantenimientoBeneficiarioRespuesta> validaCuentaBeneficiarioInterno(
+      ConsultaBeneficiarioRequerimiento requerimiento) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requerimiento;
+    final _options = _setStreamType<MantenimientoBeneficiarioRespuesta>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/validaBeneficiarioInterno',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late MantenimientoBeneficiarioRespuesta _value;
+    try {
+      _value = MantenimientoBeneficiarioRespuesta.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

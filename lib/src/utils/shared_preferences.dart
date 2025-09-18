@@ -1,8 +1,8 @@
 import 'package:get_storage/get_storage.dart';
 
-SharedPreferences sharedPreferences = SharedPreferences();
+SharedPreference sharedPreference = SharedPreference();
 
-class SharedPreferences {
+class SharedPreference {
   final _box = GetStorage();
 
   final isDarkMode = false.val('isDarkmode');

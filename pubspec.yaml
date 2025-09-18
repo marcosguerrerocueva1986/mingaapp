@@ -32,6 +32,7 @@ dependencies:
   calendar_date_picker2: ^0.5.3
   cupertino_icons: ^1.0.2
   shared_preferences: any
+  flutter_secure_storage: ^9.0.0
   flutter_biometrics: any
   darq: ^2.0.0
   date_format: ^2.0.7

@@ -58,7 +58,9 @@ with TickerProviderStateMixin {
       if (canCheckBiometrics) {
         List<BiometricType> availableBiometrics = await auth.getAvailableBiometrics();
         if (availableBiometrics.isNotEmpty) {
+          setState(() {
           canCheckBiometrics = true;
+        });
         } else {
           canCheckBiometrics = false;
         }
@@ -73,90 +75,73 @@ with TickerProviderStateMixin {
     });
   }
   Future<void> _loginConHuellaDactilar() async {
-    try {
-      setState(() {
-        _errorMessage = null; 
-        _isLoading = true;
-      });
-      if (!_isBiometricAvailable) {
+  if (mounted) {
+    setState(() {
+      _errorMessage = null;
+      _isLoading = true;
+    });
+  }
+
+  final bool isBiometricAvailable = await auth.canCheckBiometrics;
+  if (!isBiometricAvailable) {
+      if (mounted) {
         setState(() {
-          _errorMessage = 'Biometría no disponible o no configurada en el dispositivo.';
+          _errorMessage = 'Biometría no disponible o no configurada.';
           _isLoading = false;
         });
-        return;
       }
-    } catch (e) {
-      setState(() {
-        _errorMessage = 'Error de biometría: $e';
-      });
+      return;
     }
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(
-                'assets/images/huelladactilar.png',
-                height: 100,
-                width: 100,
-                color: Colors.blueAccent,
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Toca el sensor para acceder',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 10),
-              const CircularProgressIndicator(), 
-            ],
-          ),
-        );
-      },
-    );
+    
     bool authenticated = false;
     try {
-        authenticated = await auth.authenticate(
-          localizedReason: 'Autenticación con huella para acceder',
-          options: const AuthenticationOptions(
-            biometricOnly: true,
-            stickyAuth: false,
-          ),
-        );
-      } on PlatformException catch (e) {
-        print('Error en la autenticación biométrica: ${e.message}');
-        authenticated = false;
-        setState(() {
-          _errorMessage = 'Error: ${e.message!.split(':').last.trim()}';
-        });
-      } finally {
-        if (mounted && Navigator.of(context).canPop()) {
-          Navigator.of(context).pop();
-        }
+      authenticated = await auth.authenticate(
+        localizedReason: 'Autenticación con huella para acceder',
+        options: const AuthenticationOptions(
+          biometricOnly: true,
+          stickyAuth: false,
+        ),
+      );
+    } on PlatformException catch (e) {
+      String message;
+      if (e.code == 'NotAvailable') {
+        message = 'Biometría no disponible en este dispositivo.';
+      } else if (e.code == 'NotEnrolled') {
+        message = 'No hay huellas dactilares registradas.';
+      } else if (e.code == 'PasscodeNotSet') {
+        message = 'Por favor, configure un bloqueo de pantalla.';
+      } else {
+        message = 'Error de autenticación: ${e.message}';
       }
-      if (!mounted) return;
-      if (authenticated) {
+      if (mounted) {
+        setState(() {
+          _errorMessage = message;
+          _isLoading = false;
+        });
+      }
+      return; 
+    }
+    
+    if (!mounted) return;
+    if (authenticated) {
         final AuthStorageService authStorageService = ref.read(authStorageServiceProvider);
         final storedUserId = await authStorageService.getUserId();
-        if (storedUserId != null) {
-          final controller = ref.read(loginPrincipalControllerProvider.notifier);
-          controller.accesoPorHuella(storedUserId);
-        }
-        else {
-          setState(() {
-          _errorMessage = 'No hay datos de usuario guardados para login biométrico. Inicie sesión con credenciales.';
-          });
-        }
+        String? accessToken = await authStorageService.getToken();
+
+        if (accessToken != null) {
+        final controller = ref.read(loginPrincipalControllerProvider.notifier);
+        controller.accesoPorHuella(accessToken); 
+      } else {
+        _errorMessage = 'No hay datos de sesión guardados. Inicie sesión con credenciales.';
       }
-      else {
-        setState(() {
-          _errorMessage ??= 'Autenticación de huella fallida.';
+    } else {
+      _errorMessage = 'Autenticación de huella fallida o cancelada.';
+    }
+
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+        _errorMessage = _errorMessage;
       });
     }
   }

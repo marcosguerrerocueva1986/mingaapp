@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bancamovilr/index.dart';
 import 'package:flutter_biometrics/flutter_biometrics.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 part 'loginprincipal_controller.g.dart';
 
 @riverpod
@@ -16,47 +17,35 @@ class LoginPrincipalController extends _$LoginPrincipalController {
     return LoginState(permiteEditarUsuario: true, obscurecerClave: true);
   }
 
-  void accesoPorHuella(String signedData) async {
-    SharedPreferences preferences = SharedPreferences();
-    var client = HttpClientHelper.getClient();
+  void accesoPorHuella(String accessToken) async {
+    SharedPreference preference = SharedPreference();
+    final preferences = await SharedPreferences.getInstance();
+    final client = HttpClientHelper.getClient();
+    var requerimiento = LoginRequerimiento.fromJson(form.value);
+
+    requerimiento = requerimiento.copyWith(
+        idUsuario: state.loginRespuesta?.id ?? 0,
+        idRegistro: state.loginRespuesta?.idRegistro ?? 0);
 
     try {
-      DateTime now = DateTime.now();
-      var payload = now.toStringFormatFull();
-
-      List<int> bytes = utf8.encode(payload);
-      String encodedText = base64.encode(bytes);
-
-      var respuesta = await guard(() async => await client.validaPinAcceso(
-          ValidaPinAccesoRequerimiento(
-              idUsuario: int.parse(signedData),
-              idRegistro: int.parse(signedData),
-              firma: signedData,
-              textoOriginal: encodedText)));
-
+      final respuesta = await guard(() async => await client.validaAccesoBiometrico(
+            ValidacionOtpAccesoRespuesta(token: accessToken)));
       if (respuesta.hasValue) {
+        ref.read(themeInfoProvider.notifier).cambiarColor('#B70055');
         HttpClientHelper.token = respuesta.value?.token ?? '';
-        Configuracion.segundosInactividad =
-            respuesta.value?.segundosInactividad ??
-                Configuracion.segundosInactividad;
-
         state = state.copyWith(
             validacionOtpRespuesta: respuesta.value,
             estaValidado: false,
             modoConfirmacion: false);
-        form.patchValue({'pwdUsuario': ''});
-        appRouter.replace(const PosicionConsolidadaRoute());
+        appRouter.replaceAll([const PosicionConsolidadaRoute()]);
       } else {
-        SharedPreferences preferences = SharedPreferences();
-        preferences.idRegistro.val = 0;
-        preferences.accesoPorHuellaHabilitado.val = false;
-
-        state = state.copyWith();
-
+        await preferences.setInt('idRegistro', 0);
+        await preferences.setBool('accesoPorHuellaHabilitado', false);
         NotificationService.showWarning(
-            text:
-                'Se han detectado cambios en tu acceso biométrico, se requiere que vuelvas a habilitar el acceso');
+            text: 'Acceso biométrico inválido. Por favor, vuelva a iniciar sesión.');
       }
-    } catch (e) {}
+    } catch (e) {
+      NotificationService.showError(text: 'Ocurrió un error inesperado: $e');
+    }
   }
 }
