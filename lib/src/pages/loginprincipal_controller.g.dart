@@ -7,7 +7,7 @@ part of 'loginprincipal_controller.dart';
 // **************************************************************************
 
 String _$loginPrincipalControllerHash() =>
-    r'2e090552a0ff682bdb25259c4f662394bf1a17ee';
+    r'59396f92f118ddcb691d13253d51628c862871c2';
 
 /// See also [LoginPrincipalController].
 @ProviderFor(LoginPrincipalController)
