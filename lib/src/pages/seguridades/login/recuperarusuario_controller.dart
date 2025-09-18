@@ -40,7 +40,7 @@ class RecuperarUsuarioController extends _$RecuperarUsuarioController {
     }
   }
   Future<bool> tienePinAccesoRegistrado() async {
-    SharedPreferences preferences = SharedPreferences();
+    SharedPreference preferences = SharedPreference();
 
     return Future.value(preferences.accesoPorHuellaHabilitado.val);
   }

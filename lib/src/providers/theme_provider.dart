@@ -6,7 +6,7 @@ part 'theme_provider.g.dart';
 
 @riverpod
 class ThemeInfo extends _$ThemeInfo {
-  SharedPreferences preferences = SharedPreferences();
+  SharedPreference preferences = SharedPreference();
 
   @override
   ThemeMode build() {

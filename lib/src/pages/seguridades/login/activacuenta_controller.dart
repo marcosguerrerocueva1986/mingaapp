@@ -36,7 +36,7 @@ class ActivaCuentaController extends _$ActivaCuentaController {
   }
   void confimarOtpRegistro(String otp) async {
     if (state.modoConfirmacion) {
-      SharedPreferences preferences = SharedPreferences();
+      SharedPreference preferences = SharedPreference();
 
       var client = HttpClientHelper.getClient();
       var requerimiento = RegistroRequerimiento.fromJson(form.value);

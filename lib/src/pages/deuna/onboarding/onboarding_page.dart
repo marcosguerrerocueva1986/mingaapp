@@ -103,7 +103,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage>
                     ProcessButton(
                       text: 'CONTINUAR',
                       onPressed: () {
-                        SharedPreferences preferences = SharedPreferences();
+                        SharedPreference preferences = SharedPreference();
                         preferences.onBoardingDeunaMostrado.val = true;
 
                         appRouter.replace(const QrScannerRoute());

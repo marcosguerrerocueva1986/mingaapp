@@ -7,7 +7,7 @@ part of 'beneficiario_edicion_controller.dart';
 // **************************************************************************
 
 String _$beneficiarioEdicionControllerHash() =>
-    r'9e749edd236450785a6bbf8a7a8440c093be9def';
+    r'fea9d4f9dc3222e4ec158a4dfdb77a248faeb728';
 
 /// See also [BeneficiarioEdicionController].
 @ProviderFor(BeneficiarioEdicionController)

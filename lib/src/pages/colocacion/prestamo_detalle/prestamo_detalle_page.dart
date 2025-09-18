@@ -89,7 +89,7 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                           Shadow(
                                             blurRadius: 2.0,
                                             color: Colors.white,
-                                            offset: Offset(1.0, 1.0)
+                                            offset: Offset.zero
                                           ),
                                         ],
                                       ),
@@ -97,33 +97,38 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                   ),
                                 ],
                               ),
-                              const SizedBox(width: 8),
-                              Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget> [
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                                  child: ElevatedButton (
-                                    onPressed: () { 
-                                        ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.transparent, 
-                                        foregroundColor: Colors.white, 
-                                        elevation: 0, 
-                                        padding: EdgeInsets.zero, 
-                                        minimumSize: Size.zero, 
-                                        tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
-                                      ),
-                                      child: Ink.image(
-                                        image: const AssetImage('assets/images/ojocuenta.png'),
-                                        //image: AssetImage(isBalanceVisible ? 'assets/images/ojocuenta.png' : 'assets/images/ojocuenta_cerrado.png'),
-                                        fit: BoxFit.fill,
-                                        width: 24,
-                                        height: 15,
-                                      ),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const SizedBox(width: 8),
+                                  Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget> [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                      child: ElevatedButton (
+                                        onPressed: () { 
+                                            ref.read(balanceVisibilityProvider.notifier).toggleAllBalances();
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.transparent, 
+                                            foregroundColor: Colors.white, 
+                                            elevation: 0, 
+                                            padding: EdgeInsets.zero, 
+                                            minimumSize: Size.zero, 
+                                            tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
+                                          ),
+                                          child: Ink.image(
+                                            image: const AssetImage('assets/images/ojocuenta.png'),
+                                            //image: AssetImage(isBalanceVisible ? 'assets/images/ojocuenta.png' : 'assets/images/ojocuenta_cerrado.png'),
+                                            fit: BoxFit.fill,
+                                            width: 24,
+                                            height: 15,
+                                          ),
+                                        ),
                                     ),
-                                ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ],
@@ -138,7 +143,7 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                   Shadow(
                                     blurRadius: 2.0,
                                     color: Colors.white,
-                                    offset: Offset(1.0, 1.0)
+                                    offset: Offset.zero
                                   ),
                                 ],
                               ),
@@ -155,7 +160,7 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                     Shadow(
                                       blurRadius: 2.0,
                                       color: Colors.white,
-                                      offset: Offset(1.0, 1.0)
+                                      offset: Offset.zero
                                     ),
                                   ],
                                 ),
@@ -170,7 +175,7 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                     Shadow(
                                       blurRadius: 2.0,
                                       color: Colors.white,
-                                      offset: Offset(1.0, 1.0)
+                                      offset: Offset.zero
                                     ),
                                   ],
                                 ),
@@ -194,7 +199,7 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                           Shadow(
                                             blurRadius: 2.0,
                                             color: Colors.white,
-                                            offset: Offset(1.0, 1.0)
+                                            offset: Offset.zero
                                           ),
                                         ],
                                       ),
@@ -213,7 +218,7 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                               Shadow(
                                               blurRadius: 2.0,
                                               color: Colors.white,
-                                              offset: Offset(1.0, 1.0)
+                                              offset: Offset.zero
                                             ),
                                           ],
                                         ),
@@ -222,33 +227,39 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                                     ),
                                 ],
                               ),
-                              Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget> [
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                                  child: ElevatedButton (
-                                    onPressed: () {
-                                        setState(() {
-                                          _mostrarDetallesYPago = !_mostrarDetallesYPago;
-                                        });
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.transparent, 
-                                        foregroundColor: Colors.white, 
-                                        elevation: 0, 
-                                        padding: EdgeInsets.zero, 
-                                        minimumSize: Size.zero, 
-                                        tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
-                                      ),
-                                      child: Ink.image(
-                                        image: const AssetImage('assets/images/verdetalles.png'),
-                                        fit: BoxFit.fill,
-                                        width: 140,
-                                        height: 20,
-                                      ),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const SizedBox(width: 8),
+                                  Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget> [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                      child: ElevatedButton (
+                                        onPressed: () {
+                                            setState(() {
+                                              _mostrarDetallesYPago = !_mostrarDetallesYPago;
+                                            });
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.transparent, 
+                                            foregroundColor: Colors.white, 
+                                            elevation: 0, 
+                                            padding: EdgeInsets.zero, 
+                                            minimumSize: Size.zero, 
+                                            tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
+                                          ),
+                                          child: Ink.image(
+                                            image: const AssetImage('assets/images/verdetalles.png'),
+                                            fit: BoxFit.fill,
+                                            width: 140,
+                                            height: 20,
+                                          ),
+                                        ),
                                     ),
-                                ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ],

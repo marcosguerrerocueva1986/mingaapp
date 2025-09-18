@@ -52,7 +52,7 @@ late final AuthStorageService _authStorageService;
             HttpClientHelper.idUsuario = respuesta.value?.id ?? 0;
             HttpClientHelper.idRegistro = respuesta.value?.idRegistro ?? 0;
             if (respuesta.value?.id != null) {
-              await _authStorageService.saveUserId(respuesta.value!.id);
+              //await _authStorageService.saveAuthToken(respuesta.value!.token!);
             }
             state = state.copyWith(
                 modoConfirmacion: true, loginRespuesta: respuesta.value);
@@ -112,7 +112,7 @@ late final AuthStorageService _authStorageService;
             HttpClientHelper.idUsuario = respuesta.value?.id ?? 0;
             HttpClientHelper.idRegistro = respuesta.value?.idRegistro ?? 0;
             if (respuesta.value?.id != null) {
-              await _authStorageService.saveUserId(respuesta.value!.id);
+              //await _authStorageService.saveAuthToken(respuesta.value!.token!);
             }
             state = state.copyWith(
                 modoConfirmacion: true, loginRespuesta: respuesta.value);
@@ -125,7 +125,7 @@ late final AuthStorageService _authStorageService;
 
   void confimarOtpIngreso(String otp) async {
     if (state.modoConfirmacion) {
-      SharedPreferences preferences = SharedPreferences();
+      SharedPreference preferences = SharedPreference();
 
       var client = HttpClientHelper.getClient();
       var requerimiento = LoginRequerimiento.fromJson(form.value);
@@ -139,66 +139,20 @@ late final AuthStorageService _authStorageService;
           () async => await client.validaCodigoOtpIngreso(requerimiento));
 
       if (respuesta.hasValue) {
-        ref.read(themeInfoProvider.notifier).cambiarColor('#B70055');
+          ref.read(themeInfoProvider.notifier).cambiarColor('#B70055');
+          if (respuesta.value?.token != null) {
+            await _authStorageService.saveAuthToken(respuesta.value!.token!);
+        }
         HttpClientHelper.token = respuesta.value?.token ?? '';
         state = state.copyWith(
             validacionOtpRespuesta: respuesta.value,
             estaValidado: false,
             modoConfirmacion: false);
-        form.patchValue({'pwdUsuario': ''});
-        preferences.idRegistro.val = state.loginRespuesta?.idRegistro ?? 0;
+            
         appRouter.replaceAll([const PosicionConsolidadaRoute()]);
       }
     }
   }
-
-  void accesoPorHuella() async {
-    SharedPreferences preferences = SharedPreferences();
-    var client = HttpClientHelper.getClient();
-
-    try {
-      DateTime now = DateTime.now();
-      var payload = now.toStringFormatFull();
-
-      List<int> bytes = utf8.encode(payload);
-      String encodedText = base64.encode(bytes);
-
-      String signedData = await FlutterBiometrics().sign(
-          payload: encodedText,
-          reason: 'Pon tu dedo en el sensor para acceder');
-      var respuesta = await guard(() async => await client.validaPinAcceso(
-          ValidaPinAccesoRequerimiento(
-              idUsuario : preferences.idRegistro.val,
-              idRegistro: preferences.idRegistro.val,
-              firma: signedData,
-              textoOriginal: encodedText)));
-
-      if (respuesta.hasValue) {
-        HttpClientHelper.token = respuesta.value?.token ?? '';
-        Configuracion.segundosInactividad =
-            respuesta.value?.segundosInactividad ??
-                Configuracion.segundosInactividad;
-
-        state = state.copyWith(
-            validacionOtpRespuesta: respuesta.value,
-            estaValidado: false,
-            modoConfirmacion: false);
-        form.patchValue({'pwdUsuario': ''});
-        appRouter.replace(const PosicionConsolidadaRoute());
-      } else {
-        SharedPreferences preferences = SharedPreferences();
-        preferences.idRegistro.val = 0;
-        preferences.accesoPorHuellaHabilitado.val = false;
-
-        state = state.copyWith();
-
-        NotificationService.showWarning(
-            text:
-                'Se han detectado cambios en tu acceso biométrico, se requiere que vuelvas a habilitar el acceso');
-      }
-    } catch (e) {}
-  }
-
   void cancelar() {
     state = state.copyWith(loginRespuesta: null, modoConfirmacion: false);
   }
@@ -208,7 +162,7 @@ late final AuthStorageService _authStorageService;
   }
 
   Future<bool> tienePinAccesoRegistrado() async {
-    SharedPreferences preferences = SharedPreferences();
+    SharedPreference preferences = SharedPreference();
 
     return Future.value(preferences.accesoPorHuellaHabilitado.val);
   }

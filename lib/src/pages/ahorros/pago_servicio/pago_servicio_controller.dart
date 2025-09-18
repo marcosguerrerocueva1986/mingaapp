@@ -32,7 +32,7 @@ class PagoServicioController extends _$PagoServicioController {
         await client.consultaRequisitosPagoServicios(BaseRequerimiento()));
 
     if (respuesta.hasValue) {
-      final idsFavoritos = sharedPreferences.serviciosFavoritos;
+      final idsFavoritos = sharedPreference.serviciosFavoritos;
       final servicios = (respuesta.value?.servicios ?? []).map((s) {
         return s.copyWith(esFavorito: idsFavoritos.contains(s.id));
       }).toList();
@@ -51,7 +51,7 @@ class PagoServicioController extends _$PagoServicioController {
   void toggleFavoritoServicio(ServicioModel servicio) {
     final actualizado = servicio.copyWith(esFavorito: !servicio.esFavorito);
 
-    final favoritos = sharedPreferences.serviciosFavoritos;
+    final favoritos = sharedPreference.serviciosFavoritos;
 
     if (actualizado.esFavorito) {
       favoritos.add(actualizado.id);
@@ -59,7 +59,7 @@ class PagoServicioController extends _$PagoServicioController {
       favoritos.remove(actualizado.id);
     }
 
-    sharedPreferences.serviciosFavoritos = favoritos;
+    sharedPreference.serviciosFavoritos = favoritos;
 
     _todosLosServicios = _todosLosServicios.map((s) {
       return s.id == servicio.id ? actualizado : s;

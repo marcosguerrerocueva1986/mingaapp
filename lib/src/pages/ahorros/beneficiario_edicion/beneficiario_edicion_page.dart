@@ -153,7 +153,7 @@ class _FormularioInterno extends ConsumerWidget {
                   Expanded(
                     flex: 1,
                     child: ElevatedButton(
-                      onPressed: controller.verificarYGenerarOtp,
+                      onPressed: controller.validaCuentaBeneficiario,
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         backgroundColor: const Color.fromRGBO(0, 114, 181, 1),
@@ -192,9 +192,6 @@ class _FormularioInterno extends ConsumerWidget {
                       child: Column(
                         children: <Widget>[
                           ...itemsParaConfirmacionRecibo([
-                            EtiquetaValorRecibo(
-                                etiqueta: 'Número Cuenta',
-                                valor: provider.beneficiario?.numeroCuenta ?? ''),
                             EtiquetaValorRecibo(
                                 etiqueta: 'Nombre',
                                 valor: provider.beneficiario?.nombre ?? ''),
@@ -313,7 +310,7 @@ class _FormularioInterno extends ConsumerWidget {
                 child: ReactiveFormConsumer(
                   builder: (context, form, child) {
                     return ElevatedButton(
-                      onPressed: form.valid ? () => controller.irInicio() : null,
+                      onPressed: form.valid ? () => controller.verificarYGenerarOtp() : null,
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         backgroundColor: const Color.fromRGBO(0, 96, 153, 10),
@@ -336,14 +333,37 @@ class _FormularioInterno extends ConsumerWidget {
     );
   }
 }
-class _FormularioExterno extends ConsumerWidget {
-  const _FormularioExterno();
+class _FormularioExterno extends ConsumerStatefulWidget {
+   const _FormularioExterno({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_FormularioExterno> createState() => _FormularioExternoState();
+}
+
+class _FormularioExternoState extends ConsumerState<_FormularioExterno> {
+  String? tipoIdentificacionSeleccionado;
+  String? tipoCuentaSeleccionado;
+  final Map<String, String> tiposIdentificacion = {
+  'Cedula': '1',
+  'Ruc': '2',
+  'Pasaporte': '3',
+};
+final Map<String, String> tiposCuenta = {
+  'De Ahorros': '01',
+  'Corriente': '02',
+};
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(beneficiarioEdicionControllerProvider.notifier).inicializa(0, false);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final controller = ref.read(beneficiarioEdicionControllerProvider.notifier);
     final provider = ref.watch(beneficiarioEdicionControllerProvider);
-
     return SingleChildScrollView(
       padding: const EdgeInsets.all(defaultPadding),
       child: ReactiveForm(
@@ -352,18 +372,114 @@ class _FormularioExterno extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text('Información de la Cuenta', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromRGBO(0, 96, 153, 10))),
-            const SizedBox(height: defaultPadding),
+            if(provider.esValidacion) ...[
+              const SizedBox(
+                    height: defaultPadding,
+                  ),
+                  Text(
+                    (provider.beneficiario?.id ?? 0) > 0
+                        ? 'Datos del Beneficiario'
+                        : 'Confirma los datos del registro de beneficiario',
+                    textAlign: TextAlign.center,
+                    style: context.textTheme.bodyMedium!.copyWith(
+                        color: context.getTitlePrimaryColor(),
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                    decoration: const BoxDecoration(
+                        // color: Colors.white,
+                        ),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 10),
+                    child: Column(
+                      children: <Widget>[
+                        ...itemsParaConfirmacionRecibo([
+                          EtiquetaValorRecibo(
+                              etiqueta: 'Número Cuenta',
+                              valor: provider.beneficiario?.numeroCuenta ?? ''),
+                          EtiquetaValorRecibo(
+                              etiqueta: 'Nombre',
+                              valor: provider.beneficiario?.nombre ?? ''),
+                          EtiquetaValorRecibo(
+                              etiqueta: 'Identificación',
+                              valor:
+                                  provider.beneficiario?.identificacion ?? ''),
+                          EtiquetaValorRecibo(
+                              etiqueta: 'Institución',
+                              valor: provider.beneficiario?.institucion ?? ''),
+                          if (!provider.esInterno) ...[
+                            EtiquetaValorRecibo(
+                                etiqueta: 'Tipo Cuenta',
+                                valor: provider.beneficiario?.tipoCuenta ?? ''),
+                          ]
+                        ]),
+                        const SizedBox(height: defaultPadding * 2),
+                        const Divider(
+                          height: 1,
+                        ),
+                        if ((provider.beneficiario?.id ?? 0) == 0) ...[
+                          const SizedBox(
+                            height: defaultPadding * 2,
+                          ),
+                          if (provider.esValidacion) ...[
+                            const Text(
+                                "Ingrese el código temporal de seguridad que fue enviado a su correo y/o celular.",
+                                textAlign: TextAlign.center),
+                            const SizedBox(
+                              height: defaultPadding,
+                            ),
+                            Pinput(
+                              androidSmsAutofillMethod:
+                                  AndroidSmsAutofillMethod.smsUserConsentApi,
+                              length: 6,
+                              // controller: controller,
+                              // focusNode: focusNode,
+                              defaultPinTheme: defaultPinTheme,
+                              onCompleted: (String otp) =>
+                                  controller.guardaBeneficiario(otp),
+                              focusedPinTheme: defaultPinTheme.copyWith(
+                                height: 68,
+                                width: 64,
+                                decoration: defaultPinTheme.decoration,
+                              ),
+                              errorPinTheme: defaultPinTheme.copyWith(
+                                decoration: BoxDecoration(
+                                  color: const Color.fromRGBO(255, 234, 238, 1),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                            ),
+                          ]
+                        ] else ...[
+                          const SizedBox(
+                            height: defaultPadding,
+                          ),
+                          ProcessButton(
+                              text: 'ELIMINAR',
+                              onPressed: controller.eliminarBeneficiario),
+                        ]
+                      ],
+                    ),
+                  )
+            ],
+            const SizedBox(height: defaultPadding*1),
             ReactiveDropdownField<int>(
-              key: const ValueKey('idInstitucionBeneficiario'),
-              formControlName: 'idInstitucion',
-              items: (provider.requisitosRespuesta?.institucionesFinancieras ?? [])
-                  .map((banco) => DropdownMenuItem<int>(
-                        value: banco.id,
-                        child: Text(banco.nombre),
-                      ))
-                  .toList(),
-              decoration: InputDecoration(
-                labelText: 'Coop. de A. y C. Chibuleo LTDA',
+                key: const ValueKey('idInstitucionBeneficiario'),
+                formControlName: 'idInstitucion', 
+                items: (provider.requisitosRespuesta?.institucionesFinancieras ?? [])
+                    .map((banco) => DropdownMenuItem<int>(
+                          value: banco.id,
+                          child: SizedBox(
+                            width: 300,
+                            child: Text(
+                              banco.nombre,
+                              overflow: TextOverflow.ellipsis, 
+                            ),
+                          ),
+                        ))
+                    .toList(),
+                decoration: InputDecoration(
+                  hintText: 'Coop. de A. y C. Chibuleo LTDA',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: const BorderSide(
@@ -414,14 +530,28 @@ class _FormularioExterno extends ConsumerWidget {
               children: [
                 Expanded(
                   flex: 1,
-                   child: OutlinedButton(
+                    child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Colors.blue), 
+                      backgroundColor: tipoIdentificacionSeleccionado == 'Cedula' ? const Color.fromRGBO(0, 96, 153, 10) : Colors.transparent, 
+                      side: BorderSide(
+                        color: tipoIdentificacionSeleccionado == 'Cedula' ? Colors.blue : Colors.blue, 
+                      ),
                       foregroundColor: Colors.grey, 
                       padding: const EdgeInsets.symmetric(vertical: 11),
                     ),
-                    onPressed: () {}, 
-                    child: const Text('Cédula', style: TextStyle(color: Colors.grey)),                              
+                    onPressed: () {
+                      setState(() {
+                        tipoIdentificacionSeleccionado = 'Cedula';
+                        final codigoId = tiposIdentificacion['Cedula'];
+                        controller.form.control('codigoTipoId').updateValue(codigoId);
+                      });
+                    },
+                    child: Text(
+                    'Cédula', 
+                    style: TextStyle(
+                      color: tipoIdentificacionSeleccionado == 'Cedula' ? Colors.white : Colors.grey, 
+                    ),
+                  ),                         
                   ),
                 ),
                 const SizedBox(width: defaultPadding),
@@ -429,22 +559,49 @@ class _FormularioExterno extends ConsumerWidget {
                   flex: 1,
                    child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Colors.blue), 
-                      foregroundColor: Colors.grey, 
+                      backgroundColor: tipoIdentificacionSeleccionado == 'Ruc' ? const Color.fromRGBO(0, 96, 153, 10) : Colors.transparent, 
+                      side: BorderSide(
+                        color: tipoIdentificacionSeleccionado == 'Ruc' ? Colors.grey : Colors.blue, 
+                      ),
+                      foregroundColor: Colors.grey,
                       padding: const EdgeInsets.symmetric(vertical: 11),
                     ),
-                    onPressed: () {}, child: const Text('Ruc', style: TextStyle(color: Colors.grey))),
+                    onPressed: () {
+                      setState(() {
+                        tipoIdentificacionSeleccionado = 'Ruc';
+                        final codigoId = tiposIdentificacion['Ruc'];
+                        controller.form.control('codigoTipoId').updateValue(codigoId);
+                      });
+                    },
+                    child: Text('Ruc', style: TextStyle(
+                      color: tipoIdentificacionSeleccionado == 'Ruc' ? Colors.white : Colors.grey, 
+                      ),
+                    ),
+                   ),
                 ),
                 const SizedBox(width: defaultPadding),
                 Expanded(
                   flex: 1,
                    child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Colors.blue), 
-                      foregroundColor: Colors.grey, 
+                      backgroundColor: tipoIdentificacionSeleccionado == 'Pasaporte' ? const Color.fromRGBO(0, 96, 153, 10) : Colors.transparent, 
+                      side: BorderSide(
+                        color: tipoIdentificacionSeleccionado == 'Pasaporte' ? Colors.grey : Colors.blue, 
+                      ),
+                      foregroundColor: Colors.grey,
                       padding: const EdgeInsets.symmetric(vertical: 11),
                     ),
-                    onPressed: () {}, child: const Text('Pasaporte', style: TextStyle(color: Colors.grey))),
+                    onPressed: () {
+                      setState(() {
+                        tipoIdentificacionSeleccionado = 'Pasaporte';
+                        final codigoId = tiposIdentificacion['Pasaporte'];
+                        controller.form.control('codigoTipoId').updateValue(codigoId);
+                      });
+                    },
+                  child: Text('Pasaporte', style: TextStyle(color: tipoIdentificacionSeleccionado == 'Pasaporte' ? Colors.white : Colors.grey, // <-- El color del texto cambia aquí
+                      ),
+                    ),
+                   ),
                 ),
               ],
             ),
@@ -483,22 +640,49 @@ class _FormularioExterno extends ConsumerWidget {
                   flex: 1,
                    child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Colors.blue), 
+                      backgroundColor: tipoCuentaSeleccionado == 'De Ahorros' ? const Color.fromRGBO(0, 96, 153, 10) : Colors.transparent, 
+                      side: BorderSide(
+                        color: tipoCuentaSeleccionado == 'De Ahorros' ? Colors.blue : Colors.blue, 
+                      ),
                       foregroundColor: Colors.grey, 
                       padding: const EdgeInsets.symmetric(vertical: 11),
                     ),
-                    onPressed: () {}, child: const Text('De Ahorros', style: TextStyle(color: Colors.grey))),
+                    onPressed: () {
+                      setState(() {
+                        tipoCuentaSeleccionado = 'De Ahorros';
+                        final codigoId = tiposCuenta['De Ahorros'];
+                        controller.form.control('codigoTipoCuenta').updateValue(codigoId);
+                      });
+                    },
+                    child: Text('De Ahorros', style: TextStyle(
+                      color: tipoCuentaSeleccionado == 'De Ahorros' ? Colors.white : Colors.grey, 
+                    ),
+                  ),                         
+                  ),
                 ),
                 const SizedBox(width: defaultPadding),
                 Expanded(
                   flex: 1,
                    child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Colors.blue), 
+                      backgroundColor: tipoCuentaSeleccionado == 'Corriente' ? const Color.fromRGBO(0, 96, 153, 10) : Colors.transparent, 
+                      side: BorderSide(
+                        color: tipoCuentaSeleccionado == 'Corriente' ? Colors.blue : Colors.blue, 
+                      ),
                       foregroundColor: Colors.grey, 
                       padding: const EdgeInsets.symmetric(vertical: 11),
                     ),
-                    onPressed: () {}, child: const Text('Corriente', style: TextStyle(color: Colors.grey))),
+                    onPressed: () {
+                      setState(() {
+                        tipoCuentaSeleccionado = 'Corriente';
+                        final codigoId = tiposCuenta['Corriente'];
+                        controller.form.control('codigoTipoCuenta').updateValue(codigoId);
+                      });
+                    },
+                    child: Text('Corriente', style: TextStyle(color: tipoCuentaSeleccionado == 'Corriente' ? Colors.white : Colors.grey, 
+                    ),
+                  ),                         
+                  ),
                 ),
               ],
             ),
@@ -564,7 +748,7 @@ class _FormularioExterno extends ConsumerWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () => controller.irInicio(),
+                onPressed: () => controller.verificarYGenerarOtp(),
                 child: const Text('Continuar'),
               ),
             ),
