@@ -101,6 +101,7 @@ class TransferenciaController extends _$TransferenciaController {
                     esDirecta:
                         tipoTransferencia != TipoTransferencia.interbancaria,
                     idBeneficiario: state.beneficiario?.id ?? 0,
+                    beneficiario: state.beneficiario,
                     monto: monto,
                     descripcion: form.value['descripcion'].toString(),
                     emailEnvio: form.value['emailEnvio'].toString())));

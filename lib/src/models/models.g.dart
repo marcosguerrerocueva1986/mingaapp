@@ -382,6 +382,8 @@ _$InversionModelImpl _$$InversionModelImplFromJson(Map<String, dynamic> json) =>
       nombre: json['nombre'] as String? ?? '',
       tipo: json['tipo'] as String? ?? '',
       monto: (json['monto'] as num?)?.toDouble() ?? 0.00,
+      tasa: (json['tasa'] as num?)?.toDouble() ?? 0.00,
+      totalTasa: (json['totalTasa'] as num?)?.toDouble() ?? 0.00,
       plazo: (json['plazo'] as num?)?.toInt() ?? 0,
       fechaVencimiento: json['fechaVencimiento'] == null
           ? null
@@ -398,6 +400,8 @@ Map<String, dynamic> _$$InversionModelImplToJson(
       'nombre': instance.nombre,
       'tipo': instance.tipo,
       'monto': instance.monto,
+      'tasa': instance.tasa,
+      'totalTasa': instance.totalTasa,
       'plazo': instance.plazo,
       'fechaVencimiento': instance.fechaVencimiento?.toIso8601String(),
       'estado': instance.estado,
@@ -1010,6 +1014,10 @@ _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
           emailEnvio: json['emailEnvio'] as String? ?? '',
           celularEnvio: json['celularEnvio'] as String? ?? '',
           esDirecta: json['esDirecta'] as bool? ?? false,
+          beneficiario: json['beneficiario'] == null
+              ? null
+              : BeneficiarioModel.fromJson(
+                  json['beneficiario'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$$ValidaTransferenciaYGeneraOtpRequerimientoImplToJson(
@@ -1025,6 +1033,7 @@ Map<String, dynamic> _$$ValidaTransferenciaYGeneraOtpRequerimientoImplToJson(
       'emailEnvio': instance.emailEnvio,
       'celularEnvio': instance.celularEnvio,
       'esDirecta': instance.esDirecta,
+      'beneficiario': instance.beneficiario,
     };
 
 _$ValidaTransferenciaYGeneraOtpRespuestaImpl
@@ -1177,6 +1186,8 @@ _$DetalleInversionModelImpl _$$DetalleInversionModelImplFromJson(
           : DateTime.parse(json['fecha'] as String),
       retencion: (json['retencion'] as num?)?.toDouble() ?? 0.00,
       valor: (json['valor'] as num?)?.toDouble() ?? 0.00,
+      tasa: (json['tasa'] as num?)?.toDouble() ?? 0.00,
+      totalTasa: (json['totalTasa'] as num?)?.toDouble() ?? 0.00,
       item: json['item'] as String? ?? '',
       estado: json['estado'] as String? ?? '',
     );
@@ -1187,6 +1198,8 @@ Map<String, dynamic> _$$DetalleInversionModelImplToJson(
       'fecha': instance.fecha?.toIso8601String(),
       'retencion': instance.retencion,
       'valor': instance.valor,
+      'tasa': instance.tasa,
+      'totalTasa': instance.totalTasa,
       'item': instance.item,
       'estado': instance.estado,
     };

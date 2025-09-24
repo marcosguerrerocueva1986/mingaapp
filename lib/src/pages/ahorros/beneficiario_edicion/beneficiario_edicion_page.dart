@@ -1,6 +1,9 @@
 import 'package:awesome_select/awesome_select.dart';
 import 'package:bancamovilr/index.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:pinput/pinput.dart';
+import 'package:reactive_forms/reactive_forms.dart';
+import 'package:collection/collection.dart';
 
 @RoutePage()
 class BeneficiarioEdicionPage extends ConsumerStatefulWidget {
@@ -97,24 +100,35 @@ with SingleTickerProviderStateMixin {
   }
 }
 
-class _FormularioInterno extends ConsumerWidget {
-  const _FormularioInterno();
-
+class _FormularioInterno extends ConsumerStatefulWidget {
+  const _FormularioInterno({super.key});
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_FormularioInterno> createState() => _FormularioInternoState();
+}
+class _FormularioInternoState extends ConsumerState<_FormularioInterno> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(beneficiarioEdicionControllerProvider.notifier).inicializa(0, true);
+      ref.read(beneficiarioEdicionControllerProvider.notifier).limpiarBeneficiario();
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
     final controller = ref.read(beneficiarioEdicionControllerProvider.notifier);
     final provider = ref.watch(beneficiarioEdicionControllerProvider);
     return SingleChildScrollView(
       padding: const EdgeInsets.all(defaultPadding),
       child: ReactiveForm(
-          formGroup: controller.form,
+          formGroup: controller.formI,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 10),
               const Text(
                 'Información de la Cuenta:',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromRGBO(0, 96, 153, 10)),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromRGBO(48, 155, 217, 1)),
               ),
               const SizedBox(height: 1),
               const Text(
@@ -128,6 +142,9 @@ class _FormularioInterno extends ConsumerWidget {
                     flex: 2,
                     child: ReactiveTextField(
                       formControlName: 'numeroCuenta',
+                      onChanged: (control) => {
+                        ref.read(beneficiarioEdicionControllerProvider.notifier).limpiarBeneficiario()
+                      },
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -152,7 +169,7 @@ class _FormularioInterno extends ConsumerWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     flex: 1,
-                    child: ElevatedButton(
+                    child: ElevatedButton(                     
                       onPressed: controller.validaCuentaBeneficiario,
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
@@ -208,15 +225,15 @@ class _FormularioInterno extends ConsumerWidget {
                                   valor: provider.beneficiario?.tipoCuenta ?? ''),
                             ]
                           ]),
-                          const SizedBox(height: defaultPadding * 2),
+                          const SizedBox(height: defaultPadding * 1),
                           const Divider(
                             height: 1,
                           ),
                           if ((provider.beneficiario?.id ?? 0) == 0) ...[
                             const SizedBox(
-                              height: defaultPadding * 2,
+                              height: defaultPadding * 1,
                             ),
-                            if (provider.esValidacion) ...[
+                            /* if (provider.esValidacion) ...[
                               const Text(
                                   "Ingrese el código temporal de seguridad que fue enviado a su correo y/o celular.",
                                   textAlign: TextAlign.center),
@@ -244,7 +261,7 @@ class _FormularioInterno extends ConsumerWidget {
                                   ),
                                 ),
                               ),
-                            ]
+                            ] */
                           ] else ...[
                             const SizedBox(
                               height: defaultPadding,
@@ -257,7 +274,6 @@ class _FormularioInterno extends ConsumerWidget {
                       ),
                     )
               ],
-          
               const SizedBox(height: 1),
               const Text(
                 'Correo electrónico:',
@@ -310,7 +326,9 @@ class _FormularioInterno extends ConsumerWidget {
                 child: ReactiveFormConsumer(
                   builder: (context, form, child) {
                     return ElevatedButton(
-                      onPressed: form.valid ? () => controller.verificarYGenerarOtp() : null,
+                      onPressed: () {
+                        controller.guardaBeneficiario('');
+                      },
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         backgroundColor: const Color.fromRGBO(0, 96, 153, 10),
@@ -343,23 +361,30 @@ class _FormularioExterno extends ConsumerStatefulWidget {
 class _FormularioExternoState extends ConsumerState<_FormularioExterno> {
   String? tipoIdentificacionSeleccionado;
   String? tipoCuentaSeleccionado;
+  late final TextEditingController _bancoController;
   final Map<String, String> tiposIdentificacion = {
   'Cedula': '1',
   'Ruc': '2',
   'Pasaporte': '3',
 };
-final Map<String, String> tiposCuenta = {
+  final Map<String, String> tiposCuenta = {
   'De Ahorros': '01',
   'Corriente': '02',
 };
   @override
   void initState() {
     super.initState();
+    _bancoController = TextEditingController(); 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(beneficiarioEdicionControllerProvider.notifier).inicializa(0, false);
+      ref.read(beneficiarioEdicionControllerProvider.notifier).limpiarBeneficiario();
     });
   }
-
+  @override
+  void dispose() {
+    _bancoController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     final controller = ref.read(beneficiarioEdicionControllerProvider.notifier);
@@ -367,11 +392,11 @@ final Map<String, String> tiposCuenta = {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(defaultPadding),
       child: ReactiveForm(
-        formGroup: controller.form,
+        formGroup: controller.formE,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Información de la Cuenta', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromRGBO(0, 96, 153, 10))),
+            const Text('Información de la Cuenta', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromRGBO(48, 155, 217, 1))),
             if(provider.esValidacion) ...[
               const SizedBox(
                     height: defaultPadding,
@@ -421,7 +446,7 @@ final Map<String, String> tiposCuenta = {
                           const SizedBox(
                             height: defaultPadding * 2,
                           ),
-                          if (provider.esValidacion) ...[
+                          /* if (provider.esValidacion) ...[
                             const Text(
                                 "Ingrese el código temporal de seguridad que fue enviado a su correo y/o celular.",
                                 textAlign: TextAlign.center),
@@ -449,7 +474,7 @@ final Map<String, String> tiposCuenta = {
                                 ),
                               ),
                             ),
-                          ]
+                          ] */
                         ] else ...[
                           const SizedBox(
                             height: defaultPadding,
@@ -463,40 +488,61 @@ final Map<String, String> tiposCuenta = {
                   )
             ],
             const SizedBox(height: defaultPadding*1),
-            ReactiveDropdownField<int>(
-                key: const ValueKey('idInstitucionBeneficiario'),
-                formControlName: 'idInstitucion', 
-                items: (provider.requisitosRespuesta?.institucionesFinancieras ?? [])
-                    .map((banco) => DropdownMenuItem<int>(
-                          value: banco.id,
-                          child: SizedBox(
-                            width: 300,
-                            child: Text(
-                              banco.nombre,
-                              overflow: TextOverflow.ellipsis, 
-                            ),
-                          ),
-                        ))
-                    .toList(),
-                decoration: InputDecoration(
-                  hintText: 'Coop. de A. y C. Chibuleo LTDA',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Colors.blue, 
-                    width: 0.5,
+            TypeAheadField<int?>(
+              controller: _bancoController,
+              builder: (context, controller, focus) {
+                return TextFormField(
+                  controller: controller,
+                  focusNode: focus,
+                  decoration: const InputDecoration(
+                    labelText: 'Seleccione un banco',
+                    hintText: 'Coop. de A. y C. Chibuleo LTDA',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        color: Colors.blue,
+                        width: 0.5,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        color: Colors.blue,
+                        width: 0.5,
+                      ),
+                    ),
+                    fillColor: Colors.transparent,
+                    filled: true,
                   ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Colors.blue,
-                    width: 0.5,
-                  ),
-                ),
-                fillColor: Colors.transparent,
-                filled: true,
-              ),
+                );
+              },
+              suggestionsCallback: (pattern) async {
+                final bancos = provider.requisitosRespuesta?.institucionesFinancieras ?? [];
+                if (pattern.isEmpty) {
+                  return bancos.map((banco) => banco.id).toList();
+                }
+                return bancos.where(
+                  (banco) => (banco.nombre ?? '').toLowerCase().contains(pattern.toLowerCase()),
+                ).map((banco) => banco.id).toList();
+              },
+              itemBuilder: (context, suggestion) {
+                final banco = provider.requisitosRespuesta?.institucionesFinancieras?.firstWhereOrNull((b) => b.id == suggestion);
+                return ListTile(
+                  title: Text(banco?.nombre ?? 'Banco Desconocido'),
+                );
+              },
+              onSelected: (int? suggestion) {
+                final latestState = ref.read(beneficiarioEdicionControllerProvider); 
+                final bancos = latestState.requisitosRespuesta?.institucionesFinancieras ?? [];
+                final banco = bancos.firstWhereOrNull((b) => b.id == suggestion);
+                if (banco != null) {
+                  final selectedName = banco.nombre ?? '';
+                  setState(() {
+                    _bancoController.text = selectedName;
+                  });
+                  controller.formE.control('idInstitucion').value = suggestion; 
+                }
+              },
             ),
             const SizedBox(height: defaultPadding),
             const Text('Nombre de la persona', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
@@ -543,7 +589,7 @@ final Map<String, String> tiposCuenta = {
                       setState(() {
                         tipoIdentificacionSeleccionado = 'Cedula';
                         final codigoId = tiposIdentificacion['Cedula'];
-                        controller.form.control('codigoTipoId').updateValue(codigoId);
+                        controller.formE.control('codigoTipoId').updateValue(codigoId);
                       });
                     },
                     child: Text(
@@ -570,7 +616,7 @@ final Map<String, String> tiposCuenta = {
                       setState(() {
                         tipoIdentificacionSeleccionado = 'Ruc';
                         final codigoId = tiposIdentificacion['Ruc'];
-                        controller.form.control('codigoTipoId').updateValue(codigoId);
+                        controller.formE.control('codigoTipoId').updateValue(codigoId);
                       });
                     },
                     child: Text('Ruc', style: TextStyle(
@@ -595,7 +641,7 @@ final Map<String, String> tiposCuenta = {
                       setState(() {
                         tipoIdentificacionSeleccionado = 'Pasaporte';
                         final codigoId = tiposIdentificacion['Pasaporte'];
-                        controller.form.control('codigoTipoId').updateValue(codigoId);
+                        controller.formE.control('codigoTipoId').updateValue(codigoId);
                       });
                     },
                   child: Text('Pasaporte', style: TextStyle(color: tipoIdentificacionSeleccionado == 'Pasaporte' ? Colors.white : Colors.grey, // <-- El color del texto cambia aquí
@@ -651,7 +697,7 @@ final Map<String, String> tiposCuenta = {
                       setState(() {
                         tipoCuentaSeleccionado = 'De Ahorros';
                         final codigoId = tiposCuenta['De Ahorros'];
-                        controller.form.control('codigoTipoCuenta').updateValue(codigoId);
+                        controller.formE.control('codigoTipoCuenta').updateValue(codigoId);
                       });
                     },
                     child: Text('De Ahorros', style: TextStyle(
@@ -676,7 +722,7 @@ final Map<String, String> tiposCuenta = {
                       setState(() {
                         tipoCuentaSeleccionado = 'Corriente';
                         final codigoId = tiposCuenta['Corriente'];
-                        controller.form.control('codigoTipoCuenta').updateValue(codigoId);
+                        controller.formE.control('codigoTipoCuenta').updateValue(codigoId);
                       });
                     },
                     child: Text('Corriente', style: TextStyle(color: tipoCuentaSeleccionado == 'Corriente' ? Colors.white : Colors.grey, 
@@ -690,7 +736,7 @@ final Map<String, String> tiposCuenta = {
             const Text('Numero de cuenta', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
             const SizedBox(height: defaultPadding),
             ReactiveTextField(
-              formControlName: 'numeroCuenta',
+              formControlName: 'numeroCuentaExterno',
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -748,8 +794,12 @@ final Map<String, String> tiposCuenta = {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () => controller.verificarYGenerarOtp(),
-                child: const Text('Continuar'),
+                onPressed: () {
+                  controller.guardaBeneficiario('');
+                },
+                child: const Text('Continuar',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ],

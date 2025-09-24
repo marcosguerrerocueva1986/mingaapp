@@ -432,9 +432,9 @@ const TarjetaDetallesInversion({super.key, required this.inversion});
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Tasa de Interés',
-            valor: inversion.estado,
+            valor: '${inversion.tasa}%',
             colorValor: const Color.fromRGBO(0, 96, 152, 20),
-            pesoFuenteValor: FontWeight.bold,
+            //pesoFuenteValor: FontWeight.bold,
           ),
           _construirDivisor(),
           _construirFilaDetalle(

@@ -4287,6 +4287,8 @@ mixin _$InversionModel {
   String get nombre => throw _privateConstructorUsedError;
   String get tipo => throw _privateConstructorUsedError;
   double get monto => throw _privateConstructorUsedError;
+  double get tasa => throw _privateConstructorUsedError;
+  double get totalTasa => throw _privateConstructorUsedError;
   int get plazo => throw _privateConstructorUsedError;
   DateTime? get fechaVencimiento => throw _privateConstructorUsedError;
   String get estado => throw _privateConstructorUsedError;
@@ -4310,6 +4312,8 @@ abstract class $InversionModelCopyWith<$Res> {
       String nombre,
       String tipo,
       double monto,
+      double tasa,
+      double totalTasa,
       int plazo,
       DateTime? fechaVencimiento,
       String estado,
@@ -4334,6 +4338,8 @@ class _$InversionModelCopyWithImpl<$Res, $Val extends InversionModel>
     Object? nombre = null,
     Object? tipo = null,
     Object? monto = null,
+    Object? tasa = null,
+    Object? totalTasa = null,
     Object? plazo = null,
     Object? fechaVencimiento = freezed,
     Object? estado = null,
@@ -4356,6 +4362,14 @@ class _$InversionModelCopyWithImpl<$Res, $Val extends InversionModel>
       monto: null == monto
           ? _value.monto
           : monto // ignore: cast_nullable_to_non_nullable
+              as double,
+      tasa: null == tasa
+          ? _value.tasa
+          : tasa // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalTasa: null == totalTasa
+          ? _value.totalTasa
+          : totalTasa // ignore: cast_nullable_to_non_nullable
               as double,
       plazo: null == plazo
           ? _value.plazo
@@ -4394,6 +4408,8 @@ abstract class _$$InversionModelImplCopyWith<$Res>
       String nombre,
       String tipo,
       double monto,
+      double tasa,
+      double totalTasa,
       int plazo,
       DateTime? fechaVencimiento,
       String estado,
@@ -4416,6 +4432,8 @@ class __$$InversionModelImplCopyWithImpl<$Res>
     Object? nombre = null,
     Object? tipo = null,
     Object? monto = null,
+    Object? tasa = null,
+    Object? totalTasa = null,
     Object? plazo = null,
     Object? fechaVencimiento = freezed,
     Object? estado = null,
@@ -4438,6 +4456,14 @@ class __$$InversionModelImplCopyWithImpl<$Res>
       monto: null == monto
           ? _value.monto
           : monto // ignore: cast_nullable_to_non_nullable
+              as double,
+      tasa: null == tasa
+          ? _value.tasa
+          : tasa // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalTasa: null == totalTasa
+          ? _value.totalTasa
+          : totalTasa // ignore: cast_nullable_to_non_nullable
               as double,
       plazo: null == plazo
           ? _value.plazo
@@ -4471,6 +4497,8 @@ class _$InversionModelImpl implements _InversionModel {
       this.nombre = '',
       this.tipo = '',
       this.monto = 0.00,
+      this.tasa = 0.00,
+      this.totalTasa = 0.00,
       this.plazo = 0,
       this.fechaVencimiento,
       this.estado = '',
@@ -4494,6 +4522,12 @@ class _$InversionModelImpl implements _InversionModel {
   final double monto;
   @override
   @JsonKey()
+  final double tasa;
+  @override
+  @JsonKey()
+  final double totalTasa;
+  @override
+  @JsonKey()
   final int plazo;
   @override
   final DateTime? fechaVencimiento;
@@ -4509,7 +4543,7 @@ class _$InversionModelImpl implements _InversionModel {
 
   @override
   String toString() {
-    return 'InversionModel(codigo: $codigo, nombre: $nombre, tipo: $tipo, monto: $monto, plazo: $plazo, fechaVencimiento: $fechaVencimiento, estado: $estado, totalRecibir: $totalRecibir, oficina: $oficina)';
+    return 'InversionModel(codigo: $codigo, nombre: $nombre, tipo: $tipo, monto: $monto, tasa: $tasa, totalTasa: $totalTasa, plazo: $plazo, fechaVencimiento: $fechaVencimiento, estado: $estado, totalRecibir: $totalRecibir, oficina: $oficina)';
   }
 
   @override
@@ -4521,6 +4555,9 @@ class _$InversionModelImpl implements _InversionModel {
             (identical(other.nombre, nombre) || other.nombre == nombre) &&
             (identical(other.tipo, tipo) || other.tipo == tipo) &&
             (identical(other.monto, monto) || other.monto == monto) &&
+            (identical(other.tasa, tasa) || other.tasa == tasa) &&
+            (identical(other.totalTasa, totalTasa) ||
+                other.totalTasa == totalTasa) &&
             (identical(other.plazo, plazo) || other.plazo == plazo) &&
             (identical(other.fechaVencimiento, fechaVencimiento) ||
                 other.fechaVencimiento == fechaVencimiento) &&
@@ -4533,7 +4570,7 @@ class _$InversionModelImpl implements _InversionModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, codigo, nombre, tipo, monto,
-      plazo, fechaVencimiento, estado, totalRecibir, oficina);
+      tasa, totalTasa, plazo, fechaVencimiento, estado, totalRecibir, oficina);
 
   @JsonKey(ignore: true)
   @override
@@ -4556,6 +4593,8 @@ abstract class _InversionModel implements InversionModel {
       final String nombre,
       final String tipo,
       final double monto,
+      final double tasa,
+      final double totalTasa,
       final int plazo,
       final DateTime? fechaVencimiento,
       final String estado,
@@ -4573,6 +4612,10 @@ abstract class _InversionModel implements InversionModel {
   String get tipo;
   @override
   double get monto;
+  @override
+  double get tasa;
+  @override
+  double get totalTasa;
   @override
   int get plazo;
   @override
@@ -10733,6 +10776,7 @@ mixin _$ValidaTransferenciaYGeneraOtpRequerimiento {
   String get emailEnvio => throw _privateConstructorUsedError;
   String get celularEnvio => throw _privateConstructorUsedError;
   bool get esDirecta => throw _privateConstructorUsedError;
+  BeneficiarioModel? get beneficiario => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -10759,7 +10803,10 @@ abstract class $ValidaTransferenciaYGeneraOtpRequerimientoCopyWith<$Res> {
       String descripcion,
       String emailEnvio,
       String celularEnvio,
-      bool esDirecta});
+      bool esDirecta,
+      BeneficiarioModel? beneficiario});
+
+  $BeneficiarioModelCopyWith<$Res>? get beneficiario;
 }
 
 /// @nodoc
@@ -10787,6 +10834,7 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoCopyWithImpl<$Res,
     Object? emailEnvio = null,
     Object? celularEnvio = null,
     Object? esDirecta = null,
+    Object? beneficiario = freezed,
   }) {
     return _then(_value.copyWith(
       idUsuario: null == idUsuario
@@ -10829,7 +10877,23 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoCopyWithImpl<$Res,
           ? _value.esDirecta
           : esDirecta // ignore: cast_nullable_to_non_nullable
               as bool,
+      beneficiario: freezed == beneficiario
+          ? _value.beneficiario
+          : beneficiario // ignore: cast_nullable_to_non_nullable
+              as BeneficiarioModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BeneficiarioModelCopyWith<$Res>? get beneficiario {
+    if (_value.beneficiario == null) {
+      return null;
+    }
+
+    return $BeneficiarioModelCopyWith<$Res>(_value.beneficiario!, (value) {
+      return _then(_value.copyWith(beneficiario: value) as $Val);
+    });
   }
 }
 
@@ -10853,7 +10917,11 @@ abstract class _$$ValidaTransferenciaYGeneraOtpRequerimientoImplCopyWith<$Res>
       String descripcion,
       String emailEnvio,
       String celularEnvio,
-      bool esDirecta});
+      bool esDirecta,
+      BeneficiarioModel? beneficiario});
+
+  @override
+  $BeneficiarioModelCopyWith<$Res>? get beneficiario;
 }
 
 /// @nodoc
@@ -10879,6 +10947,7 @@ class __$$ValidaTransferenciaYGeneraOtpRequerimientoImplCopyWithImpl<$Res>
     Object? emailEnvio = null,
     Object? celularEnvio = null,
     Object? esDirecta = null,
+    Object? beneficiario = freezed,
   }) {
     return _then(_$ValidaTransferenciaYGeneraOtpRequerimientoImpl(
       idUsuario: null == idUsuario
@@ -10921,6 +10990,10 @@ class __$$ValidaTransferenciaYGeneraOtpRequerimientoImplCopyWithImpl<$Res>
           ? _value.esDirecta
           : esDirecta // ignore: cast_nullable_to_non_nullable
               as bool,
+      beneficiario: freezed == beneficiario
+          ? _value.beneficiario
+          : beneficiario // ignore: cast_nullable_to_non_nullable
+              as BeneficiarioModel?,
     ));
   }
 }
@@ -10939,7 +11012,8 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
       this.descripcion = '',
       this.emailEnvio = '',
       this.celularEnvio = '',
-      this.esDirecta = false});
+      this.esDirecta = false,
+      this.beneficiario});
 
   factory _$ValidaTransferenciaYGeneraOtpRequerimientoImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -10975,10 +11049,12 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
   @override
   @JsonKey()
   final bool esDirecta;
+  @override
+  final BeneficiarioModel? beneficiario;
 
   @override
   String toString() {
-    return 'ValidaTransferenciaYGeneraOtpRequerimiento(idUsuario: $idUsuario, cuentaOrigen: $cuentaOrigen, idBeneficiario: $idBeneficiario, codigoConcepto: $codigoConcepto, cuentaDestino: $cuentaDestino, monto: $monto, descripcion: $descripcion, emailEnvio: $emailEnvio, celularEnvio: $celularEnvio, esDirecta: $esDirecta)';
+    return 'ValidaTransferenciaYGeneraOtpRequerimiento(idUsuario: $idUsuario, cuentaOrigen: $cuentaOrigen, idBeneficiario: $idBeneficiario, codigoConcepto: $codigoConcepto, cuentaDestino: $cuentaDestino, monto: $monto, descripcion: $descripcion, emailEnvio: $emailEnvio, celularEnvio: $celularEnvio, esDirecta: $esDirecta, beneficiario: $beneficiario)';
   }
 
   @override
@@ -11004,7 +11080,9 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
             (identical(other.celularEnvio, celularEnvio) ||
                 other.celularEnvio == celularEnvio) &&
             (identical(other.esDirecta, esDirecta) ||
-                other.esDirecta == esDirecta));
+                other.esDirecta == esDirecta) &&
+            (identical(other.beneficiario, beneficiario) ||
+                other.beneficiario == beneficiario));
   }
 
   @JsonKey(ignore: true)
@@ -11020,7 +11098,8 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
       descripcion,
       emailEnvio,
       celularEnvio,
-      esDirecta);
+      esDirecta,
+      beneficiario);
 
   @JsonKey(ignore: true)
   @override
@@ -11043,16 +11122,18 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
 abstract class _ValidaTransferenciaYGeneraOtpRequerimiento
     implements ValidaTransferenciaYGeneraOtpRequerimiento {
   factory _ValidaTransferenciaYGeneraOtpRequerimiento(
-      {final int idUsuario,
-      final String cuentaOrigen,
-      final int idBeneficiario,
-      final String codigoConcepto,
-      final String cuentaDestino,
-      final double monto,
-      final String descripcion,
-      final String emailEnvio,
-      final String celularEnvio,
-      final bool esDirecta}) = _$ValidaTransferenciaYGeneraOtpRequerimientoImpl;
+          {final int idUsuario,
+          final String cuentaOrigen,
+          final int idBeneficiario,
+          final String codigoConcepto,
+          final String cuentaDestino,
+          final double monto,
+          final String descripcion,
+          final String emailEnvio,
+          final String celularEnvio,
+          final bool esDirecta,
+          final BeneficiarioModel? beneficiario}) =
+      _$ValidaTransferenciaYGeneraOtpRequerimientoImpl;
 
   factory _ValidaTransferenciaYGeneraOtpRequerimiento.fromJson(
           Map<String, dynamic> json) =
@@ -11078,6 +11159,8 @@ abstract class _ValidaTransferenciaYGeneraOtpRequerimiento
   String get celularEnvio;
   @override
   bool get esDirecta;
+  @override
+  BeneficiarioModel? get beneficiario;
   @override
   @JsonKey(ignore: true)
   _$$ValidaTransferenciaYGeneraOtpRequerimientoImplCopyWith<
@@ -12692,6 +12775,8 @@ mixin _$DetalleInversionModel {
   DateTime? get fecha => throw _privateConstructorUsedError;
   double get retencion => throw _privateConstructorUsedError;
   double get valor => throw _privateConstructorUsedError;
+  double get tasa => throw _privateConstructorUsedError;
+  double get totalTasa => throw _privateConstructorUsedError;
   String get item => throw _privateConstructorUsedError;
   String get estado => throw _privateConstructorUsedError;
 
@@ -12711,6 +12796,8 @@ abstract class $DetalleInversionModelCopyWith<$Res> {
       {DateTime? fecha,
       double retencion,
       double valor,
+      double tasa,
+      double totalTasa,
       String item,
       String estado});
 }
@@ -12732,6 +12819,8 @@ class _$DetalleInversionModelCopyWithImpl<$Res,
     Object? fecha = freezed,
     Object? retencion = null,
     Object? valor = null,
+    Object? tasa = null,
+    Object? totalTasa = null,
     Object? item = null,
     Object? estado = null,
   }) {
@@ -12747,6 +12836,14 @@ class _$DetalleInversionModelCopyWithImpl<$Res,
       valor: null == valor
           ? _value.valor
           : valor // ignore: cast_nullable_to_non_nullable
+              as double,
+      tasa: null == tasa
+          ? _value.tasa
+          : tasa // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalTasa: null == totalTasa
+          ? _value.totalTasa
+          : totalTasa // ignore: cast_nullable_to_non_nullable
               as double,
       item: null == item
           ? _value.item
@@ -12773,6 +12870,8 @@ abstract class _$$DetalleInversionModelImplCopyWith<$Res>
       {DateTime? fecha,
       double retencion,
       double valor,
+      double tasa,
+      double totalTasa,
       String item,
       String estado});
 }
@@ -12792,6 +12891,8 @@ class __$$DetalleInversionModelImplCopyWithImpl<$Res>
     Object? fecha = freezed,
     Object? retencion = null,
     Object? valor = null,
+    Object? tasa = null,
+    Object? totalTasa = null,
     Object? item = null,
     Object? estado = null,
   }) {
@@ -12807,6 +12908,14 @@ class __$$DetalleInversionModelImplCopyWithImpl<$Res>
       valor: null == valor
           ? _value.valor
           : valor // ignore: cast_nullable_to_non_nullable
+              as double,
+      tasa: null == tasa
+          ? _value.tasa
+          : tasa // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalTasa: null == totalTasa
+          ? _value.totalTasa
+          : totalTasa // ignore: cast_nullable_to_non_nullable
               as double,
       item: null == item
           ? _value.item
@@ -12827,6 +12936,8 @@ class _$DetalleInversionModelImpl implements _DetalleInversionModel {
       {this.fecha,
       this.retencion = 0.00,
       this.valor = 0.00,
+      this.tasa = 0.00,
+      this.totalTasa = 0.00,
       this.item = '',
       this.estado = ''});
 
@@ -12843,6 +12954,12 @@ class _$DetalleInversionModelImpl implements _DetalleInversionModel {
   final double valor;
   @override
   @JsonKey()
+  final double tasa;
+  @override
+  @JsonKey()
+  final double totalTasa;
+  @override
+  @JsonKey()
   final String item;
   @override
   @JsonKey()
@@ -12850,7 +12967,7 @@ class _$DetalleInversionModelImpl implements _DetalleInversionModel {
 
   @override
   String toString() {
-    return 'DetalleInversionModel(fecha: $fecha, retencion: $retencion, valor: $valor, item: $item, estado: $estado)';
+    return 'DetalleInversionModel(fecha: $fecha, retencion: $retencion, valor: $valor, tasa: $tasa, totalTasa: $totalTasa, item: $item, estado: $estado)';
   }
 
   @override
@@ -12862,14 +12979,17 @@ class _$DetalleInversionModelImpl implements _DetalleInversionModel {
             (identical(other.retencion, retencion) ||
                 other.retencion == retencion) &&
             (identical(other.valor, valor) || other.valor == valor) &&
+            (identical(other.tasa, tasa) || other.tasa == tasa) &&
+            (identical(other.totalTasa, totalTasa) ||
+                other.totalTasa == totalTasa) &&
             (identical(other.item, item) || other.item == item) &&
             (identical(other.estado, estado) || other.estado == estado));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, fecha, retencion, valor, item, estado);
+  int get hashCode => Object.hash(
+      runtimeType, fecha, retencion, valor, tasa, totalTasa, item, estado);
 
   @JsonKey(ignore: true)
   @override
@@ -12891,6 +13011,8 @@ abstract class _DetalleInversionModel implements DetalleInversionModel {
       {final DateTime? fecha,
       final double retencion,
       final double valor,
+      final double tasa,
+      final double totalTasa,
       final String item,
       final String estado}) = _$DetalleInversionModelImpl;
 
@@ -12903,6 +13025,10 @@ abstract class _DetalleInversionModel implements DetalleInversionModel {
   double get retencion;
   @override
   double get valor;
+  @override
+  double get tasa;
+  @override
+  double get totalTasa;
   @override
   String get item;
   @override

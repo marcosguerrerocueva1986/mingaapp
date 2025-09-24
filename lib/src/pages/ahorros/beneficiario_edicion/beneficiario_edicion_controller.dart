@@ -4,8 +4,19 @@ part 'beneficiario_edicion_controller.g.dart';
 
 @riverpod
 class BeneficiarioEdicionController extends _$BeneficiarioEdicionController {
-  final form = fb.group({
+  final formI = fb.group({
     'numeroCuenta': ['', Validators.required],
+    'identificacion': [''],
+    'nombre': [''],
+    'apellido': [''],
+    'email': [''],
+    'codigoTipoCuenta': [''],
+    'codigoTipoId': [''],
+    'idInstitucion': [0],
+    'guardarContacto': <bool>[false],
+  });
+  final formE = fb.group({
+    'numeroCuentaExterno': ['', Validators.required],
     'identificacion': [''],
     'nombre': [''],
     'apellido': [''],
@@ -53,34 +64,50 @@ class BeneficiarioEdicionController extends _$BeneficiarioEdicionController {
   }
 
   Future verificarYGenerarOtp() async {
-    if (!form.invalid) {
-      var client = HttpClientHelper.getClient();
-      var beneficiario = BeneficiarioModel.fromJson(form.value);
-      beneficiario = beneficiario.copyWith(esInterno: state.esInterno);
+  if (!formI.invalid) {
+    var client = HttpClientHelper.getClient();
+    var beneficiario = BeneficiarioModel.fromJson(formI.value);
+    beneficiario = beneficiario.copyWith(esInterno: state.esInterno);
 
-      var respuesta = await guard(() async => await client
-          .generaOtpBeneficiario(MantenimientoBeneficiarioRequerimiento(
-              beneficiario: beneficiario)));
+    var respuesta = await guard(() async => await client
+        .generaOtpBeneficiario(MantenimientoBeneficiarioRequerimiento(
+            beneficiario: beneficiario)));
 
-      if (respuesta.hasValue) {
-        state = state.copyWith(
-            beneficiario: respuesta.value?.beneficiario, esValidacion: true);
-      }
+    if (respuesta.hasValue) {
+      state = state.copyWith(
+          beneficiario: respuesta.value?.beneficiario, esValidacion: true);
     }
   }
+  else
+  {
+    NotificationService.showError(text: 'Validar cuenta por favor');
+  }
+}
+
+void limpiarBeneficiario() {
+  state = state.copyWith(
+    esValidacion: false, 
+    beneficiario: null,
+  );
+}
+
 Future validaCuentaBeneficiario() async {
-    if (!form.invalid) {
-      var client = HttpClientHelper.getClient();
-      String cuentabeneficiario = form.control('numeroCuenta').value as String;
-      var respuesta = await guard(() async => await client
-          .validaBeneficiarioCuentaInterno(ConsultaBeneficiarioRequerimiento(
-              numeroCuenta: cuentabeneficiario)));
+  if (!formI.invalid) {
+    var client = HttpClientHelper.getClient();
+    String cuentabeneficiario = formI.control('numeroCuenta').value as String;
+    var respuesta = await guard(() async => await client
+        .validaBeneficiarioCuentaInterno(ConsultaBeneficiarioRequerimiento(
+            numeroCuenta: cuentabeneficiario)));
 
-      if (respuesta.hasValue) {
-          state = state.copyWith(beneficiario: respuesta.value?.beneficiario, esValidacion: false);
-      }
+    if (respuesta.hasValue) {
+      state = state.copyWith(beneficiario: respuesta.value?.beneficiario, esValidacion: true);
     }
   }
+  else
+  {
+    NotificationService.showError(text: 'Ingresar el número de cuenta por favor');
+  }
+}
   Future eliminarBeneficiario() async {
     NotificationService.showConfirm(
         text:
@@ -100,21 +127,72 @@ Future validaCuentaBeneficiario() async {
   }
 
   Future guardaBeneficiario(String otp) async {
-    if (state.esValidacion) {
-      var client = HttpClientHelper.getClient();
+    var client = HttpClientHelper.getClient();
+    BeneficiarioModel? updatedBeneficiario;
+    bool guardaBeneficiario;
+    if (state.esInterno){
+      guardaBeneficiario = formI.control('guardarContacto').value as bool; 
+      if (state.esValidacion) {
+        if (!formI.invalid) {
+          final formValue = formI.value;
+          final numeroCuenta = formValue['numeroCuenta'] as String?;
+          if (numeroCuenta == null || numeroCuenta.isEmpty) {
+            NotificationService.showError(text: 'El número de cuenta es requerido.');
+            return;
+          }
+          updatedBeneficiario = state.beneficiario?.copyWith(
+            esInterno: true,
+            numeroCuenta: numeroCuenta,
+          );
 
+          if (updatedBeneficiario == null) {
+            NotificationService.showError(text: 'No se pudo actualizar el beneficiario.');
+            return;
+          }
+        } else {
+          NotificationService.showError(text: 'Validar cuenta por favor');
+        }  
+      } else {
+        NotificationService.showError(text: 'Validar cuenta por favor');
+      }       
+    }
+    else {
+      guardaBeneficiario = formE.control('guardarContacto').value as bool;
+      if (!formE.invalid) {
+        var beneficiario = BeneficiarioModel.fromJson(formE.value);
+        updatedBeneficiario = beneficiario.copyWith(esInterno: state.esInterno);
+        final formValue = formE.value;
+        final numeroCuenta = formValue['numeroCuentaExterno'] as String?;
+        if (numeroCuenta == null || numeroCuenta.isEmpty) {
+          NotificationService.showError(text: 'El número de cuenta es requerido.');
+          return;
+        }
+        updatedBeneficiario = updatedBeneficiario.copyWith(
+          esInterno: false,
+          numeroCuenta: numeroCuenta,
+        );
+
+        if (updatedBeneficiario == null) {
+          NotificationService.showError(text: 'No se pudo actualizar el beneficiario.');
+          return;
+        }
+      } else {
+        NotificationService.showError(text: 'Ingrese la información respectiva por favor');
+      }  
+    }
+    if (guardaBeneficiario){
       var respuesta = await guard(() async => await client
           .mantenimientoBeneficiario(MantenimientoBeneficiarioRequerimiento(
-              beneficiario: state.beneficiario, otpIngresado: otp)));
+              beneficiario: updatedBeneficiario, otpIngresado: otp)));
 
       if (respuesta.hasValue) {
         await actualizaListaBeneficiarios();
-        await appRouter.pop();
-        await appRouter.pop();
-        // await appRouter.navigate(const BeneficiarioRoute());
-        NotificationService.showSuccess(
-            text: 'Beneficiario registrado correctamente');
+        await appRouter.popAndPush(TransferenciaRoute(tipoTransferencia: updatedBeneficiario!.esInterno == true ? TipoTransferencia.directa : TipoTransferencia.interbancaria, beneficiario: updatedBeneficiario));
       }
+    }
+    else
+    {
+      await appRouter.popAndPush(TransferenciaRoute(tipoTransferencia: updatedBeneficiario!.esInterno == true ? TipoTransferencia.directa : TipoTransferencia.interbancaria, beneficiario: updatedBeneficiario));
     }
   }
   

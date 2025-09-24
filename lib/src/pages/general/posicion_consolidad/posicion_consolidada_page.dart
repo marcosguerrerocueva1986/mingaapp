@@ -613,8 +613,17 @@ class CardInformacion extends StatelessWidget {
       this.onTap,
     });
 
-    @override
-    Widget build(BuildContext context) {
+  void _compartirInformacionDeCuenta() {
+    final String textoACompartir =
+      '$title\n'
+      '$accountHolder\n'
+      'Número: $accountNumber\n'
+      '\n';
+
+    Share.share(textoACompartir);
+  }
+  @override
+  Widget build(BuildContext context) {
       return GestureDetector(
         onTap: onTap,
         child: Card(
@@ -792,9 +801,7 @@ class CardInformacion extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget> [
                             ElevatedButton (
-                              onPressed: () {
-                                  print('compartir cuenta');
-                                },
+                              onPressed: _compartirInformacionDeCuenta,
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.transparent, 
                                   foregroundColor: Colors.white, 

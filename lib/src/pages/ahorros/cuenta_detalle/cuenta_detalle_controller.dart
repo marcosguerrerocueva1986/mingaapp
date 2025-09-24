@@ -64,8 +64,6 @@ class CuentaDetalleController extends _$CuentaDetalleController {
         .consultaMovimientosCuenta(ConsultaMovimientosCuentaRequerimiento(
             idUsuario: HttpClientHelper.idUsuario,
             codigoCuenta: state.cuenta?.codigo ?? '',
-            fechaDesde: DateTime(now.year, 5, 1),
-            //fechaDesde: DateTime(now.year, now.month, 1),
             fechaHasta: DateTime.now())));
 
     if (respuesta.hasValue) {

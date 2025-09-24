@@ -244,6 +244,8 @@ class InversionModel with _$InversionModel {
       @Default('') String nombre,
       @Default('') String tipo,
       @Default(0.00) double monto,
+      @Default(0.00) double tasa,
+      @Default(0.00) double totalTasa,
       @Default(0) int plazo,
       DateTime? fechaVencimiento,
       @Default('') String estado,
@@ -631,7 +633,8 @@ class ValidaTransferenciaYGeneraOtpRequerimiento
           @Default('') String descripcion,
           @Default('') String emailEnvio,
           @Default('') String celularEnvio,
-          @Default(false) bool esDirecta}) =
+          @Default(false) bool esDirecta,
+          BeneficiarioModel? beneficiario}) =
       _ValidaTransferenciaYGeneraOtpRequerimiento;
 
   factory ValidaTransferenciaYGeneraOtpRequerimiento.fromJson(
@@ -744,6 +747,8 @@ class DetalleInversionModel with _$DetalleInversionModel {
       {DateTime? fecha,
       @Default(0.00) double retencion,
       @Default(0.00) double valor,
+      @Default(0.00) double tasa,
+      @Default(0.00) double totalTasa,
       @Default('') String item,
       @Default('') String estado}) = _DetalleInversionModel;
 

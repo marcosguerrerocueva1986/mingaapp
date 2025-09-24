@@ -44,6 +44,7 @@ dependencies:
   flutter_riverpod: ^2.4.9
   flutter_screenutil: ^5.9.0
   flutter_svg: ^2.0.9
+  collection: ^1.18.0
   freezed_annotation: ^2.4.1
   get_it: ^7.6.4
   get_storage: ^2.1.1
@@ -74,6 +75,7 @@ dependencies:
   widgets_to_image: ^0.0.2
   local_auth: ^2.1.8
   provider: any
+  flutter_typeahead: any
 dev_dependencies:
   auto_route_generator: ^7.3.2
   build_runner: ^2.4.7

@@ -29,7 +29,26 @@ class _DatosPersonalesPageState extends ConsumerState<DatosPersonalesPage> {
       return 'Fecha no válida';
     }
   }
+  String obtenerIniciales(String nombreCompleto) {
+    if (nombreCompleto == null || nombreCompleto.isEmpty) {
+      return '';
+    }
+    List<String> partes = nombreCompleto
+        .trim() 
+        .split(RegExp(r'\s+')) 
+        .where((s) => s.isNotEmpty) 
+        .toList();
 
+    if (partes.isEmpty) {
+      return '';
+    }
+    String inicialNombre = partes.first[0].toUpperCase();
+    String inicialApellido = '';
+    if (partes.length > 1) {
+      inicialApellido = partes.last[0].toUpperCase();
+    }
+    return inicialNombre + inicialApellido;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +58,7 @@ class _DatosPersonalesPageState extends ConsumerState<DatosPersonalesPage> {
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
     var fechaUltimoAccesoSF = loginProvider.validacionOtpRespuesta?.usuario?.fechaUltimoAcceso ?? '';
     final fechaFormateada = convertirStringAFechaFormateada(fechaUltimoAccesoSF);
+    var nombreIniciales = obtenerIniciales(nombreCliente);
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/images/logopantallamenu.png', width: 120, height: 80),
@@ -68,12 +88,12 @@ class _DatosPersonalesPageState extends ConsumerState<DatosPersonalesPage> {
                 child: Column(
                   children: [
                     const SizedBox(height: 24),
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 50,
                       backgroundColor: Colors.grey,
                       child: Text(
-                        'DM',
-                        style: TextStyle(
+                        nombreIniciales,
+                        style: const TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.bold,
                           color: Color.fromRGBO(48, 155, 217, 1),
