@@ -797,6 +797,15 @@ class _FormularioExternoState extends ConsumerState<_FormularioExterno> {
                 onPressed: () {
                   controller.guardaBeneficiario('');
                 },
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  backgroundColor: const Color.fromRGBO(0, 96, 153, 10),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
                 child: const Text('Continuar',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),

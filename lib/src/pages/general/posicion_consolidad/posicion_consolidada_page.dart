@@ -861,7 +861,7 @@ const ServiciosWidget({super.key});
                   appRouter.push(const MantenimientoRoute()); 
                   break;
                 case "deunaRoute":
-                  appRouter.push(const MantenimientoRoute()); 
+                  appRouter.push(const OnboardingRoute()); 
                   break;
                 case "pagarserviciosRoute":
                   controller.irPagoServicio(); 
