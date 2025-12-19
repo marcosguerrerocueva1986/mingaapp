@@ -44,3 +44,6 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
+
+# Exclude all Dart source files
+*.g.dart
