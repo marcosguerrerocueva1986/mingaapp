@@ -129,7 +129,7 @@ with TickerProviderStateMixin {
         String? accessToken = await authStorageService.getToken();
 
         if (accessToken != null) {
-        final controller = ref.read(loginPrincipalControllerProvider.notifier);
+        final controller = ref.read(loginControllerProvider.notifier);
         controller.accesoPorHuella(accessToken); 
       } else {
         _errorMessage = 'No hay datos de sesión guardados. Inicie sesión con credenciales.';

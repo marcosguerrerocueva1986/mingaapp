@@ -1,3 +1,4 @@
+import 'package:bancamovilr/src/pages/ahorros/estado_cuenta/estado_cuenta_page.dart';
 import 'package:bancamovilr/src/pages/ahorros/seleccion_concepto/seleccion_concepto_page.dart';
 
 import 'package:bancamovilr/src/pages/deuna/onboarding/onboarding_page.dart';
@@ -147,6 +148,10 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: ContactenosRoute.page,
+          initial: false,
+        ),
+        AutoRoute(
+          page: EstadoCuentaRoute.page,
           initial: false,
         ),
         AutoRoute(

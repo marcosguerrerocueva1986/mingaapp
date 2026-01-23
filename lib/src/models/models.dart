@@ -80,6 +80,7 @@ class LoginRespuesta with _$LoginRespuesta {
     @Default(false) @JsonKey(name: 'sF_ExisteError') bool existError,
     @Default('') @JsonKey(name: 'sF_Error') String error,
     @Default('') String mensajeCambioClave,
+    @Default('') String token,
   }) = _LoginRespuesta;
 
   factory LoginRespuesta.fromJson(Map<String, Object?> json) =>
@@ -114,7 +115,8 @@ class ValidacionOtpAccesoRespuesta with _$ValidacionOtpAccesoRespuesta {
       {@Default(false) bool esValido,
       @Default('') String token,
       @Default(60) int segundosInactividad,
-      UsuarioModel? usuario}) = _ValidacionOtpAccesoRespuesta;
+      UsuarioModel? usuario,
+      LoginRespuesta? loginRespuesta}) = _ValidacionOtpAccesoRespuesta;
 
   factory ValidacionOtpAccesoRespuesta.fromJson(Map<String, Object?> json) =>
       _$ValidacionOtpAccesoRespuestaFromJson(json);
@@ -277,7 +279,17 @@ class PrestamoModel with _$PrestamoModel {
       _$PrestamoModelFromJson(json);
 }
 
+@freezed
+class EstadoCuentaState with _$EstadoCuentaState {
+  const factory EstadoCuentaState({
+    @Default(true) bool isLoading,
+    ConsultaMovimientosCuentaRespuesta? estadoCuenta,
+    String? errorMessage,
+  }) = _EstadoCuentaStateState;
 
+  factory EstadoCuentaState.fromJson(Map<String, Object?> json) =>
+      _$EstadoCuentaStateFromJson(json);
+}
 
 @freezed
 class PosicionConsolidadaState with _$PosicionConsolidadaState {
@@ -321,7 +333,8 @@ class ConsultaMovimientosCuentaRequerimiento
 class ConsultaMovimientosCuentaRespuesta
     with _$ConsultaMovimientosCuentaRespuesta {
   factory ConsultaMovimientosCuentaRespuesta(
-          {@Default([]) List<MovimientoModel> movimientos}) =
+          {@Default([]) List<MovimientoModel> movimientos,
+          @Default([]) List<ResumenMesModel> periodos}) =
       _ConsultaMovimientosCuentaRespuesta;
 
   factory ConsultaMovimientosCuentaRespuesta.fromJson(
@@ -344,6 +357,23 @@ class MovimientoModel with _$MovimientoModel {
 
   factory MovimientoModel.fromJson(Map<String, Object?> json) =>
       _$MovimientoModelFromJson(json);
+}
+
+@freezed
+class ResumenMesModel with _$ResumenMesModel {
+  factory ResumenMesModel({
+    @Default('') String nombreMes,
+    @Default(0) int anio,
+    DateTime? fechaInicio,
+    DateTime? fechaFin,
+    @Default(0.00) double saldoAnterior,
+    @Default(0.00) double totalCreditos,
+    @Default(0.00) double totalDebitos,
+    @Default(0.00) double saldoActual,
+    @Default(0.00) double saldoPromedio}) = _ResumenMesModel;
+
+  factory ResumenMesModel.fromJson(Map<String, Object?> json) =>
+      _$ResumenMesModelFromJson(json);
 }
 
 @freezed

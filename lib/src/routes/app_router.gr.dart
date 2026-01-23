@@ -99,6 +99,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    EstadoCuentaRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const EstadoCuentaPage(),
+      );
+    },
     LoginRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -541,6 +547,20 @@ class DepositoDetalleRouteArgs {
   String toString() {
     return 'DepositoDetalleRouteArgs{key: $key, deposito: $deposito}';
   }
+}
+
+/// generated route for
+/// [EstadoCuentaPage]
+class EstadoCuentaRoute extends PageRouteInfo<void> {
+  const EstadoCuentaRoute({List<PageRouteInfo>? children})
+      : super(
+          EstadoCuentaRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EstadoCuentaRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

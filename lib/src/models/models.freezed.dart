@@ -1144,6 +1144,7 @@ mixin _$LoginRespuesta {
   @JsonKey(name: 'sF_Error')
   String get error => throw _privateConstructorUsedError;
   String get mensajeCambioClave => throw _privateConstructorUsedError;
+  String get token => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1168,7 +1169,8 @@ abstract class $LoginRespuestaCopyWith<$Res> {
       String fechaUltimoAcceso,
       @JsonKey(name: 'sF_ExisteError') bool existError,
       @JsonKey(name: 'sF_Error') String error,
-      String mensajeCambioClave});
+      String mensajeCambioClave,
+      String token});
 }
 
 /// @nodoc
@@ -1195,6 +1197,7 @@ class _$LoginRespuestaCopyWithImpl<$Res, $Val extends LoginRespuesta>
     Object? existError = null,
     Object? error = null,
     Object? mensajeCambioClave = null,
+    Object? token = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1241,6 +1244,10 @@ class _$LoginRespuestaCopyWithImpl<$Res, $Val extends LoginRespuesta>
           ? _value.mensajeCambioClave
           : mensajeCambioClave // ignore: cast_nullable_to_non_nullable
               as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -1264,7 +1271,8 @@ abstract class _$$LoginRespuestaImplCopyWith<$Res>
       String fechaUltimoAcceso,
       @JsonKey(name: 'sF_ExisteError') bool existError,
       @JsonKey(name: 'sF_Error') String error,
-      String mensajeCambioClave});
+      String mensajeCambioClave,
+      String token});
 }
 
 /// @nodoc
@@ -1289,6 +1297,7 @@ class __$$LoginRespuestaImplCopyWithImpl<$Res>
     Object? existError = null,
     Object? error = null,
     Object? mensajeCambioClave = null,
+    Object? token = null,
   }) {
     return _then(_$LoginRespuestaImpl(
       id: null == id
@@ -1335,6 +1344,10 @@ class __$$LoginRespuestaImplCopyWithImpl<$Res>
           ? _value.mensajeCambioClave
           : mensajeCambioClave // ignore: cast_nullable_to_non_nullable
               as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -1353,7 +1366,8 @@ class _$LoginRespuestaImpl implements _LoginRespuesta {
       this.fechaUltimoAcceso = '',
       @JsonKey(name: 'sF_ExisteError') this.existError = false,
       @JsonKey(name: 'sF_Error') this.error = '',
-      this.mensajeCambioClave = ''});
+      this.mensajeCambioClave = '',
+      this.token = ''});
 
   factory _$LoginRespuestaImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginRespuestaImplFromJson(json);
@@ -1391,10 +1405,13 @@ class _$LoginRespuestaImpl implements _LoginRespuesta {
   @override
   @JsonKey()
   final String mensajeCambioClave;
+  @override
+  @JsonKey()
+  final String token;
 
   @override
   String toString() {
-    return 'LoginRespuesta(id: $id, idRegistro: $idRegistro, realizaCambioUsuario: $realizaCambioUsuario, realizaCambioClave: $realizaCambioClave, identificacion: $identificacion, nombre: $nombre, segundosInactividad: $segundosInactividad, fechaUltimoAcceso: $fechaUltimoAcceso, existError: $existError, error: $error, mensajeCambioClave: $mensajeCambioClave)';
+    return 'LoginRespuesta(id: $id, idRegistro: $idRegistro, realizaCambioUsuario: $realizaCambioUsuario, realizaCambioClave: $realizaCambioClave, identificacion: $identificacion, nombre: $nombre, segundosInactividad: $segundosInactividad, fechaUltimoAcceso: $fechaUltimoAcceso, existError: $existError, error: $error, mensajeCambioClave: $mensajeCambioClave, token: $token)';
   }
 
   @override
@@ -1420,7 +1437,8 @@ class _$LoginRespuestaImpl implements _LoginRespuesta {
                 other.existError == existError) &&
             (identical(other.error, error) || other.error == error) &&
             (identical(other.mensajeCambioClave, mensajeCambioClave) ||
-                other.mensajeCambioClave == mensajeCambioClave));
+                other.mensajeCambioClave == mensajeCambioClave) &&
+            (identical(other.token, token) || other.token == token));
   }
 
   @JsonKey(ignore: true)
@@ -1437,7 +1455,8 @@ class _$LoginRespuestaImpl implements _LoginRespuesta {
       fechaUltimoAcceso,
       existError,
       error,
-      mensajeCambioClave);
+      mensajeCambioClave,
+      token);
 
   @JsonKey(ignore: true)
   @override
@@ -1466,7 +1485,8 @@ abstract class _LoginRespuesta implements LoginRespuesta {
       final String fechaUltimoAcceso,
       @JsonKey(name: 'sF_ExisteError') final bool existError,
       @JsonKey(name: 'sF_Error') final String error,
-      final String mensajeCambioClave}) = _$LoginRespuestaImpl;
+      final String mensajeCambioClave,
+      final String token}) = _$LoginRespuestaImpl;
 
   factory _LoginRespuesta.fromJson(Map<String, dynamic> json) =
       _$LoginRespuestaImpl.fromJson;
@@ -1495,6 +1515,8 @@ abstract class _LoginRespuesta implements LoginRespuesta {
   String get error;
   @override
   String get mensajeCambioClave;
+  @override
+  String get token;
   @override
   @JsonKey(ignore: true)
   _$$LoginRespuestaImplCopyWith<_$LoginRespuestaImpl> get copyWith =>
@@ -1874,6 +1896,7 @@ mixin _$ValidacionOtpAccesoRespuesta {
   String get token => throw _privateConstructorUsedError;
   int get segundosInactividad => throw _privateConstructorUsedError;
   UsuarioModel? get usuario => throw _privateConstructorUsedError;
+  LoginRespuesta? get loginRespuesta => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1893,9 +1916,11 @@ abstract class $ValidacionOtpAccesoRespuestaCopyWith<$Res> {
       {bool esValido,
       String token,
       int segundosInactividad,
-      UsuarioModel? usuario});
+      UsuarioModel? usuario,
+      LoginRespuesta? loginRespuesta});
 
   $UsuarioModelCopyWith<$Res>? get usuario;
+  $LoginRespuestaCopyWith<$Res>? get loginRespuesta;
 }
 
 /// @nodoc
@@ -1916,6 +1941,7 @@ class _$ValidacionOtpAccesoRespuestaCopyWithImpl<$Res,
     Object? token = null,
     Object? segundosInactividad = null,
     Object? usuario = freezed,
+    Object? loginRespuesta = freezed,
   }) {
     return _then(_value.copyWith(
       esValido: null == esValido
@@ -1934,6 +1960,10 @@ class _$ValidacionOtpAccesoRespuestaCopyWithImpl<$Res,
           ? _value.usuario
           : usuario // ignore: cast_nullable_to_non_nullable
               as UsuarioModel?,
+      loginRespuesta: freezed == loginRespuesta
+          ? _value.loginRespuesta
+          : loginRespuesta // ignore: cast_nullable_to_non_nullable
+              as LoginRespuesta?,
     ) as $Val);
   }
 
@@ -1946,6 +1976,18 @@ class _$ValidacionOtpAccesoRespuestaCopyWithImpl<$Res,
 
     return $UsuarioModelCopyWith<$Res>(_value.usuario!, (value) {
       return _then(_value.copyWith(usuario: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LoginRespuestaCopyWith<$Res>? get loginRespuesta {
+    if (_value.loginRespuesta == null) {
+      return null;
+    }
+
+    return $LoginRespuestaCopyWith<$Res>(_value.loginRespuesta!, (value) {
+      return _then(_value.copyWith(loginRespuesta: value) as $Val);
     });
   }
 }
@@ -1963,10 +2005,13 @@ abstract class _$$ValidacionOtpAccesoRespuestaImplCopyWith<$Res>
       {bool esValido,
       String token,
       int segundosInactividad,
-      UsuarioModel? usuario});
+      UsuarioModel? usuario,
+      LoginRespuesta? loginRespuesta});
 
   @override
   $UsuarioModelCopyWith<$Res>? get usuario;
+  @override
+  $LoginRespuestaCopyWith<$Res>? get loginRespuesta;
 }
 
 /// @nodoc
@@ -1986,6 +2031,7 @@ class __$$ValidacionOtpAccesoRespuestaImplCopyWithImpl<$Res>
     Object? token = null,
     Object? segundosInactividad = null,
     Object? usuario = freezed,
+    Object? loginRespuesta = freezed,
   }) {
     return _then(_$ValidacionOtpAccesoRespuestaImpl(
       esValido: null == esValido
@@ -2004,6 +2050,10 @@ class __$$ValidacionOtpAccesoRespuestaImplCopyWithImpl<$Res>
           ? _value.usuario
           : usuario // ignore: cast_nullable_to_non_nullable
               as UsuarioModel?,
+      loginRespuesta: freezed == loginRespuesta
+          ? _value.loginRespuesta
+          : loginRespuesta // ignore: cast_nullable_to_non_nullable
+              as LoginRespuesta?,
     ));
   }
 }
@@ -2016,7 +2066,8 @@ class _$ValidacionOtpAccesoRespuestaImpl
       {this.esValido = false,
       this.token = '',
       this.segundosInactividad = 60,
-      this.usuario});
+      this.usuario,
+      this.loginRespuesta});
 
   factory _$ValidacionOtpAccesoRespuestaImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -2033,10 +2084,12 @@ class _$ValidacionOtpAccesoRespuestaImpl
   final int segundosInactividad;
   @override
   final UsuarioModel? usuario;
+  @override
+  final LoginRespuesta? loginRespuesta;
 
   @override
   String toString() {
-    return 'ValidacionOtpAccesoRespuesta(esValido: $esValido, token: $token, segundosInactividad: $segundosInactividad, usuario: $usuario)';
+    return 'ValidacionOtpAccesoRespuesta(esValido: $esValido, token: $token, segundosInactividad: $segundosInactividad, usuario: $usuario, loginRespuesta: $loginRespuesta)';
   }
 
   @override
@@ -2049,13 +2102,15 @@ class _$ValidacionOtpAccesoRespuestaImpl
             (identical(other.token, token) || other.token == token) &&
             (identical(other.segundosInactividad, segundosInactividad) ||
                 other.segundosInactividad == segundosInactividad) &&
-            (identical(other.usuario, usuario) || other.usuario == usuario));
+            (identical(other.usuario, usuario) || other.usuario == usuario) &&
+            (identical(other.loginRespuesta, loginRespuesta) ||
+                other.loginRespuesta == loginRespuesta));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, esValido, token, segundosInactividad, usuario);
+  int get hashCode => Object.hash(runtimeType, esValido, token,
+      segundosInactividad, usuario, loginRespuesta);
 
   @JsonKey(ignore: true)
   @override
@@ -2076,10 +2131,12 @@ class _$ValidacionOtpAccesoRespuestaImpl
 abstract class _ValidacionOtpAccesoRespuesta
     implements ValidacionOtpAccesoRespuesta {
   factory _ValidacionOtpAccesoRespuesta(
-      {final bool esValido,
-      final String token,
-      final int segundosInactividad,
-      final UsuarioModel? usuario}) = _$ValidacionOtpAccesoRespuestaImpl;
+          {final bool esValido,
+          final String token,
+          final int segundosInactividad,
+          final UsuarioModel? usuario,
+          final LoginRespuesta? loginRespuesta}) =
+      _$ValidacionOtpAccesoRespuestaImpl;
 
   factory _ValidacionOtpAccesoRespuesta.fromJson(Map<String, dynamic> json) =
       _$ValidacionOtpAccesoRespuestaImpl.fromJson;
@@ -2092,6 +2149,8 @@ abstract class _ValidacionOtpAccesoRespuesta
   int get segundosInactividad;
   @override
   UsuarioModel? get usuario;
+  @override
+  LoginRespuesta? get loginRespuesta;
   @override
   @JsonKey(ignore: true)
   _$$ValidacionOtpAccesoRespuestaImplCopyWith<
@@ -5022,6 +5081,211 @@ abstract class _PrestamoModel implements PrestamoModel {
       throw _privateConstructorUsedError;
 }
 
+EstadoCuentaState _$EstadoCuentaStateFromJson(Map<String, dynamic> json) {
+  return _EstadoCuentaStateState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$EstadoCuentaState {
+  bool get isLoading => throw _privateConstructorUsedError;
+  ConsultaMovimientosCuentaRespuesta? get estadoCuenta =>
+      throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $EstadoCuentaStateCopyWith<EstadoCuentaState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EstadoCuentaStateCopyWith<$Res> {
+  factory $EstadoCuentaStateCopyWith(
+          EstadoCuentaState value, $Res Function(EstadoCuentaState) then) =
+      _$EstadoCuentaStateCopyWithImpl<$Res, EstadoCuentaState>;
+  @useResult
+  $Res call(
+      {bool isLoading,
+      ConsultaMovimientosCuentaRespuesta? estadoCuenta,
+      String? errorMessage});
+
+  $ConsultaMovimientosCuentaRespuestaCopyWith<$Res>? get estadoCuenta;
+}
+
+/// @nodoc
+class _$EstadoCuentaStateCopyWithImpl<$Res, $Val extends EstadoCuentaState>
+    implements $EstadoCuentaStateCopyWith<$Res> {
+  _$EstadoCuentaStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? estadoCuenta = freezed,
+    Object? errorMessage = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      estadoCuenta: freezed == estadoCuenta
+          ? _value.estadoCuenta
+          : estadoCuenta // ignore: cast_nullable_to_non_nullable
+              as ConsultaMovimientosCuentaRespuesta?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConsultaMovimientosCuentaRespuestaCopyWith<$Res>? get estadoCuenta {
+    if (_value.estadoCuenta == null) {
+      return null;
+    }
+
+    return $ConsultaMovimientosCuentaRespuestaCopyWith<$Res>(
+        _value.estadoCuenta!, (value) {
+      return _then(_value.copyWith(estadoCuenta: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$EstadoCuentaStateStateImplCopyWith<$Res>
+    implements $EstadoCuentaStateCopyWith<$Res> {
+  factory _$$EstadoCuentaStateStateImplCopyWith(
+          _$EstadoCuentaStateStateImpl value,
+          $Res Function(_$EstadoCuentaStateStateImpl) then) =
+      __$$EstadoCuentaStateStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool isLoading,
+      ConsultaMovimientosCuentaRespuesta? estadoCuenta,
+      String? errorMessage});
+
+  @override
+  $ConsultaMovimientosCuentaRespuestaCopyWith<$Res>? get estadoCuenta;
+}
+
+/// @nodoc
+class __$$EstadoCuentaStateStateImplCopyWithImpl<$Res>
+    extends _$EstadoCuentaStateCopyWithImpl<$Res, _$EstadoCuentaStateStateImpl>
+    implements _$$EstadoCuentaStateStateImplCopyWith<$Res> {
+  __$$EstadoCuentaStateStateImplCopyWithImpl(
+      _$EstadoCuentaStateStateImpl _value,
+      $Res Function(_$EstadoCuentaStateStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? estadoCuenta = freezed,
+    Object? errorMessage = freezed,
+  }) {
+    return _then(_$EstadoCuentaStateStateImpl(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      estadoCuenta: freezed == estadoCuenta
+          ? _value.estadoCuenta
+          : estadoCuenta // ignore: cast_nullable_to_non_nullable
+              as ConsultaMovimientosCuentaRespuesta?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$EstadoCuentaStateStateImpl implements _EstadoCuentaStateState {
+  const _$EstadoCuentaStateStateImpl(
+      {this.isLoading = true, this.estadoCuenta, this.errorMessage});
+
+  factory _$EstadoCuentaStateStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EstadoCuentaStateStateImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool isLoading;
+  @override
+  final ConsultaMovimientosCuentaRespuesta? estadoCuenta;
+  @override
+  final String? errorMessage;
+
+  @override
+  String toString() {
+    return 'EstadoCuentaState(isLoading: $isLoading, estadoCuenta: $estadoCuenta, errorMessage: $errorMessage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EstadoCuentaStateStateImpl &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.estadoCuenta, estadoCuenta) ||
+                other.estadoCuenta == estadoCuenta) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, estadoCuenta, errorMessage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EstadoCuentaStateStateImplCopyWith<_$EstadoCuentaStateStateImpl>
+      get copyWith => __$$EstadoCuentaStateStateImplCopyWithImpl<
+          _$EstadoCuentaStateStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$EstadoCuentaStateStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _EstadoCuentaStateState implements EstadoCuentaState {
+  const factory _EstadoCuentaStateState(
+      {final bool isLoading,
+      final ConsultaMovimientosCuentaRespuesta? estadoCuenta,
+      final String? errorMessage}) = _$EstadoCuentaStateStateImpl;
+
+  factory _EstadoCuentaStateState.fromJson(Map<String, dynamic> json) =
+      _$EstadoCuentaStateStateImpl.fromJson;
+
+  @override
+  bool get isLoading;
+  @override
+  ConsultaMovimientosCuentaRespuesta? get estadoCuenta;
+  @override
+  String? get errorMessage;
+  @override
+  @JsonKey(ignore: true)
+  _$$EstadoCuentaStateStateImplCopyWith<_$EstadoCuentaStateStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 PosicionConsolidadaState _$PosicionConsolidadaStateFromJson(
     Map<String, dynamic> json) {
   return _PosicionConsolidadaState.fromJson(json);
@@ -5680,6 +5944,7 @@ ConsultaMovimientosCuentaRespuesta _$ConsultaMovimientosCuentaRespuestaFromJson(
 /// @nodoc
 mixin _$ConsultaMovimientosCuentaRespuesta {
   List<MovimientoModel> get movimientos => throw _privateConstructorUsedError;
+  List<ResumenMesModel> get periodos => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -5696,7 +5961,8 @@ abstract class $ConsultaMovimientosCuentaRespuestaCopyWith<$Res> {
       _$ConsultaMovimientosCuentaRespuestaCopyWithImpl<$Res,
           ConsultaMovimientosCuentaRespuesta>;
   @useResult
-  $Res call({List<MovimientoModel> movimientos});
+  $Res call(
+      {List<MovimientoModel> movimientos, List<ResumenMesModel> periodos});
 }
 
 /// @nodoc
@@ -5714,12 +5980,17 @@ class _$ConsultaMovimientosCuentaRespuestaCopyWithImpl<$Res,
   @override
   $Res call({
     Object? movimientos = null,
+    Object? periodos = null,
   }) {
     return _then(_value.copyWith(
       movimientos: null == movimientos
           ? _value.movimientos
           : movimientos // ignore: cast_nullable_to_non_nullable
               as List<MovimientoModel>,
+      periodos: null == periodos
+          ? _value.periodos
+          : periodos // ignore: cast_nullable_to_non_nullable
+              as List<ResumenMesModel>,
     ) as $Val);
   }
 }
@@ -5733,7 +6004,8 @@ abstract class _$$ConsultaMovimientosCuentaRespuestaImplCopyWith<$Res>
       __$$ConsultaMovimientosCuentaRespuestaImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<MovimientoModel> movimientos});
+  $Res call(
+      {List<MovimientoModel> movimientos, List<ResumenMesModel> periodos});
 }
 
 /// @nodoc
@@ -5750,12 +6022,17 @@ class __$$ConsultaMovimientosCuentaRespuestaImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? movimientos = null,
+    Object? periodos = null,
   }) {
     return _then(_$ConsultaMovimientosCuentaRespuestaImpl(
       movimientos: null == movimientos
           ? _value._movimientos
           : movimientos // ignore: cast_nullable_to_non_nullable
               as List<MovimientoModel>,
+      periodos: null == periodos
+          ? _value._periodos
+          : periodos // ignore: cast_nullable_to_non_nullable
+              as List<ResumenMesModel>,
     ));
   }
 }
@@ -5765,8 +6042,10 @@ class __$$ConsultaMovimientosCuentaRespuestaImplCopyWithImpl<$Res>
 class _$ConsultaMovimientosCuentaRespuestaImpl
     implements _ConsultaMovimientosCuentaRespuesta {
   _$ConsultaMovimientosCuentaRespuestaImpl(
-      {final List<MovimientoModel> movimientos = const []})
-      : _movimientos = movimientos;
+      {final List<MovimientoModel> movimientos = const [],
+      final List<ResumenMesModel> periodos = const []})
+      : _movimientos = movimientos,
+        _periodos = periodos;
 
   factory _$ConsultaMovimientosCuentaRespuestaImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -5781,9 +6060,18 @@ class _$ConsultaMovimientosCuentaRespuestaImpl
     return EqualUnmodifiableListView(_movimientos);
   }
 
+  final List<ResumenMesModel> _periodos;
+  @override
+  @JsonKey()
+  List<ResumenMesModel> get periodos {
+    if (_periodos is EqualUnmodifiableListView) return _periodos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_periodos);
+  }
+
   @override
   String toString() {
-    return 'ConsultaMovimientosCuentaRespuesta(movimientos: $movimientos)';
+    return 'ConsultaMovimientosCuentaRespuesta(movimientos: $movimientos, periodos: $periodos)';
   }
 
   @override
@@ -5792,13 +6080,16 @@ class _$ConsultaMovimientosCuentaRespuestaImpl
         (other.runtimeType == runtimeType &&
             other is _$ConsultaMovimientosCuentaRespuestaImpl &&
             const DeepCollectionEquality()
-                .equals(other._movimientos, _movimientos));
+                .equals(other._movimientos, _movimientos) &&
+            const DeepCollectionEquality().equals(other._periodos, _periodos));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_movimientos));
+      runtimeType,
+      const DeepCollectionEquality().hash(_movimientos),
+      const DeepCollectionEquality().hash(_periodos));
 
   @JsonKey(ignore: true)
   @override
@@ -5819,7 +6110,8 @@ class _$ConsultaMovimientosCuentaRespuestaImpl
 abstract class _ConsultaMovimientosCuentaRespuesta
     implements ConsultaMovimientosCuentaRespuesta {
   factory _ConsultaMovimientosCuentaRespuesta(
-          {final List<MovimientoModel> movimientos}) =
+          {final List<MovimientoModel> movimientos,
+          final List<ResumenMesModel> periodos}) =
       _$ConsultaMovimientosCuentaRespuestaImpl;
 
   factory _ConsultaMovimientosCuentaRespuesta.fromJson(
@@ -5828,6 +6120,8 @@ abstract class _ConsultaMovimientosCuentaRespuesta
 
   @override
   List<MovimientoModel> get movimientos;
+  @override
+  List<ResumenMesModel> get periodos;
   @override
   @JsonKey(ignore: true)
   _$$ConsultaMovimientosCuentaRespuestaImplCopyWith<
@@ -6145,6 +6439,332 @@ abstract class _MovimientoModel implements MovimientoModel {
   @override
   @JsonKey(ignore: true)
   _$$MovimientoModelImplCopyWith<_$MovimientoModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ResumenMesModel _$ResumenMesModelFromJson(Map<String, dynamic> json) {
+  return _ResumenMesModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ResumenMesModel {
+  String get nombreMes => throw _privateConstructorUsedError;
+  int get anio => throw _privateConstructorUsedError;
+  DateTime? get fechaInicio => throw _privateConstructorUsedError;
+  DateTime? get fechaFin => throw _privateConstructorUsedError;
+  double get saldoAnterior => throw _privateConstructorUsedError;
+  double get totalCreditos => throw _privateConstructorUsedError;
+  double get totalDebitos => throw _privateConstructorUsedError;
+  double get saldoActual => throw _privateConstructorUsedError;
+  double get saldoPromedio => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ResumenMesModelCopyWith<ResumenMesModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ResumenMesModelCopyWith<$Res> {
+  factory $ResumenMesModelCopyWith(
+          ResumenMesModel value, $Res Function(ResumenMesModel) then) =
+      _$ResumenMesModelCopyWithImpl<$Res, ResumenMesModel>;
+  @useResult
+  $Res call(
+      {String nombreMes,
+      int anio,
+      DateTime? fechaInicio,
+      DateTime? fechaFin,
+      double saldoAnterior,
+      double totalCreditos,
+      double totalDebitos,
+      double saldoActual,
+      double saldoPromedio});
+}
+
+/// @nodoc
+class _$ResumenMesModelCopyWithImpl<$Res, $Val extends ResumenMesModel>
+    implements $ResumenMesModelCopyWith<$Res> {
+  _$ResumenMesModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? nombreMes = null,
+    Object? anio = null,
+    Object? fechaInicio = freezed,
+    Object? fechaFin = freezed,
+    Object? saldoAnterior = null,
+    Object? totalCreditos = null,
+    Object? totalDebitos = null,
+    Object? saldoActual = null,
+    Object? saldoPromedio = null,
+  }) {
+    return _then(_value.copyWith(
+      nombreMes: null == nombreMes
+          ? _value.nombreMes
+          : nombreMes // ignore: cast_nullable_to_non_nullable
+              as String,
+      anio: null == anio
+          ? _value.anio
+          : anio // ignore: cast_nullable_to_non_nullable
+              as int,
+      fechaInicio: freezed == fechaInicio
+          ? _value.fechaInicio
+          : fechaInicio // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      fechaFin: freezed == fechaFin
+          ? _value.fechaFin
+          : fechaFin // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      saldoAnterior: null == saldoAnterior
+          ? _value.saldoAnterior
+          : saldoAnterior // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalCreditos: null == totalCreditos
+          ? _value.totalCreditos
+          : totalCreditos // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalDebitos: null == totalDebitos
+          ? _value.totalDebitos
+          : totalDebitos // ignore: cast_nullable_to_non_nullable
+              as double,
+      saldoActual: null == saldoActual
+          ? _value.saldoActual
+          : saldoActual // ignore: cast_nullable_to_non_nullable
+              as double,
+      saldoPromedio: null == saldoPromedio
+          ? _value.saldoPromedio
+          : saldoPromedio // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ResumenMesModelImplCopyWith<$Res>
+    implements $ResumenMesModelCopyWith<$Res> {
+  factory _$$ResumenMesModelImplCopyWith(_$ResumenMesModelImpl value,
+          $Res Function(_$ResumenMesModelImpl) then) =
+      __$$ResumenMesModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String nombreMes,
+      int anio,
+      DateTime? fechaInicio,
+      DateTime? fechaFin,
+      double saldoAnterior,
+      double totalCreditos,
+      double totalDebitos,
+      double saldoActual,
+      double saldoPromedio});
+}
+
+/// @nodoc
+class __$$ResumenMesModelImplCopyWithImpl<$Res>
+    extends _$ResumenMesModelCopyWithImpl<$Res, _$ResumenMesModelImpl>
+    implements _$$ResumenMesModelImplCopyWith<$Res> {
+  __$$ResumenMesModelImplCopyWithImpl(
+      _$ResumenMesModelImpl _value, $Res Function(_$ResumenMesModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? nombreMes = null,
+    Object? anio = null,
+    Object? fechaInicio = freezed,
+    Object? fechaFin = freezed,
+    Object? saldoAnterior = null,
+    Object? totalCreditos = null,
+    Object? totalDebitos = null,
+    Object? saldoActual = null,
+    Object? saldoPromedio = null,
+  }) {
+    return _then(_$ResumenMesModelImpl(
+      nombreMes: null == nombreMes
+          ? _value.nombreMes
+          : nombreMes // ignore: cast_nullable_to_non_nullable
+              as String,
+      anio: null == anio
+          ? _value.anio
+          : anio // ignore: cast_nullable_to_non_nullable
+              as int,
+      fechaInicio: freezed == fechaInicio
+          ? _value.fechaInicio
+          : fechaInicio // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      fechaFin: freezed == fechaFin
+          ? _value.fechaFin
+          : fechaFin // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      saldoAnterior: null == saldoAnterior
+          ? _value.saldoAnterior
+          : saldoAnterior // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalCreditos: null == totalCreditos
+          ? _value.totalCreditos
+          : totalCreditos // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalDebitos: null == totalDebitos
+          ? _value.totalDebitos
+          : totalDebitos // ignore: cast_nullable_to_non_nullable
+              as double,
+      saldoActual: null == saldoActual
+          ? _value.saldoActual
+          : saldoActual // ignore: cast_nullable_to_non_nullable
+              as double,
+      saldoPromedio: null == saldoPromedio
+          ? _value.saldoPromedio
+          : saldoPromedio // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ResumenMesModelImpl implements _ResumenMesModel {
+  _$ResumenMesModelImpl(
+      {this.nombreMes = '',
+      this.anio = 0,
+      this.fechaInicio,
+      this.fechaFin,
+      this.saldoAnterior = 0.00,
+      this.totalCreditos = 0.00,
+      this.totalDebitos = 0.00,
+      this.saldoActual = 0.00,
+      this.saldoPromedio = 0.00});
+
+  factory _$ResumenMesModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ResumenMesModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String nombreMes;
+  @override
+  @JsonKey()
+  final int anio;
+  @override
+  final DateTime? fechaInicio;
+  @override
+  final DateTime? fechaFin;
+  @override
+  @JsonKey()
+  final double saldoAnterior;
+  @override
+  @JsonKey()
+  final double totalCreditos;
+  @override
+  @JsonKey()
+  final double totalDebitos;
+  @override
+  @JsonKey()
+  final double saldoActual;
+  @override
+  @JsonKey()
+  final double saldoPromedio;
+
+  @override
+  String toString() {
+    return 'ResumenMesModel(nombreMes: $nombreMes, anio: $anio, fechaInicio: $fechaInicio, fechaFin: $fechaFin, saldoAnterior: $saldoAnterior, totalCreditos: $totalCreditos, totalDebitos: $totalDebitos, saldoActual: $saldoActual, saldoPromedio: $saldoPromedio)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResumenMesModelImpl &&
+            (identical(other.nombreMes, nombreMes) ||
+                other.nombreMes == nombreMes) &&
+            (identical(other.anio, anio) || other.anio == anio) &&
+            (identical(other.fechaInicio, fechaInicio) ||
+                other.fechaInicio == fechaInicio) &&
+            (identical(other.fechaFin, fechaFin) ||
+                other.fechaFin == fechaFin) &&
+            (identical(other.saldoAnterior, saldoAnterior) ||
+                other.saldoAnterior == saldoAnterior) &&
+            (identical(other.totalCreditos, totalCreditos) ||
+                other.totalCreditos == totalCreditos) &&
+            (identical(other.totalDebitos, totalDebitos) ||
+                other.totalDebitos == totalDebitos) &&
+            (identical(other.saldoActual, saldoActual) ||
+                other.saldoActual == saldoActual) &&
+            (identical(other.saldoPromedio, saldoPromedio) ||
+                other.saldoPromedio == saldoPromedio));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      nombreMes,
+      anio,
+      fechaInicio,
+      fechaFin,
+      saldoAnterior,
+      totalCreditos,
+      totalDebitos,
+      saldoActual,
+      saldoPromedio);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ResumenMesModelImplCopyWith<_$ResumenMesModelImpl> get copyWith =>
+      __$$ResumenMesModelImplCopyWithImpl<_$ResumenMesModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ResumenMesModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ResumenMesModel implements ResumenMesModel {
+  factory _ResumenMesModel(
+      {final String nombreMes,
+      final int anio,
+      final DateTime? fechaInicio,
+      final DateTime? fechaFin,
+      final double saldoAnterior,
+      final double totalCreditos,
+      final double totalDebitos,
+      final double saldoActual,
+      final double saldoPromedio}) = _$ResumenMesModelImpl;
+
+  factory _ResumenMesModel.fromJson(Map<String, dynamic> json) =
+      _$ResumenMesModelImpl.fromJson;
+
+  @override
+  String get nombreMes;
+  @override
+  int get anio;
+  @override
+  DateTime? get fechaInicio;
+  @override
+  DateTime? get fechaFin;
+  @override
+  double get saldoAnterior;
+  @override
+  double get totalCreditos;
+  @override
+  double get totalDebitos;
+  @override
+  double get saldoActual;
+  @override
+  double get saldoPromedio;
+  @override
+  @JsonKey(ignore: true)
+  _$$ResumenMesModelImplCopyWith<_$ResumenMesModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

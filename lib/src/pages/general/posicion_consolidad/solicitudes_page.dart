@@ -83,7 +83,7 @@ const SolicitudesWidget({super.key});
               onPressed: () {
               switch (servicios.actionRouteName) {
                 case "estadocuentaRoute":
-                  appRouter.push(const MantenimientoRoute()); 
+                  appRouter.push(const EstadoCuentaRoute()); 
                   break;
                 default:
                 print("Ruta no definida para: ${servicios.actionRouteName}");

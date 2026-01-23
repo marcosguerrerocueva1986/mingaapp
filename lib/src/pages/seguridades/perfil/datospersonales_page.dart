@@ -47,7 +47,7 @@ class _DatosPersonalesPageState extends ConsumerState<DatosPersonalesPage> {
     if (partes.length > 1) {
       inicialApellido = partes.last[0].toUpperCase();
     }
-    return inicialNombre + inicialApellido;
+    return inicialApellido + inicialNombre;
   }
 
   @override
@@ -121,7 +121,7 @@ class _DatosPersonalesPageState extends ConsumerState<DatosPersonalesPage> {
                 ),
               ),
               _buildInfoItem(title: 'Estado Civil', value: provider.posicionConsolidada?.persona?.estadoCivil),
-              _buildInfoItem(title: 'Fecha nacimiento', value: provider.posicionConsolidada?.persona?.fechaNacimiento.toString()),
+              _buildInfoItem(title: 'Fecha nacimiento',value: DateFormat("dd/MM/yyyy").format(provider.posicionConsolidada!.persona!.fechaNacimiento!)),
               _buildInfoItem(title: 'Telefono', value: provider.posicionConsolidada?.persona?.telefono),
               _buildInfoItem(title: 'Direccion', value: provider.posicionConsolidada?.persona?.direccion),
               _buildInfoItem(title: 'Correo', value: provider.posicionConsolidada?.persona?.email),

@@ -76,6 +76,7 @@ class PosicionConsolidadaController extends _$PosicionConsolidadaController {
     if (respuesta.hasValue) {
       HttpClientHelper.token = '';
       appRouter.replace(const LoginPrincipalRoute());
+      ref.invalidateSelf();
     }
   }
 

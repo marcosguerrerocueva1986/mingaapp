@@ -858,7 +858,7 @@ const ServiciosWidget({super.key});
                   appRouter.push(const SeleccionBeneficiarioRoute()); 
                   break;
                 case "estadocuentaRoute":
-                  appRouter.push(const MantenimientoRoute()); 
+                  appRouter.push(const EstadoCuentaRoute()); 
                   break;
                 case "deunaRoute":
                   appRouter.push(const OnboardingRoute()); 

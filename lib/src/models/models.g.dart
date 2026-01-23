@@ -113,6 +113,7 @@ _$LoginRespuestaImpl _$$LoginRespuestaImplFromJson(Map<String, dynamic> json) =>
       existError: json['sF_ExisteError'] as bool? ?? false,
       error: json['sF_Error'] as String? ?? '',
       mensajeCambioClave: json['mensajeCambioClave'] as String? ?? '',
+      token: json['token'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$LoginRespuestaImplToJson(
@@ -129,6 +130,7 @@ Map<String, dynamic> _$$LoginRespuestaImplToJson(
       'sF_ExisteError': instance.existError,
       'sF_Error': instance.error,
       'mensajeCambioClave': instance.mensajeCambioClave,
+      'token': instance.token,
     };
 
 _$ValidaUsuarioRespuestaImpl _$$ValidaUsuarioRespuestaImplFromJson(
@@ -170,6 +172,10 @@ _$ValidacionOtpAccesoRespuestaImpl _$$ValidacionOtpAccesoRespuestaImplFromJson(
       usuario: json['usuario'] == null
           ? null
           : UsuarioModel.fromJson(json['usuario'] as Map<String, dynamic>),
+      loginRespuesta: json['loginRespuesta'] == null
+          ? null
+          : LoginRespuesta.fromJson(
+              json['loginRespuesta'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ValidacionOtpAccesoRespuestaImplToJson(
@@ -179,6 +185,7 @@ Map<String, dynamic> _$$ValidacionOtpAccesoRespuestaImplToJson(
       'token': instance.token,
       'segundosInactividad': instance.segundosInactividad,
       'usuario': instance.usuario,
+      'loginRespuesta': instance.loginRespuesta,
     };
 
 _$LoginStateImpl _$$LoginStateImplFromJson(Map<String, dynamic> json) =>
@@ -447,6 +454,25 @@ Map<String, dynamic> _$$PrestamoModelImplToJson(_$PrestamoModelImpl instance) =>
       'cuotasCanceladas': instance.cuotasCanceladas,
     };
 
+_$EstadoCuentaStateStateImpl _$$EstadoCuentaStateStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$EstadoCuentaStateStateImpl(
+      isLoading: json['isLoading'] as bool? ?? true,
+      estadoCuenta: json['estadoCuenta'] == null
+          ? null
+          : ConsultaMovimientosCuentaRespuesta.fromJson(
+              json['estadoCuenta'] as Map<String, dynamic>),
+      errorMessage: json['errorMessage'] as String?,
+    );
+
+Map<String, dynamic> _$$EstadoCuentaStateStateImplToJson(
+        _$EstadoCuentaStateStateImpl instance) =>
+    <String, dynamic>{
+      'isLoading': instance.isLoading,
+      'estadoCuenta': instance.estadoCuenta,
+      'errorMessage': instance.errorMessage,
+    };
+
 _$PosicionConsolidadaStateImpl _$$PosicionConsolidadaStateImplFromJson(
         Map<String, dynamic> json) =>
     _$PosicionConsolidadaStateImpl(
@@ -519,12 +545,18 @@ _$ConsultaMovimientosCuentaRespuestaImpl
                       MovimientoModel.fromJson(e as Map<String, dynamic>))
                   .toList() ??
               const [],
+          periodos: (json['periodos'] as List<dynamic>?)
+                  ?.map((e) =>
+                      ResumenMesModel.fromJson(e as Map<String, dynamic>))
+                  .toList() ??
+              const [],
         );
 
 Map<String, dynamic> _$$ConsultaMovimientosCuentaRespuestaImplToJson(
         _$ConsultaMovimientosCuentaRespuestaImpl instance) =>
     <String, dynamic>{
       'movimientos': instance.movimientos,
+      'periodos': instance.periodos,
     };
 
 _$MovimientoModelImpl _$$MovimientoModelImplFromJson(
@@ -555,6 +587,38 @@ Map<String, dynamic> _$$MovimientoModelImplToJson(
       'saldo': instance.saldo,
       'oficina': instance.oficina,
       'documento': instance.documento,
+    };
+
+_$ResumenMesModelImpl _$$ResumenMesModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ResumenMesModelImpl(
+      nombreMes: json['nombreMes'] as String? ?? '',
+      anio: (json['anio'] as num?)?.toInt() ?? 0,
+      fechaInicio: json['fechaInicio'] == null
+          ? null
+          : DateTime.parse(json['fechaInicio'] as String),
+      fechaFin: json['fechaFin'] == null
+          ? null
+          : DateTime.parse(json['fechaFin'] as String),
+      saldoAnterior: (json['saldoAnterior'] as num?)?.toDouble() ?? 0.00,
+      totalCreditos: (json['totalCreditos'] as num?)?.toDouble() ?? 0.00,
+      totalDebitos: (json['totalDebitos'] as num?)?.toDouble() ?? 0.00,
+      saldoActual: (json['saldoActual'] as num?)?.toDouble() ?? 0.00,
+      saldoPromedio: (json['saldoPromedio'] as num?)?.toDouble() ?? 0.00,
+    );
+
+Map<String, dynamic> _$$ResumenMesModelImplToJson(
+        _$ResumenMesModelImpl instance) =>
+    <String, dynamic>{
+      'nombreMes': instance.nombreMes,
+      'anio': instance.anio,
+      'fechaInicio': instance.fechaInicio?.toIso8601String(),
+      'fechaFin': instance.fechaFin?.toIso8601String(),
+      'saldoAnterior': instance.saldoAnterior,
+      'totalCreditos': instance.totalCreditos,
+      'totalDebitos': instance.totalDebitos,
+      'saldoActual': instance.saldoActual,
+      'saldoPromedio': instance.saldoPromedio,
     };
 
 _$ConsultaMovimientosInversionRequerimientoImpl
