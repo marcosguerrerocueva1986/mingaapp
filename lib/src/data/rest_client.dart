@@ -32,7 +32,7 @@ abstract class RestClient {
   @POST("/consultaMovimientosCuenta")
   Future<ConsultaMovimientosCuentaRespuesta> consultaMovimientosCuenta(
       @Body() ConsultaMovimientosCuentaRequerimiento requerimiento);
-  
+
   @POST("/consultaEstadoCuenta")
   Future<ConsultaMovimientosCuentaRespuesta> consultaEstadoCuenta(
       @Body() ConsultaMovimientosCuentaRequerimiento requerimiento);
@@ -108,7 +108,11 @@ abstract class RestClient {
 
   @POST("/validaPinAcceso")
   Future<ValidacionOtpAccesoRespuesta> validaPinAcceso(
-      @Body() ValidaPinAccesoRequerimiento requerimiento);
+      @Body() LoginClienteRequerimiento requerimiento);
+  
+  @POST("/validaPinAccesoMovil")
+  Future<ValidacionOtpAccesoRespuesta> validaPinAccesoMovil(
+      @Body() LoginClienteRequerimiento requerimiento);
   
   @POST("/validaAccesoBiometrico")
   Future<ValidacionOtpAccesoRespuesta> validaAccesoBiometrico(

@@ -1,5 +1,6 @@
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/ahorros/estado_cuenta/estado_cuenta_controller.dart';
+import 'package:bancamovilr/src/pages/ahorros/estado_cuenta/estado_cuenta_export_service.dart';
 import 'package:intl/intl.dart';
 
 @RoutePage()
@@ -162,19 +163,53 @@ final ResumenMesModel mesSeleccionado;
               ),
             ),
             const SizedBox(height: 60),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(0, 114, 181, 1.0),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                  elevation: 0,
+            Row(
+              children: [
+                Expanded(
+                  child: _buildDownloadButton(
+                    label: "Descargar Pdf",
+                    icon: Icons.picture_as_pdf,
+                    color: const Color.fromRGBO(0, 114, 181, 48),
+                    onTap: () => EstadoCuentaExportService.exportarPDF(mesSeleccionado),
+                  ),
                 ),
-                child: const Text("Estado de cuenta actual", style: TextStyle(color: Colors.white, fontSize: 16)),
-              ),
+                const SizedBox(width: 15),
+                Expanded(
+                  child: _buildDownloadButton(
+                    label: "Descargar Excel",
+                    icon: Icons.picture_as_pdf,
+                    color: const Color.fromRGBO(0, 114, 181, 48),
+                    onTap: () => EstadoCuentaExportService.exportarExcel(mesSeleccionado),
+                  ),
+                ),
+              ],
             ),
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _buildDownloadButton({
+    required String label, 
+    required IconData icon, 
+    required Color color, 
+    required VoidCallback onTap
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(
+          border: Border.all(color: color.withOpacity(0.5)),
+          borderRadius: BorderRadius.circular(10),
+          color: color.withOpacity(0.05),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: color, size: 20),
+            const SizedBox(width: 8),
+            Text(label, style: TextStyle(color: color, fontWeight: FontWeight.bold)),
           ],
         ),
       ),

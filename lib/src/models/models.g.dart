@@ -100,6 +100,28 @@ Map<String, dynamic> _$$LoginRequerimientoImplToJson(
       'esMovil': instance.esMovil,
     };
 
+_$LoginClienteRequerimientoImpl _$$LoginClienteRequerimientoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LoginClienteRequerimientoImpl(
+      codigoUsuario: json['codigoUsuario'] as String? ?? '',
+      pwdUsuario: json['pwdUsuario'] as String? ?? '',
+      otpIngresado: json['otpIngresado'] as String? ?? '',
+      imagen: json['imagen'] as String? ?? '',
+      Frase: json['Frase'] as String? ?? '',
+      idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
+    );
+
+Map<String, dynamic> _$$LoginClienteRequerimientoImplToJson(
+        _$LoginClienteRequerimientoImpl instance) =>
+    <String, dynamic>{
+      'codigoUsuario': instance.codigoUsuario,
+      'pwdUsuario': instance.pwdUsuario,
+      'otpIngresado': instance.otpIngresado,
+      'imagen': instance.imagen,
+      'Frase': instance.Frase,
+      'idUsuario': instance.idUsuario,
+    };
+
 _$LoginRespuestaImpl _$$LoginRespuestaImplFromJson(Map<String, dynamic> json) =>
     _$LoginRespuestaImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,
@@ -287,6 +309,34 @@ Map<String, dynamic> _$$CambiarContraseniaStateImplToJson(
       'modoConfirmacion': instance.modoConfirmacion,
       'obscurecerClave': instance.obscurecerClave,
       'permiteEditarUsuario': instance.permiteEditarUsuario,
+    };
+
+_$RegistroPinStateImpl _$$RegistroPinStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RegistroPinStateImpl(
+      modoConfirmacion: json['modoConfirmacion'] as bool? ?? false,
+      isLoading: json['isLoading'] as bool? ?? false,
+      pinAcceso: json['pinAcceso'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$RegistroPinStateImplToJson(
+        _$RegistroPinStateImpl instance) =>
+    <String, dynamic>{
+      'modoConfirmacion': instance.modoConfirmacion,
+      'isLoading': instance.isLoading,
+      'pinAcceso': instance.pinAcceso,
+    };
+
+_$LoginPinStateImpl _$$LoginPinStateImplFromJson(Map<String, dynamic> json) =>
+    _$LoginPinStateImpl(
+      modoConfirmacion: json['modoConfirmacion'] as bool? ?? false,
+      pinAcceso: json['pinAcceso'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$LoginPinStateImplToJson(_$LoginPinStateImpl instance) =>
+    <String, dynamic>{
+      'modoConfirmacion': instance.modoConfirmacion,
+      'pinAcceso': instance.pinAcceso,
     };
 
 _$CambiarContraseniaLoginStateImpl _$$CambiarContraseniaLoginStateImplFromJson(
@@ -1547,12 +1597,14 @@ _$RegistroPinAccesoRequerimientoImpl
     _$$RegistroPinAccesoRequerimientoImplFromJson(Map<String, dynamic> json) =>
         _$RegistroPinAccesoRequerimientoImpl(
           pinAcceso: json['pinAcceso'] as String? ?? '',
+          idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
         );
 
 Map<String, dynamic> _$$RegistroPinAccesoRequerimientoImplToJson(
         _$RegistroPinAccesoRequerimientoImpl instance) =>
     <String, dynamic>{
       'pinAcceso': instance.pinAcceso,
+      'idUsuario': instance.idUsuario,
     };
 
 _$ValidaPinAccesoRequerimientoImpl _$$ValidaPinAccesoRequerimientoImplFromJson(

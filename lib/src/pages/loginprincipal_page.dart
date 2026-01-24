@@ -243,7 +243,7 @@ with TickerProviderStateMixin {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
-                              print('Botón 3 presionado');
+                              context.router.push(const LoginPinRoute());
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.transparent,

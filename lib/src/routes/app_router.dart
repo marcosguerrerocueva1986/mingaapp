@@ -11,6 +11,7 @@ import 'package:bancamovilr/src/pages/general/posicion_consolidad/solicitudes_pa
 import 'package:bancamovilr/src/pages/loginprincipal_page.dart';
 import 'package:bancamovilr/src/pages/mantenimientopage.dart';
 import 'package:bancamovilr/src/pages/seguridades/login/activacuenta_page.dart';
+import 'package:bancamovilr/src/pages/seguridades/login/login_pin_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/login/recuperarcontrasenia_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/login/recuperarusuario_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/login/cambiarcontrasenialogin_page.dart';
@@ -19,6 +20,7 @@ import 'package:bancamovilr/src/pages/seguridades/perfil/contactenos_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/perfil/datospersonales_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/perfil/miperfil_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/perfil/montosmaximos_page.dart';
+import 'package:bancamovilr/src/pages/seguridades/perfil/registro_pin_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/perfil/terminoscondiciones_page.dart';
 import 'package:bancamovilr/src/pages/splash.dart';
 
@@ -153,6 +155,14 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: EstadoCuentaRoute.page,
           initial: false,
+        ),
+        AutoRoute(
+          page: RegistroPinRoute.page,
+          initial: false
+        ),
+        AutoRoute(
+          page: LoginPinRoute.page,
+          initial: false
         ),
         AutoRoute(
           page: PosicionConsolidadaRoute.page, 

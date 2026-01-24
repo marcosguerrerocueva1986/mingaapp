@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/providers/auth_storage_provider.dart';
 import 'package:bancamovilr/src/services/auth_storage_service.dart';
+import 'package:crypto/crypto.dart';
 import 'package:flutter_biometrics/flutter_biometrics.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'login_controller.g.dart';
@@ -204,6 +205,37 @@ late final AuthStorageService _authStorageService;
       }
     } catch (e) {
       NotificationService.showError(text: 'Ocurrió un error inesperado: $e');
+    }
+  }
+  Future<void> loginConPin(String pin) async {
+    try {
+      SharedPreference preference = SharedPreference();
+    final preferences = await SharedPreferences.getInstance();
+    final client = HttpClientHelper.getClient();
+    var requerimiento = LoginClienteRequerimiento.fromJson(form.value);
+        
+      String salt = "MingaMovil_Secret_2026";
+      var pinCifrado = pin + salt;
+      var req = LoginClienteRequerimiento(
+        idUsuario: state.loginRespuesta?.id ?? 0,
+        codigoUsuario: requerimiento.codigoUsuario,
+        otpIngresado: pinCifrado
+      );
+      var respuesta = await guard(() async => await client.validaPinAccesoMovil(req));
+      if (respuesta.hasValue) {
+          ref.read(themeInfoProvider.notifier).cambiarColor('#B70055');
+        HttpClientHelper.token = respuesta.value?.token ?? '';
+        state = state.copyWith(
+            validacionOtpRespuesta: respuesta.value,
+            loginRespuesta: respuesta.value!.loginRespuesta,
+            estaValidado: true,
+            modoConfirmacion: false);
+        appRouter.replaceAll([const PosicionConsolidadaRoute()]);
+      } else {
+        NotificationService.showError(text: 'PIN incorrecto');
+      }
+    } catch (e) {
+      NotificationService.showError(text: 'Error de conexión');
     }
   }
 }

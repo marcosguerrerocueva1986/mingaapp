@@ -179,7 +179,7 @@ class _MiPerfilPageState extends ConsumerState<MiPerfilPage> {
                 icon: Icons.vpn_key_outlined,
                 title: 'Crea, gestiona y activa un PIN',
                 onTap: () {
-                  context.router.push(const MantenimientoRoute());
+                  context.router.push(const RegistroPinRoute());
                 },
               ),
               _buildListTile(

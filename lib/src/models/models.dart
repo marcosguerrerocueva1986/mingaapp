@@ -67,6 +67,20 @@ class LoginRequerimiento with _$LoginRequerimiento {
 }
 
 @freezed
+class LoginClienteRequerimiento with _$LoginClienteRequerimiento {
+  factory LoginClienteRequerimiento(
+      {@Default('') String codigoUsuario,
+      @Default('') String pwdUsuario,
+      @Default('') String otpIngresado,
+      @Default('') String imagen,
+      @Default('') String Frase,
+      @Default(0) int idUsuario}) = _LoginClienteRequerimiento;
+
+  factory LoginClienteRequerimiento.fromJson(Map<String, Object?> json) =>
+      _$LoginClienteRequerimientoFromJson(json);
+}
+
+@freezed
 class LoginRespuesta with _$LoginRespuesta {
   factory LoginRespuesta({
     @Default(0) int id,
@@ -181,6 +195,25 @@ class CambiarContraseniaState with _$CambiarContraseniaState {
     required bool permiteEditarUsuario,}) = _CambiarContraseniaState;
     factory CambiarContraseniaState.fromJson(Map<String, Object?> json) =>
       _$CambiarContraseniaStateFromJson(json);
+}
+
+@freezed
+class RegistroPinState with _$RegistroPinState {
+  factory RegistroPinState(
+  {@Default(false) bool modoConfirmacion,
+  @Default(false) bool isLoading,
+  @Default('') String pinAcceso}) = _RegistroPinState;
+    factory RegistroPinState.fromJson(Map<String, Object?> json) =>
+      _$RegistroPinStateFromJson(json);
+}
+
+@freezed
+class LoginPinState with _$LoginPinState {
+  factory LoginPinState(
+  {@Default(false) bool modoConfirmacion,
+  @Default('') String pinAcceso}) = _LoginPinState;
+    factory LoginPinState.fromJson(Map<String, Object?> json) =>
+      _$LoginPinStateFromJson(json);
 }
 
 @freezed
@@ -946,7 +979,8 @@ class AgenciaState with _$AgenciaState {
 
 @freezed
 class RegistroPinAccesoRequerimiento with _$RegistroPinAccesoRequerimiento {
-  factory RegistroPinAccesoRequerimiento({@Default('') String pinAcceso}) =
+  factory RegistroPinAccesoRequerimiento({@Default('') String pinAcceso,
+  @Default(0) int idUsuario}) =
       _RegistroPinAccesoRequerimiento;
 
   factory RegistroPinAccesoRequerimiento.fromJson(Map<String, Object?> json) =>

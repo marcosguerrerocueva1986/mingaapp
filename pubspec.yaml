@@ -77,6 +77,10 @@ dependencies:
   local_auth: ^2.1.8
   provider: any
   flutter_typeahead: any
+  crypto: ^3.0.3
+  pdf: ^3.10.8
+  excel: ^4.0.0
+  path_provider: ^2.1.2
 dev_dependencies:
   auto_route_generator: ^7.3.2
   build_runner: ^2.4.7

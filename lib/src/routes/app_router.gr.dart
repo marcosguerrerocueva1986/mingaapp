@@ -111,6 +111,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const LoginPage(),
       );
     },
+    LoginPinRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const LoginPinPage(),
+      );
+    },
     LoginPrincipalRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -224,6 +230,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const RecuperarUsuarioPage(),
+      );
+    },
+    RegistroPinRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RegistroPinPage(),
       );
     },
     SeleccionBeneficiarioRoute.name: (routeData) {
@@ -578,6 +590,20 @@ class LoginRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [LoginPinPage]
+class LoginPinRoute extends PageRouteInfo<void> {
+  const LoginPinRoute({List<PageRouteInfo>? children})
+      : super(
+          LoginPinRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LoginPinRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [LoginPrincipalPage]
 class LoginPrincipalRoute extends PageRouteInfo<void> {
   const LoginPrincipalRoute({List<PageRouteInfo>? children})
@@ -898,6 +924,20 @@ class RecuperarUsuarioRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'RecuperarUsuarioRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RegistroPinPage]
+class RegistroPinRoute extends PageRouteInfo<void> {
+  const RegistroPinRoute({List<PageRouteInfo>? children})
+      : super(
+          RegistroPinRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RegistroPinRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

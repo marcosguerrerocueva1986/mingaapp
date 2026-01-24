@@ -451,7 +451,7 @@ const TarjetaPagosCuenta({super.key, required this.cuenta});
     String fechaTransaccion = DateFormat('EEE. dd MMM. yyyy', 'es')
                             .format(cuenta.fecha!);
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 5, 5, 0), // Relleno interno del contenedor
+      padding: const EdgeInsets.fromLTRB(20, 5, 5, 0),
       decoration: BoxDecoration(
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(0), 

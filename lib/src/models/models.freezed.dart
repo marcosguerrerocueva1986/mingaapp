@@ -1125,6 +1125,263 @@ abstract class _LoginRequerimiento implements LoginRequerimiento {
       throw _privateConstructorUsedError;
 }
 
+LoginClienteRequerimiento _$LoginClienteRequerimientoFromJson(
+    Map<String, dynamic> json) {
+  return _LoginClienteRequerimiento.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LoginClienteRequerimiento {
+  String get codigoUsuario => throw _privateConstructorUsedError;
+  String get pwdUsuario => throw _privateConstructorUsedError;
+  String get otpIngresado => throw _privateConstructorUsedError;
+  String get imagen => throw _privateConstructorUsedError;
+  String get Frase => throw _privateConstructorUsedError;
+  int get idUsuario => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LoginClienteRequerimientoCopyWith<LoginClienteRequerimiento> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LoginClienteRequerimientoCopyWith<$Res> {
+  factory $LoginClienteRequerimientoCopyWith(LoginClienteRequerimiento value,
+          $Res Function(LoginClienteRequerimiento) then) =
+      _$LoginClienteRequerimientoCopyWithImpl<$Res, LoginClienteRequerimiento>;
+  @useResult
+  $Res call(
+      {String codigoUsuario,
+      String pwdUsuario,
+      String otpIngresado,
+      String imagen,
+      String Frase,
+      int idUsuario});
+}
+
+/// @nodoc
+class _$LoginClienteRequerimientoCopyWithImpl<$Res,
+        $Val extends LoginClienteRequerimiento>
+    implements $LoginClienteRequerimientoCopyWith<$Res> {
+  _$LoginClienteRequerimientoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codigoUsuario = null,
+    Object? pwdUsuario = null,
+    Object? otpIngresado = null,
+    Object? imagen = null,
+    Object? Frase = null,
+    Object? idUsuario = null,
+  }) {
+    return _then(_value.copyWith(
+      codigoUsuario: null == codigoUsuario
+          ? _value.codigoUsuario
+          : codigoUsuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      pwdUsuario: null == pwdUsuario
+          ? _value.pwdUsuario
+          : pwdUsuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      otpIngresado: null == otpIngresado
+          ? _value.otpIngresado
+          : otpIngresado // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagen: null == imagen
+          ? _value.imagen
+          : imagen // ignore: cast_nullable_to_non_nullable
+              as String,
+      Frase: null == Frase
+          ? _value.Frase
+          : Frase // ignore: cast_nullable_to_non_nullable
+              as String,
+      idUsuario: null == idUsuario
+          ? _value.idUsuario
+          : idUsuario // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LoginClienteRequerimientoImplCopyWith<$Res>
+    implements $LoginClienteRequerimientoCopyWith<$Res> {
+  factory _$$LoginClienteRequerimientoImplCopyWith(
+          _$LoginClienteRequerimientoImpl value,
+          $Res Function(_$LoginClienteRequerimientoImpl) then) =
+      __$$LoginClienteRequerimientoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String codigoUsuario,
+      String pwdUsuario,
+      String otpIngresado,
+      String imagen,
+      String Frase,
+      int idUsuario});
+}
+
+/// @nodoc
+class __$$LoginClienteRequerimientoImplCopyWithImpl<$Res>
+    extends _$LoginClienteRequerimientoCopyWithImpl<$Res,
+        _$LoginClienteRequerimientoImpl>
+    implements _$$LoginClienteRequerimientoImplCopyWith<$Res> {
+  __$$LoginClienteRequerimientoImplCopyWithImpl(
+      _$LoginClienteRequerimientoImpl _value,
+      $Res Function(_$LoginClienteRequerimientoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codigoUsuario = null,
+    Object? pwdUsuario = null,
+    Object? otpIngresado = null,
+    Object? imagen = null,
+    Object? Frase = null,
+    Object? idUsuario = null,
+  }) {
+    return _then(_$LoginClienteRequerimientoImpl(
+      codigoUsuario: null == codigoUsuario
+          ? _value.codigoUsuario
+          : codigoUsuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      pwdUsuario: null == pwdUsuario
+          ? _value.pwdUsuario
+          : pwdUsuario // ignore: cast_nullable_to_non_nullable
+              as String,
+      otpIngresado: null == otpIngresado
+          ? _value.otpIngresado
+          : otpIngresado // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagen: null == imagen
+          ? _value.imagen
+          : imagen // ignore: cast_nullable_to_non_nullable
+              as String,
+      Frase: null == Frase
+          ? _value.Frase
+          : Frase // ignore: cast_nullable_to_non_nullable
+              as String,
+      idUsuario: null == idUsuario
+          ? _value.idUsuario
+          : idUsuario // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LoginClienteRequerimientoImpl implements _LoginClienteRequerimiento {
+  _$LoginClienteRequerimientoImpl(
+      {this.codigoUsuario = '',
+      this.pwdUsuario = '',
+      this.otpIngresado = '',
+      this.imagen = '',
+      this.Frase = '',
+      this.idUsuario = 0});
+
+  factory _$LoginClienteRequerimientoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LoginClienteRequerimientoImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String codigoUsuario;
+  @override
+  @JsonKey()
+  final String pwdUsuario;
+  @override
+  @JsonKey()
+  final String otpIngresado;
+  @override
+  @JsonKey()
+  final String imagen;
+  @override
+  @JsonKey()
+  final String Frase;
+  @override
+  @JsonKey()
+  final int idUsuario;
+
+  @override
+  String toString() {
+    return 'LoginClienteRequerimiento(codigoUsuario: $codigoUsuario, pwdUsuario: $pwdUsuario, otpIngresado: $otpIngresado, imagen: $imagen, Frase: $Frase, idUsuario: $idUsuario)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoginClienteRequerimientoImpl &&
+            (identical(other.codigoUsuario, codigoUsuario) ||
+                other.codigoUsuario == codigoUsuario) &&
+            (identical(other.pwdUsuario, pwdUsuario) ||
+                other.pwdUsuario == pwdUsuario) &&
+            (identical(other.otpIngresado, otpIngresado) ||
+                other.otpIngresado == otpIngresado) &&
+            (identical(other.imagen, imagen) || other.imagen == imagen) &&
+            (identical(other.Frase, Frase) || other.Frase == Frase) &&
+            (identical(other.idUsuario, idUsuario) ||
+                other.idUsuario == idUsuario));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, codigoUsuario, pwdUsuario,
+      otpIngresado, imagen, Frase, idUsuario);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoginClienteRequerimientoImplCopyWith<_$LoginClienteRequerimientoImpl>
+      get copyWith => __$$LoginClienteRequerimientoImplCopyWithImpl<
+          _$LoginClienteRequerimientoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LoginClienteRequerimientoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LoginClienteRequerimiento implements LoginClienteRequerimiento {
+  factory _LoginClienteRequerimiento(
+      {final String codigoUsuario,
+      final String pwdUsuario,
+      final String otpIngresado,
+      final String imagen,
+      final String Frase,
+      final int idUsuario}) = _$LoginClienteRequerimientoImpl;
+
+  factory _LoginClienteRequerimiento.fromJson(Map<String, dynamic> json) =
+      _$LoginClienteRequerimientoImpl.fromJson;
+
+  @override
+  String get codigoUsuario;
+  @override
+  String get pwdUsuario;
+  @override
+  String get otpIngresado;
+  @override
+  String get imagen;
+  @override
+  String get Frase;
+  @override
+  int get idUsuario;
+  @override
+  @JsonKey(ignore: true)
+  _$$LoginClienteRequerimientoImplCopyWith<_$LoginClienteRequerimientoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 LoginRespuesta _$LoginRespuestaFromJson(Map<String, dynamic> json) {
   return _LoginRespuesta.fromJson(json);
 }
@@ -3312,6 +3569,346 @@ abstract class _CambiarContraseniaState implements CambiarContraseniaState {
   @JsonKey(ignore: true)
   _$$CambiarContraseniaStateImplCopyWith<_$CambiarContraseniaStateImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+RegistroPinState _$RegistroPinStateFromJson(Map<String, dynamic> json) {
+  return _RegistroPinState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RegistroPinState {
+  bool get modoConfirmacion => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+  String get pinAcceso => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RegistroPinStateCopyWith<RegistroPinState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RegistroPinStateCopyWith<$Res> {
+  factory $RegistroPinStateCopyWith(
+          RegistroPinState value, $Res Function(RegistroPinState) then) =
+      _$RegistroPinStateCopyWithImpl<$Res, RegistroPinState>;
+  @useResult
+  $Res call({bool modoConfirmacion, bool isLoading, String pinAcceso});
+}
+
+/// @nodoc
+class _$RegistroPinStateCopyWithImpl<$Res, $Val extends RegistroPinState>
+    implements $RegistroPinStateCopyWith<$Res> {
+  _$RegistroPinStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? modoConfirmacion = null,
+    Object? isLoading = null,
+    Object? pinAcceso = null,
+  }) {
+    return _then(_value.copyWith(
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pinAcceso: null == pinAcceso
+          ? _value.pinAcceso
+          : pinAcceso // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RegistroPinStateImplCopyWith<$Res>
+    implements $RegistroPinStateCopyWith<$Res> {
+  factory _$$RegistroPinStateImplCopyWith(_$RegistroPinStateImpl value,
+          $Res Function(_$RegistroPinStateImpl) then) =
+      __$$RegistroPinStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool modoConfirmacion, bool isLoading, String pinAcceso});
+}
+
+/// @nodoc
+class __$$RegistroPinStateImplCopyWithImpl<$Res>
+    extends _$RegistroPinStateCopyWithImpl<$Res, _$RegistroPinStateImpl>
+    implements _$$RegistroPinStateImplCopyWith<$Res> {
+  __$$RegistroPinStateImplCopyWithImpl(_$RegistroPinStateImpl _value,
+      $Res Function(_$RegistroPinStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? modoConfirmacion = null,
+    Object? isLoading = null,
+    Object? pinAcceso = null,
+  }) {
+    return _then(_$RegistroPinStateImpl(
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pinAcceso: null == pinAcceso
+          ? _value.pinAcceso
+          : pinAcceso // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RegistroPinStateImpl implements _RegistroPinState {
+  _$RegistroPinStateImpl(
+      {this.modoConfirmacion = false,
+      this.isLoading = false,
+      this.pinAcceso = ''});
+
+  factory _$RegistroPinStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RegistroPinStateImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool modoConfirmacion;
+  @override
+  @JsonKey()
+  final bool isLoading;
+  @override
+  @JsonKey()
+  final String pinAcceso;
+
+  @override
+  String toString() {
+    return 'RegistroPinState(modoConfirmacion: $modoConfirmacion, isLoading: $isLoading, pinAcceso: $pinAcceso)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RegistroPinStateImpl &&
+            (identical(other.modoConfirmacion, modoConfirmacion) ||
+                other.modoConfirmacion == modoConfirmacion) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.pinAcceso, pinAcceso) ||
+                other.pinAcceso == pinAcceso));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, modoConfirmacion, isLoading, pinAcceso);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RegistroPinStateImplCopyWith<_$RegistroPinStateImpl> get copyWith =>
+      __$$RegistroPinStateImplCopyWithImpl<_$RegistroPinStateImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RegistroPinStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RegistroPinState implements RegistroPinState {
+  factory _RegistroPinState(
+      {final bool modoConfirmacion,
+      final bool isLoading,
+      final String pinAcceso}) = _$RegistroPinStateImpl;
+
+  factory _RegistroPinState.fromJson(Map<String, dynamic> json) =
+      _$RegistroPinStateImpl.fromJson;
+
+  @override
+  bool get modoConfirmacion;
+  @override
+  bool get isLoading;
+  @override
+  String get pinAcceso;
+  @override
+  @JsonKey(ignore: true)
+  _$$RegistroPinStateImplCopyWith<_$RegistroPinStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+LoginPinState _$LoginPinStateFromJson(Map<String, dynamic> json) {
+  return _LoginPinState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LoginPinState {
+  bool get modoConfirmacion => throw _privateConstructorUsedError;
+  String get pinAcceso => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LoginPinStateCopyWith<LoginPinState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LoginPinStateCopyWith<$Res> {
+  factory $LoginPinStateCopyWith(
+          LoginPinState value, $Res Function(LoginPinState) then) =
+      _$LoginPinStateCopyWithImpl<$Res, LoginPinState>;
+  @useResult
+  $Res call({bool modoConfirmacion, String pinAcceso});
+}
+
+/// @nodoc
+class _$LoginPinStateCopyWithImpl<$Res, $Val extends LoginPinState>
+    implements $LoginPinStateCopyWith<$Res> {
+  _$LoginPinStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? modoConfirmacion = null,
+    Object? pinAcceso = null,
+  }) {
+    return _then(_value.copyWith(
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pinAcceso: null == pinAcceso
+          ? _value.pinAcceso
+          : pinAcceso // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LoginPinStateImplCopyWith<$Res>
+    implements $LoginPinStateCopyWith<$Res> {
+  factory _$$LoginPinStateImplCopyWith(
+          _$LoginPinStateImpl value, $Res Function(_$LoginPinStateImpl) then) =
+      __$$LoginPinStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool modoConfirmacion, String pinAcceso});
+}
+
+/// @nodoc
+class __$$LoginPinStateImplCopyWithImpl<$Res>
+    extends _$LoginPinStateCopyWithImpl<$Res, _$LoginPinStateImpl>
+    implements _$$LoginPinStateImplCopyWith<$Res> {
+  __$$LoginPinStateImplCopyWithImpl(
+      _$LoginPinStateImpl _value, $Res Function(_$LoginPinStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? modoConfirmacion = null,
+    Object? pinAcceso = null,
+  }) {
+    return _then(_$LoginPinStateImpl(
+      modoConfirmacion: null == modoConfirmacion
+          ? _value.modoConfirmacion
+          : modoConfirmacion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pinAcceso: null == pinAcceso
+          ? _value.pinAcceso
+          : pinAcceso // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LoginPinStateImpl implements _LoginPinState {
+  _$LoginPinStateImpl({this.modoConfirmacion = false, this.pinAcceso = ''});
+
+  factory _$LoginPinStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LoginPinStateImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool modoConfirmacion;
+  @override
+  @JsonKey()
+  final String pinAcceso;
+
+  @override
+  String toString() {
+    return 'LoginPinState(modoConfirmacion: $modoConfirmacion, pinAcceso: $pinAcceso)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoginPinStateImpl &&
+            (identical(other.modoConfirmacion, modoConfirmacion) ||
+                other.modoConfirmacion == modoConfirmacion) &&
+            (identical(other.pinAcceso, pinAcceso) ||
+                other.pinAcceso == pinAcceso));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, modoConfirmacion, pinAcceso);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoginPinStateImplCopyWith<_$LoginPinStateImpl> get copyWith =>
+      __$$LoginPinStateImplCopyWithImpl<_$LoginPinStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LoginPinStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LoginPinState implements LoginPinState {
+  factory _LoginPinState(
+      {final bool modoConfirmacion,
+      final String pinAcceso}) = _$LoginPinStateImpl;
+
+  factory _LoginPinState.fromJson(Map<String, dynamic> json) =
+      _$LoginPinStateImpl.fromJson;
+
+  @override
+  bool get modoConfirmacion;
+  @override
+  String get pinAcceso;
+  @override
+  @JsonKey(ignore: true)
+  _$$LoginPinStateImplCopyWith<_$LoginPinStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 CambiarContraseniaLoginState _$CambiarContraseniaLoginStateFromJson(
@@ -16522,6 +17119,7 @@ RegistroPinAccesoRequerimiento _$RegistroPinAccesoRequerimientoFromJson(
 /// @nodoc
 mixin _$RegistroPinAccesoRequerimiento {
   String get pinAcceso => throw _privateConstructorUsedError;
+  int get idUsuario => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -16537,7 +17135,7 @@ abstract class $RegistroPinAccesoRequerimientoCopyWith<$Res> {
       _$RegistroPinAccesoRequerimientoCopyWithImpl<$Res,
           RegistroPinAccesoRequerimiento>;
   @useResult
-  $Res call({String pinAcceso});
+  $Res call({String pinAcceso, int idUsuario});
 }
 
 /// @nodoc
@@ -16555,12 +17153,17 @@ class _$RegistroPinAccesoRequerimientoCopyWithImpl<$Res,
   @override
   $Res call({
     Object? pinAcceso = null,
+    Object? idUsuario = null,
   }) {
     return _then(_value.copyWith(
       pinAcceso: null == pinAcceso
           ? _value.pinAcceso
           : pinAcceso // ignore: cast_nullable_to_non_nullable
               as String,
+      idUsuario: null == idUsuario
+          ? _value.idUsuario
+          : idUsuario // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -16574,7 +17177,7 @@ abstract class _$$RegistroPinAccesoRequerimientoImplCopyWith<$Res>
       __$$RegistroPinAccesoRequerimientoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String pinAcceso});
+  $Res call({String pinAcceso, int idUsuario});
 }
 
 /// @nodoc
@@ -16591,12 +17194,17 @@ class __$$RegistroPinAccesoRequerimientoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? pinAcceso = null,
+    Object? idUsuario = null,
   }) {
     return _then(_$RegistroPinAccesoRequerimientoImpl(
       pinAcceso: null == pinAcceso
           ? _value.pinAcceso
           : pinAcceso // ignore: cast_nullable_to_non_nullable
               as String,
+      idUsuario: null == idUsuario
+          ? _value.idUsuario
+          : idUsuario // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -16605,7 +17213,8 @@ class __$$RegistroPinAccesoRequerimientoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RegistroPinAccesoRequerimientoImpl
     implements _RegistroPinAccesoRequerimiento {
-  _$RegistroPinAccesoRequerimientoImpl({this.pinAcceso = ''});
+  _$RegistroPinAccesoRequerimientoImpl(
+      {this.pinAcceso = '', this.idUsuario = 0});
 
   factory _$RegistroPinAccesoRequerimientoImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -16614,10 +17223,13 @@ class _$RegistroPinAccesoRequerimientoImpl
   @override
   @JsonKey()
   final String pinAcceso;
+  @override
+  @JsonKey()
+  final int idUsuario;
 
   @override
   String toString() {
-    return 'RegistroPinAccesoRequerimiento(pinAcceso: $pinAcceso)';
+    return 'RegistroPinAccesoRequerimiento(pinAcceso: $pinAcceso, idUsuario: $idUsuario)';
   }
 
   @override
@@ -16626,12 +17238,14 @@ class _$RegistroPinAccesoRequerimientoImpl
         (other.runtimeType == runtimeType &&
             other is _$RegistroPinAccesoRequerimientoImpl &&
             (identical(other.pinAcceso, pinAcceso) ||
-                other.pinAcceso == pinAcceso));
+                other.pinAcceso == pinAcceso) &&
+            (identical(other.idUsuario, idUsuario) ||
+                other.idUsuario == idUsuario));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, pinAcceso);
+  int get hashCode => Object.hash(runtimeType, pinAcceso, idUsuario);
 
   @JsonKey(ignore: true)
   @override
@@ -16651,14 +17265,17 @@ class _$RegistroPinAccesoRequerimientoImpl
 
 abstract class _RegistroPinAccesoRequerimiento
     implements RegistroPinAccesoRequerimiento {
-  factory _RegistroPinAccesoRequerimiento({final String pinAcceso}) =
-      _$RegistroPinAccesoRequerimientoImpl;
+  factory _RegistroPinAccesoRequerimiento(
+      {final String pinAcceso,
+      final int idUsuario}) = _$RegistroPinAccesoRequerimientoImpl;
 
   factory _RegistroPinAccesoRequerimiento.fromJson(Map<String, dynamic> json) =
       _$RegistroPinAccesoRequerimientoImpl.fromJson;
 
   @override
   String get pinAcceso;
+  @override
+  int get idUsuario;
   @override
   @JsonKey(ignore: true)
   _$$RegistroPinAccesoRequerimientoImplCopyWith<
