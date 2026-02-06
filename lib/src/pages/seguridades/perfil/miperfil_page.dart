@@ -172,7 +172,7 @@ class _MiPerfilPageState extends ConsumerState<MiPerfilPage> {
                 icon: Icons.lock_outline,
                 title: 'Cambiar contraseña',
                 onTap: () {
-                  context.router.push(const CambiarContraseniaRoute());
+                  context.router.push(CambiarContraseniaRoute(codigoUsuario: loginProvider.validacionOtpRespuesta!.usuario!.codigoUsuario));
                 },
               ),
               _buildListTile(

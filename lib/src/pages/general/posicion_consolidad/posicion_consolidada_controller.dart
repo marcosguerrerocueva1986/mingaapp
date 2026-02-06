@@ -74,7 +74,7 @@ class PosicionConsolidadaController extends _$PosicionConsolidadaController {
     var respuesta = await guard(() async => await client.logout());
 
     if (respuesta.hasValue) {
-      HttpClientHelper.token = '';
+      form.reset();
       appRouter.replace(const LoginPrincipalRoute());
       ref.invalidateSelf();
     }
@@ -84,5 +84,30 @@ class PosicionConsolidadaController extends _$PosicionConsolidadaController {
       return state.posicionConsolidada?.cuentas
           .where((element) => element.permiteUsoBancaElectronica)
           .toList();
+  }
+  Future<void> guardaClienteLimite(double montoLimite) async {
+    try {
+      final client = HttpClientHelper.getClient();          
+        var req = ClienteMontosLimite(
+          idClienteRegistro: state.posicionConsolidada?.cliMontosLimites?.idClienteRegistro ?? 0,
+          idCliente: HttpClientHelper.idUsuario,
+          limiteTransaccion: montoLimite,
+          fechaRegistro: DateTime.now(),
+          fechaSistema: DateTime.now()
+        );
+        var respuesta = await guard(() async => await client.registroLimiteTransaccion(req));
+        if (respuesta.hasValue) {
+            ref.read(themeInfoProvider.notifier).cambiarColor('#B70055');
+          state = state.copyWith(isLoading: false, errorMessage: null, posicionConsolidada: state.posicionConsolidada?.
+          copyWith(cliMontosLimites:  state.posicionConsolidada?.cliMontosLimites?.copyWith(
+            limiteTransaccion: montoLimite
+          )));
+        NotificationService.showSuccess(text: 'Mónto límite guardado correctamente');
+        } else {
+        NotificationService.showError(text: 'Mónto límite incorrecto');
+        }
+    } catch (e) {
+      NotificationService.showError(text: 'Error de conexión');
+    }
   }
 }

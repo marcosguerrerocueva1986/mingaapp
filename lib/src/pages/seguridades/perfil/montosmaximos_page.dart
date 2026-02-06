@@ -1,13 +1,24 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bancamovilr/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 @RoutePage()
-class MontosMaximosPage extends StatelessWidget {
+class MontosMaximosPage extends ConsumerStatefulWidget {
   const MontosMaximosPage({super.key});
 
   @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _MontosMaximosPageState();
+}
+
+class _MontosMaximosPageState extends ConsumerState<MontosMaximosPage> {
+  @override
   Widget build(BuildContext context) {
+    var consolidado = ref.watch(posicionConsolidadaControllerProvider);
+    var controller = ref.read(posicionConsolidadaControllerProvider.notifier);
+    final TextEditingController limite = TextEditingController(
+      text: (consolidado.posicionConsolidada?.cliMontosLimites?.limiteTransaccion ?? 0.00).toMoney()
+    );
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/images/logopantallamenu.png', width: 120, height: 80),
@@ -40,42 +51,48 @@ class MontosMaximosPage extends StatelessWidget {
                   'Banca Móvil',
                   style: TextStyle(
                     fontSize: 16,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.bold,
                     color: Color.fromRGBO(0, 96, 153, 10),
                   ),
                 ),
               ),
-              const SizedBox(height: 0),
+              const SizedBox(height: 5),
               const Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Text(
                   'Límite de transferencia',
                   style: TextStyle(
                     fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(0, 96, 153, 10),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 5),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Text(
+                  (consolidado.posicionConsolidada?.cliMontosLimites?.limiteTransaccionDiaria ?? 0.00).toMoney(),
+                  style: const TextStyle(
+                    fontSize: 18,
                     fontWeight: FontWeight.normal,
                     color: Color.fromRGBO(0, 96, 153, 10),
                   ),
                 ),
-              ),             
-              _buildTransferLimitField(
-                context,
-                title: '',
-                label: '',              
-                initialValue: '\$15,000.00', 
-              ),
-              const SizedBox(height: 10),
+              ),              
+              const SizedBox(height: 15),
               const Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Text(
                   'Monto de seguridad',
                   style: TextStyle(
                     fontSize: 15,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.bold,
                     color: Color.fromRGBO(0, 96, 153, 10),
                   ),
                 ),
               ), 
-              const SizedBox(height: 0),
+              const SizedBox(height: 5),
               const Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Text(
@@ -86,19 +103,44 @@ class MontosMaximosPage extends StatelessWidget {
                     color: Color.fromRGBO(0, 96, 153, 10),
                   ),
                 ),
-              ), 
-              _buildTransferLimitField(
-                context,
-                title: '',
-                label: '',
-                initialValue: '1', 
               ),
+              const SizedBox(height: 5),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 5),
+                  TextFormField(
+                    controller: limite,
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+                    ],
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide:  BorderSide(color: Color.fromRGBO(48, 155, 217, 1), width: 0.5),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(color: Color.fromRGBO(48, 155, 217, 1), width: 0.5),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(color: Color.fromRGBO(48, 155, 217, 1), width: 0.5),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+                    ),
+                  ),
+                ],
+              ), 
               const SizedBox(height: 350),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    context.router.push(const MantenimientoRoute());
+                    final String limiteTran = limite.text;
+                    final double valorDouble = double.tryParse(limiteTran) ?? 0.0;
+                    controller.guardaClienteLimite(valorDouble);
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
@@ -118,49 +160,6 @@ class MontosMaximosPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildTransferLimitField(BuildContext context,
-      {required String title, required String label, required String initialValue}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey,
-          ),
-        ),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 12,
-            color: Colors.grey,
-          ),
-        ),
-        const SizedBox(height: 0),
-        TextFormField(
-          initialValue: initialValue,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              borderSide:  BorderSide(color: Color.fromRGBO(48, 155, 217, 1), width: 0.5),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              borderSide: BorderSide(color: Color.fromRGBO(48, 155, 217, 1), width: 0.5),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              borderSide: BorderSide(color: Color.fromRGBO(48, 155, 217, 1), width: 0.5),
-            ),
-            contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-          ),
-        ),
-      ],
     );
   }
 }

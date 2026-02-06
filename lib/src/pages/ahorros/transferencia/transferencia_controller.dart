@@ -90,7 +90,7 @@ class TransferenciaController extends _$TransferenciaController {
 
       if (monto > 0.00) {
         var respuesta = await guard(() async =>
-            await client.validaTransaferenciaYGeneraOtp(
+            await client.validaTransaferenciaDiariaYGeneraOtp(
                 ValidaTransferenciaYGeneraOtpRequerimiento(
                     idUsuario: HttpClientHelper.idUsuario,
                     cuentaOrigen: state.cuenta?.codigo ?? '',

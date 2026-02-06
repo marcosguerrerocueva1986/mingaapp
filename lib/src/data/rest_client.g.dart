@@ -535,6 +535,42 @@ class _RestClient implements RestClient {
   }
 
   @override
+  Future<ValidaTransferenciaYGeneraOtpRespuesta>
+      validaTransaferenciaDiariaYGeneraOtp(
+          ValidaTransferenciaYGeneraOtpRequerimiento requerimiento) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requerimiento;
+    final _options =
+        _setStreamType<ValidaTransferenciaYGeneraOtpRespuesta>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/validatransferenciadiariaygeneraotp',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ValidaTransferenciaYGeneraOtpRespuesta _value;
+    try {
+      _value = ValidaTransferenciaYGeneraOtpRespuesta.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<ProcesaTransfernciaDirectaRespuesta> ingresaTransferenciaDirecta(
       ProcesaTransferenciaDirectaRequerimiento requerimiento) async {
     final _extra = <String, dynamic>{};
@@ -862,6 +898,40 @@ class _RestClient implements RestClient {
         .compose(
           _dio.options,
           '/registroPinAcceso',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BaseRequerimiento _value;
+    try {
+      _value = BaseRequerimiento.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<BaseRequerimiento> registroLimiteTransaccion(
+      ClienteMontosLimite requerimiento) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requerimiento;
+    final _options = _setStreamType<BaseRequerimiento>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/registrolimiteTransaccion',
           queryParameters: queryParameters,
           data: _data,
         )

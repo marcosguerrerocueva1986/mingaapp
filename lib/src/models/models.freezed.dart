@@ -4379,6 +4379,280 @@ abstract class _PersonaModel implements PersonaModel {
       throw _privateConstructorUsedError;
 }
 
+ClienteMontosLimite _$ClienteMontosLimiteFromJson(Map<String, dynamic> json) {
+  return _ClienteMontosLimite.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ClienteMontosLimite {
+  int get id => throw _privateConstructorUsedError;
+  int get idClienteRegistro => throw _privateConstructorUsedError;
+  int get idCliente => throw _privateConstructorUsedError;
+  double get limiteTransaccion => throw _privateConstructorUsedError;
+  double get limiteTransaccionDiaria => throw _privateConstructorUsedError;
+  DateTime? get fechaRegistro => throw _privateConstructorUsedError;
+  DateTime? get fechaSistema => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ClienteMontosLimiteCopyWith<ClienteMontosLimite> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ClienteMontosLimiteCopyWith<$Res> {
+  factory $ClienteMontosLimiteCopyWith(
+          ClienteMontosLimite value, $Res Function(ClienteMontosLimite) then) =
+      _$ClienteMontosLimiteCopyWithImpl<$Res, ClienteMontosLimite>;
+  @useResult
+  $Res call(
+      {int id,
+      int idClienteRegistro,
+      int idCliente,
+      double limiteTransaccion,
+      double limiteTransaccionDiaria,
+      DateTime? fechaRegistro,
+      DateTime? fechaSistema});
+}
+
+/// @nodoc
+class _$ClienteMontosLimiteCopyWithImpl<$Res, $Val extends ClienteMontosLimite>
+    implements $ClienteMontosLimiteCopyWith<$Res> {
+  _$ClienteMontosLimiteCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? idClienteRegistro = null,
+    Object? idCliente = null,
+    Object? limiteTransaccion = null,
+    Object? limiteTransaccionDiaria = null,
+    Object? fechaRegistro = freezed,
+    Object? fechaSistema = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      idClienteRegistro: null == idClienteRegistro
+          ? _value.idClienteRegistro
+          : idClienteRegistro // ignore: cast_nullable_to_non_nullable
+              as int,
+      idCliente: null == idCliente
+          ? _value.idCliente
+          : idCliente // ignore: cast_nullable_to_non_nullable
+              as int,
+      limiteTransaccion: null == limiteTransaccion
+          ? _value.limiteTransaccion
+          : limiteTransaccion // ignore: cast_nullable_to_non_nullable
+              as double,
+      limiteTransaccionDiaria: null == limiteTransaccionDiaria
+          ? _value.limiteTransaccionDiaria
+          : limiteTransaccionDiaria // ignore: cast_nullable_to_non_nullable
+              as double,
+      fechaRegistro: freezed == fechaRegistro
+          ? _value.fechaRegistro
+          : fechaRegistro // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      fechaSistema: freezed == fechaSistema
+          ? _value.fechaSistema
+          : fechaSistema // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ClienteMontosLimiteImplCopyWith<$Res>
+    implements $ClienteMontosLimiteCopyWith<$Res> {
+  factory _$$ClienteMontosLimiteImplCopyWith(_$ClienteMontosLimiteImpl value,
+          $Res Function(_$ClienteMontosLimiteImpl) then) =
+      __$$ClienteMontosLimiteImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      int idClienteRegistro,
+      int idCliente,
+      double limiteTransaccion,
+      double limiteTransaccionDiaria,
+      DateTime? fechaRegistro,
+      DateTime? fechaSistema});
+}
+
+/// @nodoc
+class __$$ClienteMontosLimiteImplCopyWithImpl<$Res>
+    extends _$ClienteMontosLimiteCopyWithImpl<$Res, _$ClienteMontosLimiteImpl>
+    implements _$$ClienteMontosLimiteImplCopyWith<$Res> {
+  __$$ClienteMontosLimiteImplCopyWithImpl(_$ClienteMontosLimiteImpl _value,
+      $Res Function(_$ClienteMontosLimiteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? idClienteRegistro = null,
+    Object? idCliente = null,
+    Object? limiteTransaccion = null,
+    Object? limiteTransaccionDiaria = null,
+    Object? fechaRegistro = freezed,
+    Object? fechaSistema = freezed,
+  }) {
+    return _then(_$ClienteMontosLimiteImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      idClienteRegistro: null == idClienteRegistro
+          ? _value.idClienteRegistro
+          : idClienteRegistro // ignore: cast_nullable_to_non_nullable
+              as int,
+      idCliente: null == idCliente
+          ? _value.idCliente
+          : idCliente // ignore: cast_nullable_to_non_nullable
+              as int,
+      limiteTransaccion: null == limiteTransaccion
+          ? _value.limiteTransaccion
+          : limiteTransaccion // ignore: cast_nullable_to_non_nullable
+              as double,
+      limiteTransaccionDiaria: null == limiteTransaccionDiaria
+          ? _value.limiteTransaccionDiaria
+          : limiteTransaccionDiaria // ignore: cast_nullable_to_non_nullable
+              as double,
+      fechaRegistro: freezed == fechaRegistro
+          ? _value.fechaRegistro
+          : fechaRegistro // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      fechaSistema: freezed == fechaSistema
+          ? _value.fechaSistema
+          : fechaSistema // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ClienteMontosLimiteImpl implements _ClienteMontosLimite {
+  _$ClienteMontosLimiteImpl(
+      {this.id = 0,
+      this.idClienteRegistro = 0,
+      this.idCliente = 0,
+      this.limiteTransaccion = 0.00,
+      this.limiteTransaccionDiaria = 0.00,
+      this.fechaRegistro,
+      this.fechaSistema});
+
+  factory _$ClienteMontosLimiteImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ClienteMontosLimiteImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int id;
+  @override
+  @JsonKey()
+  final int idClienteRegistro;
+  @override
+  @JsonKey()
+  final int idCliente;
+  @override
+  @JsonKey()
+  final double limiteTransaccion;
+  @override
+  @JsonKey()
+  final double limiteTransaccionDiaria;
+  @override
+  final DateTime? fechaRegistro;
+  @override
+  final DateTime? fechaSistema;
+
+  @override
+  String toString() {
+    return 'ClienteMontosLimite(id: $id, idClienteRegistro: $idClienteRegistro, idCliente: $idCliente, limiteTransaccion: $limiteTransaccion, limiteTransaccionDiaria: $limiteTransaccionDiaria, fechaRegistro: $fechaRegistro, fechaSistema: $fechaSistema)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClienteMontosLimiteImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.idClienteRegistro, idClienteRegistro) ||
+                other.idClienteRegistro == idClienteRegistro) &&
+            (identical(other.idCliente, idCliente) ||
+                other.idCliente == idCliente) &&
+            (identical(other.limiteTransaccion, limiteTransaccion) ||
+                other.limiteTransaccion == limiteTransaccion) &&
+            (identical(
+                    other.limiteTransaccionDiaria, limiteTransaccionDiaria) ||
+                other.limiteTransaccionDiaria == limiteTransaccionDiaria) &&
+            (identical(other.fechaRegistro, fechaRegistro) ||
+                other.fechaRegistro == fechaRegistro) &&
+            (identical(other.fechaSistema, fechaSistema) ||
+                other.fechaSistema == fechaSistema));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, idClienteRegistro, idCliente,
+      limiteTransaccion, limiteTransaccionDiaria, fechaRegistro, fechaSistema);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ClienteMontosLimiteImplCopyWith<_$ClienteMontosLimiteImpl> get copyWith =>
+      __$$ClienteMontosLimiteImplCopyWithImpl<_$ClienteMontosLimiteImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ClienteMontosLimiteImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ClienteMontosLimite implements ClienteMontosLimite {
+  factory _ClienteMontosLimite(
+      {final int id,
+      final int idClienteRegistro,
+      final int idCliente,
+      final double limiteTransaccion,
+      final double limiteTransaccionDiaria,
+      final DateTime? fechaRegistro,
+      final DateTime? fechaSistema}) = _$ClienteMontosLimiteImpl;
+
+  factory _ClienteMontosLimite.fromJson(Map<String, dynamic> json) =
+      _$ClienteMontosLimiteImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  int get idClienteRegistro;
+  @override
+  int get idCliente;
+  @override
+  double get limiteTransaccion;
+  @override
+  double get limiteTransaccionDiaria;
+  @override
+  DateTime? get fechaRegistro;
+  @override
+  DateTime? get fechaSistema;
+  @override
+  @JsonKey(ignore: true)
+  _$$ClienteMontosLimiteImplCopyWith<_$ClienteMontosLimiteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 PosicionConsolidadaRespuesta _$PosicionConsolidadaRespuestaFromJson(
     Map<String, dynamic> json) {
   return _PosicionConsolidadaRespuesta.fromJson(json);
@@ -4390,6 +4664,8 @@ mixin _$PosicionConsolidadaRespuesta {
   List<InversionModel> get inversiones => throw _privateConstructorUsedError;
   List<PrestamoModel> get prestamos => throw _privateConstructorUsedError;
   PersonaModel? get persona => throw _privateConstructorUsedError;
+  ClienteMontosLimite? get cliMontosLimites =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4409,9 +4685,11 @@ abstract class $PosicionConsolidadaRespuestaCopyWith<$Res> {
       {List<CuentaModel> cuentas,
       List<InversionModel> inversiones,
       List<PrestamoModel> prestamos,
-      PersonaModel? persona});
+      PersonaModel? persona,
+      ClienteMontosLimite? cliMontosLimites});
 
   $PersonaModelCopyWith<$Res>? get persona;
+  $ClienteMontosLimiteCopyWith<$Res>? get cliMontosLimites;
 }
 
 /// @nodoc
@@ -4432,6 +4710,7 @@ class _$PosicionConsolidadaRespuestaCopyWithImpl<$Res,
     Object? inversiones = null,
     Object? prestamos = null,
     Object? persona = freezed,
+    Object? cliMontosLimites = freezed,
   }) {
     return _then(_value.copyWith(
       cuentas: null == cuentas
@@ -4450,6 +4729,10 @@ class _$PosicionConsolidadaRespuestaCopyWithImpl<$Res,
           ? _value.persona
           : persona // ignore: cast_nullable_to_non_nullable
               as PersonaModel?,
+      cliMontosLimites: freezed == cliMontosLimites
+          ? _value.cliMontosLimites
+          : cliMontosLimites // ignore: cast_nullable_to_non_nullable
+              as ClienteMontosLimite?,
     ) as $Val);
   }
 
@@ -4462,6 +4745,19 @@ class _$PosicionConsolidadaRespuestaCopyWithImpl<$Res,
 
     return $PersonaModelCopyWith<$Res>(_value.persona!, (value) {
       return _then(_value.copyWith(persona: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClienteMontosLimiteCopyWith<$Res>? get cliMontosLimites {
+    if (_value.cliMontosLimites == null) {
+      return null;
+    }
+
+    return $ClienteMontosLimiteCopyWith<$Res>(_value.cliMontosLimites!,
+        (value) {
+      return _then(_value.copyWith(cliMontosLimites: value) as $Val);
     });
   }
 }
@@ -4479,10 +4775,13 @@ abstract class _$$PosicionConsolidadaRespuestaImplCopyWith<$Res>
       {List<CuentaModel> cuentas,
       List<InversionModel> inversiones,
       List<PrestamoModel> prestamos,
-      PersonaModel? persona});
+      PersonaModel? persona,
+      ClienteMontosLimite? cliMontosLimites});
 
   @override
   $PersonaModelCopyWith<$Res>? get persona;
+  @override
+  $ClienteMontosLimiteCopyWith<$Res>? get cliMontosLimites;
 }
 
 /// @nodoc
@@ -4502,6 +4801,7 @@ class __$$PosicionConsolidadaRespuestaImplCopyWithImpl<$Res>
     Object? inversiones = null,
     Object? prestamos = null,
     Object? persona = freezed,
+    Object? cliMontosLimites = freezed,
   }) {
     return _then(_$PosicionConsolidadaRespuestaImpl(
       cuentas: null == cuentas
@@ -4520,6 +4820,10 @@ class __$$PosicionConsolidadaRespuestaImplCopyWithImpl<$Res>
           ? _value.persona
           : persona // ignore: cast_nullable_to_non_nullable
               as PersonaModel?,
+      cliMontosLimites: freezed == cliMontosLimites
+          ? _value.cliMontosLimites
+          : cliMontosLimites // ignore: cast_nullable_to_non_nullable
+              as ClienteMontosLimite?,
     ));
   }
 }
@@ -4532,7 +4836,8 @@ class _$PosicionConsolidadaRespuestaImpl
       {final List<CuentaModel> cuentas = const [],
       final List<InversionModel> inversiones = const [],
       final List<PrestamoModel> prestamos = const [],
-      this.persona})
+      this.persona,
+      this.cliMontosLimites})
       : _cuentas = cuentas,
         _inversiones = inversiones,
         _prestamos = prestamos;
@@ -4570,10 +4875,12 @@ class _$PosicionConsolidadaRespuestaImpl
 
   @override
   final PersonaModel? persona;
+  @override
+  final ClienteMontosLimite? cliMontosLimites;
 
   @override
   String toString() {
-    return 'PosicionConsolidadaRespuesta(cuentas: $cuentas, inversiones: $inversiones, prestamos: $prestamos, persona: $persona)';
+    return 'PosicionConsolidadaRespuesta(cuentas: $cuentas, inversiones: $inversiones, prestamos: $prestamos, persona: $persona, cliMontosLimites: $cliMontosLimites)';
   }
 
   @override
@@ -4586,7 +4893,9 @@ class _$PosicionConsolidadaRespuestaImpl
                 .equals(other._inversiones, _inversiones) &&
             const DeepCollectionEquality()
                 .equals(other._prestamos, _prestamos) &&
-            (identical(other.persona, persona) || other.persona == persona));
+            (identical(other.persona, persona) || other.persona == persona) &&
+            (identical(other.cliMontosLimites, cliMontosLimites) ||
+                other.cliMontosLimites == cliMontosLimites));
   }
 
   @JsonKey(ignore: true)
@@ -4596,7 +4905,8 @@ class _$PosicionConsolidadaRespuestaImpl
       const DeepCollectionEquality().hash(_cuentas),
       const DeepCollectionEquality().hash(_inversiones),
       const DeepCollectionEquality().hash(_prestamos),
-      persona);
+      persona,
+      cliMontosLimites);
 
   @JsonKey(ignore: true)
   @override
@@ -4617,10 +4927,12 @@ class _$PosicionConsolidadaRespuestaImpl
 abstract class _PosicionConsolidadaRespuesta
     implements PosicionConsolidadaRespuesta {
   factory _PosicionConsolidadaRespuesta(
-      {final List<CuentaModel> cuentas,
-      final List<InversionModel> inversiones,
-      final List<PrestamoModel> prestamos,
-      final PersonaModel? persona}) = _$PosicionConsolidadaRespuestaImpl;
+          {final List<CuentaModel> cuentas,
+          final List<InversionModel> inversiones,
+          final List<PrestamoModel> prestamos,
+          final PersonaModel? persona,
+          final ClienteMontosLimite? cliMontosLimites}) =
+      _$PosicionConsolidadaRespuestaImpl;
 
   factory _PosicionConsolidadaRespuesta.fromJson(Map<String, dynamic> json) =
       _$PosicionConsolidadaRespuestaImpl.fromJson;
@@ -4633,6 +4945,8 @@ abstract class _PosicionConsolidadaRespuesta
   List<PrestamoModel> get prestamos;
   @override
   PersonaModel? get persona;
+  @override
+  ClienteMontosLimite? get cliMontosLimites;
   @override
   @JsonKey(ignore: true)
   _$$PosicionConsolidadaRespuestaImplCopyWith<
@@ -11987,6 +12301,7 @@ mixin _$ValidaTransferenciaYGeneraOtpRequerimiento {
   String get cuentaOrigen => throw _privateConstructorUsedError;
   int get idBeneficiario => throw _privateConstructorUsedError;
   String get codigoConcepto => throw _privateConstructorUsedError;
+  String get institucion => throw _privateConstructorUsedError;
   String get cuentaDestino => throw _privateConstructorUsedError;
   double get monto => throw _privateConstructorUsedError;
   String get descripcion => throw _privateConstructorUsedError;
@@ -12015,6 +12330,7 @@ abstract class $ValidaTransferenciaYGeneraOtpRequerimientoCopyWith<$Res> {
       String cuentaOrigen,
       int idBeneficiario,
       String codigoConcepto,
+      String institucion,
       String cuentaDestino,
       double monto,
       String descripcion,
@@ -12045,6 +12361,7 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoCopyWithImpl<$Res,
     Object? cuentaOrigen = null,
     Object? idBeneficiario = null,
     Object? codigoConcepto = null,
+    Object? institucion = null,
     Object? cuentaDestino = null,
     Object? monto = null,
     Object? descripcion = null,
@@ -12069,6 +12386,10 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoCopyWithImpl<$Res,
       codigoConcepto: null == codigoConcepto
           ? _value.codigoConcepto
           : codigoConcepto // ignore: cast_nullable_to_non_nullable
+              as String,
+      institucion: null == institucion
+          ? _value.institucion
+          : institucion // ignore: cast_nullable_to_non_nullable
               as String,
       cuentaDestino: null == cuentaDestino
           ? _value.cuentaDestino
@@ -12129,6 +12450,7 @@ abstract class _$$ValidaTransferenciaYGeneraOtpRequerimientoImplCopyWith<$Res>
       String cuentaOrigen,
       int idBeneficiario,
       String codigoConcepto,
+      String institucion,
       String cuentaDestino,
       double monto,
       String descripcion,
@@ -12158,6 +12480,7 @@ class __$$ValidaTransferenciaYGeneraOtpRequerimientoImplCopyWithImpl<$Res>
     Object? cuentaOrigen = null,
     Object? idBeneficiario = null,
     Object? codigoConcepto = null,
+    Object? institucion = null,
     Object? cuentaDestino = null,
     Object? monto = null,
     Object? descripcion = null,
@@ -12182,6 +12505,10 @@ class __$$ValidaTransferenciaYGeneraOtpRequerimientoImplCopyWithImpl<$Res>
       codigoConcepto: null == codigoConcepto
           ? _value.codigoConcepto
           : codigoConcepto // ignore: cast_nullable_to_non_nullable
+              as String,
+      institucion: null == institucion
+          ? _value.institucion
+          : institucion // ignore: cast_nullable_to_non_nullable
               as String,
       cuentaDestino: null == cuentaDestino
           ? _value.cuentaDestino
@@ -12224,6 +12551,7 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
       this.cuentaOrigen = '',
       this.idBeneficiario = 0,
       this.codigoConcepto = '',
+      this.institucion = '',
       this.cuentaDestino = '',
       this.monto = 0.00,
       this.descripcion = '',
@@ -12250,6 +12578,9 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
   final String codigoConcepto;
   @override
   @JsonKey()
+  final String institucion;
+  @override
+  @JsonKey()
   final String cuentaDestino;
   @override
   @JsonKey()
@@ -12271,7 +12602,7 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
 
   @override
   String toString() {
-    return 'ValidaTransferenciaYGeneraOtpRequerimiento(idUsuario: $idUsuario, cuentaOrigen: $cuentaOrigen, idBeneficiario: $idBeneficiario, codigoConcepto: $codigoConcepto, cuentaDestino: $cuentaDestino, monto: $monto, descripcion: $descripcion, emailEnvio: $emailEnvio, celularEnvio: $celularEnvio, esDirecta: $esDirecta, beneficiario: $beneficiario)';
+    return 'ValidaTransferenciaYGeneraOtpRequerimiento(idUsuario: $idUsuario, cuentaOrigen: $cuentaOrigen, idBeneficiario: $idBeneficiario, codigoConcepto: $codigoConcepto, institucion: $institucion, cuentaDestino: $cuentaDestino, monto: $monto, descripcion: $descripcion, emailEnvio: $emailEnvio, celularEnvio: $celularEnvio, esDirecta: $esDirecta, beneficiario: $beneficiario)';
   }
 
   @override
@@ -12287,6 +12618,8 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
                 other.idBeneficiario == idBeneficiario) &&
             (identical(other.codigoConcepto, codigoConcepto) ||
                 other.codigoConcepto == codigoConcepto) &&
+            (identical(other.institucion, institucion) ||
+                other.institucion == institucion) &&
             (identical(other.cuentaDestino, cuentaDestino) ||
                 other.cuentaDestino == cuentaDestino) &&
             (identical(other.monto, monto) || other.monto == monto) &&
@@ -12310,6 +12643,7 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
       cuentaOrigen,
       idBeneficiario,
       codigoConcepto,
+      institucion,
       cuentaDestino,
       monto,
       descripcion,
@@ -12343,6 +12677,7 @@ abstract class _ValidaTransferenciaYGeneraOtpRequerimiento
           final String cuentaOrigen,
           final int idBeneficiario,
           final String codigoConcepto,
+          final String institucion,
           final String cuentaDestino,
           final double monto,
           final String descripcion,
@@ -12364,6 +12699,8 @@ abstract class _ValidaTransferenciaYGeneraOtpRequerimiento
   int get idBeneficiario;
   @override
   String get codigoConcepto;
+  @override
+  String get institucion;
   @override
   String get cuentaDestino;
   @override

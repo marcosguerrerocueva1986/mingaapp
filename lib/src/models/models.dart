@@ -243,12 +243,29 @@ class PersonaModel with _$PersonaModel {
 }
 
 @freezed
+class ClienteMontosLimite with _$ClienteMontosLimite {
+  factory ClienteMontosLimite({
+    @Default(0) int id,
+    @Default(0) int idClienteRegistro,
+    @Default(0) int idCliente,
+    @Default(0.00) double limiteTransaccion,
+    @Default(0.00) double limiteTransaccionDiaria,
+    DateTime? fechaRegistro,
+    DateTime? fechaSistema,
+  }) = _ClienteMontosLimite;
+
+  factory ClienteMontosLimite.fromJson(Map<String, Object?> json) =>
+      _$ClienteMontosLimiteFromJson(json);
+}
+
+@freezed
 class PosicionConsolidadaRespuesta with _$PosicionConsolidadaRespuesta {
   factory PosicionConsolidadaRespuesta(
           {@Default([]) List<CuentaModel> cuentas,
           @Default([]) List<InversionModel> inversiones,
           @Default([]) List<PrestamoModel> prestamos,
-          PersonaModel? persona}) =
+          PersonaModel? persona,
+          ClienteMontosLimite? cliMontosLimites}) =
       _PosicionConsolidadaRespuesta;
 
   factory PosicionConsolidadaRespuesta.fromJson(Map<String, Object?> json) =>
@@ -691,6 +708,7 @@ class ValidaTransferenciaYGeneraOtpRequerimiento
           @Default('') String cuentaOrigen,
           @Default(0) int idBeneficiario,
           @Default('') String codigoConcepto,
+          @Default('') String institucion,
           @Default('') String cuentaDestino,
           @Default(0.00) double monto,
           @Default('') String descripcion,

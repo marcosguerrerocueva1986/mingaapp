@@ -131,9 +131,8 @@ with SingleTickerProviderStateMixin {
     );
 
     if (shouldLogout == true) {
-      context.router.replaceAll([
-        const LoginPrincipalRoute() 
-      ]);
+      ref.read(loginControllerProvider.notifier).logout(context);
+      //context.router.replaceAll([const LoginPrincipalRoute()]);
     }
     return false;
   },
@@ -244,7 +243,6 @@ with SingleTickerProviderStateMixin {
           decoration: const BoxDecoration(),
             child: Column(
               children: <Widget> [
-                //contaniner de logo y bienvenida
                 Container(
                   height: 80,
                   decoration: const BoxDecoration(
@@ -304,7 +302,6 @@ with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),               
-                //container de logos de promociones
                 Container(
                   height: 120,
                   decoration: const BoxDecoration(
@@ -343,7 +340,6 @@ with SingleTickerProviderStateMixin {
                     ),
                   ),
                 ),
-                //container de mis productos
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
                   child: Align(
@@ -494,7 +490,6 @@ with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),
-                //container de servicios
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20,0,20,0),
                   child: Align(
@@ -1153,150 +1148,3 @@ Servicio({required this.imagePath, required this.title, required this.actionRout
           ),
         ),
       );
-  
- //child: Center(
-          /*Row
-          child: ReactiveForm(
-            formGroup: controller.form,
-            child: RefreshIndicator(
-              onRefresh: controller.actualizaConsolidado,
-              child: ListView(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                          child: SizedBox(
-                        width: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Bienvenido (a)',
-                              textAlign: TextAlign.left,
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                            Text(
-                              nombreCliente,
-                              textAlign: TextAlign.left,
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                          ],
-                        ),
-                      )),
-                      fechaUltimoAcceso.isEmpty
-                          ? const SizedBox()
-                          : Expanded(
-                              child: SizedBox(
-                              width: double.infinity,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    'Últ. Acceso',
-                                    textAlign: TextAlign.left,
-                                    style:
-                                        Theme.of(context).textTheme.bodySmall,
-                                  ),
-                                  Text(
-                                    fechaUltimoAcceso,
-                                    textAlign: TextAlign.right,
-                                    style:
-                                        Theme.of(context).textTheme.bodySmall,
-                                  ),
-                                ],
-                              ),
-                            ))
-                    ],
-                  ),
-                  const SizedBox(
-                    height: defaultPadding,
-                  ),
-                  const Divider(),
-                  if ((provider.posicionConsolidada?.cuentas.length ?? 0) >
-                      0) ...[
-                    const SizedBox(
-                      height: defaultPadding * 2,
-                    ),
-                    GestureDetector(
-                      // onTap: mainViewMode.expandirCuentas,
-                      behavior: HitTestBehavior.translucent,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            "CUENTAS",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
-                                    color: context.getTitlePrimaryColor()),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: defaultPadding,
-                    ),
-                    seccionCuentas(provider),
-                  ],
-                  if ((provider.posicionConsolidada?.inversiones.length ?? 0) >
-                      0) ...[
-                    const SizedBox(
-                      height: defaultPadding * 2,
-                    ),
-                    GestureDetector(
-                      // onTap: mainViewMode.expandirCuentas,
-                      behavior: HitTestBehavior.translucent,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            "INVERSIONES",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
-                                    color: context.getTitlePrimaryColor()),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: defaultPadding,
-                    ),
-                    seccionInversiones(provider),
-                  ],
-                  if ((provider.posicionConsolidada?.prestamos.length ?? 0) >
-                      0) ...[
-                    const SizedBox(
-                      height: defaultPadding * 2,
-                    ),
-                    GestureDetector(
-                      // onTap: mainViewMode.expandirCuentas,
-                      behavior: HitTestBehavior.translucent,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            "PRÉSTAMOS",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
-                                    color: context.getTitlePrimaryColor()),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: defaultPadding,
-                    ),
-                    seccionPrestamos(provider),
-                  ],
-                ],
-              ),
-            ),
-          ),
-        */
-        //),

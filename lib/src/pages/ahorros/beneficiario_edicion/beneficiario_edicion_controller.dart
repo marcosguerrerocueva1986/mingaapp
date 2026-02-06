@@ -23,6 +23,7 @@ class BeneficiarioEdicionController extends _$BeneficiarioEdicionController {
     'email': [''],
     'codigoTipoCuenta': [''],
     'codigoTipoId': [''],
+    'institucion': [''],
     'idInstitucion': [0],
     'guardarContacto': <bool>[false],
   });

@@ -541,6 +541,9 @@ class _FormularioExternoState extends ConsumerState<_FormularioExterno> {
                     _bancoController.text = selectedName;
                   });
                   controller.formE.control('idInstitucion').value = suggestion; 
+                  if (controller.formE.contains('institucion')) {
+                    controller.formE.control('institucion').value = selectedName;
+                  }
                 }
               },
             ),

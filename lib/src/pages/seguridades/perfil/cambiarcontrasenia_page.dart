@@ -6,7 +6,8 @@ import 'package:pinput/pinput.dart';
 
 @RoutePage()
 class CambiarContraseniaPage extends ConsumerStatefulWidget {
-  const CambiarContraseniaPage({super.key});
+  final String codigoUsuario;
+  const CambiarContraseniaPage({super.key, required this.codigoUsuario});
   
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -254,7 +255,7 @@ class _CambiarContraseniaState extends ConsumerState<CambiarContraseniaPage> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      controller.cambiarContrasenia();
+                      controller.cambiarContrasenia(widget.codigoUsuario);
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 0,

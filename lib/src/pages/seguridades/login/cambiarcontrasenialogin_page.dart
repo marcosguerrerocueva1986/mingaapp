@@ -1,11 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/seguridades/login/cambiarcontrasenialogin_controller.dart';
-import 'package:flutter/material.dart';
 
 @RoutePage()
 class CambiarContraseniaLoginPage extends ConsumerStatefulWidget {
-  const CambiarContraseniaLoginPage({super.key});
+  final String codigoUsuario;
+  const CambiarContraseniaLoginPage({super.key,required this.codigoUsuario});
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CambiarContraseniaLoginPageState();
 }
@@ -35,7 +34,7 @@ class _CambiarContraseniaLoginPageState extends ConsumerState<CambiarContrasenia
   @override
   Widget build(BuildContext context) {
     var controller = ref.read(cambiarContraseniaLoginControllerProvider.notifier);
-    var provider = ref.watch(cambiarContraseniaLoginControllerProvider);   
+    var provider = ref.watch(cambiarContraseniaLoginControllerProvider); 
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/images/logopantallamenu.png', width: 120, height: 80),
@@ -230,7 +229,7 @@ class _CambiarContraseniaLoginPageState extends ConsumerState<CambiarContrasenia
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      controller.cambiarContraseniaLogin();
+                      controller.cambiarContraseniaLogin(widget.codigoUsuario);
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 0,

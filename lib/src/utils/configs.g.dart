@@ -9,8 +9,7 @@ part of 'configs.dart';
 // coverage:ignore-file
 // ignore_for_file: type=lint
 final class _Configs {
-  static const String baseUrl =
-      'https://mingaonline.coopminga.com/services/api/v2/';
+  static const String baseUrl = 'http://181.39.19.77:9092/api/v2/';
 
   static const String baseUrlTest = 'http://181.39.19.77:9092/api/v2/';
 

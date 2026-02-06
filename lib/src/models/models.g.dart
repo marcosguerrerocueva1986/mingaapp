@@ -379,6 +379,36 @@ Map<String, dynamic> _$$PersonaModelImplToJson(_$PersonaModelImpl instance) =>
       'email': instance.email,
     };
 
+_$ClienteMontosLimiteImpl _$$ClienteMontosLimiteImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ClienteMontosLimiteImpl(
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      idClienteRegistro: (json['idClienteRegistro'] as num?)?.toInt() ?? 0,
+      idCliente: (json['idCliente'] as num?)?.toInt() ?? 0,
+      limiteTransaccion:
+          (json['limiteTransaccion'] as num?)?.toDouble() ?? 0.00,
+      limiteTransaccionDiaria:
+          (json['limiteTransaccionDiaria'] as num?)?.toDouble() ?? 0.00,
+      fechaRegistro: json['fechaRegistro'] == null
+          ? null
+          : DateTime.parse(json['fechaRegistro'] as String),
+      fechaSistema: json['fechaSistema'] == null
+          ? null
+          : DateTime.parse(json['fechaSistema'] as String),
+    );
+
+Map<String, dynamic> _$$ClienteMontosLimiteImplToJson(
+        _$ClienteMontosLimiteImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'idClienteRegistro': instance.idClienteRegistro,
+      'idCliente': instance.idCliente,
+      'limiteTransaccion': instance.limiteTransaccion,
+      'limiteTransaccionDiaria': instance.limiteTransaccionDiaria,
+      'fechaRegistro': instance.fechaRegistro?.toIso8601String(),
+      'fechaSistema': instance.fechaSistema?.toIso8601String(),
+    };
+
 _$PosicionConsolidadaRespuestaImpl _$$PosicionConsolidadaRespuestaImplFromJson(
         Map<String, dynamic> json) =>
     _$PosicionConsolidadaRespuestaImpl(
@@ -397,6 +427,10 @@ _$PosicionConsolidadaRespuestaImpl _$$PosicionConsolidadaRespuestaImplFromJson(
       persona: json['persona'] == null
           ? null
           : PersonaModel.fromJson(json['persona'] as Map<String, dynamic>),
+      cliMontosLimites: json['cliMontosLimites'] == null
+          ? null
+          : ClienteMontosLimite.fromJson(
+              json['cliMontosLimites'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PosicionConsolidadaRespuestaImplToJson(
@@ -406,6 +440,7 @@ Map<String, dynamic> _$$PosicionConsolidadaRespuestaImplToJson(
       'inversiones': instance.inversiones,
       'prestamos': instance.prestamos,
       'persona': instance.persona,
+      'cliMontosLimites': instance.cliMontosLimites,
     };
 
 _$CuentaModelImpl _$$CuentaModelImplFromJson(Map<String, dynamic> json) =>
@@ -1122,6 +1157,7 @@ _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
           cuentaOrigen: json['cuentaOrigen'] as String? ?? '',
           idBeneficiario: (json['idBeneficiario'] as num?)?.toInt() ?? 0,
           codigoConcepto: json['codigoConcepto'] as String? ?? '',
+          institucion: json['institucion'] as String? ?? '',
           cuentaDestino: json['cuentaDestino'] as String? ?? '',
           monto: (json['monto'] as num?)?.toDouble() ?? 0.00,
           descripcion: json['descripcion'] as String? ?? '',
@@ -1141,6 +1177,7 @@ Map<String, dynamic> _$$ValidaTransferenciaYGeneraOtpRequerimientoImplToJson(
       'cuentaOrigen': instance.cuentaOrigen,
       'idBeneficiario': instance.idBeneficiario,
       'codigoConcepto': instance.codigoConcepto,
+      'institucion': instance.institucion,
       'cuentaDestino': instance.cuentaDestino,
       'monto': instance.monto,
       'descripcion': instance.descripcion,

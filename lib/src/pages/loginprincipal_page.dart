@@ -6,16 +6,20 @@ import 'package:bancamovilr/src/services/auth_storage_service.dart';
 import 'package:bancamovilr/subfolders.dart' hide SharedPreferences;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:bancamovilr/src/pages/loginprincipal_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:local_auth/local_auth.dart';
+import 'package:local_auth_android/local_auth_android.dart';
+import 'package:local_auth_ios/local_auth_ios.dart';
 
 @RoutePage()
 class LoginPrincipalPage extends ConsumerStatefulWidget {
   const LoginPrincipalPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginPrincipalState();
+  ConsumerState<LoginPrincipalPage> createState() => _LoginPrincipalState();
 }
 
 class _LoginPrincipalState extends ConsumerState<LoginPrincipalPage> 
@@ -23,6 +27,7 @@ with TickerProviderStateMixin {
   String? _errorMessage;
   bool _isLoading = false;
   final LocalAuthentication auth = LocalAuthentication();
+  final FlutterSecureStorage _storage = const FlutterSecureStorage();
   bool _isBiometricAvailable = false;
   late AnimationController _logoMitadAnimationController;
   late Animation<double> _logoMitadScaleAnimation;
@@ -74,75 +79,88 @@ with TickerProviderStateMixin {
       _isBiometricAvailable = canCheckBiometrics;
     });
   }
-  Future<void> _loginConHuellaDactilar() async {
-  if (mounted) {
-    setState(() {
-      _errorMessage = null;
-      _isLoading = true;
-    });
+  _mostrarMiDialogo(){
+    showModalBottomSheet(
+      context: context,
+      isDismissible: false,
+      enableDrag: false,
+      backgroundColor: Colors.transparent, // Para bordes redondeados
+      builder: (context) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            const SizedBox(height: 25),
+            const Icon(Icons.fingerprint, size: 60, color: Color(0xFF006099)),
+            const SizedBox(height: 15),
+            const Text(
+              'Autenticación Cooperativa Minga',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Coloque su dedo en el sensor para continuar',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.grey),
+            ),
+            const SizedBox(height: 30),
+            const CircularProgressIndicator(),
+            const SizedBox(height: 20),
+            TextButton(
+              onPressed: () {
+                auth.stopAuthentication();
+                Navigator.pop(context);
+              },
+              child: const Text('CANCELAR', style: TextStyle(color: Colors.blueAccent)),
+            ),
+          ],
+        ),
+      ),
+    );
   }
-
-  final bool isBiometricAvailable = await auth.canCheckBiometrics;
-  if (!isBiometricAvailable) {
-      if (mounted) {
-        setState(() {
-          _errorMessage = 'Biometría no disponible o no configurada.';
-          _isLoading = false;
-        });
-      }
-      return;
-    }
-    
+  Future<void> _loginConHuellaDactilar() async {
+    if (!mounted) return;
+    setState(() => _isLoading = true);    
     bool authenticated = false;
     try {
-      authenticated = await auth.authenticate(
-        localizedReason: 'Autenticación con huella para acceder',
+        authenticated = await auth.authenticate(
+        localizedReason: 'Ponga su dedo en el dactilar para continuar',
         options: const AuthenticationOptions(
           biometricOnly: true,
-          stickyAuth: false,
+          stickyAuth: true,
+          useErrorDialogs: true
         ),
       );
     } on PlatformException catch (e) {
-      String message;
-      if (e.code == 'NotAvailable') {
-        message = 'Biometría no disponible en este dispositivo.';
-      } else if (e.code == 'NotEnrolled') {
-        message = 'No hay huellas dactilares registradas.';
-      } else if (e.code == 'PasscodeNotSet') {
-        message = 'Por favor, configure un bloqueo de pantalla.';
-      } else {
-        message = 'Error de autenticación: ${e.message}';
-      }
-      if (mounted) {
-        setState(() {
-          _errorMessage = message;
-          _isLoading = false;
-        });
-      }
-      return; 
+      print("Error: ${e.code}");
     }
-    
+    if (mounted && Navigator.of(context, rootNavigator: true).canPop()) {
+      Navigator.of(context, rootNavigator: true).pop();
+    }
     if (!mounted) return;
     if (authenticated) {
-        final AuthStorageService authStorageService = ref.read(authStorageServiceProvider);
-        final storedUserId = await authStorageService.getUserId();
-        String? accessToken = await authStorageService.getToken();
-
-        if (accessToken != null) {
+      String? tokenGuardado = await _storage.read(key: 'biometric_token');
+      if (tokenGuardado != null) {
         final controller = ref.read(loginControllerProvider.notifier);
-        controller.accesoPorHuella(accessToken); 
+        controller.accesoPorHuella(tokenGuardado); 
       } else {
-        _errorMessage = 'No hay datos de sesión guardados. Inicie sesión con credenciales.';
+          setState(() => _errorMessage = 'Debe ingresar manualmente una vez.');
       }
     } else {
-      _errorMessage = 'Autenticación de huella fallida o cancelada.';
-    }
-
-    if (mounted) {
-      setState(() {
-        _isLoading = false;
-        _errorMessage = _errorMessage;
-      });
+      HapticFeedback.vibrate();
+      setState(() => _isLoading = false);
     }
   }
   @override

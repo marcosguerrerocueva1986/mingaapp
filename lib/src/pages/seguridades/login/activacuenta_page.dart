@@ -15,8 +15,8 @@ class ActivaCuentaPage extends ConsumerStatefulWidget {
 }
 
 class _ActivaCuentaPageState extends ConsumerState<ActivaCuentaPage> {
-  final int _maxSeconds = 20;
-  int _secondsRemaining = 20;
+  final int _maxSeconds = 180;
+  int _secondsRemaining = 180;
   Timer? _timer;
   bool _showResendButton = false;
   

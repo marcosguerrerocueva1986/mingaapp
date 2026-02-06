@@ -56,15 +56,23 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     CambiarContraseniaLoginRoute.name: (routeData) {
+      final args = routeData.argsAs<CambiarContraseniaLoginRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const CambiarContraseniaLoginPage(),
+        child: CambiarContraseniaLoginPage(
+          key: args.key,
+          codigoUsuario: args.codigoUsuario,
+        ),
       );
     },
     CambiarContraseniaRoute.name: (routeData) {
+      final args = routeData.argsAs<CambiarContraseniaRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const CambiarContraseniaPage(),
+        child: CambiarContraseniaPage(
+          key: args.key,
+          codigoUsuario: args.codigoUsuario,
+        ),
       );
     },
     ContactenosRoute.name: (routeData) {
@@ -431,30 +439,80 @@ class BeneficiarioRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [CambiarContraseniaLoginPage]
-class CambiarContraseniaLoginRoute extends PageRouteInfo<void> {
-  const CambiarContraseniaLoginRoute({List<PageRouteInfo>? children})
-      : super(
+class CambiarContraseniaLoginRoute
+    extends PageRouteInfo<CambiarContraseniaLoginRouteArgs> {
+  CambiarContraseniaLoginRoute({
+    Key? key,
+    required String codigoUsuario,
+    List<PageRouteInfo>? children,
+  }) : super(
           CambiarContraseniaLoginRoute.name,
+          args: CambiarContraseniaLoginRouteArgs(
+            key: key,
+            codigoUsuario: codigoUsuario,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'CambiarContraseniaLoginRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<CambiarContraseniaLoginRouteArgs> page =
+      PageInfo<CambiarContraseniaLoginRouteArgs>(name);
+}
+
+class CambiarContraseniaLoginRouteArgs {
+  const CambiarContraseniaLoginRouteArgs({
+    this.key,
+    required this.codigoUsuario,
+  });
+
+  final Key? key;
+
+  final String codigoUsuario;
+
+  @override
+  String toString() {
+    return 'CambiarContraseniaLoginRouteArgs{key: $key, codigoUsuario: $codigoUsuario}';
+  }
 }
 
 /// generated route for
 /// [CambiarContraseniaPage]
-class CambiarContraseniaRoute extends PageRouteInfo<void> {
-  const CambiarContraseniaRoute({List<PageRouteInfo>? children})
-      : super(
+class CambiarContraseniaRoute
+    extends PageRouteInfo<CambiarContraseniaRouteArgs> {
+  CambiarContraseniaRoute({
+    Key? key,
+    required String codigoUsuario,
+    List<PageRouteInfo>? children,
+  }) : super(
           CambiarContraseniaRoute.name,
+          args: CambiarContraseniaRouteArgs(
+            key: key,
+            codigoUsuario: codigoUsuario,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'CambiarContraseniaRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<CambiarContraseniaRouteArgs> page =
+      PageInfo<CambiarContraseniaRouteArgs>(name);
+}
+
+class CambiarContraseniaRouteArgs {
+  const CambiarContraseniaRouteArgs({
+    this.key,
+    required this.codigoUsuario,
+  });
+
+  final Key? key;
+
+  final String codigoUsuario;
+
+  @override
+  String toString() {
+    return 'CambiarContraseniaRouteArgs{key: $key, codigoUsuario: $codigoUsuario}';
+  }
 }
 
 /// generated route for

@@ -40,7 +40,7 @@ class RecuperarContraseniaController extends _$RecuperarContraseniaController {
           var respuesta =
               await guard(() async => await client.generaClaveTemporalCambioContrasenia(requerimiento));
           if (respuesta.hasValue) {   
-            appRouter.replace(const CambiarContraseniaLoginRoute());
+            appRouter.replace(CambiarContraseniaLoginRoute(codigoUsuario: requerimiento.codigoUsuario));
           }
       }
     }

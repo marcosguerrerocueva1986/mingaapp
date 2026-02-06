@@ -3,6 +3,7 @@ import 'package:bancamovilr/index.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 @RoutePage()
 class ContactenosPage extends ConsumerStatefulWidget {
@@ -10,7 +11,18 @@ class ContactenosPage extends ConsumerStatefulWidget {
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ContactenosPageState();
 }
-
+Future<void> _hacerLlamada(String numero) async {
+  final Uri launchUri = Uri(
+    scheme: 'tel',
+    path: numero,
+  );
+  
+  if (await canLaunchUrl(launchUri)) {
+    await launchUrl(launchUri);
+  } else {
+    NotificationService.showError(text: 'No se pudo abrir el marcador de llamadas');
+  }
+}
 class _ContactenosPageState extends ConsumerState<ContactenosPage> {
   @override
   Widget build(BuildContext context) {
@@ -32,7 +44,7 @@ class _ContactenosPageState extends ConsumerState<ContactenosPage> {
               ProcessButton(
                 key: const ValueKey('llamara'),
                 onPressed: () {
-                  appRouter.push(const MantenimientoRoute());
+                   _hacerLlamada('(03) 3730810');
                 },
                 text: 'Llamar a (03) 3730810'.toUpperCase(),
               ),

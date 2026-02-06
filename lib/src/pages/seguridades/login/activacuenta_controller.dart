@@ -48,7 +48,7 @@ class ActivaCuentaController extends _$ActivaCuentaController {
           () async => await client.validaCodigoOtpRegistro(requerimiento));
 
       if (respuesta.hasValue) {
-        appRouter.replace(const CambiarContraseniaLoginRoute());
+        appRouter.replace(CambiarContraseniaLoginRoute(codigoUsuario: requerimiento.codigoUsuario));
       }
     }
   }

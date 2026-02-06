@@ -65,6 +65,10 @@ abstract class RestClient {
   Future<ValidaTransferenciaYGeneraOtpRespuesta> validaTransaferenciaYGeneraOtp(
       @Body() ValidaTransferenciaYGeneraOtpRequerimiento requerimiento);
 
+  @POST("/validatransferenciadiariaygeneraotp")
+  Future<ValidaTransferenciaYGeneraOtpRespuesta> validaTransaferenciaDiariaYGeneraOtp(
+      @Body() ValidaTransferenciaYGeneraOtpRequerimiento requerimiento);
+
   @POST("/ingresaTransferenciaDirecta")
   Future<ProcesaTransfernciaDirectaRespuesta> ingresaTransferenciaDirecta(
       @Body() ProcesaTransferenciaDirectaRequerimiento requerimiento);
@@ -105,6 +109,10 @@ abstract class RestClient {
   @POST("/registroPinAcceso")
   Future<BaseRequerimiento> registraPinAcceso(
       @Body() RegistroPinAccesoRequerimiento requerimiento);
+
+  @POST("/registrolimiteTransaccion")
+  Future<BaseRequerimiento> registroLimiteTransaccion(
+      @Body() ClienteMontosLimite requerimiento);
 
   @POST("/validaPinAcceso")
   Future<ValidacionOtpAccesoRespuesta> validaPinAcceso(

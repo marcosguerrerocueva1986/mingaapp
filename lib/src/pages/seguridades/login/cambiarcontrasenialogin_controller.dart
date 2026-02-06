@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:bancamovilr/index.dart';
 part 'cambiarcontrasenialogin_controller.g.dart';
@@ -6,11 +5,12 @@ part 'cambiarcontrasenialogin_controller.g.dart';
 @riverpod
 class CambiarContraseniaLoginController extends _$CambiarContraseniaLoginController {
   final form = fb.group({
-    'pwdAnterior': ['',Validators.required, Validators.minLength(8)],
+    'pwdAnterior': ['',Validators.required, Validators.minLength(6)],
     'pwdNueva': ['', Validators.required, Validators.minLength(8)],
     'pwdNuevaConfirmar': ['', Validators.required, Validators.minLength(8)],
-  });
+  }, [Validators.mustMatch('pwdNueva', 'pwdNuevaConfirmar')]);
 
+  @override
   CambiarContraseniaLoginState build() {
     ref.onDispose(() {
       form.dispose();
@@ -36,16 +36,17 @@ class CambiarContraseniaLoginController extends _$CambiarContraseniaLoginControl
       }
     }
   }
-  void cambiarContraseniaLogin() async {
+  void cambiarContraseniaLogin(String codigoUsuario) async {
     if (form.valid)
     {
       var client = HttpClientHelper.getClient();
       var requerimiento = CambioClaveRequerimiento.fromJson(form.value);
-      HttpClientHelper.testMode = requerimiento.codigoUsuario == Configs.userTest;
+      requerimiento = requerimiento.copyWith(codigoUsuario: codigoUsuario);
       var respuesta =  await guard(() async => await client.cambioClave(requerimiento));
       if (respuesta.hasValue) {    
-          state = state.copyWith(modoConfirmacion: false);  
-          NotificationService.showError(text: 'Cuenta Activada. Por favor ingresa con tu usuario y contraseña');
+          state = state.copyWith(modoConfirmacion: true);  
+          NotificationService.showSuccess(text: 'Cuenta Activada. Por favor ingresa con tu usuario y contraseña');
+          await Future.delayed(const Duration(seconds: 3));
           appRouter.replace(const LoginRoute());
       } else {
         print("El usuario no esta disponible");

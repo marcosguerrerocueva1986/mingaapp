@@ -7,7 +7,7 @@ part of 'activacuenta_controller.dart';
 // **************************************************************************
 
 String _$activaCuentaControllerHash() =>
-    r'a36407c4ade82104fb7cfd5ce486225606478ec0';
+    r'446001cd300c3546d84a93409a8833ad92fc8d0b';
 
 /// See also [ActivaCuentaController].
 @ProviderFor(ActivaCuentaController)
