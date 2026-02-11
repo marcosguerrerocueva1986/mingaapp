@@ -7,7 +7,7 @@ part of 'cambiarcontrasenialogin_controller.dart';
 // **************************************************************************
 
 String _$cambiarContraseniaLoginControllerHash() =>
-    r'fd2cd68a0b7f06a48a8abd126dec3fbd663f8780';
+    r'5224f6964019c92fd70766f6b31c36dff2b4ed2c';
 
 /// See also [CambiarContraseniaLoginController].
 @ProviderFor(CambiarContraseniaLoginController)

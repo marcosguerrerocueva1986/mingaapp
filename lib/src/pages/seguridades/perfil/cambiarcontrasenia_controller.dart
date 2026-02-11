@@ -40,13 +40,15 @@ class CambiarContraseniaController extends _$CambiarContraseniaController {
     if (form.valid)
     {
       var client = HttpClientHelper.getClient();
-      var requerimiento = CambioClaveRequerimiento(
-      codigoUsuario: codUsuario);
+      var requerimiento = CambioClaveRequerimiento.fromJson(form.value);
+      requerimiento = requerimiento.copyWith(
+      codigoUsuario: codUsuario ?? '');
       HttpClientHelper.testMode = requerimiento.codigoUsuario == Configs.userTest;
       var respuesta =  await guard(() async => await client.cambioClave(requerimiento));
       if (respuesta.hasValue) {    
           state = state.copyWith(modoConfirmacion: false);  
           NotificationService.showSuccess(text: 'Contraseña Cambiada con éxito. Por favor ingresa con tu usuario y contraseña');
+          form.reset();
           await Future.delayed(const Duration(seconds: 3));
           appRouter.replace(const LoginRoute());
       } else {

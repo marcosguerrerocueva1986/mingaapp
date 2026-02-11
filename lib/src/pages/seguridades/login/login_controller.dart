@@ -21,6 +21,7 @@ late final AuthStorageService _authStorageService;
   LoginState build() {
     ref.onDispose(() {
       form.dispose();
+      form.reset();
       print('✅ LoginController: FormGroup dispose llamado.');
     });
     _authStorageService = ref.read(authStorageServiceProvider);
@@ -78,6 +79,7 @@ late final AuthStorageService _authStorageService;
       if (respuesta.hasValue) {    
           state = state.copyWith(modoConfirmacion: false);  
           NotificationService.showError(text: 'Cuenta Activada. Por favor ingresa con tu usuario y contraseña');
+          form.reset();
           appRouter.replace(const LoginRoute());
       } else {
         print("El usuario no esta disponible");
@@ -130,7 +132,7 @@ late final AuthStorageService _authStorageService;
 
   void confimarOtpIngreso(String otp) async {
     if (state.modoConfirmacion) {
-      SharedPreference preferences = SharedPreference();
+      final preferences = await SharedPreferences.getInstance();
 
       var client = HttpClientHelper.getClient();
       var requerimiento = LoginRequerimiento.fromJson(form.value);
@@ -154,10 +156,8 @@ late final AuthStorageService _authStorageService;
         await _storage.write(key: 'idUsuario', value: state.loginRespuesta!.id.toString());
         await _storage.write(key: 'idRegistro', value: state.loginRespuesta!.idRegistro.toString());
         await _storage.write(key: 'codigoUsuario', value: requerimiento.codigoUsuario);
+        await preferences.setString('biometric_token', respuesta.value!.token);
         await _storage.write(key: 'biometric_token', value: respuesta.value!.token);
-        String nombreUsuario = respuesta.value!.usuario!.nombre;
-          NotificationService.showSuccess(text: '¡Bienvenido(a), $nombreUsuario!',);
-          await Future.delayed(const Duration(milliseconds: 000));
         state = state.copyWith(
             validacionOtpRespuesta: respuesta.value,
             estaValidado: true,
@@ -189,6 +189,7 @@ late final AuthStorageService _authStorageService;
   }
 
   void accesoPorHuella(String accessToken) async {
+    HttpClientHelper.token = accessToken;
     final client = HttpClientHelper.getClient();
 
     String? codigoPersistente = await _storage.read(key: 'codigoUsuario');
@@ -206,21 +207,20 @@ late final AuthStorageService _authStorageService;
             ValidacionOtpAccesoRespuesta(token: accessToken)));
       
       if (respuesta.hasValue && respuesta.value?.token != null && respuesta.value!.token.isNotEmpty) {
+        final data = respuesta.value!;
           ref.read(themeInfoProvider.notifier).cambiarColor('#B70055');
-          HttpClientHelper.token = respuesta.value!.token;
-
-          await _authStorageService.saveAuthToken(respuesta.value!.token);
+          String nuevoToken = respuesta.value!.token;
+          HttpClientHelper.token = nuevoToken;
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString('biometric_token', nuevoToken);
+          await _authStorageService.saveAuthToken(data.token);
 
           HttpClientHelper.idUsuario = respuesta.value?.loginRespuesta?.id ?? idUsuarioActual;
           HttpClientHelper.idRegistro = respuesta.value?.loginRespuesta?.idRegistro ?? 0;
           await _storage.write(key: 'idUsuario', value: HttpClientHelper.idUsuario.toString());
-          await _storage.write(key: 'idRegistro', value: HttpClientHelper.idRegistro.toString());
-          String nombreUsuario = respuesta.value!.usuario!.nombre;
-          NotificationService.showSuccess(text: '¡Bienvenido(a), $nombreUsuario!',);
-          await Future.delayed(const Duration(milliseconds: 000));
           state = state.copyWith(
-              validacionOtpRespuesta: respuesta.value,
-              loginRespuesta: respuesta.value!.loginRespuesta,
+              validacionOtpRespuesta: data,
+              loginRespuesta: data.loginRespuesta,
               estaValidado: true,
               modoConfirmacion: false);
           appRouter.replaceAll([const PosicionConsolidadaRoute()]);

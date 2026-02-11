@@ -678,6 +678,9 @@ _$ResumenMesModelImpl _$$ResumenMesModelImplFromJson(
         Map<String, dynamic> json) =>
     _$ResumenMesModelImpl(
       nombreMes: json['nombreMes'] as String? ?? '',
+      numeroCuenta: json['numeroCuenta'] as String? ?? '',
+      nombreCliente: json['nombreCliente'] as String? ?? '',
+      tipoCuenta: json['tipoCuenta'] as String? ?? '',
       anio: (json['anio'] as num?)?.toInt() ?? 0,
       fechaInicio: json['fechaInicio'] == null
           ? null
@@ -696,6 +699,9 @@ Map<String, dynamic> _$$ResumenMesModelImplToJson(
         _$ResumenMesModelImpl instance) =>
     <String, dynamic>{
       'nombreMes': instance.nombreMes,
+      'numeroCuenta': instance.numeroCuenta,
+      'nombreCliente': instance.nombreCliente,
+      'tipoCuenta': instance.tipoCuenta,
       'anio': instance.anio,
       'fechaInicio': instance.fechaInicio?.toIso8601String(),
       'fechaFin': instance.fechaFin?.toIso8601String(),

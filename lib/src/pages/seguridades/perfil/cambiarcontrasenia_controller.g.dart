@@ -7,7 +7,7 @@ part of 'cambiarcontrasenia_controller.dart';
 // **************************************************************************
 
 String _$cambiarContraseniaControllerHash() =>
-    r'48ea21d9575b6bce8cb231902fb1f3c836e45e06';
+    r'1e50d45239017c4eab1c1bb94da495801a3a07b6';
 
 /// See also [CambiarContraseniaController].
 @ProviderFor(CambiarContraseniaController)

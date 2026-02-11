@@ -151,8 +151,11 @@ with TickerProviderStateMixin {
     }
     if (!mounted) return;
     if (authenticated) {
-      String? tokenGuardado = await _storage.read(key: 'biometric_token');
+      final prefs = await SharedPreferences.getInstance();
+      String? tokenGuardado = prefs.getString('biometric_token');
+      //String? tokenGuardado = await _storage.read(key: 'biometric_token');
       if (tokenGuardado != null) {
+        HttpClientHelper.token = tokenGuardado;
         final controller = ref.read(loginControllerProvider.notifier);
         controller.accesoPorHuella(tokenGuardado); 
       } else {

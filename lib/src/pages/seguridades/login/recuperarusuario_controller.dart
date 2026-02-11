@@ -30,6 +30,7 @@ class RecuperarUsuarioController extends _$RecuperarUsuarioController {
       if (respuesta.hasValue) {    
           state = state.copyWith(modoConfirmacion: false);  
           NotificationService.showError(text: 'Se ha enviado el usuario a su correo');
+          form.reset();
           appRouter.replace(const LoginRoute());
       } else {
         print("El usuario no esta disponible");

@@ -1,6 +1,7 @@
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/ahorros/estado_cuenta/estado_cuenta_controller.dart';
 import 'package:bancamovilr/src/pages/ahorros/estado_cuenta/estado_cuenta_export_service.dart';
+import 'package:collection/collection.dart';
 import 'package:intl/intl.dart';
 
 @RoutePage()
@@ -57,7 +58,7 @@ class ListaMesesEstadoPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final estadoMeses = ref.watch(estadosCuentaControllerProvider(numeroCuenta));
-
+    final cliente = ref.watch(posicionConsolidadaControllerProvider);
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -73,7 +74,12 @@ class ListaMesesEstadoPage extends ConsumerWidget {
                 itemCount: respuesta.periodos.length,
                 separatorBuilder: (context, index) => const SizedBox(height: 10),
                 itemBuilder: (context, index) {
-                  final periodo = respuesta.periodos[index];
+                  final periodoI = respuesta.periodos[index];
+                  final cuentaEncontrada = cliente.posicionConsolidada?.cuentas?.firstWhereOrNull((j) => j.codigo == numeroCuenta,);
+                  final periodo = periodoI.copyWith(
+                    numeroCuenta: numeroCuenta,
+                    nombreCliente: cliente.posicionConsolidada?.persona!.nombre ?? '',
+                    tipoCuenta: cuentaEncontrada?.tipo ?? '',);
                   return Card(
                     elevation: 2,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

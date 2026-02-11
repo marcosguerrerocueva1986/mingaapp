@@ -47,6 +47,7 @@ class CambiarContraseniaLoginController extends _$CambiarContraseniaLoginControl
           state = state.copyWith(modoConfirmacion: true);  
           NotificationService.showSuccess(text: 'Cuenta Activada. Por favor ingresa con tu usuario y contraseña');
           await Future.delayed(const Duration(seconds: 3));
+          form.reset();
           appRouter.replace(const LoginRoute());
       } else {
         print("El usuario no esta disponible");

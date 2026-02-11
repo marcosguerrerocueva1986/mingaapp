@@ -7360,6 +7360,9 @@ ResumenMesModel _$ResumenMesModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ResumenMesModel {
   String get nombreMes => throw _privateConstructorUsedError;
+  String get numeroCuenta => throw _privateConstructorUsedError;
+  String get nombreCliente => throw _privateConstructorUsedError;
+  String get tipoCuenta => throw _privateConstructorUsedError;
   int get anio => throw _privateConstructorUsedError;
   DateTime? get fechaInicio => throw _privateConstructorUsedError;
   DateTime? get fechaFin => throw _privateConstructorUsedError;
@@ -7383,6 +7386,9 @@ abstract class $ResumenMesModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String nombreMes,
+      String numeroCuenta,
+      String nombreCliente,
+      String tipoCuenta,
       int anio,
       DateTime? fechaInicio,
       DateTime? fechaFin,
@@ -7407,6 +7413,9 @@ class _$ResumenMesModelCopyWithImpl<$Res, $Val extends ResumenMesModel>
   @override
   $Res call({
     Object? nombreMes = null,
+    Object? numeroCuenta = null,
+    Object? nombreCliente = null,
+    Object? tipoCuenta = null,
     Object? anio = null,
     Object? fechaInicio = freezed,
     Object? fechaFin = freezed,
@@ -7420,6 +7429,18 @@ class _$ResumenMesModelCopyWithImpl<$Res, $Val extends ResumenMesModel>
       nombreMes: null == nombreMes
           ? _value.nombreMes
           : nombreMes // ignore: cast_nullable_to_non_nullable
+              as String,
+      numeroCuenta: null == numeroCuenta
+          ? _value.numeroCuenta
+          : numeroCuenta // ignore: cast_nullable_to_non_nullable
+              as String,
+      nombreCliente: null == nombreCliente
+          ? _value.nombreCliente
+          : nombreCliente // ignore: cast_nullable_to_non_nullable
+              as String,
+      tipoCuenta: null == tipoCuenta
+          ? _value.tipoCuenta
+          : tipoCuenta // ignore: cast_nullable_to_non_nullable
               as String,
       anio: null == anio
           ? _value.anio
@@ -7467,6 +7488,9 @@ abstract class _$$ResumenMesModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String nombreMes,
+      String numeroCuenta,
+      String nombreCliente,
+      String tipoCuenta,
       int anio,
       DateTime? fechaInicio,
       DateTime? fechaFin,
@@ -7489,6 +7513,9 @@ class __$$ResumenMesModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? nombreMes = null,
+    Object? numeroCuenta = null,
+    Object? nombreCliente = null,
+    Object? tipoCuenta = null,
     Object? anio = null,
     Object? fechaInicio = freezed,
     Object? fechaFin = freezed,
@@ -7502,6 +7529,18 @@ class __$$ResumenMesModelImplCopyWithImpl<$Res>
       nombreMes: null == nombreMes
           ? _value.nombreMes
           : nombreMes // ignore: cast_nullable_to_non_nullable
+              as String,
+      numeroCuenta: null == numeroCuenta
+          ? _value.numeroCuenta
+          : numeroCuenta // ignore: cast_nullable_to_non_nullable
+              as String,
+      nombreCliente: null == nombreCliente
+          ? _value.nombreCliente
+          : nombreCliente // ignore: cast_nullable_to_non_nullable
+              as String,
+      tipoCuenta: null == tipoCuenta
+          ? _value.tipoCuenta
+          : tipoCuenta // ignore: cast_nullable_to_non_nullable
               as String,
       anio: null == anio
           ? _value.anio
@@ -7544,6 +7583,9 @@ class __$$ResumenMesModelImplCopyWithImpl<$Res>
 class _$ResumenMesModelImpl implements _ResumenMesModel {
   _$ResumenMesModelImpl(
       {this.nombreMes = '',
+      this.numeroCuenta = '',
+      this.nombreCliente = '',
+      this.tipoCuenta = '',
       this.anio = 0,
       this.fechaInicio,
       this.fechaFin,
@@ -7559,6 +7601,15 @@ class _$ResumenMesModelImpl implements _ResumenMesModel {
   @override
   @JsonKey()
   final String nombreMes;
+  @override
+  @JsonKey()
+  final String numeroCuenta;
+  @override
+  @JsonKey()
+  final String nombreCliente;
+  @override
+  @JsonKey()
+  final String tipoCuenta;
   @override
   @JsonKey()
   final int anio;
@@ -7584,7 +7635,7 @@ class _$ResumenMesModelImpl implements _ResumenMesModel {
 
   @override
   String toString() {
-    return 'ResumenMesModel(nombreMes: $nombreMes, anio: $anio, fechaInicio: $fechaInicio, fechaFin: $fechaFin, saldoAnterior: $saldoAnterior, totalCreditos: $totalCreditos, totalDebitos: $totalDebitos, saldoActual: $saldoActual, saldoPromedio: $saldoPromedio)';
+    return 'ResumenMesModel(nombreMes: $nombreMes, numeroCuenta: $numeroCuenta, nombreCliente: $nombreCliente, tipoCuenta: $tipoCuenta, anio: $anio, fechaInicio: $fechaInicio, fechaFin: $fechaFin, saldoAnterior: $saldoAnterior, totalCreditos: $totalCreditos, totalDebitos: $totalDebitos, saldoActual: $saldoActual, saldoPromedio: $saldoPromedio)';
   }
 
   @override
@@ -7594,6 +7645,12 @@ class _$ResumenMesModelImpl implements _ResumenMesModel {
             other is _$ResumenMesModelImpl &&
             (identical(other.nombreMes, nombreMes) ||
                 other.nombreMes == nombreMes) &&
+            (identical(other.numeroCuenta, numeroCuenta) ||
+                other.numeroCuenta == numeroCuenta) &&
+            (identical(other.nombreCliente, nombreCliente) ||
+                other.nombreCliente == nombreCliente) &&
+            (identical(other.tipoCuenta, tipoCuenta) ||
+                other.tipoCuenta == tipoCuenta) &&
             (identical(other.anio, anio) || other.anio == anio) &&
             (identical(other.fechaInicio, fechaInicio) ||
                 other.fechaInicio == fechaInicio) &&
@@ -7616,6 +7673,9 @@ class _$ResumenMesModelImpl implements _ResumenMesModel {
   int get hashCode => Object.hash(
       runtimeType,
       nombreMes,
+      numeroCuenta,
+      nombreCliente,
+      tipoCuenta,
       anio,
       fechaInicio,
       fechaFin,
@@ -7643,6 +7703,9 @@ class _$ResumenMesModelImpl implements _ResumenMesModel {
 abstract class _ResumenMesModel implements ResumenMesModel {
   factory _ResumenMesModel(
       {final String nombreMes,
+      final String numeroCuenta,
+      final String nombreCliente,
+      final String tipoCuenta,
       final int anio,
       final DateTime? fechaInicio,
       final DateTime? fechaFin,
@@ -7657,6 +7720,12 @@ abstract class _ResumenMesModel implements ResumenMesModel {
 
   @override
   String get nombreMes;
+  @override
+  String get numeroCuenta;
+  @override
+  String get nombreCliente;
+  @override
+  String get tipoCuenta;
   @override
   int get anio;
   @override

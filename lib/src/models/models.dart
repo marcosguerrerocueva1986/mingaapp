@@ -413,6 +413,9 @@ class MovimientoModel with _$MovimientoModel {
 class ResumenMesModel with _$ResumenMesModel {
   factory ResumenMesModel({
     @Default('') String nombreMes,
+    @Default('') String numeroCuenta,
+    @Default('') String nombreCliente,
+    @Default('') String tipoCuenta,
     @Default(0) int anio,
     DateTime? fechaInicio,
     DateTime? fechaFin,
