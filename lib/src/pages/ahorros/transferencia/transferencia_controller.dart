@@ -119,14 +119,19 @@ class TransferenciaController extends _$TransferenciaController {
               'Ingrese los datos necesarios para poder realizar la transferencia');
     }
   }
-
+   
   Future continuar(TipoTransferencia tipoTransferencia, BeneficiarioModel beneficiario) async {
     if (!state.esValidacion) {
       state = state.copyWith(beneficiario: beneficiario);
       validaTransferencia(tipoTransferencia);
     }
   }
-
+  Future reenviarCodigo(TipoTransferencia tipoTransferencia, BeneficiarioModel beneficiario) async {
+    if (state.esValidacion) {
+      state = state.copyWith(beneficiario: beneficiario, esValidacion: false);
+      validaTransferencia(tipoTransferencia);
+    }
+  }
   Future cancelar() async {
     if (state.esValidacion) {
       state = state.copyWith(esValidacion: false);

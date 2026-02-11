@@ -7,7 +7,7 @@ part of 'transferencia_controller.dart';
 // **************************************************************************
 
 String _$transferenciaControllerHash() =>
-    r'78e4604069155de5604d6f9dfd756578e0b2ecf3';
+    r'44f29a04a8b7182e8c21d9f97b241e77c97ea553';
 
 /// See also [TransferenciaController].
 @ProviderFor(TransferenciaController)

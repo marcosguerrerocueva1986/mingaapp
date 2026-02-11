@@ -403,6 +403,7 @@ mixin _$BaseRespuesta {
   String get stackTrace => throw _privateConstructorUsedError;
   bool get sfConCabecera => throw _privateConstructorUsedError;
   String get mensajeError => throw _privateConstructorUsedError;
+  int get minutosDuracionOtp => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -424,7 +425,8 @@ abstract class $BaseRespuestaCopyWith<$Res> {
       @JsonKey(name: 'sF_Error') String error,
       String stackTrace,
       bool sfConCabecera,
-      String mensajeError});
+      String mensajeError,
+      int minutosDuracionOtp});
 }
 
 /// @nodoc
@@ -448,6 +450,7 @@ class _$BaseRespuestaCopyWithImpl<$Res, $Val extends BaseRespuesta>
     Object? stackTrace = null,
     Object? sfConCabecera = null,
     Object? mensajeError = null,
+    Object? minutosDuracionOtp = null,
   }) {
     return _then(_value.copyWith(
       mbCodigoUsuario: null == mbCodigoUsuario
@@ -482,6 +485,10 @@ class _$BaseRespuestaCopyWithImpl<$Res, $Val extends BaseRespuesta>
           ? _value.mensajeError
           : mensajeError // ignore: cast_nullable_to_non_nullable
               as String,
+      minutosDuracionOtp: null == minutosDuracionOtp
+          ? _value.minutosDuracionOtp
+          : minutosDuracionOtp // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -502,7 +509,8 @@ abstract class _$$BaseRespuestaImplCopyWith<$Res>
       @JsonKey(name: 'sF_Error') String error,
       String stackTrace,
       bool sfConCabecera,
-      String mensajeError});
+      String mensajeError,
+      int minutosDuracionOtp});
 }
 
 /// @nodoc
@@ -524,6 +532,7 @@ class __$$BaseRespuestaImplCopyWithImpl<$Res>
     Object? stackTrace = null,
     Object? sfConCabecera = null,
     Object? mensajeError = null,
+    Object? minutosDuracionOtp = null,
   }) {
     return _then(_$BaseRespuestaImpl(
       mbCodigoUsuario: null == mbCodigoUsuario
@@ -558,6 +567,10 @@ class __$$BaseRespuestaImplCopyWithImpl<$Res>
           ? _value.mensajeError
           : mensajeError // ignore: cast_nullable_to_non_nullable
               as String,
+      minutosDuracionOtp: null == minutosDuracionOtp
+          ? _value.minutosDuracionOtp
+          : minutosDuracionOtp // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -573,7 +586,8 @@ class _$BaseRespuestaImpl implements _BaseRespuesta {
       @JsonKey(name: 'sF_Error') this.error = '',
       this.stackTrace = '',
       this.sfConCabecera = false,
-      this.mensajeError = ''});
+      this.mensajeError = '',
+      this.minutosDuracionOtp = 0});
 
   factory _$BaseRespuestaImpl.fromJson(Map<String, dynamic> json) =>
       _$$BaseRespuestaImplFromJson(json);
@@ -602,10 +616,13 @@ class _$BaseRespuestaImpl implements _BaseRespuesta {
   @override
   @JsonKey()
   final String mensajeError;
+  @override
+  @JsonKey()
+  final int minutosDuracionOtp;
 
   @override
   String toString() {
-    return 'BaseRespuesta(mbCodigoUsuario: $mbCodigoUsuario, mbPwdUsuario: $mbPwdUsuario, mbMaquina: $mbMaquina, existeError: $existeError, error: $error, stackTrace: $stackTrace, sfConCabecera: $sfConCabecera, mensajeError: $mensajeError)';
+    return 'BaseRespuesta(mbCodigoUsuario: $mbCodigoUsuario, mbPwdUsuario: $mbPwdUsuario, mbMaquina: $mbMaquina, existeError: $existeError, error: $error, stackTrace: $stackTrace, sfConCabecera: $sfConCabecera, mensajeError: $mensajeError, minutosDuracionOtp: $minutosDuracionOtp)';
   }
 
   @override
@@ -627,13 +644,24 @@ class _$BaseRespuestaImpl implements _BaseRespuesta {
             (identical(other.sfConCabecera, sfConCabecera) ||
                 other.sfConCabecera == sfConCabecera) &&
             (identical(other.mensajeError, mensajeError) ||
-                other.mensajeError == mensajeError));
+                other.mensajeError == mensajeError) &&
+            (identical(other.minutosDuracionOtp, minutosDuracionOtp) ||
+                other.minutosDuracionOtp == minutosDuracionOtp));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, mbCodigoUsuario, mbPwdUsuario,
-      mbMaquina, existeError, error, stackTrace, sfConCabecera, mensajeError);
+  int get hashCode => Object.hash(
+      runtimeType,
+      mbCodigoUsuario,
+      mbPwdUsuario,
+      mbMaquina,
+      existeError,
+      error,
+      stackTrace,
+      sfConCabecera,
+      mensajeError,
+      minutosDuracionOtp);
 
   @JsonKey(ignore: true)
   @override
@@ -658,7 +686,8 @@ abstract class _BaseRespuesta implements BaseRespuesta {
       @JsonKey(name: 'sF_Error') final String error,
       final String stackTrace,
       final bool sfConCabecera,
-      final String mensajeError}) = _$BaseRespuestaImpl;
+      final String mensajeError,
+      final int minutosDuracionOtp}) = _$BaseRespuestaImpl;
 
   factory _BaseRespuesta.fromJson(Map<String, dynamic> json) =
       _$BaseRespuestaImpl.fromJson;
@@ -681,6 +710,8 @@ abstract class _BaseRespuesta implements BaseRespuesta {
   bool get sfConCabecera;
   @override
   String get mensajeError;
+  @override
+  int get minutosDuracionOtp;
   @override
   @JsonKey(ignore: true)
   _$$BaseRespuestaImplCopyWith<_$BaseRespuestaImpl> get copyWith =>
@@ -1789,6 +1820,7 @@ ValidaUsuarioRespuesta _$ValidaUsuarioRespuestaFromJson(
 mixin _$ValidaUsuarioRespuesta {
   String get imagen => throw _privateConstructorUsedError;
   String get frase => throw _privateConstructorUsedError;
+  int get minutosDuracionOtp => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1802,7 +1834,7 @@ abstract class $ValidaUsuarioRespuestaCopyWith<$Res> {
           $Res Function(ValidaUsuarioRespuesta) then) =
       _$ValidaUsuarioRespuestaCopyWithImpl<$Res, ValidaUsuarioRespuesta>;
   @useResult
-  $Res call({String imagen, String frase});
+  $Res call({String imagen, String frase, int minutosDuracionOtp});
 }
 
 /// @nodoc
@@ -1821,6 +1853,7 @@ class _$ValidaUsuarioRespuestaCopyWithImpl<$Res,
   $Res call({
     Object? imagen = null,
     Object? frase = null,
+    Object? minutosDuracionOtp = null,
   }) {
     return _then(_value.copyWith(
       imagen: null == imagen
@@ -1831,6 +1864,10 @@ class _$ValidaUsuarioRespuestaCopyWithImpl<$Res,
           ? _value.frase
           : frase // ignore: cast_nullable_to_non_nullable
               as String,
+      minutosDuracionOtp: null == minutosDuracionOtp
+          ? _value.minutosDuracionOtp
+          : minutosDuracionOtp // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -1844,7 +1881,7 @@ abstract class _$$ValidaUsuarioRespuestaImplCopyWith<$Res>
       __$$ValidaUsuarioRespuestaImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String imagen, String frase});
+  $Res call({String imagen, String frase, int minutosDuracionOtp});
 }
 
 /// @nodoc
@@ -1862,6 +1899,7 @@ class __$$ValidaUsuarioRespuestaImplCopyWithImpl<$Res>
   $Res call({
     Object? imagen = null,
     Object? frase = null,
+    Object? minutosDuracionOtp = null,
   }) {
     return _then(_$ValidaUsuarioRespuestaImpl(
       imagen: null == imagen
@@ -1872,6 +1910,10 @@ class __$$ValidaUsuarioRespuestaImplCopyWithImpl<$Res>
           ? _value.frase
           : frase // ignore: cast_nullable_to_non_nullable
               as String,
+      minutosDuracionOtp: null == minutosDuracionOtp
+          ? _value.minutosDuracionOtp
+          : minutosDuracionOtp // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -1879,7 +1921,8 @@ class __$$ValidaUsuarioRespuestaImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ValidaUsuarioRespuestaImpl implements _ValidaUsuarioRespuesta {
-  _$ValidaUsuarioRespuestaImpl({this.imagen = '', this.frase = ''});
+  _$ValidaUsuarioRespuestaImpl(
+      {this.imagen = '', this.frase = '', this.minutosDuracionOtp = 0});
 
   factory _$ValidaUsuarioRespuestaImpl.fromJson(Map<String, dynamic> json) =>
       _$$ValidaUsuarioRespuestaImplFromJson(json);
@@ -1890,10 +1933,13 @@ class _$ValidaUsuarioRespuestaImpl implements _ValidaUsuarioRespuesta {
   @override
   @JsonKey()
   final String frase;
+  @override
+  @JsonKey()
+  final int minutosDuracionOtp;
 
   @override
   String toString() {
-    return 'ValidaUsuarioRespuesta(imagen: $imagen, frase: $frase)';
+    return 'ValidaUsuarioRespuesta(imagen: $imagen, frase: $frase, minutosDuracionOtp: $minutosDuracionOtp)';
   }
 
   @override
@@ -1902,12 +1948,15 @@ class _$ValidaUsuarioRespuestaImpl implements _ValidaUsuarioRespuesta {
         (other.runtimeType == runtimeType &&
             other is _$ValidaUsuarioRespuestaImpl &&
             (identical(other.imagen, imagen) || other.imagen == imagen) &&
-            (identical(other.frase, frase) || other.frase == frase));
+            (identical(other.frase, frase) || other.frase == frase) &&
+            (identical(other.minutosDuracionOtp, minutosDuracionOtp) ||
+                other.minutosDuracionOtp == minutosDuracionOtp));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, imagen, frase);
+  int get hashCode =>
+      Object.hash(runtimeType, imagen, frase, minutosDuracionOtp);
 
   @JsonKey(ignore: true)
   @override
@@ -1925,8 +1974,10 @@ class _$ValidaUsuarioRespuestaImpl implements _ValidaUsuarioRespuesta {
 }
 
 abstract class _ValidaUsuarioRespuesta implements ValidaUsuarioRespuesta {
-  factory _ValidaUsuarioRespuesta({final String imagen, final String frase}) =
-      _$ValidaUsuarioRespuestaImpl;
+  factory _ValidaUsuarioRespuesta(
+      {final String imagen,
+      final String frase,
+      final int minutosDuracionOtp}) = _$ValidaUsuarioRespuestaImpl;
 
   factory _ValidaUsuarioRespuesta.fromJson(Map<String, dynamic> json) =
       _$ValidaUsuarioRespuestaImpl.fromJson;
@@ -1935,6 +1986,8 @@ abstract class _ValidaUsuarioRespuesta implements ValidaUsuarioRespuesta {
   String get imagen;
   @override
   String get frase;
+  @override
+  int get minutosDuracionOtp;
   @override
   @JsonKey(ignore: true)
   _$$ValidaUsuarioRespuestaImplCopyWith<_$ValidaUsuarioRespuestaImpl>
@@ -2430,6 +2483,7 @@ mixin _$LoginState {
   LoginRespuesta? get loginRespuesta => throw _privateConstructorUsedError;
   ValidacionOtpAccesoRespuesta? get validacionOtpRespuesta =>
       throw _privateConstructorUsedError;
+  int get minutosDuracionOtp => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2450,7 +2504,8 @@ abstract class $LoginStateCopyWith<$Res> {
       bool permiteEditarUsuario,
       ValidaUsuarioRespuesta? informacionValidada,
       LoginRespuesta? loginRespuesta,
-      ValidacionOtpAccesoRespuesta? validacionOtpRespuesta});
+      ValidacionOtpAccesoRespuesta? validacionOtpRespuesta,
+      int minutosDuracionOtp});
 
   $ValidaUsuarioRespuestaCopyWith<$Res>? get informacionValidada;
   $LoginRespuestaCopyWith<$Res>? get loginRespuesta;
@@ -2477,6 +2532,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? informacionValidada = freezed,
     Object? loginRespuesta = freezed,
     Object? validacionOtpRespuesta = freezed,
+    Object? minutosDuracionOtp = null,
   }) {
     return _then(_value.copyWith(
       estaValidado: null == estaValidado
@@ -2507,6 +2563,10 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.validacionOtpRespuesta
           : validacionOtpRespuesta // ignore: cast_nullable_to_non_nullable
               as ValidacionOtpAccesoRespuesta?,
+      minutosDuracionOtp: null == minutosDuracionOtp
+          ? _value.minutosDuracionOtp
+          : minutosDuracionOtp // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -2564,7 +2624,8 @@ abstract class _$$LoginStateImplCopyWith<$Res>
       bool permiteEditarUsuario,
       ValidaUsuarioRespuesta? informacionValidada,
       LoginRespuesta? loginRespuesta,
-      ValidacionOtpAccesoRespuesta? validacionOtpRespuesta});
+      ValidacionOtpAccesoRespuesta? validacionOtpRespuesta,
+      int minutosDuracionOtp});
 
   @override
   $ValidaUsuarioRespuestaCopyWith<$Res>? get informacionValidada;
@@ -2592,6 +2653,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     Object? informacionValidada = freezed,
     Object? loginRespuesta = freezed,
     Object? validacionOtpRespuesta = freezed,
+    Object? minutosDuracionOtp = null,
   }) {
     return _then(_$LoginStateImpl(
       estaValidado: null == estaValidado
@@ -2622,6 +2684,10 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.validacionOtpRespuesta
           : validacionOtpRespuesta // ignore: cast_nullable_to_non_nullable
               as ValidacionOtpAccesoRespuesta?,
+      minutosDuracionOtp: null == minutosDuracionOtp
+          ? _value.minutosDuracionOtp
+          : minutosDuracionOtp // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -2636,7 +2702,8 @@ class _$LoginStateImpl implements _LoginState {
       required this.permiteEditarUsuario,
       this.informacionValidada,
       this.loginRespuesta,
-      this.validacionOtpRespuesta});
+      this.validacionOtpRespuesta,
+      this.minutosDuracionOtp = 0});
 
   factory _$LoginStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginStateImplFromJson(json);
@@ -2658,10 +2725,13 @@ class _$LoginStateImpl implements _LoginState {
   final LoginRespuesta? loginRespuesta;
   @override
   final ValidacionOtpAccesoRespuesta? validacionOtpRespuesta;
+  @override
+  @JsonKey()
+  final int minutosDuracionOtp;
 
   @override
   String toString() {
-    return 'LoginState(estaValidado: $estaValidado, obscurecerClave: $obscurecerClave, modoConfirmacion: $modoConfirmacion, permiteEditarUsuario: $permiteEditarUsuario, informacionValidada: $informacionValidada, loginRespuesta: $loginRespuesta, validacionOtpRespuesta: $validacionOtpRespuesta)';
+    return 'LoginState(estaValidado: $estaValidado, obscurecerClave: $obscurecerClave, modoConfirmacion: $modoConfirmacion, permiteEditarUsuario: $permiteEditarUsuario, informacionValidada: $informacionValidada, loginRespuesta: $loginRespuesta, validacionOtpRespuesta: $validacionOtpRespuesta, minutosDuracionOtp: $minutosDuracionOtp)';
   }
 
   @override
@@ -2682,7 +2752,9 @@ class _$LoginStateImpl implements _LoginState {
             (identical(other.loginRespuesta, loginRespuesta) ||
                 other.loginRespuesta == loginRespuesta) &&
             (identical(other.validacionOtpRespuesta, validacionOtpRespuesta) ||
-                other.validacionOtpRespuesta == validacionOtpRespuesta));
+                other.validacionOtpRespuesta == validacionOtpRespuesta) &&
+            (identical(other.minutosDuracionOtp, minutosDuracionOtp) ||
+                other.minutosDuracionOtp == minutosDuracionOtp));
   }
 
   @JsonKey(ignore: true)
@@ -2695,7 +2767,8 @@ class _$LoginStateImpl implements _LoginState {
       permiteEditarUsuario,
       informacionValidada,
       loginRespuesta,
-      validacionOtpRespuesta);
+      validacionOtpRespuesta,
+      minutosDuracionOtp);
 
   @JsonKey(ignore: true)
   @override
@@ -2713,14 +2786,14 @@ class _$LoginStateImpl implements _LoginState {
 
 abstract class _LoginState implements LoginState {
   factory _LoginState(
-          {final bool estaValidado,
-          final bool obscurecerClave,
-          final bool modoConfirmacion,
-          required final bool permiteEditarUsuario,
-          final ValidaUsuarioRespuesta? informacionValidada,
-          final LoginRespuesta? loginRespuesta,
-          final ValidacionOtpAccesoRespuesta? validacionOtpRespuesta}) =
-      _$LoginStateImpl;
+      {final bool estaValidado,
+      final bool obscurecerClave,
+      final bool modoConfirmacion,
+      required final bool permiteEditarUsuario,
+      final ValidaUsuarioRespuesta? informacionValidada,
+      final LoginRespuesta? loginRespuesta,
+      final ValidacionOtpAccesoRespuesta? validacionOtpRespuesta,
+      final int minutosDuracionOtp}) = _$LoginStateImpl;
 
   factory _LoginState.fromJson(Map<String, dynamic> json) =
       _$LoginStateImpl.fromJson;
@@ -2739,6 +2812,8 @@ abstract class _LoginState implements LoginState {
   LoginRespuesta? get loginRespuesta;
   @override
   ValidacionOtpAccesoRespuesta? get validacionOtpRespuesta;
+  @override
+  int get minutosDuracionOtp;
   @override
   @JsonKey(ignore: true)
   _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>
@@ -3182,6 +3257,7 @@ mixin _$ActivaCuentaState {
   bool get estaValidado => throw _privateConstructorUsedError;
   bool get obscurecerClave => throw _privateConstructorUsedError;
   bool get modoConfirmacion => throw _privateConstructorUsedError;
+  int get minutosDuracionOtp => throw _privateConstructorUsedError;
   bool get permiteEditarUsuario => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -3200,6 +3276,7 @@ abstract class $ActivaCuentaStateCopyWith<$Res> {
       {bool estaValidado,
       bool obscurecerClave,
       bool modoConfirmacion,
+      int minutosDuracionOtp,
       bool permiteEditarUsuario});
 }
 
@@ -3219,6 +3296,7 @@ class _$ActivaCuentaStateCopyWithImpl<$Res, $Val extends ActivaCuentaState>
     Object? estaValidado = null,
     Object? obscurecerClave = null,
     Object? modoConfirmacion = null,
+    Object? minutosDuracionOtp = null,
     Object? permiteEditarUsuario = null,
   }) {
     return _then(_value.copyWith(
@@ -3234,6 +3312,10 @@ class _$ActivaCuentaStateCopyWithImpl<$Res, $Val extends ActivaCuentaState>
           ? _value.modoConfirmacion
           : modoConfirmacion // ignore: cast_nullable_to_non_nullable
               as bool,
+      minutosDuracionOtp: null == minutosDuracionOtp
+          ? _value.minutosDuracionOtp
+          : minutosDuracionOtp // ignore: cast_nullable_to_non_nullable
+              as int,
       permiteEditarUsuario: null == permiteEditarUsuario
           ? _value.permiteEditarUsuario
           : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
@@ -3254,6 +3336,7 @@ abstract class _$$ActivaCuentaStateImplCopyWith<$Res>
       {bool estaValidado,
       bool obscurecerClave,
       bool modoConfirmacion,
+      int minutosDuracionOtp,
       bool permiteEditarUsuario});
 }
 
@@ -3271,6 +3354,7 @@ class __$$ActivaCuentaStateImplCopyWithImpl<$Res>
     Object? estaValidado = null,
     Object? obscurecerClave = null,
     Object? modoConfirmacion = null,
+    Object? minutosDuracionOtp = null,
     Object? permiteEditarUsuario = null,
   }) {
     return _then(_$ActivaCuentaStateImpl(
@@ -3286,6 +3370,10 @@ class __$$ActivaCuentaStateImplCopyWithImpl<$Res>
           ? _value.modoConfirmacion
           : modoConfirmacion // ignore: cast_nullable_to_non_nullable
               as bool,
+      minutosDuracionOtp: null == minutosDuracionOtp
+          ? _value.minutosDuracionOtp
+          : minutosDuracionOtp // ignore: cast_nullable_to_non_nullable
+              as int,
       permiteEditarUsuario: null == permiteEditarUsuario
           ? _value.permiteEditarUsuario
           : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
@@ -3301,6 +3389,7 @@ class _$ActivaCuentaStateImpl implements _ActivaCuentaState {
       {this.estaValidado = false,
       this.obscurecerClave = false,
       this.modoConfirmacion = false,
+      this.minutosDuracionOtp = 0,
       required this.permiteEditarUsuario});
 
   factory _$ActivaCuentaStateImpl.fromJson(Map<String, dynamic> json) =>
@@ -3316,11 +3405,14 @@ class _$ActivaCuentaStateImpl implements _ActivaCuentaState {
   @JsonKey()
   final bool modoConfirmacion;
   @override
+  @JsonKey()
+  final int minutosDuracionOtp;
+  @override
   final bool permiteEditarUsuario;
 
   @override
   String toString() {
-    return 'ActivaCuentaState(estaValidado: $estaValidado, obscurecerClave: $obscurecerClave, modoConfirmacion: $modoConfirmacion, permiteEditarUsuario: $permiteEditarUsuario)';
+    return 'ActivaCuentaState(estaValidado: $estaValidado, obscurecerClave: $obscurecerClave, modoConfirmacion: $modoConfirmacion, minutosDuracionOtp: $minutosDuracionOtp, permiteEditarUsuario: $permiteEditarUsuario)';
   }
 
   @override
@@ -3334,6 +3426,8 @@ class _$ActivaCuentaStateImpl implements _ActivaCuentaState {
                 other.obscurecerClave == obscurecerClave) &&
             (identical(other.modoConfirmacion, modoConfirmacion) ||
                 other.modoConfirmacion == modoConfirmacion) &&
+            (identical(other.minutosDuracionOtp, minutosDuracionOtp) ||
+                other.minutosDuracionOtp == minutosDuracionOtp) &&
             (identical(other.permiteEditarUsuario, permiteEditarUsuario) ||
                 other.permiteEditarUsuario == permiteEditarUsuario));
   }
@@ -3341,7 +3435,7 @@ class _$ActivaCuentaStateImpl implements _ActivaCuentaState {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, estaValidado, obscurecerClave,
-      modoConfirmacion, permiteEditarUsuario);
+      modoConfirmacion, minutosDuracionOtp, permiteEditarUsuario);
 
   @JsonKey(ignore: true)
   @override
@@ -3363,6 +3457,7 @@ abstract class _ActivaCuentaState implements ActivaCuentaState {
       {final bool estaValidado,
       final bool obscurecerClave,
       final bool modoConfirmacion,
+      final int minutosDuracionOtp,
       required final bool permiteEditarUsuario}) = _$ActivaCuentaStateImpl;
 
   factory _ActivaCuentaState.fromJson(Map<String, dynamic> json) =
@@ -3374,6 +3469,8 @@ abstract class _ActivaCuentaState implements ActivaCuentaState {
   bool get obscurecerClave;
   @override
   bool get modoConfirmacion;
+  @override
+  int get minutosDuracionOtp;
   @override
   bool get permiteEditarUsuario;
   @override
@@ -4546,8 +4643,8 @@ class _$ClienteMontosLimiteImpl implements _ClienteMontosLimite {
       {this.id = 0,
       this.idClienteRegistro = 0,
       this.idCliente = 0,
-      this.limiteTransaccion = 0.00,
-      this.limiteTransaccionDiaria = 0.00,
+      this.limiteTransaccion = 0.0,
+      this.limiteTransaccionDiaria = 0.0,
       this.fechaRegistro,
       this.fechaSistema});
 
@@ -4666,6 +4763,7 @@ mixin _$PosicionConsolidadaRespuesta {
   PersonaModel? get persona => throw _privateConstructorUsedError;
   ClienteMontosLimite? get cliMontosLimites =>
       throw _privateConstructorUsedError;
+  int get minutosDuracionOtp => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4686,7 +4784,8 @@ abstract class $PosicionConsolidadaRespuestaCopyWith<$Res> {
       List<InversionModel> inversiones,
       List<PrestamoModel> prestamos,
       PersonaModel? persona,
-      ClienteMontosLimite? cliMontosLimites});
+      ClienteMontosLimite? cliMontosLimites,
+      int minutosDuracionOtp});
 
   $PersonaModelCopyWith<$Res>? get persona;
   $ClienteMontosLimiteCopyWith<$Res>? get cliMontosLimites;
@@ -4711,6 +4810,7 @@ class _$PosicionConsolidadaRespuestaCopyWithImpl<$Res,
     Object? prestamos = null,
     Object? persona = freezed,
     Object? cliMontosLimites = freezed,
+    Object? minutosDuracionOtp = null,
   }) {
     return _then(_value.copyWith(
       cuentas: null == cuentas
@@ -4733,6 +4833,10 @@ class _$PosicionConsolidadaRespuestaCopyWithImpl<$Res,
           ? _value.cliMontosLimites
           : cliMontosLimites // ignore: cast_nullable_to_non_nullable
               as ClienteMontosLimite?,
+      minutosDuracionOtp: null == minutosDuracionOtp
+          ? _value.minutosDuracionOtp
+          : minutosDuracionOtp // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -4776,7 +4880,8 @@ abstract class _$$PosicionConsolidadaRespuestaImplCopyWith<$Res>
       List<InversionModel> inversiones,
       List<PrestamoModel> prestamos,
       PersonaModel? persona,
-      ClienteMontosLimite? cliMontosLimites});
+      ClienteMontosLimite? cliMontosLimites,
+      int minutosDuracionOtp});
 
   @override
   $PersonaModelCopyWith<$Res>? get persona;
@@ -4802,6 +4907,7 @@ class __$$PosicionConsolidadaRespuestaImplCopyWithImpl<$Res>
     Object? prestamos = null,
     Object? persona = freezed,
     Object? cliMontosLimites = freezed,
+    Object? minutosDuracionOtp = null,
   }) {
     return _then(_$PosicionConsolidadaRespuestaImpl(
       cuentas: null == cuentas
@@ -4824,6 +4930,10 @@ class __$$PosicionConsolidadaRespuestaImplCopyWithImpl<$Res>
           ? _value.cliMontosLimites
           : cliMontosLimites // ignore: cast_nullable_to_non_nullable
               as ClienteMontosLimite?,
+      minutosDuracionOtp: null == minutosDuracionOtp
+          ? _value.minutosDuracionOtp
+          : minutosDuracionOtp // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -4837,7 +4947,8 @@ class _$PosicionConsolidadaRespuestaImpl
       final List<InversionModel> inversiones = const [],
       final List<PrestamoModel> prestamos = const [],
       this.persona,
-      this.cliMontosLimites})
+      this.cliMontosLimites,
+      this.minutosDuracionOtp = 0})
       : _cuentas = cuentas,
         _inversiones = inversiones,
         _prestamos = prestamos;
@@ -4877,10 +4988,13 @@ class _$PosicionConsolidadaRespuestaImpl
   final PersonaModel? persona;
   @override
   final ClienteMontosLimite? cliMontosLimites;
+  @override
+  @JsonKey()
+  final int minutosDuracionOtp;
 
   @override
   String toString() {
-    return 'PosicionConsolidadaRespuesta(cuentas: $cuentas, inversiones: $inversiones, prestamos: $prestamos, persona: $persona, cliMontosLimites: $cliMontosLimites)';
+    return 'PosicionConsolidadaRespuesta(cuentas: $cuentas, inversiones: $inversiones, prestamos: $prestamos, persona: $persona, cliMontosLimites: $cliMontosLimites, minutosDuracionOtp: $minutosDuracionOtp)';
   }
 
   @override
@@ -4895,7 +5009,9 @@ class _$PosicionConsolidadaRespuestaImpl
                 .equals(other._prestamos, _prestamos) &&
             (identical(other.persona, persona) || other.persona == persona) &&
             (identical(other.cliMontosLimites, cliMontosLimites) ||
-                other.cliMontosLimites == cliMontosLimites));
+                other.cliMontosLimites == cliMontosLimites) &&
+            (identical(other.minutosDuracionOtp, minutosDuracionOtp) ||
+                other.minutosDuracionOtp == minutosDuracionOtp));
   }
 
   @JsonKey(ignore: true)
@@ -4906,7 +5022,8 @@ class _$PosicionConsolidadaRespuestaImpl
       const DeepCollectionEquality().hash(_inversiones),
       const DeepCollectionEquality().hash(_prestamos),
       persona,
-      cliMontosLimites);
+      cliMontosLimites,
+      minutosDuracionOtp);
 
   @JsonKey(ignore: true)
   @override
@@ -4927,12 +5044,12 @@ class _$PosicionConsolidadaRespuestaImpl
 abstract class _PosicionConsolidadaRespuesta
     implements PosicionConsolidadaRespuesta {
   factory _PosicionConsolidadaRespuesta(
-          {final List<CuentaModel> cuentas,
-          final List<InversionModel> inversiones,
-          final List<PrestamoModel> prestamos,
-          final PersonaModel? persona,
-          final ClienteMontosLimite? cliMontosLimites}) =
-      _$PosicionConsolidadaRespuestaImpl;
+      {final List<CuentaModel> cuentas,
+      final List<InversionModel> inversiones,
+      final List<PrestamoModel> prestamos,
+      final PersonaModel? persona,
+      final ClienteMontosLimite? cliMontosLimites,
+      final int minutosDuracionOtp}) = _$PosicionConsolidadaRespuestaImpl;
 
   factory _PosicionConsolidadaRespuesta.fromJson(Map<String, dynamic> json) =
       _$PosicionConsolidadaRespuestaImpl.fromJson;
@@ -4947,6 +5064,8 @@ abstract class _PosicionConsolidadaRespuesta
   PersonaModel? get persona;
   @override
   ClienteMontosLimite? get cliMontosLimites;
+  @override
+  int get minutosDuracionOtp;
   @override
   @JsonKey(ignore: true)
   _$$PosicionConsolidadaRespuestaImplCopyWith<
@@ -5134,8 +5253,8 @@ class _$CuentaModelImpl implements _CuentaModel {
       {this.codigo = '',
       this.nombre = '',
       this.tipo = '',
-      this.saldo = 0.00,
-      this.saldoContable = 0.00,
+      this.saldo = 0.0,
+      this.saldoContable = 0.0,
       this.estado = '',
       this.oficina = '',
       this.permiteUsoBancaElectronica = false});
@@ -5466,13 +5585,13 @@ class _$InversionModelImpl implements _InversionModel {
       {this.codigo = '',
       this.nombre = '',
       this.tipo = '',
-      this.monto = 0.00,
-      this.tasa = 0.00,
-      this.totalTasa = 0.00,
+      this.monto = 0.0,
+      this.tasa = 0.0,
+      this.totalTasa = 0.0,
       this.plazo = 0,
       this.fechaVencimiento,
       this.estado = '',
-      this.totalRecibir = 0.00,
+      this.totalRecibir = 0.0,
       this.oficina = ''});
 
   factory _$InversionModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -5833,14 +5952,14 @@ class _$PrestamoModelImpl implements _PrestamoModel {
   _$PrestamoModelImpl(
       {this.codigo = '',
       this.tipo = '',
-      this.deudaInicial = 0.00,
-      this.saldo = 0.00,
+      this.deudaInicial = 0.0,
+      this.saldo = 0.0,
       this.fechaAdjudicacion,
       this.estado = '',
       this.oficina = '',
-      this.valorParaEstarAlDia = 0.00,
-      this.valorCuota = 0.00,
-      this.valorCancelarPrestamo = 0.00,
+      this.valorParaEstarAlDia = 0.0,
+      this.valorCuota = 0.0,
+      this.valorCancelarPrestamo = 0.0,
       this.fechaProximoPago,
       this.cuotasCanceladas = ''});
 
@@ -7234,9 +7353,9 @@ class _$MovimientoModelImpl implements _MovimientoModel {
       this.fecha,
       this.transaccion = '',
       this.cheque = '',
-      this.deposito = 0.00,
-      this.retiro = 0.00,
-      this.saldo = 0.00,
+      this.deposito = 0.0,
+      this.retiro = 0.0,
+      this.saldo = 0.0,
       this.oficina = '',
       this.documento = ''});
 
@@ -7589,11 +7708,11 @@ class _$ResumenMesModelImpl implements _ResumenMesModel {
       this.anio = 0,
       this.fechaInicio,
       this.fechaFin,
-      this.saldoAnterior = 0.00,
-      this.totalCreditos = 0.00,
-      this.totalDebitos = 0.00,
-      this.saldoActual = 0.00,
-      this.saldoPromedio = 0.00});
+      this.saldoAnterior = 0.0,
+      this.totalCreditos = 0.0,
+      this.totalDebitos = 0.0,
+      this.saldoActual = 0.0,
+      this.saldoPromedio = 0.0});
 
   factory _$ResumenMesModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResumenMesModelImplFromJson(json);
@@ -8325,8 +8444,8 @@ class _$MovimientoPrestamoModelImpl implements _MovimientoPrestamoModel {
       this.fechaSistema,
       this.documento = '',
       this.transaccion = '',
-      this.valor = 0.00,
-      this.saldo = 0.00,
+      this.valor = 0.0,
+      this.saldo = 0.0,
       this.tipo = '',
       this.agencia = '',
       this.usuario = '',
@@ -8613,7 +8732,7 @@ class _$RubroMovimientoPrestamoModelImpl
       this.documento = '',
       this.cuota = 0,
       this.rubro = '',
-      this.valor = 0.00});
+      this.valor = 0.0});
 
   factory _$RubroMovimientoPrestamoModelImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -9025,8 +9144,8 @@ class _$MovimientoInversionModelImpl implements _MovimientoInversionModel {
   _$MovimientoInversionModelImpl(
       {this.fecha,
       this.transaccion = '',
-      this.valor = 0.00,
-      this.saldo = 0.00,
+      this.valor = 0.0,
+      this.saldo = 0.0,
       this.oficina = '',
       this.documento = ''});
 
@@ -9744,12 +9863,12 @@ class __$$InformacionPrestamoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InformacionPrestamoImpl implements _InformacionPrestamo {
   _$InformacionPrestamoImpl(
-      {this.deudaInicial = 0.00,
-      this.saldo = 0.00,
-      this.valorDia = 0.00,
-      this.valorCuota = 0.00,
-      this.valorHastaCuota = 0.00,
-      this.valorCancelarPrestamo = 0.00,
+      {this.deudaInicial = 0.0,
+      this.saldo = 0.0,
+      this.valorDia = 0.0,
+      this.valorCuota = 0.0,
+      this.valorHastaCuota = 0.0,
+      this.valorCancelarPrestamo = 0.0,
       this.fechaAdjudicacion,
       this.cuotasVencidas = 0});
 
@@ -10115,16 +10234,16 @@ class _$DetallePrestamoImpl implements _DetallePrestamo {
   _$DetallePrestamoImpl(
       {this.fechaVencimiento,
       this.numeroCuota = 0,
-      this.saldoAdeudado = 0.00,
-      this.capital = 0.00,
-      this.interes = 0.00,
-      this.mora = 0.00,
-      this.extrajudicial = 0.00,
-      this.judicial = 0.00,
-      this.otros = 0.00,
-      this.total = 0.00,
+      this.saldoAdeudado = 0.0,
+      this.capital = 0.0,
+      this.interes = 0.0,
+      this.mora = 0.0,
+      this.extrajudicial = 0.0,
+      this.judicial = 0.0,
+      this.otros = 0.0,
+      this.total = 0.0,
       this.fechaPago = '',
-      this.diasMora = 0.00,
+      this.diasMora = 0.0,
       this.estado = ''});
 
   factory _$DetallePrestamoImpl.fromJson(Map<String, dynamic> json) =>
@@ -12622,7 +12741,7 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
       this.codigoConcepto = '',
       this.institucion = '',
       this.cuentaDestino = '',
-      this.monto = 0.00,
+      this.monto = 0.0,
       this.descripcion = '',
       this.emailEnvio = '',
       this.celularEnvio = '',
@@ -13209,7 +13328,7 @@ class _$ProcesaTransferenciaDirectaRequerimientoImpl
       this.idBeneficiario = 0,
       this.codigoConcepto = '',
       this.cuentaDestino = '',
-      this.monto = 0.00,
+      this.monto = 0.0,
       this.descripcion = '',
       this.emailEnvio = '',
       this.celularEnvio = '',
@@ -13662,7 +13781,7 @@ class __$$ConsultaRequisitosTransferenciaRespuestaImplCopyWithImpl<$Res>
 class _$ConsultaRequisitosTransferenciaRespuestaImpl
     implements _ConsultaRequisitosTransferenciaRespuesta {
   _$ConsultaRequisitosTransferenciaRespuestaImpl(
-      {this.comision = 0.00,
+      {this.comision = 0.0,
       final List<ConceptoTransferenciaModel> conceptosTransferencia = const []})
       : _conceptosTransferencia = conceptosTransferencia;
 
@@ -14096,7 +14215,7 @@ class _$ProcesaAbonoPrestamoRequerimientoImpl
       {this.idUsuario = 0,
       this.codigoPrestamo = '',
       this.cuentaDebito = '',
-      this.monto = 0.00,
+      this.monto = 0.0,
       this.emailEnvio = '',
       this.concepto = '',
       this.otpIngresado = '',
@@ -14557,10 +14676,10 @@ class __$$DetalleInversionModelImplCopyWithImpl<$Res>
 class _$DetalleInversionModelImpl implements _DetalleInversionModel {
   _$DetalleInversionModelImpl(
       {this.fecha,
-      this.retencion = 0.00,
-      this.valor = 0.00,
-      this.tasa = 0.00,
-      this.totalTasa = 0.00,
+      this.retencion = 0.0,
+      this.valor = 0.0,
+      this.tasa = 0.0,
+      this.totalTasa = 0.0,
       this.item = '',
       this.estado = ''});
 
@@ -17230,8 +17349,8 @@ class _$AgenciaCajeroItemImpl implements _AgenciaCajeroItem {
       {this.nombre = '',
       this.descripcion = '',
       this.telefono = '',
-      this.latitud = 0.00,
-      this.longitud = 0.00,
+      this.latitud = 0.0,
+      this.longitud = 0.0,
       this.esCajero = false});
 
   factory _$AgenciaCajeroItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -19286,7 +19405,7 @@ class _$ConsultaCuentaVinculadaQRRespuestaImpl
       {required this.transactionId,
       required this.trackingId,
       required this.account,
-      this.montoDisponible = 0.00});
+      this.montoDisponible = 0.0});
 
   factory _$ConsultaCuentaVinculadaQRRespuestaImpl.fromJson(
           Map<String, dynamic> json) =>

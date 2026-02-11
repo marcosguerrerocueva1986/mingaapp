@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/seguridades/login/activacuenta_controller.dart';
+import 'package:bancamovilr/src/pages/seguridades/login/recuperarcontrasenia_controller.dart';
 import 'package:pinput/pinput.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -15,8 +16,9 @@ class ActivaCuentaPage extends ConsumerStatefulWidget {
 }
 
 class _ActivaCuentaPageState extends ConsumerState<ActivaCuentaPage> {
-  final int _maxSeconds = 180;
-  int _secondsRemaining = 180;
+  int _duracionInicialSegundos = 60;
+  final int _maxSeconds = 60;
+  int _secondsRemaining = 60;
   Timer? _timer;
   bool _showResendButton = false;
   
@@ -45,7 +47,6 @@ void startTimer() {
 if (_timer != null) {
   _timer!.cancel();
 }
-_secondsRemaining = _maxSeconds;
 _showResendButton = false;
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -53,26 +54,38 @@ _showResendButton = false;
           timer.cancel();
           return;
       }
-      if (_secondsRemaining <= 0) {
-        timer.cancel();
-        setState(() {
-          _showResendButton = true;
-          _secondsRemaining = 0; 
-        });
-      } else {
-        setState(() {
-          _secondsRemaining--;
-        });
-      }
+      setState(() {
+        if (_secondsRemaining <= 0) {
+          timer.cancel();
+          setState(() {
+            _showResendButton = true;
+            _secondsRemaining = 0; 
+          });
+        } else {
+          setState(() {
+            _secondsRemaining--;
+          });
+        }
+      });
     });
   }
 
   String get timerText =>
       '${(_secondsRemaining ~/ 60).toString().padLeft(2, '0')}:${(_secondsRemaining % 60).toString().padLeft(2, '0')}';
 
-  void _resendOtp() async {
-    // Aquí iría tu lógica para reenviar el código, por ejemplo:
-    // await ref.read(loginControllerProvider.notifier).reenviarCodigo();
+  Future<void> _resendOtp() async {
+    final controller = ref.read(activaCuentaControllerProvider.notifier);
+    final form = controller.form;
+    final String? usuario = form.control('codigoUsuario').value as String?;
+    if (usuario == null || usuario.isEmpty) {
+      NotificationService.showWarning(text: 'Por favor, ingrese su usuario antes de reenviar.');
+      return;
+    }
+    await ref.read(recuperarContraseniaControllerProvider.notifier).reenviaCorreoCambioContrasenia(form);
+    setState(() {
+      _secondsRemaining = _duracionInicialSegundos; 
+      _showResendButton = false;
+    });
     startTimer();
   }
 
@@ -82,14 +95,23 @@ _showResendButton = false;
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
+    ref.listen(activaCuentaControllerProvider, (previous, next) { 
+      if (next.modoConfirmacion && !(previous?.modoConfirmacion ?? false)) {
+        int minutos = next.minutosDuracionOtp == 0 ? 1 : 3;
+        int segundoTotales = minutos * 60;
+        setState(() {
+          _duracionInicialSegundos = segundoTotales;
+          _secondsRemaining = segundoTotales;
+          _showResendButton = false;
+        });
+        startTimer();
+      }
+    });
     final controller = ref.read(activaCuentaControllerProvider.notifier);
     final provider = ref.watch(activaCuentaControllerProvider);
-    if (provider.modoConfirmacion && _timer == null) {
-      startTimer();
-    }
+    
     return ScaffoldBootstrap(
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 120, 20, 35),
@@ -184,7 +206,9 @@ _showResendButton = false;
                       )
                     else
                       ProcessButton(
-                        onPressed: _resendOtp,
+                        onPressed: controller.form.control('codigoUsuario').valid 
+                        ? _resendOtp
+                        : null,
                         text: 'Reenviar código temporal'.toUpperCase(),
                       ),
                     const SizedBox(height: 20),

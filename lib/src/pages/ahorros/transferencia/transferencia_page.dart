@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/ahorros/widgets/simple_item_widget.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +27,11 @@ class TransferenciaPage extends ConsumerStatefulWidget {
 }
 
 class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
+  int _duracionInicialSegundos = 60;
+  final int _maxSeconds = 60;
+  int _secondsRemaining = 60;
+  Timer? _timer;
+  bool _showResendButton = false;
   @override
   void initState() {
     super.initState();
@@ -35,9 +42,93 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
           .inicializa(widget.cuentaTransferenciaParametro);
     });
   }
+   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final provider = ref.watch(transferenciaControllerProvider);
+    if (provider.esValidacion && _timer == null) {
+      startTimer();
+    }
+  }
+
+@override
+void didUpdateWidget(covariant TransferenciaPage oldWidget) {
+super.didUpdateWidget(oldWidget);
+final newProvider = ref.read(transferenciaControllerProvider);
+if (newProvider.esValidacion && (_timer == null || !_timer!.isActive)) {
+  startTimer();
+} else if (!newProvider.esValidacion && _timer != null) {
+  _timer?.cancel();
+  _timer = null;
+}
+}
+
+void startTimer() {
+if (_timer != null) {
+  _timer!.cancel();
+}
+_showResendButton = false;
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) { 
+          timer.cancel();
+          return;
+      }
+      setState(() {
+        if (_secondsRemaining <= 0) {
+          timer.cancel();
+          setState(() {
+            _showResendButton = true;
+            _secondsRemaining = 0; 
+          });
+        } else {
+          setState(() {
+            _secondsRemaining--;
+          });
+        }
+      });
+    });
+  }
+
+  String get timerText =>
+      '${(_secondsRemaining ~/ 60).toString().padLeft(2, '0')}:${(_secondsRemaining % 60).toString().padLeft(2, '0')}';
+
+  Future<void> _resendOtp() async {
+    final controller = ref.read(transferenciaControllerProvider.notifier);
+    final form = controller.form;
+    final String? monto = form.control('monto').value as String?;
+    if (monto == null || monto.isEmpty) {
+      NotificationService.showWarning(text: 'Por favor, ingrese el monto antes de reenviar.');
+      return;
+    }
+    await ref.read(transferenciaControllerProvider.notifier).reenviarCodigo(widget.tipoTransferencia, widget.beneficiario!);
+    setState(() {
+      _secondsRemaining = _duracionInicialSegundos; 
+      _showResendButton = false;
+    });
+    startTimer();
+  }
 
   @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
+    ref.listen(transferenciaControllerProvider, (previous, next) { 
+      if (next.esValidacion && !(previous?.esValidacion ?? false)) {
+        var minutosOtp = ref.watch(posicionConsolidadaControllerProvider);
+        int minutos = minutosOtp.posicionConsolidada!.minutosDuracionOtp == 0 ? 1 : 3;
+        int segundoTotales = minutos * 60;
+        setState(() {
+          _duracionInicialSegundos = segundoTotales;
+          _secondsRemaining = segundoTotales;
+          _showResendButton = false;
+        });
+        startTimer();
+      }
+    });
     var controller = ref.read(transferenciaControllerProvider.notifier);
     var provider = ref.watch(transferenciaControllerProvider);
 
@@ -65,11 +156,7 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
           formGroup: controller.form,
           child: SingleChildScrollView(
             child: Column(
-              //scrollDirection: Axis.vertical,
-              // crossAxisAlignment: CrossAxisAlignment.start,
-              // mainAxisAlignment: MainAxisAlignment.start,
                mainAxisSize: MainAxisSize.min,
-              //shrinkWrap: true,
               children: [
                 if (provider.esComprobante) ...[
                   Text(
@@ -79,11 +166,7 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                         color: context.getTitlePrimaryColor(),
                         fontWeight: FontWeight.bold),
                   ),
-                  // const SizedBox(
-                  //   height: defaultPadding,
-                  // ),
                   Container(
-                    // height: 250,
                     child: SKSTicketView(
                       backgroundPadding: const EdgeInsets.symmetric(
                           vertical: 0, horizontal: 20),
@@ -247,74 +330,117 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                         vertical: 15, horizontal: 10),
                     child: Column(
                       children: <Widget>[
-                        ...itemsParaConfirmacionRecibo([
+                      ...itemsParaConfirmacionRecibo([
+                        EtiquetaValorRecibo(
+                            etiqueta: 'Valor',
+                            valor: controller.monto.toMoney()),
+                        EtiquetaValorRecibo(
+                            etiqueta: 'Comisión',
+                            valor: ((widget.tipoTransferencia ==
+                                        TipoTransferencia.interbancaria)
+                                    ? (provider.requisitosTransferencia
+                                            ?.comision ??
+                                        0.00)
+                                    : 0.00)
+                                .toMoney()),
+                        EtiquetaValorRecibo(
+                            etiqueta: 'Cuenta Origen',
+                            valor: provider.cuenta?.codigo ?? ''),
+                        EtiquetaValorRecibo(
+                            etiqueta: 'Beneficiario',
+                            valor:
+                                ('${provider.beneficiario?.nombre ?? ''} ${provider.beneficiario?.apellido ?? ''}')),
+                        EtiquetaValorRecibo(
+                            etiqueta: 'Cuenta Destino',
+                            valor: provider.beneficiario?.numeroCuenta ?? ''),
+                        if (widget.tipoTransferencia ==
+                            TipoTransferencia.interbancaria) ...[
                           EtiquetaValorRecibo(
-                              etiqueta: 'Valor',
-                              valor: controller.monto.toMoney()),
-                          EtiquetaValorRecibo(
-                              etiqueta: 'Comisión',
-                              valor: ((widget.tipoTransferencia ==
-                                          TipoTransferencia.interbancaria)
-                                      ? (provider.requisitosTransferencia
-                                              ?.comision ??
-                                          0.00)
-                                      : 0.00)
-                                  .toMoney()),
-                          EtiquetaValorRecibo(
-                              etiqueta: 'Cuenta Origen',
-                              valor: provider.cuenta?.codigo ?? ''),
-                          EtiquetaValorRecibo(
-                              etiqueta: 'Beneficiario',
+                              etiqueta: 'Institución',
                               valor:
-                                  ('${provider.beneficiario?.nombre ?? ''} ${provider.beneficiario?.apellido ?? ''}')),
-                          EtiquetaValorRecibo(
-                              etiqueta: 'Cuenta Destino',
-                              valor: provider.beneficiario?.numeroCuenta ?? ''),
-                          if (widget.tipoTransferencia ==
-                              TipoTransferencia.interbancaria) ...[
-                            EtiquetaValorRecibo(
-                                etiqueta: 'Institución',
-                                valor:
-                                    provider.beneficiario?.institucion ?? ''),
-                          ]
-                        ]),
-                        const SizedBox(
-                          height: defaultPadding * 2,
-                        ),
-                        const Divider(
-                          height: 1,
-                        ),
-                        const SizedBox(
-                          height: defaultPadding * 2,
-                        ),
-                        const Text(
-                            "Ingrese el código temporal de seguridad que fue enviado a su correo y/o celular.",
-                            textAlign: TextAlign.center),
-                        const SizedBox(
-                          height: defaultPadding,
-                        ),
-                        Pinput(
-                          androidSmsAutofillMethod:
-                              AndroidSmsAutofillMethod.smsUserConsentApi,
-                          length: 6,
-                          // controller: controller,
-                          // focusNode: focusNode,
-                          defaultPinTheme: defaultPinTheme,
-                          onCompleted: (String otp) =>
-                              controller.confirmarOtpTransferencia(
-                                  widget.tipoTransferencia, otp),
-                          focusedPinTheme: defaultPinTheme.copyWith(
-                            height: 68,
-                            width: 64,
-                            decoration: defaultPinTheme.decoration,
+                                  provider.beneficiario?.institucion ?? ''),
+                        ]
+                      ]),
+                      const SizedBox(height: defaultPadding * 1,),
+                      const Divider(height: 1,),
+                      const SizedBox(height: defaultPadding * 1,),
+                      const Text(
+                          "Ingrese el código temporal de seguridad que fue enviado a su correo y/o celular.",
+                          textAlign: TextAlign.center),
+                      const SizedBox(height: defaultPadding,),
+                      Pinput(
+                        key: const ValueKey('pinput_transferencia_confirmacion'),
+                        androidSmsAutofillMethod:
+                            AndroidSmsAutofillMethod.smsUserConsentApi,
+                        length: 6,
+                        //defaultPinTheme: defaultPinTheme,
+                        onCompleted: (String otp) {
+                          if (_secondsRemaining > 0) {
+                          controller.confirmarOtpTransferencia(widget.tipoTransferencia, otp);
+                        } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('El tiempo ha expirado. Reenvíe el código.'),
                           ),
-                          errorPinTheme: defaultPinTheme.copyWith(
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(255, 234, 238, 1),
-                              borderRadius: BorderRadius.circular(8),
+                        );
+                      }
+                      },     
+                        focusedPinTheme: defaultPinTheme.copyWith(
+                          height: 68,
+                          width: 64,
+                          decoration: defaultPinTheme.decoration,
+                        ),
+                        errorPinTheme: defaultPinTheme.copyWith(
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(255, 234, 238, 1),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 32),
+                      if (!_showResendButton)
+                        SizedBox(
+                          width: 100,
+                          height: 100,
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              CircularProgressIndicator(
+                                value: _secondsRemaining / _maxSeconds,
+                                strokeWidth: 6,
+                                backgroundColor: Colors.grey,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  _secondsRemaining > _maxSeconds / 3
+                                      ? const Color.fromRGBO(48, 155, 217, 1) 
+                                      : Colors.red, 
+                                ),
+                              ),
+                              Center(
+                                child: Text(
+                                  timerText,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      else
+                        ProcessButton(
+                              onPressed: controller.form.control('monto').valid
+                              ? _resendOtp
+                              : null,
+                              text: 'Reenviar código temporal'.toUpperCase(),
                             ),
-                          ),
-                        ),
+                          const SizedBox(height: 20),
+                          ProcessButton(
+                          key: const ValueKey('regresar_activacuenta_button'),
+                          isSecondary: false,
+                          onPressed: controller.cancelar,
+                          text: 'Regresar'.toUpperCase(),
+                        ),                       
                       ],
                     ),
                   )
@@ -323,7 +449,10 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                     label: 'Ingresa el monto a transferir',
                     child: ReactiveTextField(
                       formControlName: 'monto',
-                      style: context.textTheme.displayLarge,
+                      style: context.textTheme.displayLarge?.copyWith(
+                        fontSize: 60, 
+                        height: 1.0, 
+                      ),
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.center,
                       inputFormatters: [
@@ -343,6 +472,7 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                       decoration: const InputDecoration(
                           hintText: '\$ 0.00',
                           isDense: true,
+                          contentPadding: EdgeInsets.zero,
                           focusedBorder: InputBorder.none,
                           border: InputBorder.none,
                           enabledBorder: InputBorder.none,
@@ -353,18 +483,17 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                   WrapperFormItem(
                     label: 'Desde:',
                     child: Card(
+                      margin: EdgeInsets.zero,
                       child: Container(
-                        padding: const EdgeInsets.only(
-                            top: defaultPadding,
-                            left: defaultPadding / 1.2,
-                            right: defaultPadding / 1.2,
-                            bottom: defaultPadding),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: defaultPadding / 1.2,
+                            vertical: defaultPadding / 50,
+                        ),
                         child: Column(
                           children: [
                             SelectionCardWidget(
                               text: 'Seleccione una cuenta',
-                              subTitle:
-                                  'Cuenta desde la cual se realizará la transferencia',
+                              subTitle: 'Cuenta desde la cual se realizará la transferencia',
                               isEmpty: provider.cuenta == null,
                               onTap: controller.seleccionarCuenta,
                               child: CuentaItemWidget(
@@ -380,12 +509,12 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                   WrapperFormItem(
                     label: 'Para:',
                     child: Card(
+                      margin: EdgeInsets.zero,
                       child: Container(
-                        padding: const EdgeInsets.only(
-                            top: defaultPadding,
-                            left: defaultPadding / 1.2,
-                            right: defaultPadding / 1.2,
-                            bottom: defaultPadding),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: defaultPadding / 1.2,
+                            vertical: defaultPadding / 50,
+                        ),
                         child: Column(
                           children: [
                             SelectionCardWidget(
@@ -411,11 +540,10 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                     label: 'Selección Concepto:',
                     child: Card(
                       child: Container(
-                        padding: const EdgeInsets.only(
-                            top: defaultPadding,
-                            left: defaultPadding / 1.2,
-                            right: defaultPadding / 1.2,
-                            bottom: defaultPadding),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: defaultPadding / 1.2,
+                            vertical: defaultPadding / 10,
+                        ),
                         child: Column(
                           children: [
                             SelectionCardWidget(
@@ -442,7 +570,10 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                     label: 'Ingresa una descripción',
                     child: ReactiveTextField(
                       formControlName: 'descripcion',
-                      style: context.textTheme.bodyMedium,
+                      style: context.textTheme.bodyMedium?.copyWith(
+                        fontSize: 15, 
+                        height: 1.0, 
+                      ),
                       keyboardType: TextInputType.text,
                       textAlign: TextAlign.left,
                     ),
@@ -451,76 +582,20 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                     label: 'Ingresa un correo de notificación',
                     child: ReactiveTextField(
                       formControlName: 'emailEnvio',
-                      style: context.textTheme.bodyMedium,
+                      style: context.textTheme.bodyMedium?.copyWith(
+                        fontSize: 15, 
+                        height: 1.0, 
+                      ),
                       keyboardType: TextInputType.text,
                       textAlign: TextAlign.left,
                     ),
-                  ),
-                ],
-                if (provider.esComprobante) ...[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: controller.irInicio,
-                          behavior: HitTestBehavior.translucent,
-                          child: Card(
-                            child: Container(
-                              padding: const EdgeInsets.all(defaultPadding),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Ir a Inicio',
-                                    style: context.textTheme.bodyMedium!
-                                        .copyWith(
-                                            color:
-                                                context.getTitlePrimaryColor()),
-                                  ),
-                                  Icon(
-                                    Icons.home_outlined,
-                                    color: context.getTitlePrimaryColor(),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: controller.tomarCaptura,
-                          behavior: HitTestBehavior.translucent,
-                          child: Card(
-                            child: Container(
-                              padding: const EdgeInsets.all(defaultPadding),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Compartir',
-                                    style: context.textTheme.bodyMedium!
-                                        .copyWith(
-                                            color:
-                                                context.getTitlePrimaryColor()),
-                                  ),
-                                  Icon(
-                                    Icons.share_outlined,
-                                    color: context.getTitlePrimaryColor(),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ] else ...[
+                  ), 
                   const SizedBox(
-                    height: defaultPadding,
+                    height: defaultPadding*1,
                   ),
                   ReactiveFormConsumer(builder: (context, form, child) {
                     return ProcessButton(
+                        key: const ValueKey('continuartransferencia'),
                         text: 'CONTINUAR',
                         onPressed: form.valid
                             ? () =>
@@ -531,10 +606,71 @@ class _TransferenciaPageState extends ConsumerState<TransferenciaPage> {
                     height: defaultPadding,
                   ),
                   ProcessButton(
-                      text: 'CANCELAR',
-                      isSecondary: true,
-                      onPressed: () => controller.cancelar()),
-                ]
+                    key: const ValueKey('regresar_activacuenta_button'),
+                    isSecondary: false,
+                    onPressed: controller.cancelar,
+                    text: 'Regresar'.toUpperCase(),
+                  ),
+                ],
+                if (provider.esComprobante) ...[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: controller.irInicio,
+                              behavior: HitTestBehavior.translucent,
+                              child: Card(
+                                child: Container(
+                                  padding: const EdgeInsets.all(defaultPadding),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Ir a Inicio',
+                                        style: context.textTheme.bodyMedium!
+                                            .copyWith(
+                                                color:
+                                                    context.getTitlePrimaryColor()),
+                                      ),
+                                      Icon(
+                                        Icons.home_outlined,
+                                        color: context.getTitlePrimaryColor(),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: controller.tomarCaptura,
+                              behavior: HitTestBehavior.translucent,
+                              child: Card(
+                                child: Container(
+                                  padding: const EdgeInsets.all(defaultPadding),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Compartir',
+                                        style: context.textTheme.bodyMedium!
+                                            .copyWith(
+                                                color:
+                                                    context.getTitlePrimaryColor()),
+                                      ),
+                                      Icon(
+                                        Icons.share_outlined,
+                                        color: context.getTitlePrimaryColor(),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                  ] 
               ],
             ),
           ),

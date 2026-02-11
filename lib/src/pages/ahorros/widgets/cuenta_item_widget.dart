@@ -55,7 +55,7 @@ class CuentaItemWidget extends StatelessWidget {
                               style: context.textTheme.bodyLarge!
                                   .copyWith(fontWeight: FontWeight.bold)),
                           const SizedBox(
-                            height: defaultPadding / 2,
+                            height: defaultPadding / 1,
                           ),
                           const Text('Disponible'),
                         ],

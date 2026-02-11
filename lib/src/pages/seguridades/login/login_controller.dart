@@ -42,7 +42,50 @@ late final AuthStorageService _authStorageService;
         state = state.copyWith(
             estaValidado: true,
             permiteEditarUsuario: false,
-            informacionValidada: respuesta.value);
+            informacionValidada: respuesta.value,
+            minutosDuracionOtp: respuesta.value!.minutosDuracionOtp);
+      }
+      if (state.estaValidado) {
+        var respuesta =
+            await guard(() async => await client.login(requerimiento));
+
+        if (respuesta.hasValue) {      
+          if (respuesta.value?.realizaCambioClave ?? true) {
+            NotificationService.showError(
+                text: 'Require cambio de Clave, realizar en sitio web');
+          } else {
+            HttpClientHelper.idUsuario = respuesta.value?.id ?? 0;
+            HttpClientHelper.idRegistro = respuesta.value?.idRegistro ?? 0;
+            if (respuesta.value?.id != null) {
+              await _authStorageService.saveAuthToken(respuesta.value!.token);
+            }
+            state = state.copyWith(
+                modoConfirmacion: true, loginRespuesta: respuesta.value);
+          }
+        }
+      } else {
+        NotificationService.showError(text: 'Credenciales Incorrectas');
+      }
+    } else {
+      NotificationService.showError(text: 'Ingrese sus credenciales');
+    }
+  }
+  Future<void> Reenvialogin(FormGroup form) async {
+    if (form.valid) {
+      var requerimiento = LoginRequerimiento.fromJson(form.value);
+      HttpClientHelper.testMode =
+          requerimiento.codigoUsuario == Configs.userTest;
+
+      var client = HttpClientHelper.getClient();
+      var respuesta =
+          await guard(() async => await client.validarUsuario(requerimiento));
+
+      if (respuesta.hasValue) {
+        state = state.copyWith(
+            estaValidado: true,
+            permiteEditarUsuario: false,
+            informacionValidada: respuesta.value,
+            modoConfirmacion: false);
       }
       if (state.estaValidado) {
         var respuesta =

@@ -28,7 +28,8 @@ class ActivaCuentaController extends _$ActivaCuentaController {
       var client = HttpClientHelper.getClient();
       var respuesta =  await guard(() async => await client.activaCuenta(requerimiento));
       if (respuesta.hasValue) {      
-          state = state.copyWith(modoConfirmacion: true);
+          state = state.copyWith(modoConfirmacion: true,
+          minutosDuracionOtp: respuesta.value!.minutosDuracionOtp);
       } else {
         print("El usuario no esta disponible");
       }

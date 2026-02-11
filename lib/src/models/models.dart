@@ -36,7 +36,8 @@ class BaseRespuesta with _$BaseRespuesta {
     @Default('') @JsonKey(name: 'sF_Error') String error,
     @Default('') String stackTrace,
     @Default(false) bool sfConCabecera,
-    @Default('') String mensajeError}) = _BaseRespuesta;
+    @Default('') String mensajeError,
+    @Default(0) int minutosDuracionOtp}) = _BaseRespuesta;
     
   factory BaseRespuesta.fromJson(Map<String, Object?> json) =>
   _$BaseRespuestaFromJson(json);
@@ -105,7 +106,8 @@ class LoginRespuesta with _$LoginRespuesta {
 class ValidaUsuarioRespuesta with _$ValidaUsuarioRespuesta {
   factory ValidaUsuarioRespuesta(
       {@Default('') String imagen,
-      @Default('') String frase}) = _ValidaUsuarioRespuesta;
+      @Default('') String frase,
+      @Default(0) int minutosDuracionOtp}) = _ValidaUsuarioRespuesta;
 
   factory ValidaUsuarioRespuesta.fromJson(Map<String, Object?> json) =>
       _$ValidaUsuarioRespuestaFromJson(json);
@@ -145,7 +147,8 @@ class LoginState with _$LoginState {
       required bool permiteEditarUsuario,
       ValidaUsuarioRespuesta? informacionValidada,
       LoginRespuesta? loginRespuesta,
-      ValidacionOtpAccesoRespuesta? validacionOtpRespuesta}) = _LoginState;
+      ValidacionOtpAccesoRespuesta? validacionOtpRespuesta,
+      @Default(0) int minutosDuracionOtp}) = _LoginState;
 
   factory LoginState.fromJson(Map<String, Object?> json) =>
       _$LoginStateFromJson(json);
@@ -181,6 +184,7 @@ class ActivaCuentaState with _$ActivaCuentaState {
       {@Default(false) bool estaValidado,
       @Default(false) bool obscurecerClave,
       @Default(false) bool modoConfirmacion,
+      @Default(0) int minutosDuracionOtp,
       required bool permiteEditarUsuario}) = _ActivaCuentaState;
 
   factory ActivaCuentaState.fromJson(Map<String, Object?> json) =>
@@ -265,7 +269,8 @@ class PosicionConsolidadaRespuesta with _$PosicionConsolidadaRespuesta {
           @Default([]) List<InversionModel> inversiones,
           @Default([]) List<PrestamoModel> prestamos,
           PersonaModel? persona,
-          ClienteMontosLimite? cliMontosLimites}) =
+          ClienteMontosLimite? cliMontosLimites,
+          @Default(0) int minutosDuracionOtp}) =
       _PosicionConsolidadaRespuesta;
 
   factory PosicionConsolidadaRespuesta.fromJson(Map<String, Object?> json) =>

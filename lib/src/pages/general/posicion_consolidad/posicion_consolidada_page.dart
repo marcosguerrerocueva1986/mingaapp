@@ -1,11 +1,10 @@
 import 'dart:async';
-
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/general/posicion_consolidad/balance_visibility_controller.dart';
 import 'package:bancamovilr/src/pages/general/posicion_consolidad/mis_productos_page.dart';
 import 'package:bancamovilr/src/pages/general/posicion_consolidad/solicitudes_page.dart';
 import 'package:bancamovilr/src/pages/seguridades/perfil/miperfil_page.dart';
-import 'package:flutter/rendering.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 @RoutePage()
 class PosicionConsolidadaPage extends ConsumerStatefulWidget {
@@ -856,7 +855,8 @@ const ServiciosWidget({super.key});
                   appRouter.push(const EstadoCuentaRoute()); 
                   break;
                 case "deunaRoute":
-                  appRouter.push(const OnboardingRoute()); 
+                  //appRouter.push(const OnboardingRoute()); 
+                  appRouter.push(const MantenimientoRoute()); 
                   break;
                 case "pagarserviciosRoute":
                   controller.irPagoServicio(); 
@@ -864,9 +864,13 @@ const ServiciosWidget({super.key});
                 case "nuestrasagenciasRoute":
                   appRouter.push(const AgenciaRoute()); 
                   break;
+                case "portalpagosRoute":
+                  final Uri url = Uri.parse('https://pagos.facilito.com.ec/aplicacion/coopminga');
+                  launchUrl(url, mode: LaunchMode.externalApplication);
+                  break;
                 default:
-                print("Ruta no definida para: ${servicios.actionRouteName}");
-                appRouter.push(const MantenimientoRoute()); 
+                  print("Ruta no definida para: ${servicios.actionRouteName}");
+                  appRouter.push(const MantenimientoRoute()); 
                 break;
               }
             },
@@ -904,6 +908,7 @@ Servicio({required this.imagePath, required this.title, required this.actionRout
     Servicio(imagePath: "assets/images/deuna.png", title:"De una", actionRouteName:"deunaRoute"),
     Servicio(imagePath: "assets/images/pagarservicios.png", title:"Pagar servicios", actionRouteName:"pagarserviciosRoute"),
     Servicio(imagePath: "assets/images/nuestrasagencias.png", title:"Nuestras agencias", actionRouteName:"nuestrasagenciasRoute"),
+    Servicio(imagePath: "assets/images/portalpagos.png", title:"Portal pagos", actionRouteName:"portalpagosRoute")
   ];
 
   class TitleSectionWidget extends StatelessWidget {

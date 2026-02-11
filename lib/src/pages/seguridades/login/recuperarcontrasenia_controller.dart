@@ -45,6 +45,19 @@ class RecuperarContraseniaController extends _$RecuperarContraseniaController {
       }
     }
   }
+  Future<void> reenviaCorreoCambioContrasenia(FormGroup form) async {
+    if (form.valid){
+      var requerimiento = RegistroRequerimiento.fromJson(form.value);
+      HttpClientHelper.testMode = requerimiento.codigoUsuario == Configs.userTest;
+      var client = HttpClientHelper.getClient();
+      var respuesta =  await guard(() async => await client.activaCuenta(requerimiento));
+      if (respuesta.hasValue) {      
+          state = state.copyWith(modoConfirmacion: true);
+      } else {
+        print("El usuario no esta disponible");
+      }
+    }
+  }
   Future<bool> tienePinAccesoRegistrado() async {
     SharedPreference preferences = SharedPreference();
 

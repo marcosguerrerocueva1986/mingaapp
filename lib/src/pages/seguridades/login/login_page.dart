@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bancamovilr/index.dart';
 import 'package:pinput/pinput.dart';
 
@@ -10,8 +12,97 @@ class LoginPage extends ConsumerStatefulWidget {
 }
 
 class _LoginPageState extends ConsumerState<LoginPage> {
+  int _duracionInicialSegundos = 60;
+  final int _maxSeconds = 60;
+  int _secondsRemaining = 60;
+  Timer? _timer;
+  bool _showResendButton = false;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final provider = ref.watch(loginControllerProvider);
+    if (provider.modoConfirmacion && _timer == null) {
+      startTimer();
+    }
+  }
+  @override
+void didUpdateWidget(covariant LoginPage oldWidget) {
+super.didUpdateWidget(oldWidget);
+final newProvider = ref.read(loginControllerProvider);
+if (newProvider.modoConfirmacion && (_timer == null || !_timer!.isActive)) {
+  startTimer();
+} else if (!newProvider.modoConfirmacion && _timer != null) {
+  _timer?.cancel();
+  _timer = null;
+}
+}
+
+void startTimer() {
+if (_timer != null) {
+  _timer!.cancel();
+}
+_showResendButton = false;
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) { 
+          timer.cancel();
+          return;
+      }
+      setState(() {
+        if (_secondsRemaining <= 0) {
+          timer.cancel();
+          setState(() {
+            _showResendButton = true;
+            _secondsRemaining = 0; 
+          });
+        } else {
+          setState(() {
+            _secondsRemaining--;
+          });
+        }
+      });
+    });
+  }
+
+  Future<void> _resendOtp() async {
+    final controller = ref.read(loginControllerProvider.notifier);
+    final form = controller.form;
+    final String? usuario = form.control('codigoUsuario').value as String?;
+    if (usuario == null || usuario.isEmpty) {
+      NotificationService.showWarning(text: 'Por favor, ingrese su usuario antes de reenviar.');
+      return;
+    }
+    await ref.read(loginControllerProvider.notifier).Reenvialogin(form);
+    setState(() {
+      _secondsRemaining = _duracionInicialSegundos; 
+      _showResendButton = false;
+    });
+    startTimer();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  String get timerText =>
+      '${(_secondsRemaining ~/ 60).toString().padLeft(2, '0')}:${(_secondsRemaining % 60).toString().padLeft(2, '0')}';
+
   @override
   Widget build(BuildContext context) {
+    ref.listen(loginControllerProvider, (previous, next) { 
+      if (next.modoConfirmacion && !(previous?.modoConfirmacion ?? false)) {
+        int minutos = next.minutosDuracionOtp == 0 ? 1 : 3;
+        int segundoTotales = minutos * 60;
+        setState(() {
+          _duracionInicialSegundos = segundoTotales;
+          _secondsRemaining = segundoTotales;
+          _showResendButton = false;
+        });
+        startTimer();
+      }
+    });
     var controller = ref.read(loginControllerProvider.notifier);
     var provider = ref.watch(loginControllerProvider);
 
@@ -58,7 +149,17 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             // controller: controller,
                             // focusNode: focusNode,
                             defaultPinTheme: defaultPinTheme,
-                            onCompleted: controller.confimarOtpIngreso,
+                            onCompleted: (pin) {
+                              if (_secondsRemaining > 0) {
+                                controller.confimarOtpIngreso(pin);
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('El tiempo ha expirado. Reenvíe el código.'),
+                                  ),
+                                );
+                              }
+                            }, 
                             focusedPinTheme: defaultPinTheme.copyWith(
                               height: 68,
                               width: 64,
@@ -72,13 +173,43 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             ),
                           ),
                           const SizedBox(height: defaultPadding * 10),
-                          // ProcessButton(
-                          //   onPressed: controller.login,
-                          //   text: 'Confirmar'.toUpperCase(),
-                          // ),
-                          // const SizedBox(
-                          //   height: defaultPadding,
-                          // ),
+                          if (!_showResendButton)
+                            SizedBox(
+                              width: 100,
+                              height: 100,
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  CircularProgressIndicator(
+                                    value: _secondsRemaining / _maxSeconds,
+                                    strokeWidth: 6,
+                                    backgroundColor: Colors.grey,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      _secondsRemaining > _maxSeconds / 3
+                                          ? const Color.fromRGBO(48, 155, 217, 1) 
+                                          : Colors.red, 
+                                    ),
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      timerText,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          else
+                            ProcessButton(
+                              onPressed: controller.form.control('codigoUsuario').valid 
+                              ? _resendOtp
+                              : null,
+                              text: 'Reenviar código temporal'.toUpperCase(),
+                            ),
+                          const SizedBox(height: 20),
                           ProcessButton(
                             key: const ValueKey('regresar_login_button'),
                             isSecondary: false,

@@ -48,6 +48,7 @@ _$BaseRespuestaImpl _$$BaseRespuestaImplFromJson(Map<String, dynamic> json) =>
       stackTrace: json['stackTrace'] as String? ?? '',
       sfConCabecera: json['sfConCabecera'] as bool? ?? false,
       mensajeError: json['mensajeError'] as String? ?? '',
+      minutosDuracionOtp: (json['minutosDuracionOtp'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$BaseRespuestaImplToJson(_$BaseRespuestaImpl instance) =>
@@ -60,6 +61,7 @@ Map<String, dynamic> _$$BaseRespuestaImplToJson(_$BaseRespuestaImpl instance) =>
       'stackTrace': instance.stackTrace,
       'sfConCabecera': instance.sfConCabecera,
       'mensajeError': instance.mensajeError,
+      'minutosDuracionOtp': instance.minutosDuracionOtp,
     };
 
 _$CambioClaveRequerimientoImpl _$$CambioClaveRequerimientoImplFromJson(
@@ -160,6 +162,7 @@ _$ValidaUsuarioRespuestaImpl _$$ValidaUsuarioRespuestaImplFromJson(
     _$ValidaUsuarioRespuestaImpl(
       imagen: json['imagen'] as String? ?? '',
       frase: json['frase'] as String? ?? '',
+      minutosDuracionOtp: (json['minutosDuracionOtp'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$ValidaUsuarioRespuestaImplToJson(
@@ -167,6 +170,7 @@ Map<String, dynamic> _$$ValidaUsuarioRespuestaImplToJson(
     <String, dynamic>{
       'imagen': instance.imagen,
       'frase': instance.frase,
+      'minutosDuracionOtp': instance.minutosDuracionOtp,
     };
 
 _$UsuarioModelImpl _$$UsuarioModelImplFromJson(Map<String, dynamic> json) =>
@@ -228,6 +232,7 @@ _$LoginStateImpl _$$LoginStateImplFromJson(Map<String, dynamic> json) =>
           ? null
           : ValidacionOtpAccesoRespuesta.fromJson(
               json['validacionOtpRespuesta'] as Map<String, dynamic>),
+      minutosDuracionOtp: (json['minutosDuracionOtp'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$LoginStateImplToJson(_$LoginStateImpl instance) =>
@@ -239,6 +244,7 @@ Map<String, dynamic> _$$LoginStateImplToJson(_$LoginStateImpl instance) =>
       'informacionValidada': instance.informacionValidada,
       'loginRespuesta': instance.loginRespuesta,
       'validacionOtpRespuesta': instance.validacionOtpRespuesta,
+      'minutosDuracionOtp': instance.minutosDuracionOtp,
     };
 
 _$RecuperarContraseniaStateImpl _$$RecuperarContraseniaStateImplFromJson(
@@ -283,6 +289,7 @@ _$ActivaCuentaStateImpl _$$ActivaCuentaStateImplFromJson(
       estaValidado: json['estaValidado'] as bool? ?? false,
       obscurecerClave: json['obscurecerClave'] as bool? ?? false,
       modoConfirmacion: json['modoConfirmacion'] as bool? ?? false,
+      minutosDuracionOtp: (json['minutosDuracionOtp'] as num?)?.toInt() ?? 0,
       permiteEditarUsuario: json['permiteEditarUsuario'] as bool,
     );
 
@@ -292,6 +299,7 @@ Map<String, dynamic> _$$ActivaCuentaStateImplToJson(
       'estaValidado': instance.estaValidado,
       'obscurecerClave': instance.obscurecerClave,
       'modoConfirmacion': instance.modoConfirmacion,
+      'minutosDuracionOtp': instance.minutosDuracionOtp,
       'permiteEditarUsuario': instance.permiteEditarUsuario,
     };
 
@@ -385,10 +393,9 @@ _$ClienteMontosLimiteImpl _$$ClienteMontosLimiteImplFromJson(
       id: (json['id'] as num?)?.toInt() ?? 0,
       idClienteRegistro: (json['idClienteRegistro'] as num?)?.toInt() ?? 0,
       idCliente: (json['idCliente'] as num?)?.toInt() ?? 0,
-      limiteTransaccion:
-          (json['limiteTransaccion'] as num?)?.toDouble() ?? 0.00,
+      limiteTransaccion: (json['limiteTransaccion'] as num?)?.toDouble() ?? 0.0,
       limiteTransaccionDiaria:
-          (json['limiteTransaccionDiaria'] as num?)?.toDouble() ?? 0.00,
+          (json['limiteTransaccionDiaria'] as num?)?.toDouble() ?? 0.0,
       fechaRegistro: json['fechaRegistro'] == null
           ? null
           : DateTime.parse(json['fechaRegistro'] as String),
@@ -431,6 +438,7 @@ _$PosicionConsolidadaRespuestaImpl _$$PosicionConsolidadaRespuestaImplFromJson(
           ? null
           : ClienteMontosLimite.fromJson(
               json['cliMontosLimites'] as Map<String, dynamic>),
+      minutosDuracionOtp: (json['minutosDuracionOtp'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$PosicionConsolidadaRespuestaImplToJson(
@@ -441,6 +449,7 @@ Map<String, dynamic> _$$PosicionConsolidadaRespuestaImplToJson(
       'prestamos': instance.prestamos,
       'persona': instance.persona,
       'cliMontosLimites': instance.cliMontosLimites,
+      'minutosDuracionOtp': instance.minutosDuracionOtp,
     };
 
 _$CuentaModelImpl _$$CuentaModelImplFromJson(Map<String, dynamic> json) =>
@@ -448,8 +457,8 @@ _$CuentaModelImpl _$$CuentaModelImplFromJson(Map<String, dynamic> json) =>
       codigo: json['codigo'] as String? ?? '',
       nombre: json['nombre'] as String? ?? '',
       tipo: json['tipo'] as String? ?? '',
-      saldo: (json['saldo'] as num?)?.toDouble() ?? 0.00,
-      saldoContable: (json['saldoContable'] as num?)?.toDouble() ?? 0.00,
+      saldo: (json['saldo'] as num?)?.toDouble() ?? 0.0,
+      saldoContable: (json['saldoContable'] as num?)?.toDouble() ?? 0.0,
       estado: json['estado'] as String? ?? '',
       oficina: json['oficina'] as String? ?? '',
       permiteUsoBancaElectronica:
@@ -473,15 +482,15 @@ _$InversionModelImpl _$$InversionModelImplFromJson(Map<String, dynamic> json) =>
       codigo: json['codigo'] as String? ?? '',
       nombre: json['nombre'] as String? ?? '',
       tipo: json['tipo'] as String? ?? '',
-      monto: (json['monto'] as num?)?.toDouble() ?? 0.00,
-      tasa: (json['tasa'] as num?)?.toDouble() ?? 0.00,
-      totalTasa: (json['totalTasa'] as num?)?.toDouble() ?? 0.00,
+      monto: (json['monto'] as num?)?.toDouble() ?? 0.0,
+      tasa: (json['tasa'] as num?)?.toDouble() ?? 0.0,
+      totalTasa: (json['totalTasa'] as num?)?.toDouble() ?? 0.0,
       plazo: (json['plazo'] as num?)?.toInt() ?? 0,
       fechaVencimiento: json['fechaVencimiento'] == null
           ? null
           : DateTime.parse(json['fechaVencimiento'] as String),
       estado: json['estado'] as String? ?? '',
-      totalRecibir: (json['totalRecibir'] as num?)?.toDouble() ?? 0.00,
+      totalRecibir: (json['totalRecibir'] as num?)?.toDouble() ?? 0.0,
       oficina: json['oficina'] as String? ?? '',
     );
 
@@ -505,18 +514,18 @@ _$PrestamoModelImpl _$$PrestamoModelImplFromJson(Map<String, dynamic> json) =>
     _$PrestamoModelImpl(
       codigo: json['codigo'] as String? ?? '',
       tipo: json['tipo'] as String? ?? '',
-      deudaInicial: (json['deudaInicial'] as num?)?.toDouble() ?? 0.00,
-      saldo: (json['saldo'] as num?)?.toDouble() ?? 0.00,
+      deudaInicial: (json['deudaInicial'] as num?)?.toDouble() ?? 0.0,
+      saldo: (json['saldo'] as num?)?.toDouble() ?? 0.0,
       fechaAdjudicacion: json['fechaAdjudicacion'] == null
           ? null
           : DateTime.parse(json['fechaAdjudicacion'] as String),
       estado: json['estado'] as String? ?? '',
       oficina: json['oficina'] as String? ?? '',
       valorParaEstarAlDia:
-          (json['valorParaEstarAlDia'] as num?)?.toDouble() ?? 0.00,
-      valorCuota: (json['valorCuota'] as num?)?.toDouble() ?? 0.00,
+          (json['valorParaEstarAlDia'] as num?)?.toDouble() ?? 0.0,
+      valorCuota: (json['valorCuota'] as num?)?.toDouble() ?? 0.0,
       valorCancelarPrestamo:
-          (json['valorCancelarPrestamo'] as num?)?.toDouble() ?? 0.00,
+          (json['valorCancelarPrestamo'] as num?)?.toDouble() ?? 0.0,
       fechaProximoPago: json['fechaProximoPago'] == null
           ? null
           : DateTime.parse(json['fechaProximoPago'] as String),
@@ -653,9 +662,9 @@ _$MovimientoModelImpl _$$MovimientoModelImplFromJson(
           : DateTime.parse(json['fecha'] as String),
       transaccion: json['transaccion'] as String? ?? '',
       cheque: json['cheque'] as String? ?? '',
-      deposito: (json['deposito'] as num?)?.toDouble() ?? 0.00,
-      retiro: (json['retiro'] as num?)?.toDouble() ?? 0.00,
-      saldo: (json['saldo'] as num?)?.toDouble() ?? 0.00,
+      deposito: (json['deposito'] as num?)?.toDouble() ?? 0.0,
+      retiro: (json['retiro'] as num?)?.toDouble() ?? 0.0,
+      saldo: (json['saldo'] as num?)?.toDouble() ?? 0.0,
       oficina: json['oficina'] as String? ?? '',
       documento: json['documento'] as String? ?? '',
     );
@@ -688,11 +697,11 @@ _$ResumenMesModelImpl _$$ResumenMesModelImplFromJson(
       fechaFin: json['fechaFin'] == null
           ? null
           : DateTime.parse(json['fechaFin'] as String),
-      saldoAnterior: (json['saldoAnterior'] as num?)?.toDouble() ?? 0.00,
-      totalCreditos: (json['totalCreditos'] as num?)?.toDouble() ?? 0.00,
-      totalDebitos: (json['totalDebitos'] as num?)?.toDouble() ?? 0.00,
-      saldoActual: (json['saldoActual'] as num?)?.toDouble() ?? 0.00,
-      saldoPromedio: (json['saldoPromedio'] as num?)?.toDouble() ?? 0.00,
+      saldoAnterior: (json['saldoAnterior'] as num?)?.toDouble() ?? 0.0,
+      totalCreditos: (json['totalCreditos'] as num?)?.toDouble() ?? 0.0,
+      totalDebitos: (json['totalDebitos'] as num?)?.toDouble() ?? 0.0,
+      saldoActual: (json['saldoActual'] as num?)?.toDouble() ?? 0.0,
+      saldoPromedio: (json['saldoPromedio'] as num?)?.toDouble() ?? 0.0,
     );
 
 Map<String, dynamic> _$$ResumenMesModelImplToJson(
@@ -758,8 +767,8 @@ _$MovimientoPrestamoModelImpl _$$MovimientoPrestamoModelImplFromJson(
           : DateTime.parse(json['fechaSistema'] as String),
       documento: json['documento'] as String? ?? '',
       transaccion: json['transaccion'] as String? ?? '',
-      valor: (json['valor'] as num?)?.toDouble() ?? 0.00,
-      saldo: (json['saldo'] as num?)?.toDouble() ?? 0.00,
+      valor: (json['valor'] as num?)?.toDouble() ?? 0.0,
+      saldo: (json['saldo'] as num?)?.toDouble() ?? 0.0,
       tipo: json['tipo'] as String? ?? '',
       agencia: json['agencia'] as String? ?? '',
       usuario: json['usuario'] as String? ?? '',
@@ -792,7 +801,7 @@ _$RubroMovimientoPrestamoModelImpl _$$RubroMovimientoPrestamoModelImplFromJson(
       documento: json['documento'] as String? ?? '',
       cuota: (json['cuota'] as num?)?.toInt() ?? 0,
       rubro: json['rubro'] as String? ?? '',
-      valor: (json['valor'] as num?)?.toDouble() ?? 0.00,
+      valor: (json['valor'] as num?)?.toDouble() ?? 0.0,
     );
 
 Map<String, dynamic> _$$RubroMovimientoPrestamoModelImplToJson(
@@ -829,8 +838,8 @@ _$MovimientoInversionModelImpl _$$MovimientoInversionModelImplFromJson(
           ? null
           : DateTime.parse(json['fecha'] as String),
       transaccion: json['transaccion'] as String? ?? '',
-      valor: (json['valor'] as num?)?.toDouble() ?? 0.00,
-      saldo: (json['saldo'] as num?)?.toDouble() ?? 0.00,
+      valor: (json['valor'] as num?)?.toDouble() ?? 0.0,
+      saldo: (json['saldo'] as num?)?.toDouble() ?? 0.0,
       oficina: json['oficina'] as String? ?? '',
       documento: json['documento'] as String? ?? '',
     );
@@ -895,13 +904,13 @@ Map<String, dynamic> _$$ConsultaDetalePrestamoRespuestaImplToJson(
 _$InformacionPrestamoImpl _$$InformacionPrestamoImplFromJson(
         Map<String, dynamic> json) =>
     _$InformacionPrestamoImpl(
-      deudaInicial: (json['deudaInicial'] as num?)?.toDouble() ?? 0.00,
-      saldo: (json['saldo'] as num?)?.toDouble() ?? 0.00,
-      valorDia: (json['valorDia'] as num?)?.toDouble() ?? 0.00,
-      valorCuota: (json['valorCuota'] as num?)?.toDouble() ?? 0.00,
-      valorHastaCuota: (json['valorHastaCuota'] as num?)?.toDouble() ?? 0.00,
+      deudaInicial: (json['deudaInicial'] as num?)?.toDouble() ?? 0.0,
+      saldo: (json['saldo'] as num?)?.toDouble() ?? 0.0,
+      valorDia: (json['valorDia'] as num?)?.toDouble() ?? 0.0,
+      valorCuota: (json['valorCuota'] as num?)?.toDouble() ?? 0.0,
+      valorHastaCuota: (json['valorHastaCuota'] as num?)?.toDouble() ?? 0.0,
       valorCancelarPrestamo:
-          (json['valorCancelarPrestamo'] as num?)?.toDouble() ?? 0.00,
+          (json['valorCancelarPrestamo'] as num?)?.toDouble() ?? 0.0,
       fechaAdjudicacion: json['fechaAdjudicacion'] == null
           ? null
           : DateTime.parse(json['fechaAdjudicacion'] as String),
@@ -928,16 +937,16 @@ _$DetallePrestamoImpl _$$DetallePrestamoImplFromJson(
           ? null
           : DateTime.parse(json['fechaVencimiento'] as String),
       numeroCuota: (json['numeroCuota'] as num?)?.toInt() ?? 0,
-      saldoAdeudado: (json['saldoAdeudado'] as num?)?.toDouble() ?? 0.00,
-      capital: (json['capital'] as num?)?.toDouble() ?? 0.00,
-      interes: (json['interes'] as num?)?.toDouble() ?? 0.00,
-      mora: (json['mora'] as num?)?.toDouble() ?? 0.00,
-      extrajudicial: (json['extrajudicial'] as num?)?.toDouble() ?? 0.00,
-      judicial: (json['judicial'] as num?)?.toDouble() ?? 0.00,
-      otros: (json['otros'] as num?)?.toDouble() ?? 0.00,
-      total: (json['total'] as num?)?.toDouble() ?? 0.00,
+      saldoAdeudado: (json['saldoAdeudado'] as num?)?.toDouble() ?? 0.0,
+      capital: (json['capital'] as num?)?.toDouble() ?? 0.0,
+      interes: (json['interes'] as num?)?.toDouble() ?? 0.0,
+      mora: (json['mora'] as num?)?.toDouble() ?? 0.0,
+      extrajudicial: (json['extrajudicial'] as num?)?.toDouble() ?? 0.0,
+      judicial: (json['judicial'] as num?)?.toDouble() ?? 0.0,
+      otros: (json['otros'] as num?)?.toDouble() ?? 0.0,
+      total: (json['total'] as num?)?.toDouble() ?? 0.0,
       fechaPago: json['fechaPago'] as String? ?? '',
-      diasMora: (json['diasMora'] as num?)?.toDouble() ?? 0.00,
+      diasMora: (json['diasMora'] as num?)?.toDouble() ?? 0.0,
       estado: json['estado'] as String? ?? '',
     );
 
@@ -1165,7 +1174,7 @@ _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
           codigoConcepto: json['codigoConcepto'] as String? ?? '',
           institucion: json['institucion'] as String? ?? '',
           cuentaDestino: json['cuentaDestino'] as String? ?? '',
-          monto: (json['monto'] as num?)?.toDouble() ?? 0.00,
+          monto: (json['monto'] as num?)?.toDouble() ?? 0.0,
           descripcion: json['descripcion'] as String? ?? '',
           emailEnvio: json['emailEnvio'] as String? ?? '',
           celularEnvio: json['celularEnvio'] as String? ?? '',
@@ -1220,7 +1229,7 @@ _$ProcesaTransferenciaDirectaRequerimientoImpl
           idBeneficiario: (json['idBeneficiario'] as num?)?.toInt() ?? 0,
           codigoConcepto: json['codigoConcepto'] as String? ?? '',
           cuentaDestino: json['cuentaDestino'] as String? ?? '',
-          monto: (json['monto'] as num?)?.toDouble() ?? 0.00,
+          monto: (json['monto'] as num?)?.toDouble() ?? 0.0,
           descripcion: json['descripcion'] as String? ?? '',
           emailEnvio: json['emailEnvio'] as String? ?? '',
           celularEnvio: json['celularEnvio'] as String? ?? '',
@@ -1264,7 +1273,7 @@ _$ConsultaRequisitosTransferenciaRespuestaImpl
     _$$ConsultaRequisitosTransferenciaRespuestaImplFromJson(
             Map<String, dynamic> json) =>
         _$ConsultaRequisitosTransferenciaRespuestaImpl(
-          comision: (json['comision'] as num?)?.toDouble() ?? 0.00,
+          comision: (json['comision'] as num?)?.toDouble() ?? 0.0,
           conceptosTransferencia:
               (json['conceptosTransferencia'] as List<dynamic>?)
                       ?.map((e) => ConceptoTransferenciaModel.fromJson(
@@ -1301,7 +1310,7 @@ _$ProcesaAbonoPrestamoRequerimientoImpl
           idUsuario: (json['idUsuario'] as num?)?.toInt() ?? 0,
           codigoPrestamo: json['codigoPrestamo'] as String? ?? '',
           cuentaDebito: json['cuentaDebito'] as String? ?? '',
-          monto: (json['monto'] as num?)?.toDouble() ?? 0.00,
+          monto: (json['monto'] as num?)?.toDouble() ?? 0.0,
           emailEnvio: json['emailEnvio'] as String? ?? '',
           concepto: json['concepto'] as String? ?? '',
           otpIngresado: json['otpIngresado'] as String? ?? '',
@@ -1341,10 +1350,10 @@ _$DetalleInversionModelImpl _$$DetalleInversionModelImplFromJson(
       fecha: json['fecha'] == null
           ? null
           : DateTime.parse(json['fecha'] as String),
-      retencion: (json['retencion'] as num?)?.toDouble() ?? 0.00,
-      valor: (json['valor'] as num?)?.toDouble() ?? 0.00,
-      tasa: (json['tasa'] as num?)?.toDouble() ?? 0.00,
-      totalTasa: (json['totalTasa'] as num?)?.toDouble() ?? 0.00,
+      retencion: (json['retencion'] as num?)?.toDouble() ?? 0.0,
+      valor: (json['valor'] as num?)?.toDouble() ?? 0.0,
+      tasa: (json['tasa'] as num?)?.toDouble() ?? 0.0,
+      totalTasa: (json['totalTasa'] as num?)?.toDouble() ?? 0.0,
       item: json['item'] as String? ?? '',
       estado: json['estado'] as String? ?? '',
     );
@@ -1601,8 +1610,8 @@ _$AgenciaCajeroItemImpl _$$AgenciaCajeroItemImplFromJson(
       nombre: json['nombre'] as String? ?? '',
       descripcion: json['descripcion'] as String? ?? '',
       telefono: json['telefono'] as String? ?? '',
-      latitud: (json['latitud'] as num?)?.toDouble() ?? 0.00,
-      longitud: (json['longitud'] as num?)?.toDouble() ?? 0.00,
+      latitud: (json['latitud'] as num?)?.toDouble() ?? 0.0,
+      longitud: (json['longitud'] as num?)?.toDouble() ?? 0.0,
       esCajero: json['esCajero'] as bool? ?? false,
     );
 
@@ -1791,8 +1800,7 @@ _$ConsultaCuentaVinculadaQRRespuestaImpl
           trackingId: json['trackingId'] as String,
           account:
               AccountModel.fromJson(json['account'] as Map<String, dynamic>),
-          montoDisponible:
-              (json['montoDisponible'] as num?)?.toDouble() ?? 0.00,
+          montoDisponible: (json['montoDisponible'] as num?)?.toDouble() ?? 0.0,
         );
 
 Map<String, dynamic> _$$ConsultaCuentaVinculadaQRRespuestaImplToJson(
