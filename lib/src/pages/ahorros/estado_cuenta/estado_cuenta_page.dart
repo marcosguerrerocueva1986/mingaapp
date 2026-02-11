@@ -59,6 +59,7 @@ class ListaMesesEstadoPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final estadoMeses = ref.watch(estadosCuentaControllerProvider(numeroCuenta));
     final cliente = ref.watch(posicionConsolidadaControllerProvider);
+    final usuario = ref.watch(loginControllerProvider);
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -78,7 +79,7 @@ class ListaMesesEstadoPage extends ConsumerWidget {
                   final cuentaEncontrada = cliente.posicionConsolidada?.cuentas?.firstWhereOrNull((j) => j.codigo == numeroCuenta,);
                   final periodo = periodoI.copyWith(
                     numeroCuenta: numeroCuenta,
-                    nombreCliente: cliente.posicionConsolidada?.persona!.nombre ?? '',
+                    nombreCliente: usuario.loginRespuesta!.nombre ?? '',
                     tipoCuenta: cuentaEncontrada?.tipo ?? '',);
                   return Card(
                     elevation: 2,
