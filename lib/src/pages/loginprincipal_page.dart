@@ -42,7 +42,7 @@ with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 1500), () {
+    Future.delayed(const Duration(milliseconds: 10), () {
     if (mounted) {
         ref.read(loginPrincipalControllerProvider.notifier).actualizaImagen();
       }

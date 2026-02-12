@@ -4643,8 +4643,8 @@ class _$ClienteMontosLimiteImpl implements _ClienteMontosLimite {
       {this.id = 0,
       this.idClienteRegistro = 0,
       this.idCliente = 0,
-      this.limiteTransaccion = 0.0,
-      this.limiteTransaccionDiaria = 0.0,
+      this.limiteTransaccion = 0.00,
+      this.limiteTransaccionDiaria = 0.00,
       this.fechaRegistro,
       this.fechaSistema});
 
@@ -5313,8 +5313,8 @@ class _$CuentaModelImpl implements _CuentaModel {
       {this.codigo = '',
       this.nombre = '',
       this.tipo = '',
-      this.saldo = 0.0,
-      this.saldoContable = 0.0,
+      this.saldo = 0.00,
+      this.saldoContable = 0.00,
       this.estado = '',
       this.oficina = '',
       this.permiteUsoBancaElectronica = false});
@@ -5787,13 +5787,13 @@ class _$InversionModelImpl implements _InversionModel {
       {this.codigo = '',
       this.nombre = '',
       this.tipo = '',
-      this.monto = 0.0,
-      this.tasa = 0.0,
-      this.totalTasa = 0.0,
+      this.monto = 0.00,
+      this.tasa = 0.00,
+      this.totalTasa = 0.00,
       this.plazo = 0,
       this.fechaVencimiento,
       this.estado = '',
-      this.totalRecibir = 0.0,
+      this.totalRecibir = 0.00,
       this.oficina = ''});
 
   factory _$InversionModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -6154,14 +6154,14 @@ class _$PrestamoModelImpl implements _PrestamoModel {
   _$PrestamoModelImpl(
       {this.codigo = '',
       this.tipo = '',
-      this.deudaInicial = 0.0,
-      this.saldo = 0.0,
+      this.deudaInicial = 0.00,
+      this.saldo = 0.00,
       this.fechaAdjudicacion,
       this.estado = '',
       this.oficina = '',
-      this.valorParaEstarAlDia = 0.0,
-      this.valorCuota = 0.0,
-      this.valorCancelarPrestamo = 0.0,
+      this.valorParaEstarAlDia = 0.00,
+      this.valorCuota = 0.00,
+      this.valorCancelarPrestamo = 0.00,
       this.fechaProximoPago,
       this.cuotasCanceladas = ''});
 
@@ -7758,9 +7758,9 @@ class _$MovimientoModelImpl implements _MovimientoModel {
       this.fecha,
       this.transaccion = '',
       this.cheque = '',
-      this.deposito = 0.0,
-      this.retiro = 0.0,
-      this.saldo = 0.0,
+      this.deposito = 0.00,
+      this.retiro = 0.00,
+      this.saldo = 0.00,
       this.oficina = '',
       this.documento = ''});
 
@@ -8113,11 +8113,11 @@ class _$ResumenMesModelImpl implements _ResumenMesModel {
       this.anio = 0,
       this.fechaInicio,
       this.fechaFin,
-      this.saldoAnterior = 0.0,
-      this.totalCreditos = 0.0,
-      this.totalDebitos = 0.0,
-      this.saldoActual = 0.0,
-      this.saldoPromedio = 0.0});
+      this.saldoAnterior = 0.00,
+      this.totalCreditos = 0.00,
+      this.totalDebitos = 0.00,
+      this.saldoActual = 0.00,
+      this.saldoPromedio = 0.00});
 
   factory _$ResumenMesModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResumenMesModelImplFromJson(json);
@@ -8849,8 +8849,8 @@ class _$MovimientoPrestamoModelImpl implements _MovimientoPrestamoModel {
       this.fechaSistema,
       this.documento = '',
       this.transaccion = '',
-      this.valor = 0.0,
-      this.saldo = 0.0,
+      this.valor = 0.00,
+      this.saldo = 0.00,
       this.tipo = '',
       this.agencia = '',
       this.usuario = '',
@@ -9137,7 +9137,7 @@ class _$RubroMovimientoPrestamoModelImpl
       this.documento = '',
       this.cuota = 0,
       this.rubro = '',
-      this.valor = 0.0});
+      this.valor = 0.00});
 
   factory _$RubroMovimientoPrestamoModelImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -9549,8 +9549,8 @@ class _$MovimientoInversionModelImpl implements _MovimientoInversionModel {
   _$MovimientoInversionModelImpl(
       {this.fecha,
       this.transaccion = '',
-      this.valor = 0.0,
-      this.saldo = 0.0,
+      this.valor = 0.00,
+      this.saldo = 0.00,
       this.oficina = '',
       this.documento = ''});
 
@@ -10268,12 +10268,12 @@ class __$$InformacionPrestamoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InformacionPrestamoImpl implements _InformacionPrestamo {
   _$InformacionPrestamoImpl(
-      {this.deudaInicial = 0.0,
-      this.saldo = 0.0,
-      this.valorDia = 0.0,
-      this.valorCuota = 0.0,
-      this.valorHastaCuota = 0.0,
-      this.valorCancelarPrestamo = 0.0,
+      {this.deudaInicial = 0.00,
+      this.saldo = 0.00,
+      this.valorDia = 0.00,
+      this.valorCuota = 0.00,
+      this.valorHastaCuota = 0.00,
+      this.valorCancelarPrestamo = 0.00,
       this.fechaAdjudicacion,
       this.cuotasVencidas = 0});
 
@@ -10639,16 +10639,16 @@ class _$DetallePrestamoImpl implements _DetallePrestamo {
   _$DetallePrestamoImpl(
       {this.fechaVencimiento,
       this.numeroCuota = 0,
-      this.saldoAdeudado = 0.0,
-      this.capital = 0.0,
-      this.interes = 0.0,
-      this.mora = 0.0,
-      this.extrajudicial = 0.0,
-      this.judicial = 0.0,
-      this.otros = 0.0,
-      this.total = 0.0,
+      this.saldoAdeudado = 0.00,
+      this.capital = 0.00,
+      this.interes = 0.00,
+      this.mora = 0.00,
+      this.extrajudicial = 0.00,
+      this.judicial = 0.00,
+      this.otros = 0.00,
+      this.total = 0.00,
       this.fechaPago = '',
-      this.diasMora = 0.0,
+      this.diasMora = 0.00,
       this.estado = ''});
 
   factory _$DetallePrestamoImpl.fromJson(Map<String, dynamic> json) =>
@@ -13146,7 +13146,7 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
       this.codigoConcepto = '',
       this.institucion = '',
       this.cuentaDestino = '',
-      this.monto = 0.0,
+      this.monto = 0.00,
       this.descripcion = '',
       this.emailEnvio = '',
       this.celularEnvio = '',
@@ -13733,7 +13733,7 @@ class _$ProcesaTransferenciaDirectaRequerimientoImpl
       this.idBeneficiario = 0,
       this.codigoConcepto = '',
       this.cuentaDestino = '',
-      this.monto = 0.0,
+      this.monto = 0.00,
       this.descripcion = '',
       this.emailEnvio = '',
       this.celularEnvio = '',
@@ -14186,7 +14186,7 @@ class __$$ConsultaRequisitosTransferenciaRespuestaImplCopyWithImpl<$Res>
 class _$ConsultaRequisitosTransferenciaRespuestaImpl
     implements _ConsultaRequisitosTransferenciaRespuesta {
   _$ConsultaRequisitosTransferenciaRespuestaImpl(
-      {this.comision = 0.0,
+      {this.comision = 0.00,
       final List<ConceptoTransferenciaModel> conceptosTransferencia = const []})
       : _conceptosTransferencia = conceptosTransferencia;
 
@@ -14620,7 +14620,7 @@ class _$ProcesaAbonoPrestamoRequerimientoImpl
       {this.idUsuario = 0,
       this.codigoPrestamo = '',
       this.cuentaDebito = '',
-      this.monto = 0.0,
+      this.monto = 0.00,
       this.emailEnvio = '',
       this.concepto = '',
       this.otpIngresado = '',
@@ -15081,10 +15081,10 @@ class __$$DetalleInversionModelImplCopyWithImpl<$Res>
 class _$DetalleInversionModelImpl implements _DetalleInversionModel {
   _$DetalleInversionModelImpl(
       {this.fecha,
-      this.retencion = 0.0,
-      this.valor = 0.0,
-      this.tasa = 0.0,
-      this.totalTasa = 0.0,
+      this.retencion = 0.00,
+      this.valor = 0.00,
+      this.tasa = 0.00,
+      this.totalTasa = 0.00,
       this.item = '',
       this.estado = ''});
 
@@ -17754,8 +17754,8 @@ class _$AgenciaCajeroItemImpl implements _AgenciaCajeroItem {
       {this.nombre = '',
       this.descripcion = '',
       this.telefono = '',
-      this.latitud = 0.0,
-      this.longitud = 0.0,
+      this.latitud = 0.00,
+      this.longitud = 0.00,
       this.esCajero = false});
 
   factory _$AgenciaCajeroItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -19810,7 +19810,7 @@ class _$ConsultaCuentaVinculadaQRRespuestaImpl
       {required this.transactionId,
       required this.trackingId,
       required this.account,
-      this.montoDisponible = 0.0});
+      this.montoDisponible = 0.00});
 
   factory _$ConsultaCuentaVinculadaQRRespuestaImpl.fromJson(
           Map<String, dynamic> json) =>
