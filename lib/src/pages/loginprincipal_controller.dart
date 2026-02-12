@@ -17,14 +17,17 @@ class LoginPrincipalController extends _$LoginPrincipalController {
     return const LoginPrincipalState();
   }
 
-  Future<void> actualizaImagen() async {
+  Future<void> actualizaImagen({disableLoading=false}) async {
+    state = state.copyWith(isLoading: true);
     var client = HttpClientHelper.getClient();
-
-    var respuesta = await guard(() async => await client.consultaImagenPrincipal(
-      BaseRequerimiento(idUsuario: HttpClientHelper.idUsuario)));
+    var respuesta = await guard(() async => await client.consultaImagenPrincipal());
 
     if (respuesta.hasValue) {
       state = state.copyWith(posicionConsolidada: respuesta.value, isLoading: false, errorMessage: null);
+    }
+    else
+    {
+      state = state.copyWith(isLoading: false, errorMessage: null);
     }
   }
 }

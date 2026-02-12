@@ -42,7 +42,11 @@ with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    ref.read(loginPrincipalControllerProvider.notifier).actualizaImagen();
+    Future.delayed(const Duration(milliseconds: 1500), () {
+    if (mounted) {
+        ref.read(loginPrincipalControllerProvider.notifier).actualizaImagen();
+      }
+    });
     _checkBiometrics();
     _logoMitadAnimationController = AnimationController(
       vsync: this,
@@ -212,7 +216,7 @@ with SingleTickerProviderStateMixin {
                         child: child,
                       );
                     },
-                    child: imagenesBase.isNotEmpty == true 
+                    child: (imagenesBase.isNotEmpty == true && imagenesBase[0].imagen != null)
                       ? Image.memory(
                           imagenesBase[0].imagen!, 
                           width: _logoMitadWidth,

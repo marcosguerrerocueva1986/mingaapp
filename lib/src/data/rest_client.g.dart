@@ -224,12 +224,11 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<PosicionConsolidadaRespuesta> consultaImagenPrincipal(
-      BaseRequerimiento requerimiento) async {
+  Future<PosicionConsolidadaRespuesta> consultaImagenPrincipal() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requerimiento;
+    const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<PosicionConsolidadaRespuesta>(Options(
       method: 'POST',
       headers: _headers,
