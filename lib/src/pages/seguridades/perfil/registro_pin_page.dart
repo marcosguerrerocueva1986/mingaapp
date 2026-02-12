@@ -144,7 +144,7 @@ class _RegistroPinPageState extends ConsumerState<RegistroPinPage> {
                         child: TextButton(
                           onPressed: () {},
                           child: const Text(
-                            "Olvide mi PIN",
+                            "",//"Olvide mi PIN",
                             style: TextStyle(
                               fontSize: 15,
                               color: Color.fromRGBO(0, 114, 181, 48),

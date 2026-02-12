@@ -12,13 +12,30 @@ class MontosMaximosPage extends ConsumerStatefulWidget {
 }
 
 class _MontosMaximosPageState extends ConsumerState<MontosMaximosPage> {
+  late TextEditingController limite;
+  @override
+  void initState() {
+    super.initState();
+    final consolidado = ref.read(posicionConsolidadaControllerProvider);
+    limite = TextEditingController(
+      text: (consolidado.posicionConsolidada?.cliMontosLimites?.limiteTransaccion ?? 0.00).toStringAsFixed(2)
+    );
+  }
+  @override
+  void dispose() {
+    limite.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
+    ref.listen(posicionConsolidadaControllerProvider, (previous, next) {
+        final nuevoValor = (next.posicionConsolidada?.cliMontosLimites?.limiteTransaccion ?? 0.00).toStringAsFixed(2);
+        if (limite.text != nuevoValor) {
+            limite.text = nuevoValor;
+        }
+    });
     var consolidado = ref.watch(posicionConsolidadaControllerProvider);
     var controller = ref.read(posicionConsolidadaControllerProvider.notifier);
-    final TextEditingController limite = TextEditingController(
-      text: (consolidado.posicionConsolidada?.cliMontosLimites?.limiteTransaccion ?? 0.00).toMoney()
-    );
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/images/logopantallamenu.png', width: 120, height: 80),
@@ -138,7 +155,7 @@ class _MontosMaximosPageState extends ConsumerState<MontosMaximosPage> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    final String limiteTran = limite.text;
+                    final String limiteTran = limite.text.trim();
                     final double valorDouble = double.tryParse(limiteTran) ?? 0.0;
                     controller.guardaClienteLimite(valorDouble);
                   },
