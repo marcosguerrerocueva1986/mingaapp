@@ -29,9 +29,9 @@ class _MontosMaximosPageState extends ConsumerState<MontosMaximosPage> {
   @override
   Widget build(BuildContext context) {
     ref.listen(posicionConsolidadaControllerProvider, (previous, next) {
-        final nuevoValor = (next.posicionConsolidada?.cliMontosLimites?.limiteTransaccion ?? 0.00).toStringAsFixed(2);
-        if (limite.text != nuevoValor) {
-            limite.text = nuevoValor;
+        final valorServidor = (next.posicionConsolidada?.cliMontosLimites?.limiteTransaccion ?? 0.00).toStringAsFixed(2);
+        if (limite.text != valorServidor && !next.isLoading) {
+            limite.text = valorServidor;
         }
     });
     var consolidado = ref.watch(posicionConsolidadaControllerProvider);
@@ -155,9 +155,12 @@ class _MontosMaximosPageState extends ConsumerState<MontosMaximosPage> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    final String limiteTran = limite.text.trim();
-                    final double valorDouble = double.tryParse(limiteTran) ?? 0.0;
-                    controller.guardaClienteLimite(valorDouble);
+                    final String limiteTexto = limite.text.trim().replaceAll(',', '.');
+                    if (limiteTexto.isEmpty) return;
+                    final double? valorDouble = double.tryParse(limiteTexto);
+                    if (valorDouble != null) {
+                        controller.guardaClienteLimite(valorDouble);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
