@@ -4643,8 +4643,8 @@ class _$ClienteMontosLimiteImpl implements _ClienteMontosLimite {
       {this.id = 0,
       this.idClienteRegistro = 0,
       this.idCliente = 0,
-      this.limiteTransaccion = 0.0,
-      this.limiteTransaccionDiaria = 0.0,
+      this.limiteTransaccion = 0.00,
+      this.limiteTransaccionDiaria = 0.00,
       this.fechaRegistro,
       this.fechaSistema});
 
@@ -4764,6 +4764,8 @@ mixin _$PosicionConsolidadaRespuesta {
   ClienteMontosLimite? get cliMontosLimites =>
       throw _privateConstructorUsedError;
   int get minutosDuracionOtp => throw _privateConstructorUsedError;
+  List<ImagenPantalla> get listaCarrusel => throw _privateConstructorUsedError;
+  List<ImagenPantalla> get listaInicial => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4785,7 +4787,9 @@ abstract class $PosicionConsolidadaRespuestaCopyWith<$Res> {
       List<PrestamoModel> prestamos,
       PersonaModel? persona,
       ClienteMontosLimite? cliMontosLimites,
-      int minutosDuracionOtp});
+      int minutosDuracionOtp,
+      List<ImagenPantalla> listaCarrusel,
+      List<ImagenPantalla> listaInicial});
 
   $PersonaModelCopyWith<$Res>? get persona;
   $ClienteMontosLimiteCopyWith<$Res>? get cliMontosLimites;
@@ -4811,6 +4815,8 @@ class _$PosicionConsolidadaRespuestaCopyWithImpl<$Res,
     Object? persona = freezed,
     Object? cliMontosLimites = freezed,
     Object? minutosDuracionOtp = null,
+    Object? listaCarrusel = null,
+    Object? listaInicial = null,
   }) {
     return _then(_value.copyWith(
       cuentas: null == cuentas
@@ -4837,6 +4843,14 @@ class _$PosicionConsolidadaRespuestaCopyWithImpl<$Res,
           ? _value.minutosDuracionOtp
           : minutosDuracionOtp // ignore: cast_nullable_to_non_nullable
               as int,
+      listaCarrusel: null == listaCarrusel
+          ? _value.listaCarrusel
+          : listaCarrusel // ignore: cast_nullable_to_non_nullable
+              as List<ImagenPantalla>,
+      listaInicial: null == listaInicial
+          ? _value.listaInicial
+          : listaInicial // ignore: cast_nullable_to_non_nullable
+              as List<ImagenPantalla>,
     ) as $Val);
   }
 
@@ -4881,7 +4895,9 @@ abstract class _$$PosicionConsolidadaRespuestaImplCopyWith<$Res>
       List<PrestamoModel> prestamos,
       PersonaModel? persona,
       ClienteMontosLimite? cliMontosLimites,
-      int minutosDuracionOtp});
+      int minutosDuracionOtp,
+      List<ImagenPantalla> listaCarrusel,
+      List<ImagenPantalla> listaInicial});
 
   @override
   $PersonaModelCopyWith<$Res>? get persona;
@@ -4908,6 +4924,8 @@ class __$$PosicionConsolidadaRespuestaImplCopyWithImpl<$Res>
     Object? persona = freezed,
     Object? cliMontosLimites = freezed,
     Object? minutosDuracionOtp = null,
+    Object? listaCarrusel = null,
+    Object? listaInicial = null,
   }) {
     return _then(_$PosicionConsolidadaRespuestaImpl(
       cuentas: null == cuentas
@@ -4934,6 +4952,14 @@ class __$$PosicionConsolidadaRespuestaImplCopyWithImpl<$Res>
           ? _value.minutosDuracionOtp
           : minutosDuracionOtp // ignore: cast_nullable_to_non_nullable
               as int,
+      listaCarrusel: null == listaCarrusel
+          ? _value._listaCarrusel
+          : listaCarrusel // ignore: cast_nullable_to_non_nullable
+              as List<ImagenPantalla>,
+      listaInicial: null == listaInicial
+          ? _value._listaInicial
+          : listaInicial // ignore: cast_nullable_to_non_nullable
+              as List<ImagenPantalla>,
     ));
   }
 }
@@ -4948,10 +4974,14 @@ class _$PosicionConsolidadaRespuestaImpl
       final List<PrestamoModel> prestamos = const [],
       this.persona,
       this.cliMontosLimites,
-      this.minutosDuracionOtp = 0})
+      this.minutosDuracionOtp = 0,
+      final List<ImagenPantalla> listaCarrusel = const [],
+      final List<ImagenPantalla> listaInicial = const []})
       : _cuentas = cuentas,
         _inversiones = inversiones,
-        _prestamos = prestamos;
+        _prestamos = prestamos,
+        _listaCarrusel = listaCarrusel,
+        _listaInicial = listaInicial;
 
   factory _$PosicionConsolidadaRespuestaImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -4991,10 +5021,27 @@ class _$PosicionConsolidadaRespuestaImpl
   @override
   @JsonKey()
   final int minutosDuracionOtp;
+  final List<ImagenPantalla> _listaCarrusel;
+  @override
+  @JsonKey()
+  List<ImagenPantalla> get listaCarrusel {
+    if (_listaCarrusel is EqualUnmodifiableListView) return _listaCarrusel;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listaCarrusel);
+  }
+
+  final List<ImagenPantalla> _listaInicial;
+  @override
+  @JsonKey()
+  List<ImagenPantalla> get listaInicial {
+    if (_listaInicial is EqualUnmodifiableListView) return _listaInicial;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listaInicial);
+  }
 
   @override
   String toString() {
-    return 'PosicionConsolidadaRespuesta(cuentas: $cuentas, inversiones: $inversiones, prestamos: $prestamos, persona: $persona, cliMontosLimites: $cliMontosLimites, minutosDuracionOtp: $minutosDuracionOtp)';
+    return 'PosicionConsolidadaRespuesta(cuentas: $cuentas, inversiones: $inversiones, prestamos: $prestamos, persona: $persona, cliMontosLimites: $cliMontosLimites, minutosDuracionOtp: $minutosDuracionOtp, listaCarrusel: $listaCarrusel, listaInicial: $listaInicial)';
   }
 
   @override
@@ -5011,7 +5058,11 @@ class _$PosicionConsolidadaRespuestaImpl
             (identical(other.cliMontosLimites, cliMontosLimites) ||
                 other.cliMontosLimites == cliMontosLimites) &&
             (identical(other.minutosDuracionOtp, minutosDuracionOtp) ||
-                other.minutosDuracionOtp == minutosDuracionOtp));
+                other.minutosDuracionOtp == minutosDuracionOtp) &&
+            const DeepCollectionEquality()
+                .equals(other._listaCarrusel, _listaCarrusel) &&
+            const DeepCollectionEquality()
+                .equals(other._listaInicial, _listaInicial));
   }
 
   @JsonKey(ignore: true)
@@ -5023,7 +5074,9 @@ class _$PosicionConsolidadaRespuestaImpl
       const DeepCollectionEquality().hash(_prestamos),
       persona,
       cliMontosLimites,
-      minutosDuracionOtp);
+      minutosDuracionOtp,
+      const DeepCollectionEquality().hash(_listaCarrusel),
+      const DeepCollectionEquality().hash(_listaInicial));
 
   @JsonKey(ignore: true)
   @override
@@ -5044,12 +5097,15 @@ class _$PosicionConsolidadaRespuestaImpl
 abstract class _PosicionConsolidadaRespuesta
     implements PosicionConsolidadaRespuesta {
   factory _PosicionConsolidadaRespuesta(
-      {final List<CuentaModel> cuentas,
-      final List<InversionModel> inversiones,
-      final List<PrestamoModel> prestamos,
-      final PersonaModel? persona,
-      final ClienteMontosLimite? cliMontosLimites,
-      final int minutosDuracionOtp}) = _$PosicionConsolidadaRespuestaImpl;
+          {final List<CuentaModel> cuentas,
+          final List<InversionModel> inversiones,
+          final List<PrestamoModel> prestamos,
+          final PersonaModel? persona,
+          final ClienteMontosLimite? cliMontosLimites,
+          final int minutosDuracionOtp,
+          final List<ImagenPantalla> listaCarrusel,
+          final List<ImagenPantalla> listaInicial}) =
+      _$PosicionConsolidadaRespuestaImpl;
 
   factory _PosicionConsolidadaRespuesta.fromJson(Map<String, dynamic> json) =
       _$PosicionConsolidadaRespuestaImpl.fromJson;
@@ -5066,6 +5122,10 @@ abstract class _PosicionConsolidadaRespuesta
   ClienteMontosLimite? get cliMontosLimites;
   @override
   int get minutosDuracionOtp;
+  @override
+  List<ImagenPantalla> get listaCarrusel;
+  @override
+  List<ImagenPantalla> get listaInicial;
   @override
   @JsonKey(ignore: true)
   _$$PosicionConsolidadaRespuestaImplCopyWith<
@@ -5253,8 +5313,8 @@ class _$CuentaModelImpl implements _CuentaModel {
       {this.codigo = '',
       this.nombre = '',
       this.tipo = '',
-      this.saldo = 0.0,
-      this.saldoContable = 0.0,
+      this.saldo = 0.00,
+      this.saldoContable = 0.00,
       this.estado = '',
       this.oficina = '',
       this.permiteUsoBancaElectronica = false});
@@ -5363,6 +5423,148 @@ abstract class _CuentaModel implements CuentaModel {
   @override
   @JsonKey(ignore: true)
   _$$CuentaModelImplCopyWith<_$CuentaModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ImagenPantalla _$ImagenPantallaFromJson(Map<String, dynamic> json) {
+  return _ImagenPantalla.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ImagenPantalla {
+  @Uint8ListConverter()
+  Uint8List? get imagen => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ImagenPantallaCopyWith<ImagenPantalla> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ImagenPantallaCopyWith<$Res> {
+  factory $ImagenPantallaCopyWith(
+          ImagenPantalla value, $Res Function(ImagenPantalla) then) =
+      _$ImagenPantallaCopyWithImpl<$Res, ImagenPantalla>;
+  @useResult
+  $Res call({@Uint8ListConverter() Uint8List? imagen});
+}
+
+/// @nodoc
+class _$ImagenPantallaCopyWithImpl<$Res, $Val extends ImagenPantalla>
+    implements $ImagenPantallaCopyWith<$Res> {
+  _$ImagenPantallaCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? imagen = freezed,
+  }) {
+    return _then(_value.copyWith(
+      imagen: freezed == imagen
+          ? _value.imagen
+          : imagen // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ImagenPantallaImplCopyWith<$Res>
+    implements $ImagenPantallaCopyWith<$Res> {
+  factory _$$ImagenPantallaImplCopyWith(_$ImagenPantallaImpl value,
+          $Res Function(_$ImagenPantallaImpl) then) =
+      __$$ImagenPantallaImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@Uint8ListConverter() Uint8List? imagen});
+}
+
+/// @nodoc
+class __$$ImagenPantallaImplCopyWithImpl<$Res>
+    extends _$ImagenPantallaCopyWithImpl<$Res, _$ImagenPantallaImpl>
+    implements _$$ImagenPantallaImplCopyWith<$Res> {
+  __$$ImagenPantallaImplCopyWithImpl(
+      _$ImagenPantallaImpl _value, $Res Function(_$ImagenPantallaImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? imagen = freezed,
+  }) {
+    return _then(_$ImagenPantallaImpl(
+      imagen: freezed == imagen
+          ? _value.imagen
+          : imagen // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ImagenPantallaImpl implements _ImagenPantalla {
+  _$ImagenPantallaImpl({@Uint8ListConverter() this.imagen});
+
+  factory _$ImagenPantallaImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImagenPantallaImplFromJson(json);
+
+  @override
+  @Uint8ListConverter()
+  final Uint8List? imagen;
+
+  @override
+  String toString() {
+    return 'ImagenPantalla(imagen: $imagen)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ImagenPantallaImpl &&
+            const DeepCollectionEquality().equals(other.imagen, imagen));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(imagen));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ImagenPantallaImplCopyWith<_$ImagenPantallaImpl> get copyWith =>
+      __$$ImagenPantallaImplCopyWithImpl<_$ImagenPantallaImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ImagenPantallaImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ImagenPantalla implements ImagenPantalla {
+  factory _ImagenPantalla({@Uint8ListConverter() final Uint8List? imagen}) =
+      _$ImagenPantallaImpl;
+
+  factory _ImagenPantalla.fromJson(Map<String, dynamic> json) =
+      _$ImagenPantallaImpl.fromJson;
+
+  @override
+  @Uint8ListConverter()
+  Uint8List? get imagen;
+  @override
+  @JsonKey(ignore: true)
+  _$$ImagenPantallaImplCopyWith<_$ImagenPantallaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -5585,13 +5787,13 @@ class _$InversionModelImpl implements _InversionModel {
       {this.codigo = '',
       this.nombre = '',
       this.tipo = '',
-      this.monto = 0.0,
-      this.tasa = 0.0,
-      this.totalTasa = 0.0,
+      this.monto = 0.00,
+      this.tasa = 0.00,
+      this.totalTasa = 0.00,
       this.plazo = 0,
       this.fechaVencimiento,
       this.estado = '',
-      this.totalRecibir = 0.0,
+      this.totalRecibir = 0.00,
       this.oficina = ''});
 
   factory _$InversionModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -5952,14 +6154,14 @@ class _$PrestamoModelImpl implements _PrestamoModel {
   _$PrestamoModelImpl(
       {this.codigo = '',
       this.tipo = '',
-      this.deudaInicial = 0.0,
-      this.saldo = 0.0,
+      this.deudaInicial = 0.00,
+      this.saldo = 0.00,
       this.fechaAdjudicacion,
       this.estado = '',
       this.oficina = '',
-      this.valorParaEstarAlDia = 0.0,
-      this.valorCuota = 0.0,
-      this.valorCancelarPrestamo = 0.0,
+      this.valorParaEstarAlDia = 0.00,
+      this.valorCuota = 0.00,
+      this.valorCancelarPrestamo = 0.00,
       this.fechaProximoPago,
       this.cuotasCanceladas = ''});
 
@@ -6522,6 +6724,209 @@ abstract class _PosicionConsolidadaState implements PosicionConsolidadaState {
   @JsonKey(ignore: true)
   _$$PosicionConsolidadaStateImplCopyWith<_$PosicionConsolidadaStateImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+LoginPrincipalState _$LoginPrincipalStateFromJson(Map<String, dynamic> json) {
+  return _LoginPrincipalState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LoginPrincipalState {
+  bool get isLoading => throw _privateConstructorUsedError;
+  PosicionConsolidadaRespuesta? get posicionConsolidada =>
+      throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LoginPrincipalStateCopyWith<LoginPrincipalState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LoginPrincipalStateCopyWith<$Res> {
+  factory $LoginPrincipalStateCopyWith(
+          LoginPrincipalState value, $Res Function(LoginPrincipalState) then) =
+      _$LoginPrincipalStateCopyWithImpl<$Res, LoginPrincipalState>;
+  @useResult
+  $Res call(
+      {bool isLoading,
+      PosicionConsolidadaRespuesta? posicionConsolidada,
+      String? errorMessage});
+
+  $PosicionConsolidadaRespuestaCopyWith<$Res>? get posicionConsolidada;
+}
+
+/// @nodoc
+class _$LoginPrincipalStateCopyWithImpl<$Res, $Val extends LoginPrincipalState>
+    implements $LoginPrincipalStateCopyWith<$Res> {
+  _$LoginPrincipalStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? posicionConsolidada = freezed,
+    Object? errorMessage = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      posicionConsolidada: freezed == posicionConsolidada
+          ? _value.posicionConsolidada
+          : posicionConsolidada // ignore: cast_nullable_to_non_nullable
+              as PosicionConsolidadaRespuesta?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PosicionConsolidadaRespuestaCopyWith<$Res>? get posicionConsolidada {
+    if (_value.posicionConsolidada == null) {
+      return null;
+    }
+
+    return $PosicionConsolidadaRespuestaCopyWith<$Res>(
+        _value.posicionConsolidada!, (value) {
+      return _then(_value.copyWith(posicionConsolidada: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$LoginPrincipalStateImplCopyWith<$Res>
+    implements $LoginPrincipalStateCopyWith<$Res> {
+  factory _$$LoginPrincipalStateImplCopyWith(_$LoginPrincipalStateImpl value,
+          $Res Function(_$LoginPrincipalStateImpl) then) =
+      __$$LoginPrincipalStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool isLoading,
+      PosicionConsolidadaRespuesta? posicionConsolidada,
+      String? errorMessage});
+
+  @override
+  $PosicionConsolidadaRespuestaCopyWith<$Res>? get posicionConsolidada;
+}
+
+/// @nodoc
+class __$$LoginPrincipalStateImplCopyWithImpl<$Res>
+    extends _$LoginPrincipalStateCopyWithImpl<$Res, _$LoginPrincipalStateImpl>
+    implements _$$LoginPrincipalStateImplCopyWith<$Res> {
+  __$$LoginPrincipalStateImplCopyWithImpl(_$LoginPrincipalStateImpl _value,
+      $Res Function(_$LoginPrincipalStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? posicionConsolidada = freezed,
+    Object? errorMessage = freezed,
+  }) {
+    return _then(_$LoginPrincipalStateImpl(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      posicionConsolidada: freezed == posicionConsolidada
+          ? _value.posicionConsolidada
+          : posicionConsolidada // ignore: cast_nullable_to_non_nullable
+              as PosicionConsolidadaRespuesta?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LoginPrincipalStateImpl implements _LoginPrincipalState {
+  const _$LoginPrincipalStateImpl(
+      {this.isLoading = true, this.posicionConsolidada, this.errorMessage});
+
+  factory _$LoginPrincipalStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LoginPrincipalStateImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool isLoading;
+  @override
+  final PosicionConsolidadaRespuesta? posicionConsolidada;
+  @override
+  final String? errorMessage;
+
+  @override
+  String toString() {
+    return 'LoginPrincipalState(isLoading: $isLoading, posicionConsolidada: $posicionConsolidada, errorMessage: $errorMessage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoginPrincipalStateImpl &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.posicionConsolidada, posicionConsolidada) ||
+                other.posicionConsolidada == posicionConsolidada) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, posicionConsolidada, errorMessage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoginPrincipalStateImplCopyWith<_$LoginPrincipalStateImpl> get copyWith =>
+      __$$LoginPrincipalStateImplCopyWithImpl<_$LoginPrincipalStateImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LoginPrincipalStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LoginPrincipalState implements LoginPrincipalState {
+  const factory _LoginPrincipalState(
+      {final bool isLoading,
+      final PosicionConsolidadaRespuesta? posicionConsolidada,
+      final String? errorMessage}) = _$LoginPrincipalStateImpl;
+
+  factory _LoginPrincipalState.fromJson(Map<String, dynamic> json) =
+      _$LoginPrincipalStateImpl.fromJson;
+
+  @override
+  bool get isLoading;
+  @override
+  PosicionConsolidadaRespuesta? get posicionConsolidada;
+  @override
+  String? get errorMessage;
+  @override
+  @JsonKey(ignore: true)
+  _$$LoginPrincipalStateImplCopyWith<_$LoginPrincipalStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 CuentaDetalleState _$CuentaDetalleStateFromJson(Map<String, dynamic> json) {
@@ -7353,9 +7758,9 @@ class _$MovimientoModelImpl implements _MovimientoModel {
       this.fecha,
       this.transaccion = '',
       this.cheque = '',
-      this.deposito = 0.0,
-      this.retiro = 0.0,
-      this.saldo = 0.0,
+      this.deposito = 0.00,
+      this.retiro = 0.00,
+      this.saldo = 0.00,
       this.oficina = '',
       this.documento = ''});
 
@@ -7708,11 +8113,11 @@ class _$ResumenMesModelImpl implements _ResumenMesModel {
       this.anio = 0,
       this.fechaInicio,
       this.fechaFin,
-      this.saldoAnterior = 0.0,
-      this.totalCreditos = 0.0,
-      this.totalDebitos = 0.0,
-      this.saldoActual = 0.0,
-      this.saldoPromedio = 0.0});
+      this.saldoAnterior = 0.00,
+      this.totalCreditos = 0.00,
+      this.totalDebitos = 0.00,
+      this.saldoActual = 0.00,
+      this.saldoPromedio = 0.00});
 
   factory _$ResumenMesModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResumenMesModelImplFromJson(json);
@@ -8444,8 +8849,8 @@ class _$MovimientoPrestamoModelImpl implements _MovimientoPrestamoModel {
       this.fechaSistema,
       this.documento = '',
       this.transaccion = '',
-      this.valor = 0.0,
-      this.saldo = 0.0,
+      this.valor = 0.00,
+      this.saldo = 0.00,
       this.tipo = '',
       this.agencia = '',
       this.usuario = '',
@@ -8732,7 +9137,7 @@ class _$RubroMovimientoPrestamoModelImpl
       this.documento = '',
       this.cuota = 0,
       this.rubro = '',
-      this.valor = 0.0});
+      this.valor = 0.00});
 
   factory _$RubroMovimientoPrestamoModelImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -9144,8 +9549,8 @@ class _$MovimientoInversionModelImpl implements _MovimientoInversionModel {
   _$MovimientoInversionModelImpl(
       {this.fecha,
       this.transaccion = '',
-      this.valor = 0.0,
-      this.saldo = 0.0,
+      this.valor = 0.00,
+      this.saldo = 0.00,
       this.oficina = '',
       this.documento = ''});
 
@@ -9863,12 +10268,12 @@ class __$$InformacionPrestamoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InformacionPrestamoImpl implements _InformacionPrestamo {
   _$InformacionPrestamoImpl(
-      {this.deudaInicial = 0.0,
-      this.saldo = 0.0,
-      this.valorDia = 0.0,
-      this.valorCuota = 0.0,
-      this.valorHastaCuota = 0.0,
-      this.valorCancelarPrestamo = 0.0,
+      {this.deudaInicial = 0.00,
+      this.saldo = 0.00,
+      this.valorDia = 0.00,
+      this.valorCuota = 0.00,
+      this.valorHastaCuota = 0.00,
+      this.valorCancelarPrestamo = 0.00,
       this.fechaAdjudicacion,
       this.cuotasVencidas = 0});
 
@@ -10234,16 +10639,16 @@ class _$DetallePrestamoImpl implements _DetallePrestamo {
   _$DetallePrestamoImpl(
       {this.fechaVencimiento,
       this.numeroCuota = 0,
-      this.saldoAdeudado = 0.0,
-      this.capital = 0.0,
-      this.interes = 0.0,
-      this.mora = 0.0,
-      this.extrajudicial = 0.0,
-      this.judicial = 0.0,
-      this.otros = 0.0,
-      this.total = 0.0,
+      this.saldoAdeudado = 0.00,
+      this.capital = 0.00,
+      this.interes = 0.00,
+      this.mora = 0.00,
+      this.extrajudicial = 0.00,
+      this.judicial = 0.00,
+      this.otros = 0.00,
+      this.total = 0.00,
       this.fechaPago = '',
-      this.diasMora = 0.0,
+      this.diasMora = 0.00,
       this.estado = ''});
 
   factory _$DetallePrestamoImpl.fromJson(Map<String, dynamic> json) =>
@@ -12741,7 +13146,7 @@ class _$ValidaTransferenciaYGeneraOtpRequerimientoImpl
       this.codigoConcepto = '',
       this.institucion = '',
       this.cuentaDestino = '',
-      this.monto = 0.0,
+      this.monto = 0.00,
       this.descripcion = '',
       this.emailEnvio = '',
       this.celularEnvio = '',
@@ -13328,7 +13733,7 @@ class _$ProcesaTransferenciaDirectaRequerimientoImpl
       this.idBeneficiario = 0,
       this.codigoConcepto = '',
       this.cuentaDestino = '',
-      this.monto = 0.0,
+      this.monto = 0.00,
       this.descripcion = '',
       this.emailEnvio = '',
       this.celularEnvio = '',
@@ -13781,7 +14186,7 @@ class __$$ConsultaRequisitosTransferenciaRespuestaImplCopyWithImpl<$Res>
 class _$ConsultaRequisitosTransferenciaRespuestaImpl
     implements _ConsultaRequisitosTransferenciaRespuesta {
   _$ConsultaRequisitosTransferenciaRespuestaImpl(
-      {this.comision = 0.0,
+      {this.comision = 0.00,
       final List<ConceptoTransferenciaModel> conceptosTransferencia = const []})
       : _conceptosTransferencia = conceptosTransferencia;
 
@@ -14215,7 +14620,7 @@ class _$ProcesaAbonoPrestamoRequerimientoImpl
       {this.idUsuario = 0,
       this.codigoPrestamo = '',
       this.cuentaDebito = '',
-      this.monto = 0.0,
+      this.monto = 0.00,
       this.emailEnvio = '',
       this.concepto = '',
       this.otpIngresado = '',
@@ -14676,10 +15081,10 @@ class __$$DetalleInversionModelImplCopyWithImpl<$Res>
 class _$DetalleInversionModelImpl implements _DetalleInversionModel {
   _$DetalleInversionModelImpl(
       {this.fecha,
-      this.retencion = 0.0,
-      this.valor = 0.0,
-      this.tasa = 0.0,
-      this.totalTasa = 0.0,
+      this.retencion = 0.00,
+      this.valor = 0.00,
+      this.tasa = 0.00,
+      this.totalTasa = 0.00,
       this.item = '',
       this.estado = ''});
 
@@ -17349,8 +17754,8 @@ class _$AgenciaCajeroItemImpl implements _AgenciaCajeroItem {
       {this.nombre = '',
       this.descripcion = '',
       this.telefono = '',
-      this.latitud = 0.0,
-      this.longitud = 0.0,
+      this.latitud = 0.00,
+      this.longitud = 0.00,
       this.esCajero = false});
 
   factory _$AgenciaCajeroItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -19405,7 +19810,7 @@ class _$ConsultaCuentaVinculadaQRRespuestaImpl
       {required this.transactionId,
       required this.trackingId,
       required this.account,
-      this.montoDisponible = 0.0});
+      this.montoDisponible = 0.00});
 
   factory _$ConsultaCuentaVinculadaQRRespuestaImpl.fromJson(
           Map<String, dynamic> json) =>

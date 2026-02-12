@@ -14,7 +14,7 @@ class PosicionConsolidadaController extends _$PosicionConsolidadaController {
   PosicionConsolidadaState build() {
     return const PosicionConsolidadaState();
   }
-
+  
   Future<void> actualizaConsolidado({disableLoading=false}) async {
     var client = HttpClientHelper.getClient();
 

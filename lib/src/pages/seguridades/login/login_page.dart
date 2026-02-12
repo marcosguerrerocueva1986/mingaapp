@@ -241,6 +241,11 @@ _showResendButton = false;
                             key: const ValueKey('usuario'),
                             formControlName: 'codigoUsuario',
                             readOnly: false,//!provider.permiteEditarUsuario,
+                            validationMessages: {
+                             ValidationMessage.required: (error) => 'Ingrese su usuario',
+                              // Puedes agregar más validaciones si las tienes en tu formControl:
+                              //ValidationMessage.minLength: (error) => 'Debe tener al menos ${(error as Map)['requiredLength']} caracteres',
+                            },
                             decoration: InputDecoration(
                                 prefixIcon: const Icon(
                                   Icons.verified_user_outlined,
@@ -303,6 +308,11 @@ _showResendButton = false;
                           ReactiveTextField(
                             key: const ValueKey('password'),
                             formControlName: 'pwdUsuario',
+                            validationMessages: {
+                             ValidationMessage.required: (error) => 'Ingrese su contraseña',
+                              // Puedes agregar más validaciones si las tienes en tu formControl:
+                              //ValidationMessage.minLength: (error) => 'Debe tener al menos ${(error as Map)['requiredLength']} caracteres',
+                            },
                             obscureText: provider.obscurecerClave,
                             decoration: InputDecoration(
                                 prefixIcon: const Icon(

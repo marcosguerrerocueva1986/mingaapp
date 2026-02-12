@@ -70,6 +70,11 @@ class _RecuperarUsuarioPageState extends ConsumerState<RecuperarUsuarioPage> {
                           key: const ValueKey('identificacionusuariorecuperacion'),
                           formControlName: 'identificacion',
                           readOnly: !provider.permiteEditarUsuario,
+                          validationMessages: {
+                             ValidationMessage.required: (error) => 'Ingrese su número de cédula',
+                              // Puedes agregar más validaciones si las tienes en tu formControl:
+                              //ValidationMessage.minLength: (error) => 'Debe tener al menos ${(error as Map)['requiredLength']} caracteres',
+                            },
                           decoration: InputDecoration(
                               prefixIcon: const Icon(
                                 Icons.verified_user_rounded,

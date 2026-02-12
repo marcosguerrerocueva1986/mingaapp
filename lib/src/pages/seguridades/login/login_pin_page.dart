@@ -105,7 +105,7 @@ class _LoginPinPageState extends ConsumerState<LoginPinPage> {
                           child: TextButton(
                             onPressed: () => _mostrarOpcionesRecuperacion(context),
                             child: const Text(
-                              "¿Olvidaste tu PIN?",
+                              " ",//"¿Olvidaste tu PIN?",
                               style: TextStyle(color: Color.fromRGBO(0, 114, 181, 48), fontWeight: FontWeight.bold, fontSize: 15),
                             ),
                           ),

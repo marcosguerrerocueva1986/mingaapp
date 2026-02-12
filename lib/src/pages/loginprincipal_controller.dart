@@ -5,7 +5,7 @@ import 'package:flutter_biometrics/flutter_biometrics.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'loginprincipal_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class LoginPrincipalController extends _$LoginPrincipalController {
   final form = fb.group({
     'codigoUsuario': ['', Validators.required],
@@ -13,7 +13,18 @@ class LoginPrincipalController extends _$LoginPrincipalController {
   });
 
   @override
-  LoginState build() {
-    return LoginState(permiteEditarUsuario: true, obscurecerClave: true);
+  LoginPrincipalState build() {
+    return const LoginPrincipalState();
+  }
+
+  Future<void> actualizaImagen() async {
+    var client = HttpClientHelper.getClient();
+
+    var respuesta = await guard(() async => await client.consultaImagenPrincipal(
+      BaseRequerimiento(idUsuario: HttpClientHelper.idUsuario)));
+
+    if (respuesta.hasValue) {
+      state = state.copyWith(posicionConsolidada: respuesta.value, isLoading: false, errorMessage: null);
+    }
   }
 }

@@ -1,5 +1,8 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:bancamovilr/index.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'models.g.dart';
@@ -270,7 +273,9 @@ class PosicionConsolidadaRespuesta with _$PosicionConsolidadaRespuesta {
           @Default([]) List<PrestamoModel> prestamos,
           PersonaModel? persona,
           ClienteMontosLimite? cliMontosLimites,
-          @Default(0) int minutosDuracionOtp}) =
+          @Default(0) int minutosDuracionOtp,
+          @Default([]) List<ImagenPantalla> listaCarrusel,
+          @Default([]) List<ImagenPantalla> listaInicial}) =
       _PosicionConsolidadaRespuesta;
 
   factory PosicionConsolidadaRespuesta.fromJson(Map<String, Object?> json) =>
@@ -292,6 +297,32 @@ class CuentaModel with _$CuentaModel {
 
   factory CuentaModel.fromJson(Map<String, Object?> json) =>
       _$CuentaModelFromJson(json);
+}
+
+class Uint8ListConverter implements JsonConverter<Uint8List?, String?> {
+  const Uint8ListConverter();
+
+  @override
+  Uint8List? fromJson(String? json) {
+    if (json == null || json.isEmpty) return null;
+    return base64Decode(json); // Convierte el String Base64 a bytes
+  }
+
+  @override
+  String? toJson(Uint8List? object) {
+    if (object == null) return null;
+    return base64Encode(object); // Convierte los bytes a String Base64
+  }
+}
+
+@freezed
+class ImagenPantalla with _$ImagenPantalla {
+  factory ImagenPantalla({
+    @Uint8ListConverter() Uint8List? imagen,
+  }) = _ImagenPantalla;
+
+  factory ImagenPantalla.fromJson(Map<String, Object?> json) =>
+      _$ImagenPantallaFromJson(json);
 }
 
 @freezed
@@ -357,7 +388,17 @@ class PosicionConsolidadaState with _$PosicionConsolidadaState {
   factory PosicionConsolidadaState.fromJson(Map<String, Object?> json) =>
       _$PosicionConsolidadaStateFromJson(json);
 }
+@freezed
+class LoginPrincipalState with _$LoginPrincipalState {
+  const factory LoginPrincipalState({
+    @Default(true) bool isLoading,
+    PosicionConsolidadaRespuesta? posicionConsolidada,
+    String? errorMessage,
+  }) = _LoginPrincipalState;
 
+  factory LoginPrincipalState.fromJson(Map<String, Object?> json) =>
+      _$LoginPrincipalStateFromJson(json);
+}
 @freezed
 class CuentaDetalleState with _$CuentaDetalleState {
   factory CuentaDetalleState(

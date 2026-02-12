@@ -78,6 +78,11 @@ class _CambiarContraseniaLoginPageState extends ConsumerState<CambiarContrasenia
                   key: const ValueKey('passwordAnterior'),
                   formControlName: 'pwdAnterior',
                   obscureText: _obscureTextPwdAnterior,
+                  validationMessages: {
+                             ValidationMessage.required: (error) => 'Ingrese su contraseña temporal',
+                              // Puedes agregar más validaciones si las tienes en tu formControl:
+                              //ValidationMessage.minLength: (error) => 'Debe tener al menos ${(error as Map)['requiredLength']} caracteres',
+                            },
                   decoration: InputDecoration(
                       prefixIcon: const Icon(
                         Icons.lock_outline,
@@ -131,6 +136,11 @@ class _CambiarContraseniaLoginPageState extends ConsumerState<CambiarContrasenia
                   key: const ValueKey('passwordNueva'),
                   formControlName: 'pwdNueva',
                   obscureText: _obscureTextPwdNueva,
+                  validationMessages: {
+                             ValidationMessage.required: (error) => 'Ingrese su contraseña nueva',
+                              // Puedes agregar más validaciones si las tienes en tu formControl:
+                              //ValidationMessage.minLength: (error) => 'Debe tener al menos ${(error as Map)['requiredLength']} caracteres',
+                            },
                   decoration: InputDecoration(
                       prefixIcon: const Icon(
                         Icons.lock_outline,
@@ -183,7 +193,7 @@ class _CambiarContraseniaLoginPageState extends ConsumerState<CambiarContrasenia
                 ReactiveTextField(
                   key: const ValueKey('passwordConfirmarNueva'),
                   formControlName: 'pwdNuevaConfirmar',
-                  obscureText: _obscureTextPwdConfirmar,
+                  obscureText: _obscureTextPwdConfirmar,                 
                   validationMessages: {
                     ValidationMessage.mustMatch: (error) => 'Las contraseñas no coinciden',
                   },

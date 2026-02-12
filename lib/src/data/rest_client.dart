@@ -29,6 +29,10 @@ abstract class RestClient {
   Future<PosicionConsolidadaRespuesta> consultaConsolidado(
       @Body() BaseRequerimiento requerimiento);
 
+   @POST("/consultaImagenPrincipal")
+  Future<PosicionConsolidadaRespuesta> consultaImagenPrincipal(
+      @Body() BaseRequerimiento requerimiento);
+
   @POST("/consultaMovimientosCuenta")
   Future<ConsultaMovimientosCuentaRespuesta> consultaMovimientosCuenta(
       @Body() ConsultaMovimientosCuentaRequerimiento requerimiento);

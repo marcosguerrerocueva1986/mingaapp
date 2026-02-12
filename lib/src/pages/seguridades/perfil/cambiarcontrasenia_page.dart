@@ -105,6 +105,11 @@ class _CambiarContraseniaState extends ConsumerState<CambiarContraseniaPage> {
                     key: const ValueKey('pwdAnteriorCambioContrasenia'),
                     formControlName: 'pwdAnterior',
                     obscureText: provider.obscurecerClave,
+                    validationMessages: {
+                      ValidationMessage.required: (error) => 'Ingrese su contraseña actual',
+                      // Puedes agregar más validaciones si las tienes en tu formControl:
+                      //ValidationMessage.minLength: (error) => 'Debe tener al menos ${(error as Map)['requiredLength']} caracteres',
+                    },
                     decoration: InputDecoration(
                         prefixIcon: const Icon(
                           Icons.lock_outline,
@@ -159,6 +164,11 @@ class _CambiarContraseniaState extends ConsumerState<CambiarContraseniaPage> {
                     key: const ValueKey('pwdNuevaCambioContrasenia'),
                     formControlName: 'pwdNueva',
                     obscureText: provider.obscurecerClave,
+                    validationMessages: {
+                      ValidationMessage.required: (error) => 'Ingrese su contraseña nueva',
+                      // Puedes agregar más validaciones si las tienes en tu formControl:
+                      //ValidationMessage.minLength: (error) => 'Debe tener al menos ${(error as Map)['requiredLength']} caracteres',
+                    },
                     decoration: InputDecoration(
                         prefixIcon: const Icon(
                           Icons.lock_outline,
@@ -213,6 +223,9 @@ class _CambiarContraseniaState extends ConsumerState<CambiarContraseniaPage> {
                     key: const ValueKey('pwdNuevaConfirmarCambioContrasenia'),
                     formControlName: 'pwdNuevaConfirmar',
                     obscureText: provider.obscurecerClave,
+                    validationMessages: {
+                      ValidationMessage.mustMatch: (error) => 'Las contraseñas no coinciden',
+                    },
                     decoration: InputDecoration(
                         prefixIcon: const Icon(
                           Icons.lock_outline,

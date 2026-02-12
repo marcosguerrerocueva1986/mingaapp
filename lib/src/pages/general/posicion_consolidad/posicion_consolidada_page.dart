@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/general/posicion_consolidad/balance_visibility_controller.dart';
 import 'package:bancamovilr/src/pages/general/posicion_consolidad/mis_productos_page.dart';
@@ -56,18 +57,21 @@ with SingleTickerProviderStateMixin {
   void _startPromoCarouselAutoPlay() {
     _promoCarouselTimer = Timer.periodic(const Duration(seconds: 8), (Timer timer) {
       if (_promoCarouselController.hasClients) { 
-        int nextPage = (_currentPromoIndex + 1) % _carouselImagePaths.length;
+        final lista = ref.read(posicionConsolidadaControllerProvider).posicionConsolidada?.listaCarrusel ?? [];
+        if (lista.isNotEmpty) {
+        int nextPage = (_currentPromoIndex + 1) % lista.length;
         _promoCarouselController.animateToPage(
           nextPage,
-          duration: const Duration(milliseconds: 300), 
+          duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
         );
         setState(() {
           _currentPromoIndex = nextPage;
         });
       }
-    });
-  }
+    }
+  });
+}
   @override
   void dispose() {
     _tabController.dispose();
@@ -188,6 +192,7 @@ with SingleTickerProviderStateMixin {
     var provider = ref.watch(posicionConsolidadaControllerProvider);
     var loginProvider = ref.watch(loginControllerProvider);
     var nombreCliente = loginProvider.loginRespuesta?.nombre ?? 'Usuario';
+    final imagenesBase = provider.posicionConsolidada?.listaCarrusel ?? [];
 
     if (provider.isLoading) {
       return const Center(
@@ -309,14 +314,14 @@ with SingleTickerProviderStateMixin {
                   child: SizedBox(
                     child: PageView.builder(
                       controller: _promoCarouselController,
-                      itemCount: _carouselImagePaths.length,
+                      itemCount: imagenesBase.length,
                       onPageChanged: (int page) {
                         setState(() {
                           _currentPromoIndex = page;
                         });
                       },
                       itemBuilder: (context, index) {
-                        final String imagePath = _carouselImagePaths[index];
+                        final item = imagenesBase[index];
                         return Padding(
                           padding: EdgeInsets.zero,
                           child: Card(
@@ -325,11 +330,9 @@ with SingleTickerProviderStateMixin {
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                               child: CardImagen(
-                                imagePath: imagePath,
+                                imagenBytes: item.imagen,
                                 onClick: () {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text('Clic en ${imagePath.split('/').last}')),
-                                  );
+                                  // Acción al hacer clic
                                 },
                               ),
                             ),
@@ -551,12 +554,14 @@ with SingleTickerProviderStateMixin {
   }
 
   class CardImagen extends StatelessWidget {
-    final String imagePath; 
+    //final String imagePath; 
+    final Uint8List? imagenBytes;
     final VoidCallback onClick; 
 
     const CardImagen({
       Key? key,
-      required this.imagePath,
+      //required this.imagePath,
+      required this.imagenBytes,
       required this.onClick,
     }) : super(key: key);
 
@@ -568,12 +573,18 @@ with SingleTickerProviderStateMixin {
           elevation: 0,
           margin: EdgeInsets.zero,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-          child: Ink.image( 
-            image: AssetImage(imagePath),
-            fit: BoxFit.fill, 
-            child: InkWell( 
-              onTap: onClick,           
-              child: Container(),
+          child: ClipRRect(
+          borderRadius: BorderRadius.circular(15.0),
+          child: imagenBytes != null
+            ? Image.memory(
+                imagenBytes!,
+                fit: BoxFit.fill,
+                width: double.infinity,
+                height: double.infinity,
+              )
+            : Image.asset(
+                'assets/images/imagenpromocion/promocion.png', 
+                fit: BoxFit.fill,
             ),
           ),
         ),

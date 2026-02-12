@@ -19,11 +19,11 @@ class LoginPrincipalPage extends ConsumerStatefulWidget {
   const LoginPrincipalPage({super.key});
 
   @override
-  ConsumerState<LoginPrincipalPage> createState() => _LoginPrincipalState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _LoginPrincipalState();
 }
 
 class _LoginPrincipalState extends ConsumerState<LoginPrincipalPage> 
-with TickerProviderStateMixin {
+with SingleTickerProviderStateMixin {
   String? _errorMessage;
   bool _isLoading = false;
   final LocalAuthentication auth = LocalAuthentication();
@@ -32,7 +32,7 @@ with TickerProviderStateMixin {
   late AnimationController _logoMitadAnimationController;
   late Animation<double> _logoMitadScaleAnimation;
   static const double _logoMitadWidth = 350.0;
-  static const double _logoMitadHeight = 350.0;
+  static const double _logoMitadHeight = 340.0;
   @override
   void dispose() {
     _logoMitadAnimationController.dispose();
@@ -42,6 +42,7 @@ with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    ref.read(loginPrincipalControllerProvider.notifier).actualizaImagen();
     _checkBiometrics();
     _logoMitadAnimationController = AnimationController(
       vsync: this,
@@ -84,7 +85,7 @@ with TickerProviderStateMixin {
       context: context,
       isDismissible: false,
       enableDrag: false,
-      backgroundColor: Colors.transparent, // Para bordes redondeados
+      backgroundColor: Colors.transparent,
       builder: (context) => Container(
         decoration: const BoxDecoration(
           color: Colors.white,
@@ -168,6 +169,8 @@ with TickerProviderStateMixin {
   }
   @override
   Widget build(BuildContext context) {
+    var provider = ref.watch(loginPrincipalControllerProvider);
+    final imagenesBase = provider.posicionConsolidada?.listaInicial ?? [];
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.zero,
@@ -209,11 +212,16 @@ with TickerProviderStateMixin {
                         child: child,
                       );
                     },
-                    child: Image.asset( 
-                      'assets/images/logomitad.png',
-                      width: _logoMitadWidth, 
-                      height: _logoMitadHeight,
-                    ),
+                    child: imagenesBase.isNotEmpty == true 
+                      ? Image.memory(
+                          imagenesBase[0].imagen!, 
+                          width: _logoMitadWidth,
+                          height: _logoMitadHeight,
+                          fit: BoxFit.contain,
+                          errorBuilder: (context, error, stackTrace) => 
+                              Image.asset('assets/images/logomitad.png', width: _logoMitadWidth, height: _logoMitadHeight,), 
+                        )
+                      : Image.asset('assets/images/logomitad.png', width: _logoMitadWidth, height: _logoMitadHeight,),
                   ),
                   const SizedBox(height: 10,),
                   Row(

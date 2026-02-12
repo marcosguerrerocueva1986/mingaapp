@@ -248,6 +248,11 @@ _showResendButton = false;
                       key: const ValueKey('identificacionActivaCuenta'),
                       formControlName: 'identificacion',
                       readOnly: !provider.permiteEditarUsuario,
+                      validationMessages: {
+                        ValidationMessage.required: (error) => 'Ingrese su identificación',
+                        // Puedes agregar más validaciones si las tienes en tu formControl:
+                        //ValidationMessage.minLength: (error) => 'Debe tener al menos ${(error as Map)['requiredLength']} caracteres',
+                      },
                       decoration: InputDecoration(
                           prefixIcon: const Icon(
                             Icons.verified_user_outlined,
@@ -292,6 +297,11 @@ _showResendButton = false;
                     ReactiveTextField(
                       key: const ValueKey('codigousuarioactivacuenta'),
                       formControlName: 'codigoUsuario',
+                      validationMessages: {
+                        ValidationMessage.required: (error) => 'Ingrese su usuario',
+                        // Puedes agregar más validaciones si las tienes en tu formControl:
+                        //ValidationMessage.minLength: (error) => 'Debe tener al menos ${(error as Map)['requiredLength']} caracteres',
+                      },
                       decoration: InputDecoration(
                           prefixIcon: const Icon(
                             Icons.verified_user_outlined,
