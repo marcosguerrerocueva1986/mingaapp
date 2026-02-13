@@ -249,8 +249,7 @@ class _PagoServicioPageState extends ConsumerState<PagoServicioPage> {
                         height: defaultPadding,
                       ),
                       Pinput(
-                        androidSmsAutofillMethod:
-                            AndroidSmsAutofillMethod.smsUserConsentApi,
+                        //androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsUserConsentApi,
                         length: 6,
                         // controller: controller,
                         // focusNode: focusNode,

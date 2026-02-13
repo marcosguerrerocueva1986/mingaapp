@@ -231,8 +231,7 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                           height: defaultPadding,
                         ),
                         Pinput(
-                          androidSmsAutofillMethod:
-                              AndroidSmsAutofillMethod.smsUserConsentApi,
+                          //androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsUserConsentApi,
                           length: 6,
                           // controller: controller,
                           // focusNode: focusNode,

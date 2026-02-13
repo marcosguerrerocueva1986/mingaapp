@@ -1,5 +1,4 @@
 import 'package:bancamovilr/index.dart';
-import 'package:flutter_biometrics/flutter_biometrics.dart';
 part 'estado_cuenta_controller.g.dart';
 
 @riverpod

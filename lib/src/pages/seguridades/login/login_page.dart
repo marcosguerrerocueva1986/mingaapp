@@ -143,8 +143,7 @@ _showResendButton = false;
                           const SizedBox(height: defaultPadding * 2),
                           Pinput(
                             key: const ValueKey('pinput_login_confirmacion'),
-                            androidSmsAutofillMethod:
-                                AndroidSmsAutofillMethod.smsUserConsentApi,
+                            //androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsUserConsentApi,
                             length: 6,
                             // controller: controller,
                             // focusNode: focusNode,

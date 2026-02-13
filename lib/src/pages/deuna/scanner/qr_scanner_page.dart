@@ -1,8 +1,7 @@
 import 'dart:developer';
-
 import 'package:bancamovilr/index.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 @RoutePage()
 class QrScannerPage extends ConsumerStatefulWidget {
@@ -13,9 +12,8 @@ class QrScannerPage extends ConsumerStatefulWidget {
 }
 
 class _QrScannerPageState extends ConsumerState<QrScannerPage> {
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  QRViewController? controller;
   bool gettingData = false;
+  MobileScannerController scannerController = MobileScannerController();
 
   @override
   void initState() {
@@ -100,40 +98,38 @@ class _QrScannerPageState extends ConsumerState<QrScannerPage> {
                         const SizedBox(width: 8),
                         Image.asset(R.images.logoDeunaBlanco, height: 12),
                         const SizedBox(width: 8),
-                        const Icon(Icons.arrow_forward_ios_rounded),
+                        const Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
                       ]),
                 ),
               )
             ],
           )
-
-          //const _CustomOverlay(),
-          // _buildInstructions(),
         ],
       ),
     );
   }
 
   Widget _buildQrView(BuildContext context) {
-    return QRView(
-      key: qrKey,
-      onQRViewCreated: _onQRViewCreated,
-      overlay: QrScannerOverlayShape(
-        borderColor: Colors.transparent,
-        cutOutSize: MediaQuery.of(context).size.width * 0.7,
-      ),
+    return MobileScanner(
+      controller: scannerController,
+      onDetect: (capture) {
+        final List<Barcode> barcodes = capture.barcodes;
+        if (barcodes.isNotEmpty && !gettingData) {
+          final String? code = barcodes.first.rawValue;
+          if (code != null) {
+            _onDetectQr(code);
+          }
+        }
+      },
     );
   }
 
-  void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
-      if (!gettingData && scanData.code != null) {
-        gettingData = true;
-        appRouter.replace(PagoDeunaRoute(codigoQr: scanData.code!));
-        gettingData = false;
-      }
-    });
+  void _onDetectQr(String code) {
+    if (!gettingData) {
+      gettingData = true;
+      log('QR detectado: $code');
+      appRouter.replace(PagoDeunaRoute(codigoQr: code));
+    }
   }
 
   Widget _buildScannerOverlay() {
@@ -146,7 +142,7 @@ class _QrScannerPageState extends ConsumerState<QrScannerPage> {
 
   @override
   void dispose() {
-    controller?.dispose();
+    scannerController.dispose();
     super.dispose();
   }
 }
@@ -166,7 +162,7 @@ class _ScannerOverlayPainter extends CustomPainter {
     final centerY = height / 2;
     final cutOutHalf = cutOutSize / 2;
 
-    final backgroundPaint = Paint()..color = Colors.black.withOpacity(0.1);
+    final backgroundPaint = Paint()..color = Colors.black.withOpacity(0.5);
 
     final cutOutPath = Path()
       ..addRRect(
@@ -181,21 +177,14 @@ class _ScannerOverlayPainter extends CustomPainter {
         ),
       );
 
-    // Guardamos la capa con transparencia
     canvas.saveLayer(Rect.largest, Paint());
-
-    // Dibujamos el fondo oscuro
     canvas.drawRect(Rect.largest, backgroundPaint);
-
-    // Recortamos el área transparente
     canvas.drawPath(
       cutOutPath,
       Paint()
         ..blendMode = BlendMode.dstOut
         ..style = PaintingStyle.fill,
     );
-
-    // Restauramos la capa
     canvas.restore();
 
     final paint = Paint()
@@ -203,7 +192,6 @@ class _ScannerOverlayPainter extends CustomPainter {
       ..strokeWidth = 4
       ..style = PaintingStyle.stroke;
 
-    // Longitud de las líneas de las esquinas
     const cornerLineLength = 40.0;
     const spaceCoverAll = 2.00;
 
@@ -219,7 +207,7 @@ class _ScannerOverlayPainter extends CustomPainter {
       paint,
     );
 
-    // // Esquina superior derecha
+    // Esquina superior derecha
     canvas.drawLine(
       Offset(centerX + cutOutHalf + spaceCoverAll, centerY - cutOutHalf),
       Offset(centerX + cutOutHalf - cornerLineLength, centerY - cutOutHalf),
@@ -231,7 +219,7 @@ class _ScannerOverlayPainter extends CustomPainter {
       paint,
     );
 
-    // // Esquina inferior izquierda
+    // Esquina inferior izquierda
     canvas.drawLine(
       Offset(centerX - cutOutHalf, centerY + cutOutHalf),
       Offset(centerX - cutOutHalf, centerY + cutOutHalf - cornerLineLength),

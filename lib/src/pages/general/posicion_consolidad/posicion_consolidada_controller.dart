@@ -1,5 +1,4 @@
 import 'package:bancamovilr/index.dart';
-import 'package:flutter_biometrics/flutter_biometrics.dart';
 
 part 'posicion_consolidada_controller.g.dart';
 
@@ -23,41 +22,6 @@ class PosicionConsolidadaController extends _$PosicionConsolidadaController {
 
     if (respuesta.hasValue) {
       state = state.copyWith(posicionConsolidada: respuesta.value, isLoading: false, errorMessage: null);
-    }
-  }
-
-  Future toogleAccesoPorHuella() async {
-    try {
-      SharedPreference preferences = SharedPreference();
-      bool habilitado = preferences.accesoPorHuellaHabilitado.val;
-
-      if (!habilitado) {
-        String publicKeyAsBase64 = await FlutterBiometrics().createKeys(
-            reason: 'Pon tu dedo en el sensor para habilitar el acceso');
-
-        var client = HttpClientHelper.getClient();
-
-        var respuesta = await guard(() async => await client.registraPinAcceso(
-            RegistroPinAccesoRequerimiento(pinAcceso: publicKeyAsBase64)));
-
-        if (respuesta.hasValue) {
-          preferences.idRegistro.val = HttpClientHelper.idRegistro;
-          preferences.accesoPorHuellaHabilitado.val = !habilitado;
-          preferences.isTestMode.val = HttpClientHelper.testMode;
-
-          state = state.copyWith();
-
-          NotificationService.showSuccess(
-              text: 'Acceso biométrico habilitado correctamente');
-        }
-      } else {
-        eliminarAccesoHuella();
-
-        NotificationService.showSuccess(
-            text: 'Acceso biométrico deshabilitado correctamente');
-      }
-    } catch (e) {
-      NotificationService.showError(text: 'Acceso biométrico no permitido');
     }
   }
 

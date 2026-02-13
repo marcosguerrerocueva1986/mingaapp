@@ -370,8 +370,7 @@ _showResendButton = false;
                       const SizedBox(height: defaultPadding,),
                       Pinput(
                         key: const ValueKey('pinput_transferencia_confirmacion'),
-                        androidSmsAutofillMethod:
-                            AndroidSmsAutofillMethod.smsUserConsentApi,
+                        //androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsUserConsentApi,
                         length: 6,
                         //defaultPinTheme: defaultPinTheme,
                         onCompleted: (String otp) {

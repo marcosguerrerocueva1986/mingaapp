@@ -1,6 +1,5 @@
 import 'package:bancamovilr/index.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 @RoutePage()
 class OnboardingPage extends ConsumerStatefulWidget {
@@ -12,8 +11,7 @@ class OnboardingPage extends ConsumerStatefulWidget {
 
 class _OnboardingPageState extends ConsumerState<OnboardingPage>
     with SingleTickerProviderStateMixin {
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  QRViewController? controller;
+  
   late AnimationController _animationController;
 
   @override
@@ -150,7 +148,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage>
 
   @override
   void dispose() {
-    controller?.dispose();
+    // ELIMINADO: controller?.dispose();
     _animationController.dispose();
     super.dispose();
   }

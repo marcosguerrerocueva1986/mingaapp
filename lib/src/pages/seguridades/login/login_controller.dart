@@ -4,7 +4,6 @@ import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/providers/auth_storage_provider.dart';
 import 'package:bancamovilr/src/services/auth_storage_service.dart';
 import 'package:crypto/crypto.dart';
-import 'package:flutter_biometrics/flutter_biometrics.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'login_controller.g.dart';

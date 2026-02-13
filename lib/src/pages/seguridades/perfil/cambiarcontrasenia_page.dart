@@ -50,8 +50,7 @@ class _CambiarContraseniaState extends ConsumerState<CambiarContraseniaPage> {
                   const SizedBox(height: defaultPadding * 2),
                   Pinput(
                     key: const ValueKey('pinput_login_confirmacion'),
-                    androidSmsAutofillMethod:
-                        AndroidSmsAutofillMethod.smsUserConsentApi,
+                    //androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsUserConsentApi,
                     length: 6,
                     defaultPinTheme: defaultPinTheme,
                     onCompleted: controller.confimarOtpRegistroCambioContrasenia,

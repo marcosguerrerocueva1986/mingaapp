@@ -147,8 +147,7 @@ _showResendButton = false;
                     const SizedBox(height: defaultPadding * 2),
                     Pinput(
                       key: const ValueKey('pinput_activacioncuenta_confirmacion'),
-                      androidSmsAutofillMethod:
-                          AndroidSmsAutofillMethod.smsUserConsentApi,
+                      //androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsUserConsentApi,
                       length: 6,
                       onCompleted: (pin) {
                         if (_secondsRemaining > 0) {
