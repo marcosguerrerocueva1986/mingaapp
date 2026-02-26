@@ -107,8 +107,7 @@ void _printGeneratedKeys() async {
       theme: ThemeData(
           //colorScheme:ColorScheme.fromSeed(seedColor: Color(int.parse("0x0055b7"))),
           colorScheme:ColorScheme.fromSeed(seedColor: Color(int.parse("0x1291c4ff"))),
-
-          cardTheme: CardTheme(
+          cardTheme: CardThemeData(
               elevation: 0,
               shape: RoundedRectangleBorder(
                 side: BorderSide(
