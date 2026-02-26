@@ -1,4 +1,4 @@
-import 'package:awesome_select/awesome_select.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:bancamovilr/index.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -8,19 +8,20 @@ class ReactiveSmartSelect<T> extends ReactiveFormField<T, T> {
   ValueChanged<String?>? onChange;
 
   ReactiveSmartSelect(
+      Key? key,
       {required String formControlName,
       required String title,
       required String placeholder,
       required String label,
       bool showLabel = false,
-      required List<S2Choice<T>> choiceItems,
+      required List<DropdownMenuItem<T>> choiceItems,
       this.onChange,
       bool enabled = true,
-      S2ModalType modalType = S2ModalType.fullPage,
       bool modalFilter = true,
       this.showArrow = true,
       String modalFilterHint = 'Filtrar'})
       : super(
+            key: key,
             formControlName: formControlName,
             validationMessages: {
               'required': (error) => 'Debe seleccionar un $label'
@@ -30,29 +31,59 @@ class ReactiveSmartSelect<T> extends ReactiveFormField<T, T> {
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                       vertical: defaultPadding, horizontal: defaultPadding),
-                  child: SmartSelect<T>.single(
-                    title: title,
-                    placeholder: placeholder,
-                    modalType: modalType,
-                    modalHeaderStyle: S2ModalHeaderStyle(
-                        iconTheme: const IconThemeData(color: Colors.white),
-                        backgroundColor: appRouter
-                            .navigatorKey.currentContext!.theme.primaryColor),
-                    selectedValue: field.value!,
-                    modalFilter: modalFilter,
-                    modalFilterHint: modalFilterHint,
-                    choiceEmptyBuilder: (context, value) => const EmptyResult(),
-                    tileBuilder: (context, value) => SmartSelectFormField(
-                      onTap: enabled ? value.showModal : () {},
-                      text: value.selected.toString(),
-                      label: label,
-                      showArrow: showArrow,
-                      showLabel: showLabel,
+                  child: DropdownSearch<T>(
+                    enabled: enabled,
+                    items: (filter, loadProps) => choiceItems.map((e) => e.value as T).toList(),
+                    itemAsString: (T? item){
+                      final found = choiceItems.firstWhere(
+                        (element) => element.value == item,
+                        orElse: () => DropdownMenuItem(child: Text(item.toString()))
+                      );
+                      return (found.child as Text).data ?? choiceItems.toString();
+                    },
+                    selectedItem: field.value,
+                    compareFn: (item1, item2) => item1 == item2,
+                    onChanged: (T? value) {
+                      field.didChange(value);
+                      if (onChange != null) onChange(value?.toString());
+                    },
+                    decoratorProps: DropDownDecoratorProps(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.zero,
+                        hintText: placeholder,
+                      ),
                     ),
-                    choiceItems: choiceItems,
-                    onChange: (state) {
-                      field.didChange(state.value);
-                      if (onChange != null) onChange(state.value?.toString());
+                    popupProps: PopupProps.menu( 
+                      showSearchBox: modalFilter,
+                      searchFieldProps: TextFieldProps(
+                        decoration: InputDecoration(
+                          hintText: modalFilterHint,
+                        ),
+                      ),
+                      emptyBuilder: (context, searchEntry) => const Center(child: Text('Sin resultados')),
+                    ),
+                    dropdownBuilder: (context, selectedItem) {
+                      String displayText = placeholder;
+                      if (selectedItem != null) {
+                        try {
+                          final found = choiceItems.firstWhere((e) => e.value == selectedItem);
+                          if (found.child is Text) {
+                            displayText = (found.child as Text).data!;
+                          } else {
+                            displayText = selectedItem.toString();
+                          }
+                        } catch (_) {
+                          displayText = selectedItem.toString();
+                        }
+                      }
+                      return SmartSelectFormField(
+                        label: label,
+                        text: displayText,
+                        onTap: () {}, 
+                        showArrow: showArrow,
+                        showLabel: showLabel,
+                      );
                     },
                   ),
                 ),

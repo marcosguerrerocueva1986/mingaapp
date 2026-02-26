@@ -12,7 +12,6 @@ import 'package:bancamovilr/src/pages/loginprincipal_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:local_auth_android/local_auth_android.dart';
-import 'package:local_auth_ios/local_auth_ios.dart';
 
 @RoutePage()
 class LoginPrincipalPage extends ConsumerStatefulWidget {

@@ -182,6 +182,9 @@ class TransferenciaController extends _$TransferenciaController {
                     emailEnvio: form.value['emailEnvio'].toString())));
 
         if (respuesta.hasValue) {
+          ref
+              .read(posicionConsolidadaControllerProvider.notifier)
+              .actualizaConsolidado(disableLoading: true);
           state = state.copyWith(
               esComprobante: true, respuestaProceso: respuesta.value);
         }

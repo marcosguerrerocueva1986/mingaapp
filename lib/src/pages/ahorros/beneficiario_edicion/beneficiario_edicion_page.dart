@@ -1,4 +1,4 @@
-import 'package:awesome_select/awesome_select.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:bancamovilr/index.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:pinput/pinput.dart';
