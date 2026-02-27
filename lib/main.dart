@@ -38,8 +38,8 @@ class MyApp extends ConsumerStatefulWidget {
 
 class _MyAppState extends ConsumerState<MyApp> {
   late Timer _timer;
-RSAPrivateKey? _privateKey;
-RSAPublicKey? _publicKey;
+// RSAPrivateKey? _privateKey;
+// RSAPublicKey? _publicKey;
   void _resetTimer() {
     _timer.cancel();
     Configuracion.ultimaVezActividad = DateTime.now();
@@ -58,40 +58,43 @@ RSAPublicKey? _publicKey;
     _timer = Timer(Duration(seconds: Configuracion.segundosInactividad), () {
       if (HttpClientHelper.token != '') {
         HttpClientHelper.token = '';
-        appRouter.pushAndPopUntil(const LoginPrincipalRoute(), predicate: (_) => false);
+        appRouter.pushAndPopUntil(const LoginRoute(), predicate: (_) => false);
       }
     });
-    _printGeneratedKeys();
+    //_printGeneratedKeys();
   }
-void _printGeneratedKeys() async {
-    final keyPair = await generateRSAKeyPair(); 
-    _privateKey = keyPair.privateKey;
-    _publicKey = keyPair.publicKey;
 
-    final publicKeyPem = encodePublicKeyToPem(keyPair.publicKey);
-    final privateKeyPem = encodePrivateKeyToPem(keyPair.privateKey);
-    print("\n================ CLAVE PÚBLICA (PEM) ================");
-    print(publicKeyPem);
-    print("====================================================");
+// void _printGeneratedKeys() async {
+//     final keyPair = await generateRSAKeyPair(); 
+//     _privateKey = keyPair.privateKey;
+//     _publicKey = keyPair.publicKey;
 
-    print("\n================ CLAVE PRIVADA (PEM) ================");
-    print(privateKeyPem);
-    print("=====================================================");
-    const messageToSign = "Este es el contenido original del documento a firmar.";
+//     final publicKeyPem = encodePublicKeyToPem(keyPair.publicKey);
+//     final privateKeyPem = encodePrivateKeyToPem(keyPair.privateKey);
+//     print("\n================ CLAVE PÚBLICA (PEM) ================");
+//     print(publicKeyPem);
+//     print("====================================================");
+
+//     print("\n================ CLAVE PRIVADA (PEM) ================");
+//     print(privateKeyPem);
+//     print("=====================================================");
+//     const messageToSign = "Este es el contenido original del documento a firmar.";
   
-      final hashToSign = hashMessage(messageToSign); 
-      if (hashToSign == null || hashToSign.isEmpty) {
-        print("ERROR: El hash no se generó correctamente.");
-        return;
-      }
-      final signatureBytes = signHash(_privateKey!, hashToSign);
-      final finalSignature = signatureToBase64(signatureBytes);
-      print('\n--- FIRMA DIGITAL (Base64) ---');
-      print('Mensaje: "$messageToSign"');
-      print('Firma:');
-      print(finalSignature);
-      print('------------------------------');
-  }
+//       final hashToSign = hashMessage(messageToSign); 
+//       if (hashToSign == null || hashToSign.isEmpty) {
+//         print("ERROR: El hash no se generó correctamente.");
+//         return;
+//       }
+//       final signatureBytes = signHash(_privateKey!, hashToSign);
+//       final finalSignature = signatureToBase64(signatureBytes);
+//       print('\n--- FIRMA DIGITAL (Base64) ---');
+//       print('Mensaje: "$messageToSign"');
+//       print('Firma:');
+//       print(finalSignature);
+//       print('------------------------------');
+//   }
+
+
   @override
   void dispose() {
     _timer.cancel();
@@ -101,7 +104,7 @@ void _printGeneratedKeys() async {
   @override
   Widget build(BuildContext context) {
     final themeMode = ref.watch(themeInfoProvider);
-    ref.listen(loginControllerProvider, (previous, next) {});
+    //ref.listen(loginControllerProvider, (previous, next) {});
     return MaterialApp.router(
       themeMode: themeMode,
       theme: ThemeData(
