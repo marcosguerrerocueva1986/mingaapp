@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'package:bancamovilr/index.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:camera/camera.dart';
+import 'package:flutter/foundation.dart';
+import 'package:google_mlkit_barcode_scanning/google_mlkit_barcode_scanning.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 @RoutePage()
@@ -13,20 +15,59 @@ class QrScannerPage extends ConsumerStatefulWidget {
 
 class _QrScannerPageState extends ConsumerState<QrScannerPage> {
   bool gettingData = false;
-  MobileScannerController scannerController = MobileScannerController();
+  CameraController? _cameraController;
+  late BarcodeScanner _barcodeScanner;
+  bool _isBusy = false;
 
   @override
   void initState() {
-    super.initState();
-    _checkCameraPermission();
+  super.initState();
+  _barcodeScanner = BarcodeScanner(
+    formats: [BarcodeFormat.qrCode],
+  );
+  _init();
+}
+
+Future<void> _init() async {
+  final status = await Permission.camera.request();
+  if (!status.isGranted) {
+    appRouter.back();
+    return;
   }
 
-  void _checkCameraPermission() async {
-    final status = await Permission.camera.request();
-    if (!status.isGranted) {
-      appRouter.back();
+  await _initCamera();
+}
+
+  Future<void> _initCamera() async {
+  final cameras = await availableCameras();
+  final backCamera = cameras.first;
+
+  _cameraController = CameraController(
+    backCamera,
+    ResolutionPreset.medium,
+    enableAudio: false,
+  );
+
+  await _cameraController!.initialize();
+  await _cameraController!.startImageStream((image) async {
+    if (_isBusy) return;
+    _isBusy = true;
+
+    final inputImage = _processCameraImage(image);
+    final barcodes = await _barcodeScanner.processImage(inputImage);
+
+    if (barcodes.isNotEmpty) {
+      final code = barcodes.first.rawValue;
+      if (code != null) {
+        _onDetectQr(code);
+      }
     }
-  }
+
+    _isBusy = false;
+  });
+
+  setState(() {});
+}
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +122,7 @@ class _QrScannerPageState extends ConsumerState<QrScannerPage> {
               ),
               InkWell(
                 onTap: () =>
-                    appRouter.navigate(const PreguntasFrecuentesDeunaRoute()),
+                    appRouter.replace(const PreguntasFrecuentesDeunaRoute()),
                 child: Container(
                   color: Colors.black.withOpacity(0.4),
                   height: MediaQuery.of(context).size.height * 0.10,
@@ -110,27 +151,58 @@ class _QrScannerPageState extends ConsumerState<QrScannerPage> {
   }
 
   Widget _buildQrView(BuildContext context) {
-    return MobileScanner(
-      controller: scannerController,
-      onDetect: (capture) {
-        final List<Barcode> barcodes = capture.barcodes;
-        if (barcodes.isNotEmpty && !gettingData) {
-          final String? code = barcodes.first.rawValue;
-          if (code != null) {
-            _onDetectQr(code);
-          }
-        }
-      },
-    );
+    if (_cameraController == null ||
+        !_cameraController!.value.isInitialized) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    return CameraPreview(_cameraController!);
   }
 
-  void _onDetectQr(String code) {
-    if (!gettingData) {
-      gettingData = true;
-      log('QR detectado: $code');
-      appRouter.replace(PagoDeunaRoute(codigoQr: code));
-    }
+    InputImage _processCameraImage(CameraImage image) {
+  final WriteBuffer allBytes = WriteBuffer();
+  for (final Plane plane in image.planes) {
+    allBytes.putUint8List(plane.bytes);
   }
+  final bytes = allBytes.done().buffer.asUint8List();
+
+  final Size imageSize =
+      Size(image.width.toDouble(), image.height.toDouble());
+
+  final camera = _cameraController!.description;
+  final imageRotation =
+      InputImageRotationValue.fromRawValue(camera.sensorOrientation) ??
+          InputImageRotation.rotation0deg;
+
+  final inputImageFormat =
+      InputImageFormatValue.fromRawValue(image.format.raw) ??
+          InputImageFormat.nv21;
+
+  final metadata = InputImageMetadata(
+    size: imageSize,
+    rotation: imageRotation,
+    format: inputImageFormat,
+    bytesPerRow: image.planes.first.bytesPerRow,
+  );
+
+  return InputImage.fromBytes(
+    bytes: bytes,
+    metadata: metadata,
+  );
+}
+  
+  Future<void> _onDetectQr(String code) async {
+  if (gettingData) return;
+
+  gettingData = true;
+  log('QR detectado: $code');
+
+  await _cameraController?.stopImageStream();
+
+  if (mounted) {
+    appRouter.replace(PagoDeunaRoute(codigoQr: code));
+  }
+}
 
   Widget _buildScannerOverlay() {
     return Center(
@@ -142,7 +214,8 @@ class _QrScannerPageState extends ConsumerState<QrScannerPage> {
 
   @override
   void dispose() {
-    scannerController.dispose();
+    _cameraController?.dispose();
+    _barcodeScanner.close();
     super.dispose();
   }
 }

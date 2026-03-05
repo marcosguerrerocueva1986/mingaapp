@@ -1,4 +1,4 @@
-package com.example.bancamovilr
+package com.cloudstudio.bancamovilMinga
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 
