@@ -654,59 +654,44 @@ class CardInformacion extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children:  <Widget> [
-                          SizedBox(
-                            width: 250,
-                            child: Text(
-                              title,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              softWrap: true,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold,
-                                shadows: [
-                                  Shadow(
-                                    blurRadius: 2.0,
-                                    color: Colors.white,
-                                    offset: Offset.zero
-                                  ),
-                                ],
-                              ),
+                      Expanded(
+                        child: SizedBox(
+                          child: Text(
+                            title,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: true,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 2.0,
+                                  color: Colors.white,
+                                  offset: Offset.zero,
+                                ),
+                              ],
                             ),
                           ),
-                        ],
+                        ),
                       ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget> [
-                            const SizedBox(width: 8),
-                            ElevatedButton (
-                              onPressed: onToggleVisibility,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.transparent, 
-                                  foregroundColor: Colors.white, 
-                                  elevation: 0, 
-                                  padding: EdgeInsets.zero, 
-                                  minimumSize: Size.zero, 
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
-                                ),
-                                child: Ink.image(
-                                  image: const AssetImage('assets/images/ojocuenta.png'),
-                                  fit: BoxFit.fill,
-                                  width: 24,
-                                  height: 15,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                      ElevatedButton(
+                        onPressed: onToggleVisibility,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          foregroundColor: Colors.white,
+                          elevation: 0,
+                          padding: EdgeInsets.zero,
+                          minimumSize: Size.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        child: Image.asset(
+                          'assets/images/ojocuenta.png',
+                          width: 24,
+                          height: 15,
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ],
                   ),
@@ -727,34 +712,20 @@ class CardInformacion extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                          Text(
-                          detalle,
-                          style: const TextStyle(
+                      Text(
+                        detalle,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 13.0,
                           fontWeight: FontWeight.bold,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 2.0,
-                              color: Colors.white,
-                              offset: Offset.zero
-                            ),
-                          ],
                         ),
                       ),
                       Text(
-                          accountNumber,
-                          style: const TextStyle(
+                        accountNumber,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 13.0,
                           fontWeight: FontWeight.bold,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 2.0,
-                              color: Colors.white,
-                              offset: Offset.zero
-                            ),
-                          ],
                         ),
                       ),
                     ],
@@ -762,78 +733,54 @@ class CardInformacion extends StatelessWidget {
                   const SizedBox(height: 40.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget> [
+                    children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget> [
+                        children: [
                           const Text(
-                              'Saldo Disponible: ',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 13.0,
-                                fontWeight: FontWeight.bold,
-                                shadows: [
-                                  Shadow(
-                                    blurRadius: 2.0,
-                                    color: Colors.white,
-                                    offset: Offset.zero
-                                  ),
-                                ],
-                              ),
+                            'Saldo Disponible:',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.bold,
                             ),
-                            Text(
-                              isBalanceVisible ? '\$${balance.toStringAsFixed(2)}' : '********',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 26.0,
-                                fontWeight: FontWeight.bold,
-                                shadows: [
-                                  Shadow(
-                                  blurRadius: 2.0,
-                                  color: Colors.white,
-                                  offset: Offset.zero
-                                ),
-                              ],
+                          ),
+                          Text(
+                            isBalanceVisible ? '\$${balance.toStringAsFixed(2)}' : '********',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 26.0,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
                       ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const SizedBox(width: 8),
-                          Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget> [
-                            ElevatedButton (
-                              onPressed: _compartirInformacionDeCuenta,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.transparent, 
-                                  foregroundColor: Colors.white, 
-                                  elevation: 0, 
-                                  padding: EdgeInsets.zero, 
-                                  minimumSize: Size.zero, 
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap, 
-                                ),
-                                child: Ink.image(
-                                  image: const AssetImage('assets/images/compartircuenta.png'),
-                                  fit: BoxFit.fill,
-                                  width: 140,
-                                  height: 20,
-                                ),
-                              ),
-                            ],
+                      Flexible(
+                        child: ElevatedButton(
+                          onPressed: _compartirInformacionDeCuenta,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            foregroundColor: Colors.white,
+                            elevation: 0,
+                            padding: EdgeInsets.zero,
+                            minimumSize: Size.zero,
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           ),
-                        ],
+                          child: Image.asset(
+                            'assets/images/compartircuenta.png',
+                            height: 20,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                ],
+                    ],
+                  ),
               ),
             ),
           ),
-        ),
-      );
+        );
     }
   }
 

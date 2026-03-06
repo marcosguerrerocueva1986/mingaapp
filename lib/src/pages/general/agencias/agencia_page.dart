@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bancamovilr/index.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maps_launcher/maps_launcher.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 @RoutePage()
 class AgenciaPage extends ConsumerStatefulWidget {
@@ -11,12 +12,12 @@ class AgenciaPage extends ConsumerStatefulWidget {
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AgenciaPageState();
 }
-
 class _AgenciaPageState extends ConsumerState<AgenciaPage> {
+  bool permisoUbicacion = false;
   @override
   void initState() {
     super.initState();
-
+    pedirPermisoUbicacion();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .read(agenciaControllerProvider.notifier)
@@ -26,6 +27,21 @@ class _AgenciaPageState extends ConsumerState<AgenciaPage> {
 
   final Completer<GoogleMapController> mapController =
       Completer<GoogleMapController>();
+
+  Future<void> pedirPermisoUbicacion() async {
+    var status = await Permission.location.request();
+
+    if (status.isGranted) {
+      print("Permiso concedido");
+      setState(() {
+        permisoUbicacion = true;
+      });
+    } else if (status.isDenied) {
+      print("Permiso denegado");
+    } else if (status.isPermanentlyDenied) {
+      openAppSettings();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,17 +66,24 @@ class _AgenciaPageState extends ConsumerState<AgenciaPage> {
               target: LatLng(-0.0021441, -78.4557637),
               zoom: 14.4746,
             ),
-            myLocationEnabled: true,
-            markers: {
-              Marker(
-                  markerId: const MarkerId('marker_1'),
-                  position: LatLng(
-                      provider.agenciaSeleccionada?.latitud ?? 0.00,
-                      provider.agenciaSeleccionada?.longitud ?? 0.00))
-            },
+            myLocationEnabled: permisoUbicacion,
+            myLocationButtonEnabled: permisoUbicacion,
+            markers: provider.agenciaSeleccionada == null
+                ? {}
+                : {
+                    Marker(
+                      markerId: const MarkerId('marker_1'),
+                      position: LatLng(
+                        provider.agenciaSeleccionada!.latitud,
+                        provider.agenciaSeleccionada!.longitud,
+                      ),
+                    )
+                  },
             compassEnabled: true,
             onMapCreated: (GoogleMapController cx) {
-              mapController.complete(cx);
+              if (!mapController.isCompleted) {
+                mapController.complete(cx);
+              }
             },
           ),
           AgenciaDetalleCarousel(

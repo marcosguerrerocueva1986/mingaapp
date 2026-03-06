@@ -120,7 +120,7 @@ _showResendButton = false;
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const SizedBox(height: defaultPadding * 3,),
+                        const SizedBox(height: defaultPadding * 5,),
                         SvgPicture.asset(
                           Theme.of(context).brightness == Brightness.dark
                               ? R.svg.logoBlack

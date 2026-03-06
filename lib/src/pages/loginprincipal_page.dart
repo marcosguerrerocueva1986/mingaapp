@@ -178,7 +178,7 @@ with SingleTickerProviderStateMixin {
       body: Padding(
         padding: EdgeInsets.zero,
         child: Stack(
-          fit: StackFit.expand,
+          fit: StackFit.loose,
           children: <Widget> [
           Container(
             decoration: const BoxDecoration(
@@ -189,14 +189,27 @@ with SingleTickerProviderStateMixin {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
+                  const SizedBox(height: 30,),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Image.asset('assets/images/logo1.png', width: 160, height: 130),
+                        children: [
+                          Flexible(
+                            child: Image.asset(
+                              'assets/images/logo1.png',
+                              fit: BoxFit.contain,
+                              height: 80,
+                            ),
+                          ),
                           const SizedBox(width: 32,),
-                          Image.asset('assets/images/logo2.png', width: 160, height: 110),
+                          Flexible(
+                            child: Image.asset(
+                              'assets/images/logo2.png',
+                              fit: BoxFit.contain,
+                              height: 80,
+                            ),
+                          ),
                         ],
                     ),
                   ),

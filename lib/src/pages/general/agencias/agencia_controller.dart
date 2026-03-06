@@ -41,14 +41,21 @@ class AgenciaController extends _$AgenciaController {
   }
 
   Future<void> irAgenciaMapa(
-      Completer<GoogleMapController> mapController) async {
-    final GoogleMapController controller = await mapController.future;
-    await controller.animateCamera(CameraUpdate.newCameraPosition(
+    Completer<GoogleMapController> mapController) async {
+    if (state.agenciaSeleccionada == null) return;
+    final controller = await mapController.future;
+    await controller.animateCamera(
+      CameraUpdate.newCameraPosition(
         CameraPosition(
-            bearing: 192.8334901395799,
-            target: LatLng(state.agenciaSeleccionada?.latitud ?? 0.00,
-                state.agenciaSeleccionada?.longitud ?? 0.00),
-            tilt: 59.440717697143555,
-            zoom: 15)));
+          bearing: 192.8334901395799,
+          target: LatLng(
+            state.agenciaSeleccionada!.latitud,
+            state.agenciaSeleccionada!.longitud,
+          ),
+          tilt: 59.440717697143555,
+          zoom: 15,
+        ),
+      ),
+    );
   }
 }
