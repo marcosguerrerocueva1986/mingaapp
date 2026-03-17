@@ -12,6 +12,7 @@ import 'package:bancamovilr/src/pages/loginprincipal_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:local_auth_android/local_auth_android.dart';
+import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
 class LoginPrincipalPage extends ConsumerStatefulWidget {
@@ -246,7 +247,7 @@ with SingleTickerProviderStateMixin {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
-                            context.router.push(const LoginRoute());
+                            appRouter.push(const LoginRoute());
                           },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.transparent,
@@ -288,7 +289,7 @@ with SingleTickerProviderStateMixin {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
-                              context.router.push(const LoginPinRoute());
+                              appRouter.push(const LoginPinRoute());
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.transparent,

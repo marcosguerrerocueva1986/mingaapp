@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:crypto/crypto.dart';
 import 'package:bancamovilr/index.dart';
 part 'registro_pin_controller.g.dart';
@@ -8,10 +7,14 @@ part 'registro_pin_controller.g.dart';
 class RegistroPinController extends _$RegistroPinController {
     @override
     RegistroPinState build(){
+      final link = ref.keepAlive();
+      ref.onDispose(() {
+       print("RegistroPinController: Limpiando de forma segura.");
+    });
       return RegistroPinState();
     }
     
-    Future RegistrarPin(String pin, int idUsuario) async {
+    Future<void> RegistrarPin(String pin, int idUsuario) async {
       try {
         state = state.copyWith(isLoading: true);
         String salt = "MingaMovil_Secret_2026";

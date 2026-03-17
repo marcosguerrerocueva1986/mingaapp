@@ -6,7 +6,7 @@ part of 'login_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginControllerHash() => r'd4ebee950cc554a456ee134cb86f394f1fcc229f';
+String _$loginControllerHash() => r'ac3197a7541b11873f7b6492c647841312f1c44b';
 
 /// See also [LoginController].
 @ProviderFor(LoginController)
@@ -23,4 +23,4 @@ final loginControllerProvider =
 
 typedef _$LoginController = AutoDisposeNotifier<LoginState>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

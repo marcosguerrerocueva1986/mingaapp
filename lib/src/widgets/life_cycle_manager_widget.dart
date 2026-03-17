@@ -38,8 +38,7 @@ class _LifeCycleManagerState extends State<LifeCycleManagerWidget>
         log('Paso el tiempo de inactividad resumen');
         if (HttpClientHelper.token != '') {
           HttpClientHelper.token = '';
-          appRouter.pushAndPopUntil(const LoginRoute(),
-              predicate: (_) => false);
+          appRouter.replaceAll([const LoginRoute()]);
         }
       }
     }

@@ -1,6 +1,6 @@
 import 'package:bancamovilr/index.dart';
 
-@RoutePage<CuentaModel?>()
+@RoutePage()
 class SeleccionCuentaPage extends ConsumerStatefulWidget {
   const SeleccionCuentaPage({super.key});
 
@@ -38,7 +38,7 @@ class _SeleccionCuentaPageState extends ConsumerState<SeleccionCuentaPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            context.router.pop();
+            appRouter.pop();
           },
         ),
       ),
@@ -52,7 +52,7 @@ class _SeleccionCuentaPageState extends ConsumerState<SeleccionCuentaPage> {
               itemBuilder: (context, index) {
                 var cuenta = cuentasTransaccionales?[index];
                 return GestureDetector(
-                  onTap: () => context.router.pop<CuentaModel?>(cuenta),
+                  onTap: () => appRouter.pop<CuentaModel?>(cuenta),
                   behavior: HitTestBehavior.translucent,
                   child: CuentaItemWidget(cuenta: cuenta),
                 );

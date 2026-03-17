@@ -7,7 +7,7 @@ part of 'beneficiario_controller.dart';
 // **************************************************************************
 
 String _$beneficiarioControllerHash() =>
-    r'5dcac80e3fad00eeb0824261af380d3bd584fc92';
+    r'f88f305f700f59599520db3227562a74b65975b5';
 
 /// See also [BeneficiarioController].
 @ProviderFor(BeneficiarioController)
@@ -24,4 +24,4 @@ final beneficiarioControllerProvider = AutoDisposeNotifierProvider<
 
 typedef _$BeneficiarioController = AutoDisposeNotifier<BeneficiarioState>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -1,6 +1,5 @@
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/seguridades/login/recuperarcontrasenia_controller.dart';
-import 'package:pinput/pinput.dart';
 
 @RoutePage()
 class RecuperarContraseniaPage extends ConsumerStatefulWidget {

@@ -60,7 +60,6 @@ class TransferenciaController extends _$TransferenciaController {
   Future seleccionarCuenta() async {
     var respuesta =
         await appRouter.push<CuentaModel?>(const SeleccionCuentaRoute());
-
     if (respuesta != null) {
       form
           .control('monto')
@@ -136,7 +135,7 @@ class TransferenciaController extends _$TransferenciaController {
     if (state.esValidacion) {
       state = state.copyWith(esValidacion: false);
     } else {
-      await appRouter.pop();
+      await appRouter.pop;
     }
   }
 

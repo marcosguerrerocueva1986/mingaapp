@@ -2,7 +2,7 @@ import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/ahorros/seleccion_concepto/seleccion_concepto_controller.dart';
 import 'package:bancamovilr/src/pages/ahorros/widgets/simple_item_widget.dart';
 
-@RoutePage<ConceptoModel?>()
+@RoutePage()
 class SeleccionConceptoPage extends ConsumerStatefulWidget {
   const SeleccionConceptoPage({super.key});
 

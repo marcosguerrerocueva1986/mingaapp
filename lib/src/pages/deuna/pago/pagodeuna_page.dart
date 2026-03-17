@@ -1,7 +1,6 @@
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/deuna/pago/index.dart';
 import 'package:flutter/services.dart';
-import 'package:pinput/pinput.dart';
 import 'package:sks_ticket_view/sks_ticket_view.dart';
 
 import 'package:widgets_to_image/widgets_to_image.dart';

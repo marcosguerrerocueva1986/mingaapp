@@ -285,7 +285,7 @@ class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
                                 appRouter.push(const MantenimientoRoute());
                               }, 
                               style: TextButton.styleFrom(
-                                backgroundColor: const Color.fromRGBO(48, 155, 217, 25),
+                                backgroundColor: const Color.fromRGBO(48, 155, 217, 1),
                                 padding: const EdgeInsets.fromLTRB(40,1,40,1),
                               ),
                               child: const Text(

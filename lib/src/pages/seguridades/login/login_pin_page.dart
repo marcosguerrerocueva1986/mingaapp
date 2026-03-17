@@ -5,7 +5,7 @@ import 'package:bancamovilr/src/pages/seguridades/perfil/registro_pin_controller
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:pinput/pinput.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -42,13 +42,18 @@ class _LoginPinPageState extends ConsumerState<LoginPinPage> {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double keyboardHeight = screenHeight * 0.38; 
     final defaultPinTheme = PinTheme(
-      width: 45,
-      height: 55,
-      textStyle: const TextStyle(fontSize: 22, color: Color.fromRGBO(30, 60, 87, 1), fontWeight: FontWeight.bold),
-      decoration: BoxDecoration(
-        border: Border.all(color: const Color.fromRGBO(30, 60, 87, 1).withOpacity(0.5)),
-        borderRadius: BorderRadius.circular(8),
-      ),
+      shape: PinCodeFieldShape.box,
+      borderRadius: BorderRadius.circular(8),
+      fieldHeight: 55,
+      fieldWidth: 45,
+      borderWidth: 1,
+      inactiveColor: const Color.fromRGBO(30, 60, 87, 1).withOpacity(0.5),
+      inactiveFillColor: Colors.white,
+      selectedColor: const Color.fromRGBO(30, 60, 87, 1),
+      selectedFillColor: Colors.white,
+      activeColor: const Color.fromRGBO(30, 60, 87, 1),
+      activeFillColor: Colors.white,
+      errorBorderColor: Colors.redAccent,
     );
 
     return Scaffold(
@@ -84,20 +89,29 @@ class _LoginPinPageState extends ConsumerState<LoginPinPage> {
                         ),
                         const SizedBox(height: 30),
                         Center(
-                          child: Pinput(
+                          child: PinCodeTextField(
                             key: const ValueKey('pinput_pin_login'),
+                            appContext: context,
                             length: 6,
                             controller: pinController,
                             focusNode: focusNode,
                             obscureText: true,
-                            readOnly: true,
-                            useNativeKeyboard: false,
+                            obscuringCharacter: '●',
+                            blinkWhenObscuring: true,
+                            autoFocus: false,
+                            showCursor: false,
+                            readOnly: false, 
                             keyboardType: TextInputType.number,
-                            defaultPinTheme: defaultPinTheme,
-                            hapticFeedbackType: HapticFeedbackType.mediumImpact,
+                            animationType: AnimationType.fade,
+                            pinTheme: defaultPinTheme,
+                            enableActiveFill: true,
                             onCompleted: (pin) {
                               ref.read(loginControllerProvider.notifier).loginConPin(pin);
                             },
+                            onChanged: (value) {
+                            },
+                            beforeTextPaste: (text) => true, 
+                            textStyle: const TextStyle(fontSize: 22, color: Color.fromRGBO(30, 60, 87, 1), fontWeight: FontWeight.bold),
                           ),
                         ),
                         const SizedBox(height: 15),
@@ -113,7 +127,7 @@ class _LoginPinPageState extends ConsumerState<LoginPinPage> {
                         const SizedBox(height: 10),
                         Center(
                           child: TextButton(
-                            onPressed: () => context.router.replace(const LoginRoute()),
+                            onPressed: () => appRouter.replace(const LoginRoute()),
                             child: const Text(
                               "Ingresar con contraseña",
                               style: TextStyle(color: Color.fromRGBO(0, 114, 181, 48), fontWeight: FontWeight.bold, fontSize: 15),

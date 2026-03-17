@@ -3,9 +3,8 @@ import 'dart:async';
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/ahorros/widgets/simple_item_widget.dart';
 import 'package:flutter/services.dart';
-import 'package:pinput/pinput.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:sks_ticket_view/sks_ticket_view.dart';
-
 import 'package:widgets_to_image/widgets_to_image.dart';
 
 @RoutePage()
@@ -140,7 +139,7 @@ _showResendButton = false;
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            context.router.pop();
+            appRouter.pop();
           },
         ),
         backgroundColor: context.theme.primaryColor,
@@ -368,33 +367,49 @@ _showResendButton = false;
                           "Ingrese el código temporal de seguridad que fue enviado a su correo y/o celular.",
                           textAlign: TextAlign.center),
                       const SizedBox(height: defaultPadding,),
-                      Pinput(
+                      PinCodeTextField(
                         key: const ValueKey('pinput_transferencia_confirmacion'),
-                        //androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsUserConsentApi,
+                        appContext: context,
                         length: 6,
-                        //defaultPinTheme: defaultPinTheme,
+                        pinTheme: PinTheme(
+                          shape: PinCodeFieldShape.box,
+                          borderRadius: BorderRadius.circular(8),
+                          fieldHeight: 55,
+                          fieldWidth: 45,
+                          borderWidth: 1,
+                          inactiveColor: const Color.fromRGBO(30, 60, 87, 1).withOpacity(0.5),
+                          inactiveFillColor: Colors.white,
+                          selectedColor: const Color.fromRGBO(30, 60, 87, 1),
+                          selectedFillColor: Colors.white,
+                          activeColor: const Color.fromRGBO(30, 60, 87, 1),
+                          activeFillColor: Colors.white,
+                          errorBorderColor: Colors.redAccent,
+                        ),
+                        cursorColor: context.theme.primaryColor,
+                        enableActiveFill: true, 
+                        obscureText: true,
+                        obscuringCharacter: '●',
+                        blinkWhenObscuring: true,
+                        autoFocus: false,
+                        showCursor: false,
+                        readOnly: false, 
+                        keyboardType: TextInputType.number,
+                        animationType: AnimationType.fade,
                         onCompleted: (String otp) {
                           if (_secondsRemaining > 0) {
-                          controller.confirmarOtpTransferencia(widget.tipoTransferencia, otp);
-                        } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('El tiempo ha expirado. Reenvíe el código.'),
-                          ),
-                        );
-                      }
-                      },     
-                        focusedPinTheme: defaultPinTheme.copyWith(
-                          height: 68,
-                          width: 64,
-                          decoration: defaultPinTheme.decoration,
-                        ),
-                        errorPinTheme: defaultPinTheme.copyWith(
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(255, 234, 238, 1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
+                            controller.confirmarOtpTransferencia(widget.tipoTransferencia, otp);
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('El tiempo ha expirado. Reenvíe el código.'),
+                              ),
+                            );
+                          }
+                        },
+                        onChanged: (value) {
+                        },
+                        beforeTextPaste: (text) => true, 
+                        textStyle: const TextStyle(fontSize: 22, color: Color.fromRGBO(30, 60, 87, 1), fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 32),
                       if (!_showResendButton)

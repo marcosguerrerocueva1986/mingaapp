@@ -15,9 +15,12 @@ class _MiPerfilPageState extends ConsumerState<MiPerfilPage> {
   @override
   void initState() {
     super.initState();
-    ref
-        .read(posicionConsolidadaControllerProvider.notifier)
-        .actualizaConsolidado();
+    Future.microtask(() {
+      if (mounted) {
+        ref.read(posicionConsolidadaControllerProvider.notifier)
+           .actualizaConsolidado();
+      }
+    });
   }
 
   String convertirStringAFechaFormateada(String fechaString) {
@@ -65,7 +68,16 @@ class _MiPerfilPageState extends ConsumerState<MiPerfilPage> {
     var fechaUltimoAccesoSF = loginProvider.validacionOtpRespuesta?.usuario?.fechaUltimoAcceso ?? '';
     final fechaFormateada = convertirStringAFechaFormateada(fechaUltimoAccesoSF);
     var nombreIniciales = obtenerIniciales(nombreCliente);
-    return Scaffold(
+    return PopScope(
+    canPop: false, // Bloqueamos la salida directa de la app
+    onPopInvokedWithResult: (didPop, result) {
+      if (didPop) return;
+      appRouter.pushAndPopUntil(
+        const PosicionConsolidadaRoute(), 
+        predicate: (route) => false,
+      );
+    },
+    child: Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/images/logopantallamenu.png', width: 120, height: 80),
         backgroundColor: Colors.white,
@@ -140,14 +152,14 @@ class _MiPerfilPageState extends ConsumerState<MiPerfilPage> {
                 icon: Icons.person_outline,
                 title: 'Datos personales',
                 onTap: () {
-                  context.router.push(const DatosPersonalesRoute());
+                  appRouter.push(const DatosPersonalesRoute());
                 },
               ),
               _buildListTile(
                 icon: Icons.contacts_outlined,
                 title: 'Mis contactos',
                 onTap: () {
-                  context.router.push(const SeleccionBeneficiarioRoute());
+                  appRouter.push(const SeleccionBeneficiarioRoute());
                 },
               ),
               const SizedBox(height: 24),
@@ -165,49 +177,67 @@ class _MiPerfilPageState extends ConsumerState<MiPerfilPage> {
                 icon: Icons.credit_card,
                 title: 'Limite de transacciones',
                 onTap: () {
-                  context.router.push(const MontosMaximosRoute());
+                  appRouter.push(const MontosMaximosRoute());
                 },
               ),
               _buildListTile(
                 icon: Icons.lock_outline,
                 title: 'Cambiar contraseña',
                 onTap: () {
-                  context.router.push(CambiarContraseniaRoute(codigoUsuario: loginProvider.validacionOtpRespuesta!.usuario!.codigoUsuario));
+                  final codigo = loginProvider.validacionOtpRespuesta?.usuario?.codigoUsuario;
+                    if (codigo != null) {
+                      appRouter.push(CambiarContraseniaRoute(codigoUsuario: codigo));
+                    } else {
+                      NotificationService.showError(text: 'No se pudo obtener el código de usuario');
+                  }
                 },
               ),
               _buildListTile(
                 icon: Icons.vpn_key_outlined,
                 title: 'Crea, gestiona y activa un PIN',
                 onTap: () {
-                  context.router.push(const RegistroPinRoute());
+                  appRouter.push(const RegistroPinRoute());
                 },
               ),
               _buildListTile(
                 icon: Icons.fingerprint,
                 title: 'Huella / Face ID',
                 onTap: () {
-                  context.router.push(const MantenimientoRoute());
+                  appRouter.push(const MantenimientoRoute());
                 },
               ),
               _buildListTile(
                 icon: Icons.article_outlined,
                 title: 'Terminos y condiciones',
                 onTap: () {
-                  context.router.push(const TerminosCondicionesRoute());
+                  appRouter.push(const TerminosCondicionesRoute());
                 },
               ),
               _buildListTile(
                 icon: Icons.contact_mail_outlined,
                 title: 'Contactenos',
                 onTap: () {
-                  context.router.push(const ContactenosRoute());
+                  appRouter.push(const ContactenosRoute());
                 },
               ),
               _buildListTile(
                 icon: Icons.logout,
                 title: 'Cerrar Sesión',
-                onTap: () {
-                  ref.read(loginControllerProvider.notifier).logout(context);
+                onTap: () async {
+                  final bool? confirmar = await showDialog<bool>(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Cerrar sesión'),
+                      content: const Text('¿Está seguro de que desea salir?'),
+                      actions: [
+                        TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancelar')),
+                        TextButton(onPressed: () => Navigator.pop(context, true), child: const Text('Sí')),
+                      ],
+                    ),
+                  );
+                  if (confirmar == true) {
+                    ref.read(loginControllerProvider.notifier).logout(context);
+                  }
                 },
               ),
               const SizedBox(height: 10),
@@ -215,8 +245,8 @@ class _MiPerfilPageState extends ConsumerState<MiPerfilPage> {
           ),
         ),
       ),
+      ),
     );
-    
   }
 
   Widget _buildListTile({

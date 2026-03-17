@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -9,311 +10,6 @@
 
 part of 'app_router.dart';
 
-abstract class _$AppRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, PageFactory> pagesMap = {
-    AbonoRoute.name: (routeData) {
-      final args = routeData.argsAs<AbonoRouteArgs>(
-          orElse: () => const AbonoRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: AbonoPage(
-          key: args.key,
-          prestamoParametro: args.prestamoParametro,
-        ),
-      );
-    },
-    ActivaCuentaRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ActivaCuentaPage(),
-      );
-    },
-    AgenciaRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const AgenciaPage(),
-      );
-    },
-    BeneficiarioEdicionRoute.name: (routeData) {
-      final args = routeData.argsAs<BeneficiarioEdicionRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: BeneficiarioEdicionPage(
-          args.id,
-          args.esInterno,
-          key: args.key,
-        ),
-      );
-    },
-    BeneficiarioRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const BeneficiarioPage(),
-      );
-    },
-    CambiarContraseniaLoginRoute.name: (routeData) {
-      final args = routeData.argsAs<CambiarContraseniaLoginRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: CambiarContraseniaLoginPage(
-          key: args.key,
-          codigoUsuario: args.codigoUsuario,
-        ),
-      );
-    },
-    CambiarContraseniaRoute.name: (routeData) {
-      final args = routeData.argsAs<CambiarContraseniaRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: CambiarContraseniaPage(
-          key: args.key,
-          codigoUsuario: args.codigoUsuario,
-        ),
-      );
-    },
-    ContactenosRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ContactenosPage(),
-      );
-    },
-    CuentaDetalleRoute.name: (routeData) {
-      final args = routeData.argsAs<CuentaDetalleRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: CuentaDetallePage(
-          key: args.key,
-          cuenta: args.cuenta,
-        ),
-      );
-    },
-    DatosPersonalesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const DatosPersonalesPage(),
-      );
-    },
-    DepositoDetalleRoute.name: (routeData) {
-      final args = routeData.argsAs<DepositoDetalleRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: DepositoDetallePage(
-          key: args.key,
-          deposito: args.deposito,
-        ),
-      );
-    },
-    EstadoCuentaRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const EstadoCuentaPage(),
-      );
-    },
-    LoginRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const LoginPage(),
-      );
-    },
-    LoginPinRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const LoginPinPage(),
-      );
-    },
-    LoginPrincipalRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const LoginPrincipalPage(),
-      );
-    },
-    MantenimientoRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MantenimientoPage(),
-      );
-    },
-    MiPerfilRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MiPerfilPage(),
-      );
-    },
-    MisProductosOverviewRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MisProductosOverviewPage(),
-      );
-    },
-    MisProductosRouterRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MisProductosRouterPage(),
-      );
-    },
-    MontosMaximosRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MontosMaximosPage(),
-      );
-    },
-    OnboardingRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const OnboardingPage(),
-      );
-    },
-    PagoDeunaRoute.name: (routeData) {
-      final args = routeData.argsAs<PagoDeunaRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: PagoDeunaPage(
-          key: args.key,
-          codigoQr: args.codigoQr,
-          cuentaTransferenciaParametro: args.cuentaTransferenciaParametro,
-        ),
-      );
-    },
-    PagoServicioRoute.name: (routeData) {
-      final args = routeData.argsAs<PagoServicioRouteArgs>(
-          orElse: () => const PagoServicioRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: PagoServicioPage(
-          key: args.key,
-          cuentaTransferenciaParametro: args.cuentaTransferenciaParametro,
-        ),
-      );
-    },
-    PosicionConsolidadaRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const PosicionConsolidadaPage(),
-      );
-    },
-    PreguntasFrecuentesDeunaRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const PreguntasFrecuentesDeunaPage(),
-      );
-    },
-    PrestamoDetalleRoute.name: (routeData) {
-      final args = routeData.argsAs<PrestamoDetalleRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: PrestamoDetallePage(
-          key: args.key,
-          prestamo: args.prestamo,
-        ),
-      );
-    },
-    QrDeunaErrorRoute.name: (routeData) {
-      final args = routeData.argsAs<QrDeunaErrorRouteArgs>(
-          orElse: () => const QrDeunaErrorRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: QrDeunaErrorPage(
-          key: args.key,
-          errorCode: args.errorCode,
-        ),
-      );
-    },
-    QrScannerRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const QrScannerPage(),
-      );
-    },
-    RecuperarContraseniaRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const RecuperarContraseniaPage(),
-      );
-    },
-    RecuperarUsuarioRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const RecuperarUsuarioPage(),
-      );
-    },
-    RegistroPinRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const RegistroPinPage(),
-      );
-    },
-    SeleccionBeneficiarioRoute.name: (routeData) {
-      return AutoRoutePage<BeneficiarioModel?>(
-        routeData: routeData,
-        child: const SeleccionBeneficiarioPage(),
-      );
-    },
-    SeleccionConceptoRoute.name: (routeData) {
-      return AutoRoutePage<ConceptoModel?>(
-        routeData: routeData,
-        child: const SeleccionConceptoPage(),
-      );
-    },
-    SeleccionCuentaRoute.name: (routeData) {
-      return AutoRoutePage<CuentaModel?>(
-        routeData: routeData,
-        child: const SeleccionCuentaPage(),
-      );
-    },
-    SeleccionPrestamoRoute.name: (routeData) {
-      return AutoRoutePage<PrestamoModel?>(
-        routeData: routeData,
-        child: const SeleccionPrestamoPage(),
-      );
-    },
-    SolicitudesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const SolicitudesPage(),
-      );
-    },
-    SplashRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const SplashPage(),
-      );
-    },
-    TerminosCondicionesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const TerminosCondicionesPage(),
-      );
-    },
-    TransaccionDeunaErrorRoute.name: (routeData) {
-      final args = routeData.argsAs<TransaccionDeunaErrorRouteArgs>(
-          orElse: () => const TransaccionDeunaErrorRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: TransaccionDeunaErrorPage(
-          key: args.key,
-          errorCode: args.errorCode,
-        ),
-      );
-    },
-    TransferenciaRoute.name: (routeData) {
-      final args = routeData.argsAs<TransferenciaRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: TransferenciaPage(
-          key: args.key,
-          tipoTransferencia: args.tipoTransferencia,
-          cuentaTransferenciaParametro: args.cuentaTransferenciaParametro,
-          beneficiario: args.beneficiario,
-        ),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [AbonoPage]
 class AbonoRoute extends PageRouteInfo<AbonoRouteArgs> {
@@ -322,24 +18,29 @@ class AbonoRoute extends PageRouteInfo<AbonoRouteArgs> {
     PrestamoModel? prestamoParametro,
     List<PageRouteInfo>? children,
   }) : super(
-          AbonoRoute.name,
-          args: AbonoRouteArgs(
-            key: key,
-            prestamoParametro: prestamoParametro,
-          ),
-          initialChildren: children,
-        );
+         AbonoRoute.name,
+         args: AbonoRouteArgs(key: key, prestamoParametro: prestamoParametro),
+         initialChildren: children,
+       );
 
   static const String name = 'AbonoRoute';
 
-  static const PageInfo<AbonoRouteArgs> page = PageInfo<AbonoRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<AbonoRouteArgs>(
+        orElse: () => const AbonoRouteArgs(),
+      );
+      return AbonoPage(
+        key: args.key,
+        prestamoParametro: args.prestamoParametro,
+      );
+    },
+  );
 }
 
 class AbonoRouteArgs {
-  const AbonoRouteArgs({
-    this.key,
-    this.prestamoParametro,
-  });
+  const AbonoRouteArgs({this.key, this.prestamoParametro});
 
   final Key? key;
 
@@ -349,34 +50,48 @@ class AbonoRouteArgs {
   String toString() {
     return 'AbonoRouteArgs{key: $key, prestamoParametro: $prestamoParametro}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! AbonoRouteArgs) return false;
+    return key == other.key && prestamoParametro == other.prestamoParametro;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ prestamoParametro.hashCode;
 }
 
 /// generated route for
 /// [ActivaCuentaPage]
 class ActivaCuentaRoute extends PageRouteInfo<void> {
   const ActivaCuentaRoute({List<PageRouteInfo>? children})
-      : super(
-          ActivaCuentaRoute.name,
-          initialChildren: children,
-        );
+    : super(ActivaCuentaRoute.name, initialChildren: children);
 
   static const String name = 'ActivaCuentaRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ActivaCuentaPage();
+    },
+  );
 }
 
 /// generated route for
 /// [AgenciaPage]
 class AgenciaRoute extends PageRouteInfo<void> {
   const AgenciaRoute({List<PageRouteInfo>? children})
-      : super(
-          AgenciaRoute.name,
-          initialChildren: children,
-        );
+    : super(AgenciaRoute.name, initialChildren: children);
 
   static const String name = 'AgenciaRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AgenciaPage();
+    },
+  );
 }
 
 /// generated route for
@@ -389,19 +104,24 @@ class BeneficiarioEdicionRoute
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
-          BeneficiarioEdicionRoute.name,
-          args: BeneficiarioEdicionRouteArgs(
-            id: id,
-            esInterno: esInterno,
-            key: key,
-          ),
-          initialChildren: children,
-        );
+         BeneficiarioEdicionRoute.name,
+         args: BeneficiarioEdicionRouteArgs(
+           id: id,
+           esInterno: esInterno,
+           key: key,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'BeneficiarioEdicionRoute';
 
-  static const PageInfo<BeneficiarioEdicionRouteArgs> page =
-      PageInfo<BeneficiarioEdicionRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<BeneficiarioEdicionRouteArgs>();
+      return BeneficiarioEdicionPage(args.id, args.esInterno, key: args.key);
+    },
+  );
 }
 
 class BeneficiarioEdicionRouteArgs {
@@ -421,20 +141,32 @@ class BeneficiarioEdicionRouteArgs {
   String toString() {
     return 'BeneficiarioEdicionRouteArgs{id: $id, esInterno: $esInterno, key: $key}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! BeneficiarioEdicionRouteArgs) return false;
+    return id == other.id && esInterno == other.esInterno && key == other.key;
+  }
+
+  @override
+  int get hashCode => id.hashCode ^ esInterno.hashCode ^ key.hashCode;
 }
 
 /// generated route for
 /// [BeneficiarioPage]
 class BeneficiarioRoute extends PageRouteInfo<void> {
   const BeneficiarioRoute({List<PageRouteInfo>? children})
-      : super(
-          BeneficiarioRoute.name,
-          initialChildren: children,
-        );
+    : super(BeneficiarioRoute.name, initialChildren: children);
 
   static const String name = 'BeneficiarioRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BeneficiarioPage();
+    },
+  );
 }
 
 /// generated route for
@@ -446,18 +178,26 @@ class CambiarContraseniaLoginRoute
     required String codigoUsuario,
     List<PageRouteInfo>? children,
   }) : super(
-          CambiarContraseniaLoginRoute.name,
-          args: CambiarContraseniaLoginRouteArgs(
-            key: key,
-            codigoUsuario: codigoUsuario,
-          ),
-          initialChildren: children,
-        );
+         CambiarContraseniaLoginRoute.name,
+         args: CambiarContraseniaLoginRouteArgs(
+           key: key,
+           codigoUsuario: codigoUsuario,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'CambiarContraseniaLoginRoute';
 
-  static const PageInfo<CambiarContraseniaLoginRouteArgs> page =
-      PageInfo<CambiarContraseniaLoginRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CambiarContraseniaLoginRouteArgs>();
+      return CambiarContraseniaLoginPage(
+        key: args.key,
+        codigoUsuario: args.codigoUsuario,
+      );
+    },
+  );
 }
 
 class CambiarContraseniaLoginRouteArgs {
@@ -474,6 +214,16 @@ class CambiarContraseniaLoginRouteArgs {
   String toString() {
     return 'CambiarContraseniaLoginRouteArgs{key: $key, codigoUsuario: $codigoUsuario}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CambiarContraseniaLoginRouteArgs) return false;
+    return key == other.key && codigoUsuario == other.codigoUsuario;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ codigoUsuario.hashCode;
 }
 
 /// generated route for
@@ -485,25 +235,30 @@ class CambiarContraseniaRoute
     required String codigoUsuario,
     List<PageRouteInfo>? children,
   }) : super(
-          CambiarContraseniaRoute.name,
-          args: CambiarContraseniaRouteArgs(
-            key: key,
-            codigoUsuario: codigoUsuario,
-          ),
-          initialChildren: children,
-        );
+         CambiarContraseniaRoute.name,
+         args: CambiarContraseniaRouteArgs(
+           key: key,
+           codigoUsuario: codigoUsuario,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'CambiarContraseniaRoute';
 
-  static const PageInfo<CambiarContraseniaRouteArgs> page =
-      PageInfo<CambiarContraseniaRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CambiarContraseniaRouteArgs>();
+      return CambiarContraseniaPage(
+        key: args.key,
+        codigoUsuario: args.codigoUsuario,
+      );
+    },
+  );
 }
 
 class CambiarContraseniaRouteArgs {
-  const CambiarContraseniaRouteArgs({
-    this.key,
-    required this.codigoUsuario,
-  });
+  const CambiarContraseniaRouteArgs({this.key, required this.codigoUsuario});
 
   final Key? key;
 
@@ -513,20 +268,32 @@ class CambiarContraseniaRouteArgs {
   String toString() {
     return 'CambiarContraseniaRouteArgs{key: $key, codigoUsuario: $codigoUsuario}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CambiarContraseniaRouteArgs) return false;
+    return key == other.key && codigoUsuario == other.codigoUsuario;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ codigoUsuario.hashCode;
 }
 
 /// generated route for
 /// [ContactenosPage]
 class ContactenosRoute extends PageRouteInfo<void> {
   const ContactenosRoute({List<PageRouteInfo>? children})
-      : super(
-          ContactenosRoute.name,
-          initialChildren: children,
-        );
+    : super(ContactenosRoute.name, initialChildren: children);
 
   static const String name = 'ContactenosRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ContactenosPage();
+    },
+  );
 }
 
 /// generated route for
@@ -537,25 +304,24 @@ class CuentaDetalleRoute extends PageRouteInfo<CuentaDetalleRouteArgs> {
     required CuentaModel cuenta,
     List<PageRouteInfo>? children,
   }) : super(
-          CuentaDetalleRoute.name,
-          args: CuentaDetalleRouteArgs(
-            key: key,
-            cuenta: cuenta,
-          ),
-          initialChildren: children,
-        );
+         CuentaDetalleRoute.name,
+         args: CuentaDetalleRouteArgs(key: key, cuenta: cuenta),
+         initialChildren: children,
+       );
 
   static const String name = 'CuentaDetalleRoute';
 
-  static const PageInfo<CuentaDetalleRouteArgs> page =
-      PageInfo<CuentaDetalleRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CuentaDetalleRouteArgs>();
+      return CuentaDetallePage(key: args.key, cuenta: args.cuenta);
+    },
+  );
 }
 
 class CuentaDetalleRouteArgs {
-  const CuentaDetalleRouteArgs({
-    this.key,
-    required this.cuenta,
-  });
+  const CuentaDetalleRouteArgs({this.key, required this.cuenta});
 
   final Key? key;
 
@@ -565,20 +331,32 @@ class CuentaDetalleRouteArgs {
   String toString() {
     return 'CuentaDetalleRouteArgs{key: $key, cuenta: $cuenta}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CuentaDetalleRouteArgs) return false;
+    return key == other.key && cuenta == other.cuenta;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ cuenta.hashCode;
 }
 
 /// generated route for
 /// [DatosPersonalesPage]
 class DatosPersonalesRoute extends PageRouteInfo<void> {
   const DatosPersonalesRoute({List<PageRouteInfo>? children})
-      : super(
-          DatosPersonalesRoute.name,
-          initialChildren: children,
-        );
+    : super(DatosPersonalesRoute.name, initialChildren: children);
 
   static const String name = 'DatosPersonalesRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const DatosPersonalesPage();
+    },
+  );
 }
 
 /// generated route for
@@ -589,25 +367,24 @@ class DepositoDetalleRoute extends PageRouteInfo<DepositoDetalleRouteArgs> {
     required InversionModel deposito,
     List<PageRouteInfo>? children,
   }) : super(
-          DepositoDetalleRoute.name,
-          args: DepositoDetalleRouteArgs(
-            key: key,
-            deposito: deposito,
-          ),
-          initialChildren: children,
-        );
+         DepositoDetalleRoute.name,
+         args: DepositoDetalleRouteArgs(key: key, deposito: deposito),
+         initialChildren: children,
+       );
 
   static const String name = 'DepositoDetalleRoute';
 
-  static const PageInfo<DepositoDetalleRouteArgs> page =
-      PageInfo<DepositoDetalleRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<DepositoDetalleRouteArgs>();
+      return DepositoDetallePage(key: args.key, deposito: args.deposito);
+    },
+  );
 }
 
 class DepositoDetalleRouteArgs {
-  const DepositoDetalleRouteArgs({
-    this.key,
-    required this.deposito,
-  });
+  const DepositoDetalleRouteArgs({this.key, required this.deposito});
 
   final Key? key;
 
@@ -617,146 +394,176 @@ class DepositoDetalleRouteArgs {
   String toString() {
     return 'DepositoDetalleRouteArgs{key: $key, deposito: $deposito}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! DepositoDetalleRouteArgs) return false;
+    return key == other.key && deposito == other.deposito;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ deposito.hashCode;
 }
 
 /// generated route for
 /// [EstadoCuentaPage]
 class EstadoCuentaRoute extends PageRouteInfo<void> {
   const EstadoCuentaRoute({List<PageRouteInfo>? children})
-      : super(
-          EstadoCuentaRoute.name,
-          initialChildren: children,
-        );
+    : super(EstadoCuentaRoute.name, initialChildren: children);
 
   static const String name = 'EstadoCuentaRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const EstadoCuentaPage();
+    },
+  );
 }
 
 /// generated route for
 /// [LoginPage]
 class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute({List<PageRouteInfo>? children})
-      : super(
-          LoginRoute.name,
-          initialChildren: children,
-        );
+    : super(LoginRoute.name, initialChildren: children);
 
   static const String name = 'LoginRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LoginPage();
+    },
+  );
 }
 
 /// generated route for
 /// [LoginPinPage]
 class LoginPinRoute extends PageRouteInfo<void> {
   const LoginPinRoute({List<PageRouteInfo>? children})
-      : super(
-          LoginPinRoute.name,
-          initialChildren: children,
-        );
+    : super(LoginPinRoute.name, initialChildren: children);
 
   static const String name = 'LoginPinRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LoginPinPage();
+    },
+  );
 }
 
 /// generated route for
 /// [LoginPrincipalPage]
 class LoginPrincipalRoute extends PageRouteInfo<void> {
   const LoginPrincipalRoute({List<PageRouteInfo>? children})
-      : super(
-          LoginPrincipalRoute.name,
-          initialChildren: children,
-        );
+    : super(LoginPrincipalRoute.name, initialChildren: children);
 
   static const String name = 'LoginPrincipalRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LoginPrincipalPage();
+    },
+  );
 }
 
 /// generated route for
 /// [MantenimientoPage]
 class MantenimientoRoute extends PageRouteInfo<void> {
   const MantenimientoRoute({List<PageRouteInfo>? children})
-      : super(
-          MantenimientoRoute.name,
-          initialChildren: children,
-        );
+    : super(MantenimientoRoute.name, initialChildren: children);
 
   static const String name = 'MantenimientoRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MantenimientoPage();
+    },
+  );
 }
 
 /// generated route for
 /// [MiPerfilPage]
 class MiPerfilRoute extends PageRouteInfo<void> {
   const MiPerfilRoute({List<PageRouteInfo>? children})
-      : super(
-          MiPerfilRoute.name,
-          initialChildren: children,
-        );
+    : super(MiPerfilRoute.name, initialChildren: children);
 
   static const String name = 'MiPerfilRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MiPerfilPage();
+    },
+  );
 }
 
 /// generated route for
 /// [MisProductosOverviewPage]
 class MisProductosOverviewRoute extends PageRouteInfo<void> {
   const MisProductosOverviewRoute({List<PageRouteInfo>? children})
-      : super(
-          MisProductosOverviewRoute.name,
-          initialChildren: children,
-        );
+    : super(MisProductosOverviewRoute.name, initialChildren: children);
 
   static const String name = 'MisProductosOverviewRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MisProductosOverviewPage();
+    },
+  );
 }
 
 /// generated route for
 /// [MisProductosRouterPage]
 class MisProductosRouterRoute extends PageRouteInfo<void> {
   const MisProductosRouterRoute({List<PageRouteInfo>? children})
-      : super(
-          MisProductosRouterRoute.name,
-          initialChildren: children,
-        );
+    : super(MisProductosRouterRoute.name, initialChildren: children);
 
   static const String name = 'MisProductosRouterRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MisProductosRouterPage();
+    },
+  );
 }
 
 /// generated route for
 /// [MontosMaximosPage]
 class MontosMaximosRoute extends PageRouteInfo<void> {
   const MontosMaximosRoute({List<PageRouteInfo>? children})
-      : super(
-          MontosMaximosRoute.name,
-          initialChildren: children,
-        );
+    : super(MontosMaximosRoute.name, initialChildren: children);
 
   static const String name = 'MontosMaximosRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MontosMaximosPage();
+    },
+  );
 }
 
 /// generated route for
 /// [OnboardingPage]
 class OnboardingRoute extends PageRouteInfo<void> {
   const OnboardingRoute({List<PageRouteInfo>? children})
-      : super(
-          OnboardingRoute.name,
-          initialChildren: children,
-        );
+    : super(OnboardingRoute.name, initialChildren: children);
 
   static const String name = 'OnboardingRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const OnboardingPage();
+    },
+  );
 }
 
 /// generated route for
@@ -768,19 +575,28 @@ class PagoDeunaRoute extends PageRouteInfo<PagoDeunaRouteArgs> {
     CuentaModel? cuentaTransferenciaParametro,
     List<PageRouteInfo>? children,
   }) : super(
-          PagoDeunaRoute.name,
-          args: PagoDeunaRouteArgs(
-            key: key,
-            codigoQr: codigoQr,
-            cuentaTransferenciaParametro: cuentaTransferenciaParametro,
-          ),
-          initialChildren: children,
-        );
+         PagoDeunaRoute.name,
+         args: PagoDeunaRouteArgs(
+           key: key,
+           codigoQr: codigoQr,
+           cuentaTransferenciaParametro: cuentaTransferenciaParametro,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'PagoDeunaRoute';
 
-  static const PageInfo<PagoDeunaRouteArgs> page =
-      PageInfo<PagoDeunaRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PagoDeunaRouteArgs>();
+      return PagoDeunaPage(
+        key: args.key,
+        codigoQr: args.codigoQr,
+        cuentaTransferenciaParametro: args.cuentaTransferenciaParametro,
+      );
+    },
+  );
 }
 
 class PagoDeunaRouteArgs {
@@ -800,6 +616,19 @@ class PagoDeunaRouteArgs {
   String toString() {
     return 'PagoDeunaRouteArgs{key: $key, codigoQr: $codigoQr, cuentaTransferenciaParametro: $cuentaTransferenciaParametro}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PagoDeunaRouteArgs) return false;
+    return key == other.key &&
+        codigoQr == other.codigoQr &&
+        cuentaTransferenciaParametro == other.cuentaTransferenciaParametro;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^ codigoQr.hashCode ^ cuentaTransferenciaParametro.hashCode;
 }
 
 /// generated route for
@@ -810,25 +639,32 @@ class PagoServicioRoute extends PageRouteInfo<PagoServicioRouteArgs> {
     CuentaModel? cuentaTransferenciaParametro,
     List<PageRouteInfo>? children,
   }) : super(
-          PagoServicioRoute.name,
-          args: PagoServicioRouteArgs(
-            key: key,
-            cuentaTransferenciaParametro: cuentaTransferenciaParametro,
-          ),
-          initialChildren: children,
-        );
+         PagoServicioRoute.name,
+         args: PagoServicioRouteArgs(
+           key: key,
+           cuentaTransferenciaParametro: cuentaTransferenciaParametro,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'PagoServicioRoute';
 
-  static const PageInfo<PagoServicioRouteArgs> page =
-      PageInfo<PagoServicioRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PagoServicioRouteArgs>(
+        orElse: () => const PagoServicioRouteArgs(),
+      );
+      return PagoServicioPage(
+        key: args.key,
+        cuentaTransferenciaParametro: args.cuentaTransferenciaParametro,
+      );
+    },
+  );
 }
 
 class PagoServicioRouteArgs {
-  const PagoServicioRouteArgs({
-    this.key,
-    this.cuentaTransferenciaParametro,
-  });
+  const PagoServicioRouteArgs({this.key, this.cuentaTransferenciaParametro});
 
   final Key? key;
 
@@ -838,34 +674,49 @@ class PagoServicioRouteArgs {
   String toString() {
     return 'PagoServicioRouteArgs{key: $key, cuentaTransferenciaParametro: $cuentaTransferenciaParametro}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PagoServicioRouteArgs) return false;
+    return key == other.key &&
+        cuentaTransferenciaParametro == other.cuentaTransferenciaParametro;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ cuentaTransferenciaParametro.hashCode;
 }
 
 /// generated route for
 /// [PosicionConsolidadaPage]
 class PosicionConsolidadaRoute extends PageRouteInfo<void> {
   const PosicionConsolidadaRoute({List<PageRouteInfo>? children})
-      : super(
-          PosicionConsolidadaRoute.name,
-          initialChildren: children,
-        );
+    : super(PosicionConsolidadaRoute.name, initialChildren: children);
 
   static const String name = 'PosicionConsolidadaRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PosicionConsolidadaPage();
+    },
+  );
 }
 
 /// generated route for
 /// [PreguntasFrecuentesDeunaPage]
 class PreguntasFrecuentesDeunaRoute extends PageRouteInfo<void> {
   const PreguntasFrecuentesDeunaRoute({List<PageRouteInfo>? children})
-      : super(
-          PreguntasFrecuentesDeunaRoute.name,
-          initialChildren: children,
-        );
+    : super(PreguntasFrecuentesDeunaRoute.name, initialChildren: children);
 
   static const String name = 'PreguntasFrecuentesDeunaRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PreguntasFrecuentesDeunaPage();
+    },
+  );
 }
 
 /// generated route for
@@ -876,25 +727,24 @@ class PrestamoDetalleRoute extends PageRouteInfo<PrestamoDetalleRouteArgs> {
     required PrestamoModel prestamo,
     List<PageRouteInfo>? children,
   }) : super(
-          PrestamoDetalleRoute.name,
-          args: PrestamoDetalleRouteArgs(
-            key: key,
-            prestamo: prestamo,
-          ),
-          initialChildren: children,
-        );
+         PrestamoDetalleRoute.name,
+         args: PrestamoDetalleRouteArgs(key: key, prestamo: prestamo),
+         initialChildren: children,
+       );
 
   static const String name = 'PrestamoDetalleRoute';
 
-  static const PageInfo<PrestamoDetalleRouteArgs> page =
-      PageInfo<PrestamoDetalleRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PrestamoDetalleRouteArgs>();
+      return PrestamoDetallePage(key: args.key, prestamo: args.prestamo);
+    },
+  );
 }
 
 class PrestamoDetalleRouteArgs {
-  const PrestamoDetalleRouteArgs({
-    this.key,
-    required this.prestamo,
-  });
+  const PrestamoDetalleRouteArgs({this.key, required this.prestamo});
 
   final Key? key;
 
@@ -904,6 +754,16 @@ class PrestamoDetalleRouteArgs {
   String toString() {
     return 'PrestamoDetalleRouteArgs{key: $key, prestamo: $prestamo}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PrestamoDetalleRouteArgs) return false;
+    return key == other.key && prestamo == other.prestamo;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ prestamo.hashCode;
 }
 
 /// generated route for
@@ -914,25 +774,26 @@ class QrDeunaErrorRoute extends PageRouteInfo<QrDeunaErrorRouteArgs> {
     String errorCode = '',
     List<PageRouteInfo>? children,
   }) : super(
-          QrDeunaErrorRoute.name,
-          args: QrDeunaErrorRouteArgs(
-            key: key,
-            errorCode: errorCode,
-          ),
-          initialChildren: children,
-        );
+         QrDeunaErrorRoute.name,
+         args: QrDeunaErrorRouteArgs(key: key, errorCode: errorCode),
+         initialChildren: children,
+       );
 
   static const String name = 'QrDeunaErrorRoute';
 
-  static const PageInfo<QrDeunaErrorRouteArgs> page =
-      PageInfo<QrDeunaErrorRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<QrDeunaErrorRouteArgs>(
+        orElse: () => const QrDeunaErrorRouteArgs(),
+      );
+      return QrDeunaErrorPage(key: args.key, errorCode: args.errorCode);
+    },
+  );
 }
 
 class QrDeunaErrorRouteArgs {
-  const QrDeunaErrorRouteArgs({
-    this.key,
-    this.errorCode = '',
-  });
+  const QrDeunaErrorRouteArgs({this.key, this.errorCode = ''});
 
   final Key? key;
 
@@ -942,160 +803,192 @@ class QrDeunaErrorRouteArgs {
   String toString() {
     return 'QrDeunaErrorRouteArgs{key: $key, errorCode: $errorCode}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! QrDeunaErrorRouteArgs) return false;
+    return key == other.key && errorCode == other.errorCode;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ errorCode.hashCode;
 }
 
 /// generated route for
 /// [QrScannerPage]
 class QrScannerRoute extends PageRouteInfo<void> {
   const QrScannerRoute({List<PageRouteInfo>? children})
-      : super(
-          QrScannerRoute.name,
-          initialChildren: children,
-        );
+    : super(QrScannerRoute.name, initialChildren: children);
 
   static const String name = 'QrScannerRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const QrScannerPage();
+    },
+  );
 }
 
 /// generated route for
 /// [RecuperarContraseniaPage]
 class RecuperarContraseniaRoute extends PageRouteInfo<void> {
   const RecuperarContraseniaRoute({List<PageRouteInfo>? children})
-      : super(
-          RecuperarContraseniaRoute.name,
-          initialChildren: children,
-        );
+    : super(RecuperarContraseniaRoute.name, initialChildren: children);
 
   static const String name = 'RecuperarContraseniaRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const RecuperarContraseniaPage();
+    },
+  );
 }
 
 /// generated route for
 /// [RecuperarUsuarioPage]
 class RecuperarUsuarioRoute extends PageRouteInfo<void> {
   const RecuperarUsuarioRoute({List<PageRouteInfo>? children})
-      : super(
-          RecuperarUsuarioRoute.name,
-          initialChildren: children,
-        );
+    : super(RecuperarUsuarioRoute.name, initialChildren: children);
 
   static const String name = 'RecuperarUsuarioRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const RecuperarUsuarioPage();
+    },
+  );
 }
 
 /// generated route for
 /// [RegistroPinPage]
 class RegistroPinRoute extends PageRouteInfo<void> {
   const RegistroPinRoute({List<PageRouteInfo>? children})
-      : super(
-          RegistroPinRoute.name,
-          initialChildren: children,
-        );
+    : super(RegistroPinRoute.name, initialChildren: children);
 
   static const String name = 'RegistroPinRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const RegistroPinPage();
+    },
+  );
 }
 
 /// generated route for
 /// [SeleccionBeneficiarioPage]
 class SeleccionBeneficiarioRoute extends PageRouteInfo<void> {
   const SeleccionBeneficiarioRoute({List<PageRouteInfo>? children})
-      : super(
-          SeleccionBeneficiarioRoute.name,
-          initialChildren: children,
-        );
+    : super(SeleccionBeneficiarioRoute.name, initialChildren: children);
 
   static const String name = 'SeleccionBeneficiarioRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SeleccionBeneficiarioPage();
+    },
+  );
 }
 
 /// generated route for
 /// [SeleccionConceptoPage]
 class SeleccionConceptoRoute extends PageRouteInfo<void> {
   const SeleccionConceptoRoute({List<PageRouteInfo>? children})
-      : super(
-          SeleccionConceptoRoute.name,
-          initialChildren: children,
-        );
+    : super(SeleccionConceptoRoute.name, initialChildren: children);
 
   static const String name = 'SeleccionConceptoRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SeleccionConceptoPage();
+    },
+  );
 }
 
 /// generated route for
 /// [SeleccionCuentaPage]
 class SeleccionCuentaRoute extends PageRouteInfo<void> {
   const SeleccionCuentaRoute({List<PageRouteInfo>? children})
-      : super(
-          SeleccionCuentaRoute.name,
-          initialChildren: children,
-        );
+    : super(SeleccionCuentaRoute.name, initialChildren: children);
 
   static const String name = 'SeleccionCuentaRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SeleccionCuentaPage();
+    },
+  );
 }
 
 /// generated route for
 /// [SeleccionPrestamoPage]
 class SeleccionPrestamoRoute extends PageRouteInfo<void> {
   const SeleccionPrestamoRoute({List<PageRouteInfo>? children})
-      : super(
-          SeleccionPrestamoRoute.name,
-          initialChildren: children,
-        );
+    : super(SeleccionPrestamoRoute.name, initialChildren: children);
 
   static const String name = 'SeleccionPrestamoRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SeleccionPrestamoPage();
+    },
+  );
 }
 
 /// generated route for
 /// [SolicitudesPage]
 class SolicitudesRoute extends PageRouteInfo<void> {
   const SolicitudesRoute({List<PageRouteInfo>? children})
-      : super(
-          SolicitudesRoute.name,
-          initialChildren: children,
-        );
+    : super(SolicitudesRoute.name, initialChildren: children);
 
   static const String name = 'SolicitudesRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SolicitudesPage();
+    },
+  );
 }
 
 /// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})
-      : super(
-          SplashRoute.name,
-          initialChildren: children,
-        );
+    : super(SplashRoute.name, initialChildren: children);
 
   static const String name = 'SplashRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SplashPage();
+    },
+  );
 }
 
 /// generated route for
 /// [TerminosCondicionesPage]
 class TerminosCondicionesRoute extends PageRouteInfo<void> {
   const TerminosCondicionesRoute({List<PageRouteInfo>? children})
-      : super(
-          TerminosCondicionesRoute.name,
-          initialChildren: children,
-        );
+    : super(TerminosCondicionesRoute.name, initialChildren: children);
 
   static const String name = 'TerminosCondicionesRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const TerminosCondicionesPage();
+    },
+  );
 }
 
 /// generated route for
@@ -1107,25 +1000,29 @@ class TransaccionDeunaErrorRoute
     String errorCode = '',
     List<PageRouteInfo>? children,
   }) : super(
-          TransaccionDeunaErrorRoute.name,
-          args: TransaccionDeunaErrorRouteArgs(
-            key: key,
-            errorCode: errorCode,
-          ),
-          initialChildren: children,
-        );
+         TransaccionDeunaErrorRoute.name,
+         args: TransaccionDeunaErrorRouteArgs(key: key, errorCode: errorCode),
+         initialChildren: children,
+       );
 
   static const String name = 'TransaccionDeunaErrorRoute';
 
-  static const PageInfo<TransaccionDeunaErrorRouteArgs> page =
-      PageInfo<TransaccionDeunaErrorRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<TransaccionDeunaErrorRouteArgs>(
+        orElse: () => const TransaccionDeunaErrorRouteArgs(),
+      );
+      return TransaccionDeunaErrorPage(
+        key: args.key,
+        errorCode: args.errorCode,
+      );
+    },
+  );
 }
 
 class TransaccionDeunaErrorRouteArgs {
-  const TransaccionDeunaErrorRouteArgs({
-    this.key,
-    this.errorCode = '',
-  });
+  const TransaccionDeunaErrorRouteArgs({this.key, this.errorCode = ''});
 
   final Key? key;
 
@@ -1135,6 +1032,16 @@ class TransaccionDeunaErrorRouteArgs {
   String toString() {
     return 'TransaccionDeunaErrorRouteArgs{key: $key, errorCode: $errorCode}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! TransaccionDeunaErrorRouteArgs) return false;
+    return key == other.key && errorCode == other.errorCode;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ errorCode.hashCode;
 }
 
 /// generated route for
@@ -1147,20 +1054,30 @@ class TransferenciaRoute extends PageRouteInfo<TransferenciaRouteArgs> {
     BeneficiarioModel? beneficiario,
     List<PageRouteInfo>? children,
   }) : super(
-          TransferenciaRoute.name,
-          args: TransferenciaRouteArgs(
-            key: key,
-            tipoTransferencia: tipoTransferencia,
-            cuentaTransferenciaParametro: cuentaTransferenciaParametro,
-            beneficiario: beneficiario,
-          ),
-          initialChildren: children,
-        );
+         TransferenciaRoute.name,
+         args: TransferenciaRouteArgs(
+           key: key,
+           tipoTransferencia: tipoTransferencia,
+           cuentaTransferenciaParametro: cuentaTransferenciaParametro,
+           beneficiario: beneficiario,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'TransferenciaRoute';
 
-  static const PageInfo<TransferenciaRouteArgs> page =
-      PageInfo<TransferenciaRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<TransferenciaRouteArgs>();
+      return TransferenciaPage(
+        key: args.key,
+        tipoTransferencia: args.tipoTransferencia,
+        cuentaTransferenciaParametro: args.cuentaTransferenciaParametro,
+        beneficiario: args.beneficiario,
+      );
+    },
+  );
 }
 
 class TransferenciaRouteArgs {
@@ -1183,4 +1100,21 @@ class TransferenciaRouteArgs {
   String toString() {
     return 'TransferenciaRouteArgs{key: $key, tipoTransferencia: $tipoTransferencia, cuentaTransferenciaParametro: $cuentaTransferenciaParametro, beneficiario: $beneficiario}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! TransferenciaRouteArgs) return false;
+    return key == other.key &&
+        tipoTransferencia == other.tipoTransferencia &&
+        cuentaTransferenciaParametro == other.cuentaTransferenciaParametro &&
+        beneficiario == other.beneficiario;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      tipoTransferencia.hashCode ^
+      cuentaTransferenciaParametro.hashCode ^
+      beneficiario.hashCode;
 }

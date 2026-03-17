@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:bancamovilr/src/routes/app_router.dart';
 import 'package:bancamovilr/index.dart';
 part 'cambiarcontrasenia_controller.g.dart';
 
@@ -32,7 +32,7 @@ class CambiarContraseniaController extends _$CambiarContraseniaController {
           () async => await client.validaCodigoOtpRegistro(requerimiento));
 
       if (respuesta.hasValue) {
-        appRouter.replace(const MiPerfilRoute());
+         appRouter.replace(const MiPerfilRoute());
       }
     }
   }

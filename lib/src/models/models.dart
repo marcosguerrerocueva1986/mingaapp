@@ -1147,7 +1147,7 @@ class ConsultaCuentaVinculadaQRRespuesta
   }) = _ConsultaCuentaVinculadaQRRespuesta;
 
   factory ConsultaCuentaVinculadaQRRespuesta.fromJson(
-          Map<String, dynamic> json) =>
+          Map<String, Object?> json) =>
       _$ConsultaCuentaVinculadaQRRespuestaFromJson(json);
 }
 
@@ -1172,7 +1172,7 @@ class AccountModel with _$AccountModel {
 
   bool get isMerchant => clientType.toLowerCase() == 'merchant';
 
-  factory AccountModel.fromJson(Map<String, dynamic> json) =>
+  factory AccountModel.fromJson(Map<String, Object?> json) =>
       _$AccountModelFromJson(json);
 }
 
@@ -1185,7 +1185,7 @@ class MerchantModel with _$MerchantModel {
     @Default('') String branchName,
   }) = _MerchantModel;
 
-  factory MerchantModel.fromJson(Map<String, dynamic> json) =>
+  factory MerchantModel.fromJson(Map<String, Object?> json) =>
       _$MerchantModelFromJson(json);
 }
 
@@ -1199,7 +1199,7 @@ class ProcesaPagoQRRequerimiento with _$ProcesaPagoQRRequerimiento {
     required String numeroCuenta,
   }) = _ProcesaPagoQRRequerimiento;
 
-  factory ProcesaPagoQRRequerimiento.fromJson(Map<String, dynamic> json) =>
+  factory ProcesaPagoQRRequerimiento.fromJson(Map<String, Object?> json) =>
       _$ProcesaPagoQRRequerimientoFromJson(json);
 }
 
@@ -1402,7 +1402,7 @@ class RubrosPagoExternoDetalle with _$RubrosPagoExternoDetalle {
     @Default([]) List<DetalleAdicional> listaDetallesAdicionales,
   }) = _RubrosPagoExternoDetalle;
 
-  factory RubrosPagoExternoDetalle.fromJson(Map<String, dynamic> json) =>
+  factory RubrosPagoExternoDetalle.fromJson(Map<String, Object?> json) =>
       _$RubrosPagoExternoDetalleFromJson(json);
 }
 
@@ -1420,7 +1420,7 @@ class RubroPagoExternoDetalle with _$RubroPagoExternoDetalle {
     @Default(false) bool seleccionado,
   }) = _RubroPagoExternoDetalle;
 
-  factory RubroPagoExternoDetalle.fromJson(Map<String, dynamic> json) =>
+  factory RubroPagoExternoDetalle.fromJson(Map<String, Object?> json) =>
       _$RubroPagoExternoDetalleFromJson(json);
 }
 
@@ -1431,7 +1431,7 @@ class DetalleAdicional with _$DetalleAdicional {
     @Default('') String valor,
   }) = _DetalleAdicional;
 
-  factory DetalleAdicional.fromJson(Map<String, dynamic> json) =>
+  factory DetalleAdicional.fromJson(Map<String, Object?> json) =>
       _$DetalleAdicionalFromJson(json);
 }
 
@@ -1471,7 +1471,7 @@ class ProcesaPagoServiciosBasicosRespuesta
 class ConsultaRequisitosTransferenciasRespuesta
     with _$ConsultaRequisitosTransferenciasRespuesta {
   factory ConsultaRequisitosTransferenciasRespuesta(
-          {@Default(0) double comision}) =
+          {@Default(0.0) double comision}) =
       _ConsultaRequisitosTransferenciasRespuesta;
 
   factory ConsultaRequisitosTransferenciasRespuesta.fromJson(

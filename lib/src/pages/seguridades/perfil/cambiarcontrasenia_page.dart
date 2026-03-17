@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/seguridades/perfil/cambiarcontrasenia_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:pinput/pinput.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 @RoutePage()
 class CambiarContraseniaPage extends ConsumerStatefulWidget {
@@ -48,23 +48,39 @@ class _CambiarContraseniaState extends ConsumerState<CambiarContraseniaPage> {
                         fontSize: 17,
                       )),
                   const SizedBox(height: defaultPadding * 2),
-                  Pinput(
+                  PinCodeTextField(
                     key: const ValueKey('pinput_login_confirmacion'),
-                    //androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsUserConsentApi,
+                    appContext: context,
                     length: 6,
-                    defaultPinTheme: defaultPinTheme,
+                    pinTheme: PinTheme(
+                      shape: PinCodeFieldShape.box,
+                      borderRadius: BorderRadius.circular(8),
+                      fieldHeight: 55,
+                      fieldWidth: 45,
+                      borderWidth: 1,
+                      inactiveColor: const Color.fromRGBO(30, 60, 87, 1).withOpacity(0.5),
+                      inactiveFillColor: Colors.white,
+                      selectedColor: const Color.fromRGBO(30, 60, 87, 1),
+                      selectedFillColor: Colors.white,
+                      activeColor: const Color.fromRGBO(30, 60, 87, 1),
+                      activeFillColor: Colors.white,
+                      errorBorderColor: Colors.redAccent,
+                    ),
+                    obscureText: true,
+                    obscuringCharacter: '●',
+                    blinkWhenObscuring: true,
+                    autoFocus: false,
+                    showCursor: false,
+                    readOnly: false, 
+                    keyboardType: TextInputType.number,
+                    animationType: AnimationType.fade,
+                    enableActiveFill: true,
                     onCompleted: controller.confimarOtpRegistroCambioContrasenia,
-                    focusedPinTheme: defaultPinTheme.copyWith(
-                      height: 68,
-                      width: 64,
-                      decoration: defaultPinTheme.decoration,
-                    ),
-                    errorPinTheme: defaultPinTheme.copyWith(
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(255, 234, 238, 1),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
+                    onChanged: (value) {
+                    },
+                    backgroundColor: Colors.transparent,
+                    beforeTextPaste: (text) => true, 
+                    textStyle: const TextStyle(fontSize: 22, color: Color.fromRGBO(30, 60, 87, 1), fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: defaultPadding * 10),
                   ProcessButton(

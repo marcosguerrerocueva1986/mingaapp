@@ -15,17 +15,33 @@ class LoginController extends _$LoginController {
     'codigoUsuario': ['', Validators.required],
     'pwdUsuario': [''],
     });
-late final AuthStorageService _authStorageService;
+  AuthStorageService get _authStorageService => ref.read(authStorageServiceProvider);
   @override
   LoginState build() {
+    final link = ref.keepAlive(); 
     ref.onDispose(() {
-      form.dispose();
-      form.reset();
-      print('✅ LoginController: FormGroup dispose llamado.');
+      form.reset(); 
+      print('✅ LoginController: Formulario reseteado.');
     });
-    _authStorageService = ref.read(authStorageServiceProvider);
-    return LoginState(permiteEditarUsuario: true, obscurecerClave: true);
+    Future.microtask(() => _cargarDatosPersistentes());
+    return LoginState(permiteEditarUsuario: true, obscurecerClave: true, estaValidado: false, modoConfirmacion: false
+    );
   }
+  Future<void> _cargarDatosPersistentes() async {
+      final nombre = await _storage.read(key: 'nombreUsuario');
+      final idStr = await _storage.read(key: 'idUsuario');
+      
+      if (nombre != null && idStr != null) {
+        Future.microtask(() {
+          state = state.copyWith(
+            loginRespuesta: LoginRespuesta(
+              nombre: nombre,
+              id: int.tryParse(idStr) ?? 0,
+            ),
+          );
+        });
+      }
+    }
 
   void login() async {
     if (form.valid) {
@@ -196,19 +212,22 @@ late final AuthStorageService _authStorageService;
         HttpClientHelper.idUsuario = state.loginRespuesta?.id ?? 0;
         HttpClientHelper.idRegistro = state.loginRespuesta?.idRegistro ?? 0;
         await _storage.write(key: 'idUsuario', value: state.loginRespuesta!.id.toString());
+        await _storage.write(key: 'nombreUsuario', value: state.loginRespuesta?.nombre ?? '');
         await _storage.write(key: 'idRegistro', value: state.loginRespuesta!.idRegistro.toString());
         await _storage.write(key: 'codigoUsuario', value: requerimiento.codigoUsuario);
         await preferences.setString('biometric_token', respuesta.value!.token);
         await _storage.write(key: 'biometric_token', value: respuesta.value!.token);
         state = state.copyWith(
             validacionOtpRespuesta: respuesta.value,
+            loginRespuesta: state.loginRespuesta,
             estaValidado: true,
             modoConfirmacion: false);     
-        appRouter.replaceAll([const PosicionConsolidadaRoute()]);
+           appRouter.replaceAll([const PosicionConsolidadaRoute()]);
       }
     }
   }
   void cancelar() {
+    form.reset();
     state = state.copyWith(loginRespuesta: null, modoConfirmacion: false);
   }
 
@@ -227,7 +246,7 @@ late final AuthStorageService _authStorageService;
   void logout(BuildContext context) {
     form.reset();
     state = LoginState(permiteEditarUsuario: true); 
-    context.router.replaceAll([const LoginPrincipalRoute()]);
+    appRouter.replaceAll([const LoginPrincipalRoute()]);
   }
 
   void accesoPorHuella(String accessToken) async {
@@ -265,7 +284,7 @@ late final AuthStorageService _authStorageService;
               loginRespuesta: data.loginRespuesta,
               estaValidado: true,
               modoConfirmacion: false);
-          appRouter.replaceAll([const PosicionConsolidadaRoute()]);
+          appRouter.replace(const PosicionConsolidadaRoute());
       } else {
         await _storage.delete(key: 'biometric_token');
         NotificationService.showWarning(text: 'Acceso biométrico inválido. Por favor, vuelva a iniciar sesión.');
@@ -305,12 +324,9 @@ late final AuthStorageService _authStorageService;
             HttpClientHelper.idRegistro = respuesta.value?.loginRespuesta?.idRegistro ?? 0;
             await _storage.write(key: 'idUsuario', value: HttpClientHelper.idUsuario.toString());
             await _storage.write(key: 'idRegistro', value: HttpClientHelper.idRegistro.toString());
-            String nombreUsuario = respuesta.value!.usuario!.nombre;
-            NotificationService.showSuccess(text: '¡Bienvenido(a), $nombreUsuario!',);
-            await Future.delayed(const Duration(milliseconds: 000));
             state = state.copyWith(
                 validacionOtpRespuesta: respuesta.value,
-                loginRespuesta: respuesta.value!.loginRespuesta,
+                loginRespuesta: respuesta.value?.loginRespuesta ?? state.loginRespuesta,
                 estaValidado: true,
                 modoConfirmacion: false);
             appRouter.replaceAll([const PosicionConsolidadaRoute()]);

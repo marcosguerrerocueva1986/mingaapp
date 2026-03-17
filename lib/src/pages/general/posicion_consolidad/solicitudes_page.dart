@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class SolicitudesPage extends ConsumerStatefulWidget {
-  const SolicitudesPage({Key? key}) : super(key: key);
+  const SolicitudesPage({super.key});
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SolicitudesPageState();
 }

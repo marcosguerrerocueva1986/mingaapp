@@ -116,7 +116,7 @@ class PagoDeunaController extends _$PagoDeunaController {
     if (state.esValidacion) {
       state = state.copyWith(esValidacion: false);
     } else {
-      await appRouter.pop();
+      await appRouter.pop;
     }
   }
 

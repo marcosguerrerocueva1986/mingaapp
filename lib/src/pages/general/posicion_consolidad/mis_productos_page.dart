@@ -195,7 +195,7 @@ class _MisProductosOverviewPageState extends ConsumerState<MisProductosOverviewP
               ),
               onTap: () {
                 Future.delayed(const Duration(milliseconds: 10), () {
-                  context.router.navigate(
+                  appRouter.navigate(
                     MisProductosRouterRoute(children: [
                       CuentaDetalleRoute(cuenta: account!),
                     ]),
@@ -246,7 +246,7 @@ class _MisProductosOverviewPageState extends ConsumerState<MisProductosOverviewP
               ),
               onTap: () {
                 Future.delayed(const Duration(milliseconds: 10), () {
-                  context.router.navigate(
+                  appRouter.navigate(
                     MisProductosRouterRoute(children: [
                       PrestamoDetalleRoute(prestamo: credito!),
                     ]),
@@ -297,7 +297,7 @@ class _MisProductosOverviewPageState extends ConsumerState<MisProductosOverviewP
               ),
               onTap: () {
                 Future.delayed(const Duration(milliseconds: 10), () {
-                  context.router.navigate(
+                  appRouter.navigate(
                     MisProductosRouterRoute(children: [
                       DepositoDetalleRoute(deposito: inversion!),
                     ]),

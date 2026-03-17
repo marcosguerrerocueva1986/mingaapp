@@ -26,13 +26,14 @@ import 'package:bancamovilr/src/pages/splash.dart';
 
 import '../../index.dart';
 import '../pages/deuna/pago/index.dart';
-
+import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:bancamovilr/src/models/models.dart';
 part 'app_router.gr.dart';
 
-final appRouter = AppRouter();
 
 @AutoRouterConfig()
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
@@ -182,3 +183,4 @@ class AppRouter extends _$AppRouter {
         ]),
       ];
 }
+final appRouter = AppRouter();

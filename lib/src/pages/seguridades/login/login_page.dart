@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bancamovilr/index.dart';
-import 'package:pinput/pinput.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 @RoutePage()
 class LoginPage extends ConsumerStatefulWidget {
@@ -120,34 +120,53 @@ _showResendButton = false;
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const SizedBox(height: defaultPadding * 5,),
+                        const SizedBox(height: 20,),
                         SvgPicture.asset(
                           Theme.of(context).brightness == Brightness.dark
                               ? R.svg.logoBlack
                               : R.svg.logoPantallas,
-                          fit: BoxFit.fill,
+                          fit: BoxFit.contain,
                           height: 50,
                           width: 80,
                         ),
-                        const SizedBox(height: defaultPadding * 2),
+                        const SizedBox(height: 30),
                         if (provider.modoConfirmacion) ...[
-                          const SizedBox(height: defaultPadding * 5),
                           const Text(
                               "Ingrese el código temporal de seguridad que fue enviado a su correo y/o celular.",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                                fontSize: 16,
                               )),
-                          const SizedBox(height: defaultPadding * 2),
-                          Pinput(
+                          const SizedBox(height: 30),
+                          PinCodeTextField(
                             key: const ValueKey('pinput_login_confirmacion'),
-                            //androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsUserConsentApi,
+                            appContext: context,
                             length: 6,
-                            // controller: controller,
-                            // focusNode: focusNode,
-                            defaultPinTheme: defaultPinTheme,
+                            pinTheme: PinTheme(
+                              shape: PinCodeFieldShape.box,
+                              borderRadius: BorderRadius.circular(8),
+                              fieldHeight: 55,
+                              fieldWidth: 45,
+                              borderWidth: 1,
+                              inactiveColor: const Color.fromRGBO(30, 60, 87, 1).withOpacity(0.5),
+                              inactiveFillColor: Colors.white,
+                              selectedColor: const Color.fromRGBO(30, 60, 87, 1),
+                              selectedFillColor: Colors.white,
+                              activeColor: const Color.fromRGBO(30, 60, 87, 1),
+                              activeFillColor: Colors.white,
+                              errorBorderColor: Colors.redAccent,
+                            ),
+                            obscureText: true,
+                            obscuringCharacter: '●',
+                            blinkWhenObscuring: true,
+                            autoFocus: false,
+                            showCursor: false,
+                            readOnly: false, 
+                            keyboardType: TextInputType.number,
+                            animationType: AnimationType.fade,
+                            enableActiveFill: true,
                             onCompleted: (pin) {
                               if (_secondsRemaining > 0) {
                                 controller.confimarOtpIngreso(pin);
@@ -155,23 +174,18 @@ _showResendButton = false;
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text('El tiempo ha expirado. Reenvíe el código.'),
+                                    backgroundColor: Colors.redAccent,
                                   ),
                                 );
                               }
-                            }, 
-                            focusedPinTheme: defaultPinTheme.copyWith(
-                              height: 68,
-                              width: 64,
-                              decoration: defaultPinTheme.decoration,
-                            ),
-                            errorPinTheme: defaultPinTheme.copyWith(
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(255, 234, 238, 1),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
+                            },
+                            onChanged: (value) {
+                            },
+                            beforeTextPaste: (text) => true, 
+                            textStyle: const TextStyle(fontSize: 22, color: Color.fromRGBO(30, 60, 87, 1), fontWeight: FontWeight.bold),
+                            backgroundColor: Colors.transparent,
                           ),
-                          const SizedBox(height: defaultPadding * 10),
+                          const SizedBox(height: 40),
                           if (!_showResendButton)
                             SizedBox(
                               width: 100,
@@ -242,13 +256,10 @@ _showResendButton = false;
                             readOnly: false,//!provider.permiteEditarUsuario,
                             validationMessages: {
                              ValidationMessage.required: (error) => 'Ingrese su usuario',
-                              // Puedes agregar más validaciones si las tienes en tu formControl:
-                              //ValidationMessage.minLength: (error) => 'Debe tener al menos ${(error as Map)['requiredLength']} caracteres',
                             },
                             decoration: InputDecoration(
                                 prefixIcon: const Icon(
                                   Icons.verified_user_outlined,
-                                  // color: Colors.grey,
                                   size: 15.0,
                                 ),
                                 contentPadding: const EdgeInsets.fromLTRB(

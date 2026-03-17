@@ -1,7 +1,7 @@
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/ahorros/seleccion_beneficiario/seleccion_beneficiario_controller.dart';
 
-@RoutePage<BeneficiarioModel?>()
+@RoutePage()
 class SeleccionBeneficiarioPage extends ConsumerStatefulWidget {
   const SeleccionBeneficiarioPage({super.key});
 
@@ -59,7 +59,7 @@ class _SeleccionBeneficiarioPageState extends ConsumerState<SeleccionBeneficiari
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Color.fromRGBO(0, 96, 153, 10)),
-          onPressed: () => context.router.pop(),
+          onPressed: () => appRouter.pop(),
         ),
       ),
       body: Column(
@@ -116,7 +116,7 @@ class _SeleccionBeneficiarioPageState extends ConsumerState<SeleccionBeneficiari
               itemBuilder: (context, index) {
                 final beneficiario = _filteredBeneficiarios[index];
                 return GestureDetector(
-                  onTap: () => context.router.pop<BeneficiarioModel?>(beneficiario),
+                  onTap: () => appRouter.pop<BeneficiarioModel?>(beneficiario),
                   behavior: HitTestBehavior.translucent,
                   child: BeneficiarioCard(beneficiario: beneficiario),
                 );

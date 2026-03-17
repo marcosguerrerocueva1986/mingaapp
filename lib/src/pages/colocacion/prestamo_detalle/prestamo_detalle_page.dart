@@ -34,7 +34,7 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromRGBO(0, 114, 181, 48),
+        backgroundColor: const Color.fromRGBO(0, 114, 181, 1),
         centerTitle: true,
         title: const Text(
           'Mi Préstamo',
@@ -285,7 +285,7 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                           TextButton(
                             onPressed: controller.irAbono,
                             style: TextButton.styleFrom(
-                              backgroundColor: const Color.fromRGBO(48, 155, 217, 25),
+                              backgroundColor: const Color.fromRGBO(48, 155, 217, 1),
                               padding: const EdgeInsets.fromLTRB(40,1,40,1),
                             ),
                             child: const Text(

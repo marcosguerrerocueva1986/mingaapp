@@ -56,6 +56,7 @@ with SingleTickerProviderStateMixin {
   }   
   void _startPromoCarouselAutoPlay() {
     _promoCarouselTimer = Timer.periodic(const Duration(seconds: 8), (Timer timer) {
+      if (!mounted) return;
       if (_promoCarouselController.hasClients) { 
         final lista = ref.read(posicionConsolidadaControllerProvider).posicionConsolidada?.listaCarrusel ?? [];
         if (lista.isNotEmpty) {
@@ -107,37 +108,35 @@ with SingleTickerProviderStateMixin {
     AutoRouter.declarative(routes: (context) => [ const MiPerfilRoute()])
   ];
 
-  return WillPopScope(
-  onWillPop: () async {
+  return PopScope(
+  canPop: false, 
+  onPopInvokedWithResult: (didPop, result) async {
+    if (didPop) return;
     if (_selectedIndex != 0) {
-      _onItemTapped(0);
-      return false; 
+      _onItemTapped(0); 
+      return;
     }
-    final bool? shouldLogout = await showDialog<bool>(
+    final bool? confirmar = await showDialog<bool>(
       context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Cerrar sesión'),
-          content: const Text('¿Estás seguro de que quieres cerrar sesión?'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: const Text('Cancelar'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(true),
-              child: const Text('Sí'),
-            ),
-          ],
-        );
-      },
+      builder: (context) => AlertDialog(
+        title: const Text('Cerrar sesión'),
+        content: const Text('¿Está seguro de que desea salir?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false), 
+            child: const Text('Cancelar')
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true), 
+            child: const Text('Sí')
+          ),
+        ],
+      ),
     );
 
-    if (shouldLogout == true) {
+    if (confirmar == true && context.mounted) {
       ref.read(loginControllerProvider.notifier).logout(context);
-      //context.router.replaceAll([const LoginPrincipalRoute()]);
     }
-    return false;
   },
   child: ScaffoldBootstrap(
     body: SafeArea(
@@ -411,7 +410,7 @@ with SingleTickerProviderStateMixin {
                                     _pageController.animateToPage(1,duration: const Duration(milliseconds: 300),
                                           curve: Curves.ease,
                                       ).then((_) {
-                                          context.router.navigate(
+                                          appRouter.navigate(
                                               MisProductosRouterRoute(children: [
                                                   CuentaDetalleRoute(cuenta: item),
                                               ]),
@@ -444,7 +443,7 @@ with SingleTickerProviderStateMixin {
                                         _pageController.animateToPage(1, duration: const Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                         ).then((_) {
-                                            context.router.navigate(
+                                            appRouter.navigate(
                                                 MisProductosRouterRoute(children: [
                                                     PrestamoDetalleRoute(prestamo: item),
                                                 ]),
@@ -476,7 +475,7 @@ with SingleTickerProviderStateMixin {
                                       _pageController.animateToPage(1,duration: const Duration(milliseconds: 300),
                                           curve: Curves.ease,
                                       ).then((_) {
-                                          context.router.navigate(
+                                          appRouter.navigate(
                                               MisProductosRouterRoute(children: [
                                                   DepositoDetalleRoute(deposito: item),
                                               ]),
@@ -986,8 +985,7 @@ Servicio({required this.imagePath, required this.title, required this.actionRout
                 final inversion =
                     provider.posicionConsolidada!.inversiones[position];
                 return GestureDetector(
-                  onTap: () => appRouter
-                      .navigate(DepositoDetalleRoute(deposito: inversion)),
+                  onTap: () => appRouter.navigate(DepositoDetalleRoute(deposito: inversion)),
                   child: posicionConsolidadaItem(
                       "Número",
                       inversion.codigo,
@@ -1017,8 +1015,7 @@ Servicio({required this.imagePath, required this.title, required this.actionRout
                 final prestamo =
                     provider.posicionConsolidada!.prestamos[position];
                 return GestureDetector(
-                  onTap: () => appRouter
-                      .navigate(PrestamoDetalleRoute(prestamo: prestamo)),
+                  onTap: () => appRouter.navigate(PrestamoDetalleRoute(prestamo: prestamo)),
                   child: posicionConsolidadaItem(
                       "Número de crédito",
                       prestamo.codigo,

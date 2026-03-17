@@ -2,6 +2,8 @@ import 'package:bancamovilr/index.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'dart:math'; 
+import 'package:auto_route/auto_route.dart';
+import 'package:bancamovilr/src/routes/app_router.dart';
 
 @RoutePage()
 class SplashPage extends ConsumerStatefulWidget {
@@ -119,7 +121,7 @@ class _SplashPageState extends ConsumerState<SplashPage> with SingleTickerProvid
   }
   Future<void> _initializeApp() async {
     await Future.delayed(const Duration(seconds: 2));
-    appRouter.replace(const LoginPrincipalRoute());
+    (appRouter as StackRouter).replaceAll([const LoginPrincipalRoute()]);
   }
 
   // Helper para crear una sombra flotante

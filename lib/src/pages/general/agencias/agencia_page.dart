@@ -17,7 +17,7 @@ class _AgenciaPageState extends ConsumerState<AgenciaPage> {
   @override
   void initState() {
     super.initState();
-    pedirPermisoUbicacion();
+    //pedirPermisoUbicacion();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .read(agenciaControllerProvider.notifier)

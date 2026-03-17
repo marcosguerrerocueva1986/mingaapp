@@ -34,7 +34,7 @@ class _CuentaDetallePageState extends ConsumerState<CuentaDetallePage> {
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromRGBO(0, 114, 181, 48),
+        backgroundColor: const Color.fromRGBO(0, 114, 181, 1),
         centerTitle: true,
         title: const Text(
           'Mi Cuenta',
@@ -270,37 +270,40 @@ class _CuentaDetallePageState extends ConsumerState<CuentaDetallePage> {
                 ),
                 if (_mostrarDetallesYPago)
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                     Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.white,
-                      ),
+                    color: Colors.white,
                     child: Column(
                       children: <Widget> [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
                           child: TarjetaDetallesCuenta(cuenta: widget.cuenta),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            appRouter.push(TransferenciaRoute(tipoTransferencia: TipoTransferencia.directa, cuentaTransferenciaParametro: widget.cuenta));
-                          }, 
-                          style: TextButton.styleFrom(
-                            backgroundColor: const Color.fromRGBO(48, 155, 217, 25),
-                            padding: const EdgeInsets.fromLTRB(40,1,40,1),
-                          ),
-                          child: const Text(
-                            'Transferir Dinero',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              decoration: TextDecoration.none,
-                              decorationThickness: 4.0,
-                              decorationColor: Colors.white,
-                              fontSize: 22,
-                              height: 2,
+                        const SizedBox(height: 15),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextButton(
+                            onPressed: () {
+                              appRouter.push(TransferenciaRoute(tipoTransferencia: TipoTransferencia.directa, cuentaTransferenciaParametro: widget.cuenta));
+                            }, 
+                            style: TextButton.styleFrom(
+                              backgroundColor: const Color.fromRGBO(48, 155, 217, 1),
+                              padding: const EdgeInsets.fromLTRB(40,1,40,1),
                             ),
-                          )
+                            child: const Text(
+                              'Transferir Dinero',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                decoration: TextDecoration.none,
+                                decorationThickness: 4.0,
+                                decorationColor: Colors.white,
+                                fontSize: 22,
+                                height: 2,
+                              ),
+                            )
+                          ),
                         ),
                       ]
                     ),

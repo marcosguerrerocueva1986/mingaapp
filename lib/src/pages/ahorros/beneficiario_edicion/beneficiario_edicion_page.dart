@@ -1,7 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:bancamovilr/index.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:pinput/pinput.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:collection/collection.dart';
 

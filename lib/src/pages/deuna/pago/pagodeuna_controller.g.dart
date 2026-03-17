@@ -7,7 +7,7 @@ part of 'pagodeuna_controller.dart';
 // **************************************************************************
 
 String _$pagoDeunaControllerHash() =>
-    r'c4de0a72253ddc17d25fc985ab0a4c217cce02b6';
+    r'ce08077a963468ff2bd14a468d4848c4a53b33e6';
 
 /// See also [PagoDeunaController].
 @ProviderFor(PagoDeunaController)
@@ -24,4 +24,4 @@ final pagoDeunaControllerProvider =
 
 typedef _$PagoDeunaController = AutoDisposeNotifier<PagoDeunaState>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

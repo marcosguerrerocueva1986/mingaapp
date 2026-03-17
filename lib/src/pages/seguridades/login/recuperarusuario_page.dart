@@ -1,6 +1,5 @@
 import 'package:bancamovilr/index.dart';
 import 'package:bancamovilr/src/pages/seguridades/login/recuperarusuario_controller.dart';
-import 'package:pinput/pinput.dart';
 
 @RoutePage()
 class RecuperarUsuarioPage extends ConsumerStatefulWidget {

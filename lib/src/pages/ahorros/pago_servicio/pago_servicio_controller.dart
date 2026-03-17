@@ -261,20 +261,18 @@ class PagoServicioController extends _$PagoServicioController {
   }
 
   Future cancelar() async {
-    if (state.esValidacion) {
-      state = state.copyWith(esValidacion: false);
-    } else if (state.esIngreso) {
-      state = state.copyWith(esIngreso: false);
-    } else if (state.respuestaConsulta != null) {
-      state = state.copyWith(respuestaConsulta: null);
-    } else if (state.servicioSeleccionado != null) {
-      state = state.copyWith(servicioSeleccionado: null);
-    } else if (state.esValidacion) {
-      state = state.copyWith(esValidacion: false);
-    } else {
-      await appRouter.pop();
-    }
+  if (state.esValidacion) {
+    state = state.copyWith(esValidacion: false);
+  } else if (state.esIngreso) {
+    state = state.copyWith(esIngreso: false);
+  } else if (state.respuestaConsulta != null) {
+    state = state.copyWith(respuestaConsulta: null);
+  } else if (state.servicioSeleccionado != null) {
+    state = state.copyWith(servicioSeleccionado: null);
+  } else {
+    await appRouter.pop; 
   }
+}
 
   Future generarOtpPagoServicio() async {
     if (!state.esValidacion) {

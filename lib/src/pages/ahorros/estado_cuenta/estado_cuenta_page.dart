@@ -79,7 +79,7 @@ class ListaMesesEstadoPage extends ConsumerWidget {
                   final cuentaEncontrada = cliente.posicionConsolidada?.cuentas?.firstWhereOrNull((j) => j.codigo == numeroCuenta,);
                   final periodo = periodoI.copyWith(
                     numeroCuenta: numeroCuenta,
-                    nombreCliente: usuario.loginRespuesta!.nombre ?? '',
+                    nombreCliente: usuario.loginRespuesta?.nombre ?? '',
                     tipoCuenta: cuentaEncontrada?.tipo ?? '',);
                   return Card(
                     elevation: 2,
@@ -120,6 +120,10 @@ class ListaMesesEstadoPage extends ConsumerWidget {
     );
   }
 }
+String formatearFecha(DateTime? fecha) {
+      if (fecha == null) return "--/--/----";
+      return DateFormat('dd/MM/yyyy').format(fecha);
+    }
 class HistorialMesesPage extends StatelessWidget {
 final ResumenMesModel mesSeleccionado;
 
@@ -159,13 +163,13 @@ final ResumenMesModel mesSeleccionado;
                 children: [
                   const Text("Resumen", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 20),
-                  _buildRow("Fecha Inicio", DateFormat('dd/MM/yyyy').format(mesSeleccionado.fechaInicio!)),
-                  _buildRow("Fecha Fin", DateFormat('dd/MM/yyyy').format(mesSeleccionado.fechaFin!)),
-                  _buildRow("Saldo anterior", "\$ ${mesSeleccionado.saldoAnterior}"),
-                  _buildRow("Creditos", "\$ ${mesSeleccionado.totalCreditos}"),
-                  _buildRow("Debitos", "\$ ${mesSeleccionado.totalDebitos}"),
-                  _buildRow("Saldo Actual", "\$ ${mesSeleccionado.saldoActual}"),
-                  _buildRow("Saldo Promedio", "\$ ${mesSeleccionado.saldoPromedio}", isLast: true),
+                  _buildRow("Fecha Inicio", formatearFecha(mesSeleccionado.fechaInicio)),
+                  _buildRow("Fecha Fin", formatearFecha(mesSeleccionado.fechaFin!)),
+                  _buildRow("Saldo anterior", "\$ ${mesSeleccionado.saldoAnterior ?? '0.00'}"),
+                  _buildRow("Creditos", "\$ ${mesSeleccionado.totalCreditos ?? '0.00'}"),
+                  _buildRow("Debitos", "\$ ${mesSeleccionado.totalDebitos ?? '0.00'}"),
+                  _buildRow("Saldo Actual", "\$ ${mesSeleccionado.saldoActual ?? '0.00'}"),
+                  _buildRow("Saldo Promedio", "\$ ${mesSeleccionado.saldoPromedio ?? '0.00'}", isLast: true),
                 ],
               ),
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pinput/pinput.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 const double defaultPadding = 15;
 
@@ -16,14 +16,19 @@ Color getColorForState(BuildContext context,
 }
 
 final defaultPinTheme = PinTheme(
-  width: 56,
-  height: 60,
-  decoration: BoxDecoration(
-    color: const Color.fromRGBO(222, 231, 240, .57),
-    borderRadius: BorderRadius.circular(8),
-    border: Border.all(color: Colors.transparent),
-  ),
-);
+      shape: PinCodeFieldShape.box,
+      borderRadius: BorderRadius.circular(8),
+      fieldHeight: 55,
+      fieldWidth: 45,
+      borderWidth: 1,
+      inactiveColor: const Color.fromRGBO(30, 60, 87, 1).withOpacity(0.5),
+      inactiveFillColor: Colors.white,
+      selectedColor: const Color.fromRGBO(30, 60, 87, 1),
+      selectedFillColor: Colors.white,
+      activeColor: const Color.fromRGBO(30, 60, 87, 1),
+      activeFillColor: Colors.white,
+      errorBorderColor: Colors.redAccent,
+    );
 
 double elevacionItem = 0;
 bool bordeColorItem = false;

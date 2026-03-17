@@ -1,5 +1,5 @@
 import 'package:bancamovilr/index.dart';
-
+import 'package:bancamovilr/src/routes/app_router.dart';
 part 'beneficiario_controller.g.dart';
 
 @riverpod
@@ -12,6 +12,7 @@ class BeneficiarioController extends _$BeneficiarioController {
 
   @override
   BeneficiarioState build() {
+    ref.onDispose(() => form.dispose());
     return BeneficiarioState();
   }
 
@@ -55,8 +56,7 @@ class BeneficiarioController extends _$BeneficiarioController {
   }
 
   Future agregarNuevoEditarBeneficiario(int id, bool esInterna) async {
-    await appRouter
-        .push(BeneficiarioEdicionRoute(id: id, esInterno: esInterna));
+    await appRouter.push(BeneficiarioEdicionRoute(id: id, esInterno: esInterna));
     actualizaListaBeneficiarios();
   }
 

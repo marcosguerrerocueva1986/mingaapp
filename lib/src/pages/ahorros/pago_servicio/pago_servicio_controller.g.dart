@@ -7,7 +7,7 @@ part of 'pago_servicio_controller.dart';
 // **************************************************************************
 
 String _$pagoServicioControllerHash() =>
-    r'04586b8fb2aca2253b2072320ed0c2e72abd63f5';
+    r'f1a95268d1a5a26c1ef26a68eeb775a586754dcf';
 
 /// See also [PagoServicioController].
 @ProviderFor(PagoServicioController)
@@ -24,4 +24,4 @@ final pagoServicioControllerProvider = AutoDisposeNotifierProvider<
 
 typedef _$PagoServicioController = AutoDisposeNotifier<PagoServicioState>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -58,7 +58,7 @@ class _MyAppState extends ConsumerState<MyApp> {
     _timer = Timer(Duration(seconds: Configuracion.segundosInactividad), () {
       if (HttpClientHelper.token != '') {
         HttpClientHelper.token = '';
-        appRouter.pushAndPopUntil(const LoginRoute(), predicate: (_) => false);
+        appRouter.pushAndPopUntil(const LoginPrincipalRoute(), predicate: (_) => false);
       }
     });
     //_printGeneratedKeys();
@@ -196,7 +196,7 @@ class _MyAppState extends ConsumerState<MyApp> {
           textTheme: GoogleFonts.aBeeZeeTextTheme(
               ThemeData(brightness: Brightness.dark).textTheme)),
       debugShowCheckedModeBanner: false,
-      routerConfig: appRouter.config(),
+      routerConfig:  appRouter.config(),
       builder: (BuildContext context, Widget? child) {
         final MediaQueryData data = MediaQuery.of(context);
 

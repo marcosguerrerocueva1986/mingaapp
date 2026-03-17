@@ -9,6 +9,7 @@
 #include <flutter_secure_storage_windows/flutter_secure_storage_windows_plugin.h>
 #include <local_auth_windows/local_auth_plugin.h>
 #include <maps_launcher/maps_launcher_plugin.h>
+#include <no_screenshot/no_screenshot_plugin_c_api.h>
 #include <permission_handler_windows/permission_handler_windows_plugin.h>
 #include <share_plus/share_plus_windows_plugin_c_api.h>
 #include <syncfusion_pdfviewer_windows/syncfusion_pdfviewer_windows_plugin.h>
@@ -21,6 +22,8 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
       registry->GetRegistrarForPlugin("LocalAuthPlugin"));
   MapsLauncherPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("MapsLauncherPlugin"));
+  NoScreenshotPluginCApiRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("NoScreenshotPluginCApi"));
   PermissionHandlerWindowsPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("PermissionHandlerWindowsPlugin"));
   SharePlusWindowsPluginCApiRegisterWithRegistrar(

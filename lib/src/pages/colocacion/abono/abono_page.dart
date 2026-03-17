@@ -1,7 +1,8 @@
 import 'package:bancamovilr/index.dart';
-import 'package:pinput/pinput.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:sks_ticket_view/sks_ticket_view.dart';
-
 import 'package:widgets_to_image/widgets_to_image.dart';
 
 @RoutePage()
@@ -9,7 +10,7 @@ class AbonoPage extends ConsumerStatefulWidget {
   const AbonoPage({super.key, this.prestamoParametro});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AbonoPageState();
+  ConsumerState<AbonoPage> createState() => _AbonoPageState();
 
   final PrestamoModel? prestamoParametro;
 }
@@ -31,6 +32,21 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
     var controller = ref.read(abonoControllerProvider.notifier);
     var provider = ref.watch(abonoControllerProvider);
 
+    final customPinTheme = PinTheme(
+      shape: PinCodeFieldShape.box,
+      borderRadius: BorderRadius.circular(8),
+      fieldHeight: 55,
+      fieldWidth: 45,
+      borderWidth: 1,
+      inactiveColor: const Color.fromRGBO(30, 60, 87, 1).withOpacity(0.5),
+      inactiveFillColor: Colors.white,
+      selectedColor: const Color.fromRGBO(30, 60, 87, 1),
+      selectedFillColor: Colors.white,
+      activeColor: const Color.fromRGBO(30, 60, 87, 1),
+      activeFillColor: Colors.white,
+      errorBorderColor: Colors.redAccent,
+    );
+
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -46,11 +62,7 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
         child: ReactiveForm(
           formGroup: controller.form,
           child: SingleChildScrollView(
-            child: ListView(
-              // crossAxisAlignment: CrossAxisAlignment.start,
-              // mainAxisAlignment: MainAxisAlignment.start,
-              // mainAxisSize: MainAxisSize.min,
-              shrinkWrap: true,
+            child: Column(
               children: [
                 if (provider.esComprobante) ...[
                   Text(
@@ -60,11 +72,7 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                         color: context.getTitlePrimaryColor(),
                         fontWeight: FontWeight.bold),
                   ),
-                  // const SizedBox(
-                  //   height: defaultPadding,
-                  // ),
                   SizedBox(
-                    // height: 250,
                     child: SKSTicketView(
                       backgroundPadding: const EdgeInsets.symmetric(
                           vertical: 0, horizontal: 20),
@@ -101,9 +109,7 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    const SizedBox(
-                                      height: defaultPadding * 3,
-                                    ),
+                                    const SizedBox(height: defaultPadding * 3),
                                     Container(
                                       height: 50,
                                       decoration: const BoxDecoration(
@@ -117,9 +123,7 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                                             height: 120),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: defaultPadding,
-                                    ),
+                                    const SizedBox(height: defaultPadding),
                                     SizedBox(
                                       width: double.infinity,
                                       child: Text(
@@ -130,9 +134,7 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                                                 fontWeight: FontWeight.bold),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: defaultPadding,
-                                    ),
+                                    const SizedBox(height: defaultPadding),
                                     ...itemsParaConfirmacionRecibo([
                                       EtiquetaValorRecibo(
                                           etiqueta: 'Valor',
@@ -159,9 +161,7 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                                                 .respuestaProceso!.fecha),
                                       ]
                                     ]),
-                                    const SizedBox(
-                                      height: defaultPadding * 3,
-                                    ),
+                                    const SizedBox(height: defaultPadding * 3),
                                   ],
                                 ),
                               ),
@@ -183,9 +183,7 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                           height: 120),
                     ),
                   ),
-                  const SizedBox(
-                    height: defaultPadding,
-                  ),
+                  const SizedBox(height: defaultPadding),
                   Text(
                     'Confirma los datos del abono',
                     textAlign: TextAlign.center,
@@ -194,9 +192,6 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                         fontWeight: FontWeight.bold),
                   ),
                   Container(
-                    decoration: const BoxDecoration(
-                        // color: Colors.white,
-                        ),
                     padding: const EdgeInsets.symmetric(
                         vertical: 15, horizontal: 10),
                     child: Column(
@@ -215,47 +210,38 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                               etiqueta: 'Tipo Préstamo',
                               valor: provider.prestamo?.tipo ?? ''),
                         ]),
-                        const SizedBox(
-                          height: defaultPadding * 2,
-                        ),
-                        const Divider(
-                          height: 1,
-                        ),
-                        const SizedBox(
-                          height: defaultPadding * 2,
-                        ),
+                        const SizedBox(height: defaultPadding * 2),
+                        const Divider(height: 1),
+                        const SizedBox(height: defaultPadding * 2),
                         const Text(
                             "Ingrese el código temporal de seguridad que fue enviado a su correo y/o celular.",
                             textAlign: TextAlign.center),
-                        const SizedBox(
-                          height: defaultPadding,
-                        ),
-                        Pinput(
-                          //androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsUserConsentApi,
+                        const SizedBox(height: defaultPadding),
+                        PinCodeTextField(
+                          key: const ValueKey('pinput_abono_otp'),
+                          appContext: context,
                           length: 6,
-                          // controller: controller,
-                          // focusNode: focusNode,
-                          defaultPinTheme: defaultPinTheme,
-                          onCompleted: (String otp) =>
-                              controller.confirmarOtpTransferencia(otp),
-                          focusedPinTheme: defaultPinTheme.copyWith(
-                            height: 68,
-                            width: 64,
-                            decoration: defaultPinTheme.decoration,
-                          ),
-                          errorPinTheme: defaultPinTheme.copyWith(
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(255, 234, 238, 1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
+                          animationType: AnimationType.fade,
+                          obscureText: true,
+                          obscuringCharacter: '●',
+                          blinkWhenObscuring: true,
+                          pinTheme: customPinTheme,
+                          autoFocus: false,
+                          showCursor: false,
+                          readOnly: false, 
+                          beforeTextPaste: (text) => true, 
+                          textStyle: const TextStyle(fontSize: 22, color: Color.fromRGBO(30, 60, 87, 1), fontWeight: FontWeight.bold),
+                          enableActiveFill: true,
+                          keyboardType: TextInputType.number,
+                          onCompleted: (pin) => controller.confirmarOtpTransferencia(pin),
+                          onChanged: (value) {},
                         ),
                       ],
                     ),
                   )
                 ] else ...[
                   WrapperFormItem(
-                    label: 'Ingresa el monto a transfererir',
+                    label: 'Ingresa el monto a transferir',
                     child: ReactiveTextField(
                       formControlName: 'monto',
                       style: context.textTheme.displayLarge,
@@ -339,6 +325,7 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                     ),
                   ),
                 ],
+                const SizedBox(height: defaultPadding),
                 if (provider.esComprobante) ...[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -398,9 +385,6 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                     ],
                   )
                 ] else ...[
-                  const SizedBox(
-                    height: defaultPadding,
-                  ),
                   ProcessButton(
                       text: 'CONTINUAR',
                       onPressed: () => controller.continuar()),
@@ -428,9 +412,7 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(
-              width: defaultPadding,
-            ),
+            const SizedBox(width: defaultPadding),
             Flexible(
               child: Text(item.valor,
                   overflow: TextOverflow.ellipsis, textAlign: TextAlign.right),
@@ -439,11 +421,7 @@ class _AbonoPageState extends ConsumerState<AbonoPage> {
         ),
       );
 
-      lista.add(
-        const SizedBox(
-          height: defaultPadding,
-        ),
-      );
+      lista.add(const SizedBox(height: defaultPadding));
     }
 
     return lista;

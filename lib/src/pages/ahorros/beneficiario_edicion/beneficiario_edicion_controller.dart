@@ -121,7 +121,7 @@ Future validaCuentaBeneficiario() async {
           if (respuesta.hasValue) {
             await actualizaListaBeneficiarios();
             // await appRouter.navigate(const BeneficiarioRoute());
-            await appRouter.pop();
+            await appRouter.pop;
             NotificationService.showSuccess(text: 'Beneficiario eliminado');
           }
         });

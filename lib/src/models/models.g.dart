@@ -2354,7 +2354,7 @@ _$ConsultaRequisitosTransferenciasRespuestaImpl
     _$$ConsultaRequisitosTransferenciasRespuestaImplFromJson(
             Map<String, dynamic> json) =>
         _$ConsultaRequisitosTransferenciasRespuestaImpl(
-          comision: (json['comision'] as num?)?.toDouble() ?? 0,
+          comision: (json['comision'] as num?)?.toDouble() ?? 0.0,
         );
 
 Map<String, dynamic> _$$ConsultaRequisitosTransferenciasRespuestaImplToJson(

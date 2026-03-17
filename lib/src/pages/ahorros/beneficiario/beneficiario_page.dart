@@ -1,4 +1,5 @@
 import 'package:bancamovilr/index.dart';
+import 'package:bancamovilr/src/routes/app_router.dart';
 
 @RoutePage()
 class BeneficiarioPage extends ConsumerStatefulWidget {

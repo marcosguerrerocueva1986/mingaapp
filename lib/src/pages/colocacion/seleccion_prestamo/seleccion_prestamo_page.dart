@@ -1,6 +1,6 @@
 import 'package:bancamovilr/index.dart';
 
-@RoutePage<PrestamoModel?>()
+@RoutePage()
 class SeleccionPrestamoPage extends ConsumerStatefulWidget {
   const SeleccionPrestamoPage({super.key});
 
