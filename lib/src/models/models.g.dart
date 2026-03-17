@@ -309,6 +309,7 @@ _$CambiarContraseniaStateImpl _$$CambiarContraseniaStateImplFromJson(
       modoConfirmacion: json['modoConfirmacion'] as bool? ?? false,
       obscurecerClave: json['obscurecerClave'] as bool? ?? false,
       permiteEditarUsuario: json['permiteEditarUsuario'] as bool,
+      cargando: json['cargando'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$CambiarContraseniaStateImplToJson(
@@ -317,6 +318,7 @@ Map<String, dynamic> _$$CambiarContraseniaStateImplToJson(
       'modoConfirmacion': instance.modoConfirmacion,
       'obscurecerClave': instance.obscurecerClave,
       'permiteEditarUsuario': instance.permiteEditarUsuario,
+      'cargando': instance.cargando,
     };
 
 _$RegistroPinStateImpl _$$RegistroPinStateImplFromJson(

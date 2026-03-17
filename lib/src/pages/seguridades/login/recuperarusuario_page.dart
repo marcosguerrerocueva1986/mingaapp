@@ -48,7 +48,7 @@ class _RecuperarUsuarioPageState extends ConsumerState<RecuperarUsuarioPage> {
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 16,
-                                color: Color.fromRGBO(0, 114, 181, 48),
+                                color: Color.fromRGBO(0, 114, 181, 1),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

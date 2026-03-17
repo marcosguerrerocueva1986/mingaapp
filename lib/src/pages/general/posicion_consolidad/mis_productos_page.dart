@@ -100,7 +100,7 @@ class _MisProductosOverviewPageState extends ConsumerState<MisProductosOverviewP
       elevation: 0,
       title: const Padding(
         padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-        child: Text('', style: TextStyle(color: Color.fromRGBO(0, 96, 153, 10)))),
+        child: Text('', style: TextStyle(color: Color.fromRGBO(0, 96, 153, 1)))),
     );
   }
 
@@ -152,7 +152,7 @@ class _MisProductosOverviewPageState extends ConsumerState<MisProductosOverviewP
         style: const TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
-          color: Color.fromRGBO(0, 96, 153, 10)
+          color: Color.fromRGBO(0, 96, 153, 1)
         ),
       ),
     );

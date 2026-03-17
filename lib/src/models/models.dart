@@ -199,7 +199,8 @@ class CambiarContraseniaState with _$CambiarContraseniaState {
   factory CambiarContraseniaState(
   {@Default(false) bool modoConfirmacion,
   @Default(false) bool obscurecerClave,
-    required bool permiteEditarUsuario,}) = _CambiarContraseniaState;
+    required bool permiteEditarUsuario,
+    @Default(false) bool cargando,}) = _CambiarContraseniaState;
     factory CambiarContraseniaState.fromJson(Map<String, Object?> json) =>
       _$CambiarContraseniaStateFromJson(json);
 }

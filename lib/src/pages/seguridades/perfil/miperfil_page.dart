@@ -98,7 +98,7 @@ class _MiPerfilPageState extends ConsumerState<MiPerfilPage> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(0, 96, 153, 10),
+                    color: Color.fromRGBO(0, 96, 153, 1),
                   ),
                 ),
               ),

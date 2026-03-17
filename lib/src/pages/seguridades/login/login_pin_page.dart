@@ -120,7 +120,7 @@ class _LoginPinPageState extends ConsumerState<LoginPinPage> {
                             onPressed: () => _mostrarOpcionesRecuperacion(context),
                             child: const Text(
                               " ",//"¿Olvidaste tu PIN?",
-                              style: TextStyle(color: Color.fromRGBO(0, 114, 181, 48), fontWeight: FontWeight.bold, fontSize: 15),
+                              style: TextStyle(color: Color.fromRGBO(0, 114, 181, 1), fontWeight: FontWeight.bold, fontSize: 15),
                             ),
                           ),
                         ),
@@ -130,7 +130,7 @@ class _LoginPinPageState extends ConsumerState<LoginPinPage> {
                             onPressed: () => appRouter.replace(const LoginRoute()),
                             child: const Text(
                               "Ingresar con contraseña",
-                              style: TextStyle(color: Color.fromRGBO(0, 114, 181, 48), fontWeight: FontWeight.bold, fontSize: 15),
+                              style: TextStyle(color: Color.fromRGBO(0, 114, 181, 1), fontWeight: FontWeight.bold, fontSize: 15),
                             ),
                           ),
                         ),

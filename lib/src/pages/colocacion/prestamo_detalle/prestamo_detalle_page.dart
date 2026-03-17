@@ -313,14 +313,14 @@ class _PrestamoDetallePageState extends ConsumerState<PrestamoDetallePage> {
                           Expanded(
                             child: Text(
                               'Registro de Pagos',
-                              style: TextStyle(fontSize: 14, color: Color.fromRGBO(0, 96, 152, 20), fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 14, color: Color.fromRGBO(0, 96, 152, 1), fontWeight: FontWeight.bold),
                             ),
                           ),
                           Text(
                             'VALOR',
                             style: TextStyle(
                               fontSize: 14,
-                              color: Color.fromRGBO(0, 96, 152, 20), 
+                              color: Color.fromRGBO(0, 96, 152, 1), 
                               fontWeight: FontWeight.bold, 
                             ),
                           ),
@@ -408,7 +408,7 @@ const TarjetaDetallesPrestamo({super.key, required this.prestamo});
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(0, 96, 152, 20),
+                  color: Color.fromRGBO(0, 96, 152, 1),
                 ),
               ),
             ],
@@ -418,7 +418,7 @@ const TarjetaDetallesPrestamo({super.key, required this.prestamo});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Saldo Préstamo',
             valor: prestamo.saldo.toMoney(),
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
             pesoFuenteValor: FontWeight.bold
           ),
           _construirDivisor(),
@@ -426,7 +426,7 @@ const TarjetaDetallesPrestamo({super.key, required this.prestamo});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Próx. Pago',
             valor: fechaFormateada,
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
             pesoFuenteValor: FontWeight.bold
           ),
           _construirDivisor(),
@@ -434,7 +434,7 @@ const TarjetaDetallesPrestamo({super.key, required this.prestamo});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Estado',
             valor: prestamo.estado,
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
             pesoFuenteValor: FontWeight.bold,
           ),
           _construirDivisor(),
@@ -442,7 +442,7 @@ const TarjetaDetallesPrestamo({super.key, required this.prestamo});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Valor a pagar',
             valor: prestamo.valorParaEstarAlDia.toMoney(),
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
             pesoFuenteValor: FontWeight.bold
           ),
           _construirDivisor(),
@@ -450,7 +450,7 @@ const TarjetaDetallesPrestamo({super.key, required this.prestamo});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Cuotas canceladas',
             valor: prestamo.cuotasCanceladas,
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
             pesoFuenteValor: FontWeight.bold
           ),
         ],
@@ -469,7 +469,7 @@ Widget _construirFilaDetalle({
     padding: const EdgeInsets.symmetric(vertical: 5.0), 
     child: Row(
       children: [
-        Icon(icono, size: 16, color: const Color.fromRGBO(0, 96, 152, 20)), 
+        Icon(icono, size: 16, color: const Color.fromRGBO(0, 96, 152, 1)), 
         const SizedBox(width: 2), 
         Expanded(
           child: Text(
@@ -527,7 +527,7 @@ const TarjetaPagosPrestamo({super.key, required this.prestamo});
             icono: Icons.keyboard_arrow_right,
             etiqueta: prestamo.transaccion,
             valor: prestamo.valor.toMoney(),
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
             pesoFuenteValor: FontWeight.bold,
           ),
           _construirFilaDetalle(

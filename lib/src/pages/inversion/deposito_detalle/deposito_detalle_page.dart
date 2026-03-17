@@ -33,7 +33,7 @@ class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
     return ScaffoldBootstrap(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromRGBO(0, 114, 181, 48),
+        backgroundColor: const Color.fromRGBO(0, 114, 181, 1),
         centerTitle: true,
         title: const Text(
           'Mi Inversión',
@@ -313,14 +313,14 @@ class _DepositoDetallePageState extends ConsumerState<DepositoDetallePage> {
                             Expanded(
                               child: Text(
                                 'Tabla de Pagos',
-                                style: TextStyle(fontSize: 14, color: Color.fromRGBO(0, 96, 152, 20), fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 14, color: Color.fromRGBO(0, 96, 152, 2), fontWeight: FontWeight.bold),
                               ),
                             ),
                             Text(
                               'VALOR',
                               style: TextStyle(
                                 fontSize: 14,
-                                color: Color.fromRGBO(0, 96, 152, 20), 
+                                color: Color.fromRGBO(0, 96, 152, 2), 
                                 fontWeight: FontWeight.bold, 
                               ),
                             ),
@@ -408,7 +408,7 @@ const TarjetaDetallesInversion({super.key, required this.inversion});
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(0, 96, 152, 20),
+                  color: Color.fromRGBO(0, 96, 152, 1),
                 ),
               ),
             ],
@@ -418,7 +418,7 @@ const TarjetaDetallesInversion({super.key, required this.inversion});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Plazo en días',
             valor: '${inversion.plazo} días',
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
           ),
           _construirDivisor(),
           
@@ -426,14 +426,14 @@ const TarjetaDetallesInversion({super.key, required this.inversion});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Fecha Vencimiento',
             valor: fechaFormateada,
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
           ),
           _construirDivisor(),
           _construirFilaDetalle(
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Tasa de Interés',
             valor: '${inversion.tasa}%',
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
             //pesoFuenteValor: FontWeight.bold,
           ),
           _construirDivisor(),
@@ -441,7 +441,7 @@ const TarjetaDetallesInversion({super.key, required this.inversion});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Mónto a recibir',
             valor: inversion.totalRecibir.toMoney(),
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
           ),
         ],
       ),
@@ -487,7 +487,7 @@ const TarjetaPagosInversion({super.key, required this.inversion});
             icono: Icons.keyboard_arrow_right,
             etiqueta: fechaTransaccion,
             valor: inversion.saldo.toMoney(),
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
           ),
           _construirDivisor(),
         ],

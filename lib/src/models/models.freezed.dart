@@ -3681,6 +3681,7 @@ mixin _$CambiarContraseniaState {
   bool get modoConfirmacion => throw _privateConstructorUsedError;
   bool get obscurecerClave => throw _privateConstructorUsedError;
   bool get permiteEditarUsuario => throw _privateConstructorUsedError;
+  bool get cargando => throw _privateConstructorUsedError;
 
   /// Serializes this CambiarContraseniaState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -3699,7 +3700,10 @@ abstract class $CambiarContraseniaStateCopyWith<$Res> {
       _$CambiarContraseniaStateCopyWithImpl<$Res, CambiarContraseniaState>;
   @useResult
   $Res call(
-      {bool modoConfirmacion, bool obscurecerClave, bool permiteEditarUsuario});
+      {bool modoConfirmacion,
+      bool obscurecerClave,
+      bool permiteEditarUsuario,
+      bool cargando});
 }
 
 /// @nodoc
@@ -3721,6 +3725,7 @@ class _$CambiarContraseniaStateCopyWithImpl<$Res,
     Object? modoConfirmacion = null,
     Object? obscurecerClave = null,
     Object? permiteEditarUsuario = null,
+    Object? cargando = null,
   }) {
     return _then(_value.copyWith(
       modoConfirmacion: null == modoConfirmacion
@@ -3734,6 +3739,10 @@ class _$CambiarContraseniaStateCopyWithImpl<$Res,
       permiteEditarUsuario: null == permiteEditarUsuario
           ? _value.permiteEditarUsuario
           : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
+              as bool,
+      cargando: null == cargando
+          ? _value.cargando
+          : cargando // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -3749,7 +3758,10 @@ abstract class _$$CambiarContraseniaStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool modoConfirmacion, bool obscurecerClave, bool permiteEditarUsuario});
+      {bool modoConfirmacion,
+      bool obscurecerClave,
+      bool permiteEditarUsuario,
+      bool cargando});
 }
 
 /// @nodoc
@@ -3770,6 +3782,7 @@ class __$$CambiarContraseniaStateImplCopyWithImpl<$Res>
     Object? modoConfirmacion = null,
     Object? obscurecerClave = null,
     Object? permiteEditarUsuario = null,
+    Object? cargando = null,
   }) {
     return _then(_$CambiarContraseniaStateImpl(
       modoConfirmacion: null == modoConfirmacion
@@ -3784,6 +3797,10 @@ class __$$CambiarContraseniaStateImplCopyWithImpl<$Res>
           ? _value.permiteEditarUsuario
           : permiteEditarUsuario // ignore: cast_nullable_to_non_nullable
               as bool,
+      cargando: null == cargando
+          ? _value.cargando
+          : cargando // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -3794,7 +3811,8 @@ class _$CambiarContraseniaStateImpl implements _CambiarContraseniaState {
   _$CambiarContraseniaStateImpl(
       {this.modoConfirmacion = false,
       this.obscurecerClave = false,
-      required this.permiteEditarUsuario});
+      required this.permiteEditarUsuario,
+      this.cargando = false});
 
   factory _$CambiarContraseniaStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$CambiarContraseniaStateImplFromJson(json);
@@ -3807,10 +3825,13 @@ class _$CambiarContraseniaStateImpl implements _CambiarContraseniaState {
   final bool obscurecerClave;
   @override
   final bool permiteEditarUsuario;
+  @override
+  @JsonKey()
+  final bool cargando;
 
   @override
   String toString() {
-    return 'CambiarContraseniaState(modoConfirmacion: $modoConfirmacion, obscurecerClave: $obscurecerClave, permiteEditarUsuario: $permiteEditarUsuario)';
+    return 'CambiarContraseniaState(modoConfirmacion: $modoConfirmacion, obscurecerClave: $obscurecerClave, permiteEditarUsuario: $permiteEditarUsuario, cargando: $cargando)';
   }
 
   @override
@@ -3823,13 +3844,15 @@ class _$CambiarContraseniaStateImpl implements _CambiarContraseniaState {
             (identical(other.obscurecerClave, obscurecerClave) ||
                 other.obscurecerClave == obscurecerClave) &&
             (identical(other.permiteEditarUsuario, permiteEditarUsuario) ||
-                other.permiteEditarUsuario == permiteEditarUsuario));
+                other.permiteEditarUsuario == permiteEditarUsuario) &&
+            (identical(other.cargando, cargando) ||
+                other.cargando == cargando));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, modoConfirmacion, obscurecerClave, permiteEditarUsuario);
+  int get hashCode => Object.hash(runtimeType, modoConfirmacion,
+      obscurecerClave, permiteEditarUsuario, cargando);
 
   /// Create a copy of CambiarContraseniaState
   /// with the given fields replaced by the non-null parameter values.
@@ -3850,10 +3873,10 @@ class _$CambiarContraseniaStateImpl implements _CambiarContraseniaState {
 
 abstract class _CambiarContraseniaState implements CambiarContraseniaState {
   factory _CambiarContraseniaState(
-          {final bool modoConfirmacion,
-          final bool obscurecerClave,
-          required final bool permiteEditarUsuario}) =
-      _$CambiarContraseniaStateImpl;
+      {final bool modoConfirmacion,
+      final bool obscurecerClave,
+      required final bool permiteEditarUsuario,
+      final bool cargando}) = _$CambiarContraseniaStateImpl;
 
   factory _CambiarContraseniaState.fromJson(Map<String, dynamic> json) =
       _$CambiarContraseniaStateImpl.fromJson;
@@ -3864,6 +3887,8 @@ abstract class _CambiarContraseniaState implements CambiarContraseniaState {
   bool get obscurecerClave;
   @override
   bool get permiteEditarUsuario;
+  @override
+  bool get cargando;
 
   /// Create a copy of CambiarContraseniaState
   /// with the given fields replaced by the non-null parameter values.

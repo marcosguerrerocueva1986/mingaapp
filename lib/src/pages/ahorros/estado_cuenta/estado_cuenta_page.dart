@@ -91,7 +91,7 @@ class ListaMesesEstadoPage extends ConsumerWidget {
                       ),
                       title: Text(
                         periodo.nombreMes,
-                        style: const TextStyle(fontWeight: FontWeight.bold,color: Color.fromRGBO(0, 96, 153, 10)),
+                        style: const TextStyle(fontWeight: FontWeight.bold,color: Color.fromRGBO(0, 96, 153, 1)),
                       ),
                       subtitle: Column(
                         crossAxisAlignment : CrossAxisAlignment.start,
@@ -134,7 +134,7 @@ final ResumenMesModel mesSeleccionado;
       backgroundColor: Colors.white,
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromRGBO(0, 114, 181, 48),
+        backgroundColor: const Color.fromRGBO(0, 114, 181, 1),
         elevation: 0,
         centerTitle: true,
         title: Text(mesSeleccionado.nombreMes, style: const TextStyle(color: Colors.white)),
@@ -180,7 +180,7 @@ final ResumenMesModel mesSeleccionado;
                   child: _buildDownloadButton(
                     label: "Descargar Pdf",
                     icon: Icons.picture_as_pdf,
-                    color: const Color.fromRGBO(0, 114, 181, 48),
+                    color: const Color.fromRGBO(0, 114, 181, 1),
                     onTap: () => EstadoCuentaExportService.exportarPDF(mesSeleccionado),
                   ),
                 ),
@@ -189,7 +189,7 @@ final ResumenMesModel mesSeleccionado;
                   child: _buildDownloadButton(
                     label: "Descargar Excel",
                     icon: Icons.picture_as_pdf,
-                    color: const Color.fromRGBO(0, 114, 181, 48),
+                    color: const Color.fromRGBO(0, 114, 181, 1),
                     onTap: () => EstadoCuentaExportService.exportarExcel(mesSeleccionado),
                   ),
                 ),

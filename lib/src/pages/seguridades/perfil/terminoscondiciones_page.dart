@@ -28,7 +28,7 @@ class TerminosCondicionesPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(0, 96, 153, 10),
+                  color: Color.fromRGBO(0, 96, 153, 1),
                 ),
               ),
             ),
