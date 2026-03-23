@@ -61,7 +61,7 @@ dependencies:
   qr_code_scanner: ^1.0.1
   quickalert: ^1.0.2
   reactive_forms: ^16.1.1
-  retrofit: ^4.0.3
+  retrofit: ^4.1.0
   riverpod_annotation: ^2.3.3
   riverpod_generator: ^2.3.9
   rsa_encrypt: ^2.0.0
@@ -81,7 +81,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^2.5.2
   json_serializable: ^6.8.0
-  retrofit_generator: 8.2.0
+  retrofit_generator: ^9.1.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
