@@ -294,7 +294,7 @@ with SingleTickerProviderStateMixin {
                             children: <Widget> [
                               Text(nombreCliente.toUpperCase(), 
                                 style: const TextStyle(
-                                color: Color.fromRGBO(0, 96, 153, 10),
+                                color: Color.fromRGBO(0, 96, 153, 1),
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold
                               ),

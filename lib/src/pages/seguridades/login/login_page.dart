@@ -235,7 +235,7 @@ _showResendButton = false;
                             "Ingrese con su usuario y contraseña de Minga Online",
                             style: TextStyle(
                               fontSize: 15,
-                              color: Color.fromRGBO(0, 114, 181, 48),
+                              color: Color.fromRGBO(0, 114, 181, 1),
                               fontWeight: FontWeight.bold,
                             ),
                           ),

@@ -317,14 +317,14 @@ class _CuentaDetallePageState extends ConsumerState<CuentaDetallePage> {
                         Expanded(
                           child: Text(
                             'Tabla de Pagos',
-                            style: TextStyle(fontSize: 14, color: Color.fromRGBO(0, 96, 152, 20), fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 14, color: Color.fromRGBO(0, 96, 152, 1), fontWeight: FontWeight.bold),
                           ),
                         ),
                         Text(
                           'VALOR',
                           style: TextStyle(
                             fontSize: 14,
-                            color: Color.fromRGBO(0, 96, 152, 20), 
+                            color: Color.fromRGBO(0, 96, 152, 1), 
                             fontWeight: FontWeight.bold, 
                           ),
                         ),
@@ -411,7 +411,7 @@ const TarjetaDetallesCuenta({super.key, required this.cuenta});
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(0, 96, 152, 20),
+                  color: Color.fromRGBO(0, 96, 152, 1),
                 ),
               ),
             ],
@@ -421,7 +421,7 @@ const TarjetaDetallesCuenta({super.key, required this.cuenta});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Saldo Disponible',
             valor: cuenta.saldo.toMoney(),
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
           ),
           _construirDivisor(),
           
@@ -436,7 +436,7 @@ const TarjetaDetallesCuenta({super.key, required this.cuenta});
             icono: Icons.keyboard_arrow_right,
             etiqueta: 'Estado',
             valor: cuenta.estado,
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
             pesoFuenteValor: FontWeight.bold,
           ),
         ],
@@ -483,7 +483,7 @@ const TarjetaPagosCuenta({super.key, required this.cuenta});
             icono: Icons.keyboard_arrow_right,
             etiqueta: fechaTransaccion,
             valor: cuenta.saldo.toMoney(),
-            colorValor: const Color.fromRGBO(0, 96, 152, 20),
+            colorValor: const Color.fromRGBO(0, 96, 152, 1),
           ),
           _construirDivisor(),
         ],

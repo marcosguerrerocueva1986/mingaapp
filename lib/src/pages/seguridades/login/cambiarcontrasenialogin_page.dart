@@ -58,7 +58,7 @@ class _CambiarContraseniaLoginPageState extends ConsumerState<CambiarContrasenia
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(0, 96, 153, 10),
+                      color: Color.fromRGBO(0, 96, 153, 1),
                     ),
                   ),
                 ),
@@ -109,15 +109,15 @@ class _CambiarContraseniaLoginPageState extends ConsumerState<CambiarContrasenia
                           borderRadius: BorderRadius.circular(12.0)),
                       enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
-                              color: Color.fromRGBO(0, 114, 181, 48)),
+                              color: Color.fromRGBO(0, 114, 181, 1)),
                           borderRadius: BorderRadius.circular(12.0)),
                       focusedBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
-                              color: Color.fromRGBO(0, 114, 181, 48)),
+                              color: Color.fromRGBO(0, 114, 181, 1)),
                           borderRadius: BorderRadius.circular(12.0)),
                       border: OutlineInputBorder(
                           borderSide: const BorderSide(
-                              color: Color.fromRGBO(0, 114, 181, 48)),
+                              color: Color.fromRGBO(0, 114, 181, 1)),
                           borderRadius: BorderRadius.circular(12.0))),
                 ),
                 const SizedBox(height: 16),

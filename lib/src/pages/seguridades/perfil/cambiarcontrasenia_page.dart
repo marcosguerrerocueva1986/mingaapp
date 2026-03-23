@@ -282,7 +282,8 @@ class _CambiarContraseniaState extends ConsumerState<CambiarContraseniaPage> {
                   SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: provider.cargando
+                    ? null: () {
                       controller.cambiarContrasenia(widget.codigoUsuario);
                     },
                     style: ElevatedButton.styleFrom(
@@ -293,7 +294,16 @@ class _CambiarContraseniaState extends ConsumerState<CambiarContraseniaPage> {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
-                    child: const Text(
+                    child: provider.cargando
+                    ? Container(
+                      color: Colors.black.withOpacity(0.3),
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          color: Color(0xFF0072B5),
+                          strokeWidth: 5,
+                        ),
+                      )) 
+                      : const Text(
                       'Cambiar contraseña',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),

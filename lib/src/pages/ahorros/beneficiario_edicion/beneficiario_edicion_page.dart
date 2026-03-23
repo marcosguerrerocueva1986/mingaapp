@@ -74,7 +74,7 @@ with SingleTickerProviderStateMixin {
                         dividerColor: Colors.transparent,
                         indicator: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
-                          color: const Color.fromRGBO(0, 96, 153, 10),
+                          color: const Color.fromRGBO(0, 96, 153, 1),
                         ),
                         labelColor: Colors.white, 
                         labelStyle: const TextStyle(
@@ -184,7 +184,7 @@ class _FormularioInternoState extends ConsumerState<_FormularioInterno> {
               const SizedBox(height: 24),
               const Text(
                 'Información personal:',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromRGBO(0, 96, 153, 10)),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromRGBO(0, 96, 153, 1)),
               ),
               if(provider.esValidacion) ...[
                 const SizedBox(
@@ -330,7 +330,7 @@ class _FormularioInternoState extends ConsumerState<_FormularioInterno> {
                       },
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
-                        backgroundColor: const Color.fromRGBO(0, 96, 153, 10),
+                        backgroundColor: const Color.fromRGBO(0, 96, 153, 1),
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                         shape: RoundedRectangleBorder(
@@ -580,7 +580,7 @@ class _FormularioExternoState extends ConsumerState<_FormularioExterno> {
                   flex: 1,
                     child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      backgroundColor: tipoIdentificacionSeleccionado == 'Cedula' ? const Color.fromRGBO(0, 96, 153, 10) : Colors.transparent, 
+                      backgroundColor: tipoIdentificacionSeleccionado == 'Cedula' ? const Color.fromRGBO(0, 96, 153, 1) : Colors.transparent, 
                       side: BorderSide(
                         color: tipoIdentificacionSeleccionado == 'Cedula' ? Colors.blue : Colors.blue, 
                       ),
@@ -607,7 +607,7 @@ class _FormularioExternoState extends ConsumerState<_FormularioExterno> {
                   flex: 1,
                    child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      backgroundColor: tipoIdentificacionSeleccionado == 'Ruc' ? const Color.fromRGBO(0, 96, 153, 10) : Colors.transparent, 
+                      backgroundColor: tipoIdentificacionSeleccionado == 'Ruc' ? const Color.fromRGBO(0, 96, 153, 1) : Colors.transparent, 
                       side: BorderSide(
                         color: tipoIdentificacionSeleccionado == 'Ruc' ? Colors.grey : Colors.blue, 
                       ),
@@ -632,7 +632,7 @@ class _FormularioExternoState extends ConsumerState<_FormularioExterno> {
                   flex: 1,
                    child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      backgroundColor: tipoIdentificacionSeleccionado == 'Pasaporte' ? const Color.fromRGBO(0, 96, 153, 10) : Colors.transparent, 
+                      backgroundColor: tipoIdentificacionSeleccionado == 'Pasaporte' ? const Color.fromRGBO(0, 96, 153, 1) : Colors.transparent, 
                       side: BorderSide(
                         color: tipoIdentificacionSeleccionado == 'Pasaporte' ? Colors.grey : Colors.blue, 
                       ),
@@ -688,7 +688,7 @@ class _FormularioExternoState extends ConsumerState<_FormularioExterno> {
                   flex: 1,
                    child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      backgroundColor: tipoCuentaSeleccionado == 'De Ahorros' ? const Color.fromRGBO(0, 96, 153, 10) : Colors.transparent, 
+                      backgroundColor: tipoCuentaSeleccionado == 'De Ahorros' ? const Color.fromRGBO(0, 96, 153, 1) : Colors.transparent, 
                       side: BorderSide(
                         color: tipoCuentaSeleccionado == 'De Ahorros' ? Colors.blue : Colors.blue, 
                       ),
@@ -713,7 +713,7 @@ class _FormularioExternoState extends ConsumerState<_FormularioExterno> {
                   flex: 1,
                    child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      backgroundColor: tipoCuentaSeleccionado == 'Corriente' ? const Color.fromRGBO(0, 96, 153, 10) : Colors.transparent, 
+                      backgroundColor: tipoCuentaSeleccionado == 'Corriente' ? const Color.fromRGBO(0, 96, 153, 1) : Colors.transparent, 
                       side: BorderSide(
                         color: tipoCuentaSeleccionado == 'Corriente' ? Colors.blue : Colors.blue, 
                       ),
@@ -759,7 +759,7 @@ class _FormularioExternoState extends ConsumerState<_FormularioExterno> {
               ),
             ),
             const SizedBox(height: defaultPadding * 2),
-            const Text('Información personal', style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 96, 153, 10))),
+            const Text('Información personal', style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 96, 153, 1))),
             const SizedBox(height: defaultPadding),
             ReactiveTextField(
               formControlName: 'email',
@@ -801,7 +801,7 @@ class _FormularioExternoState extends ConsumerState<_FormularioExterno> {
                 },
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
-                  backgroundColor: const Color.fromRGBO(0, 96, 153, 10),
+                  backgroundColor: const Color.fromRGBO(0, 96, 153, 1),
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                   shape: RoundedRectangleBorder(

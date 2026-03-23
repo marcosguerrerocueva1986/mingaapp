@@ -54,11 +54,11 @@ class _SeleccionBeneficiarioPageState extends ConsumerState<SeleccionBeneficiari
 
     return ScaffoldBootstrap(
       appBar: AppBar(
-        title: const Text('', style: TextStyle(color: Color.fromRGBO(0, 96, 153, 10), fontWeight: FontWeight.bold)),
+        title: const Text('', style: TextStyle(color: Color.fromRGBO(0, 96, 153, 1), fontWeight: FontWeight.bold)),
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Color.fromRGBO(0, 96, 153, 10)),
+          icon: const Icon(Icons.arrow_back_ios, color: Color.fromRGBO(0, 96, 153, 1)),
           onPressed: () => appRouter.pop(),
         ),
       ),
@@ -73,7 +73,7 @@ class _SeleccionBeneficiarioPageState extends ConsumerState<SeleccionBeneficiari
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(0, 96, 153, 10),
+                color: Color.fromRGBO(0, 96, 153, 1),
               ),
             ),
           ),
@@ -103,7 +103,7 @@ class _SeleccionBeneficiarioPageState extends ConsumerState<SeleccionBeneficiari
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(0, 96, 153, 10),
+                color: Color.fromRGBO(0, 96, 153, 1),
               ),
             ),
           ),
@@ -173,7 +173,7 @@ class BeneficiarioCard extends StatelessWidget {
           leading: const Icon(Icons.person_outline, size: 35, color: Color.fromRGBO(48, 155, 217, 1)),
           title: Text(
             beneficiario.nombre,
-            style: const TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 96, 153, 10), fontSize: 13),
+            style: const TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 96, 153, 1), fontSize: 13),
           ),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

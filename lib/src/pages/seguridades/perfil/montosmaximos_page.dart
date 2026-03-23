@@ -57,7 +57,7 @@ class _MontosMaximosPageState extends ConsumerState<MontosMaximosPage> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(0, 96, 153, 10),
+                    color: Color.fromRGBO(0, 96, 153, 1),
                   ),
                 ),
               ),
@@ -69,7 +69,7 @@ class _MontosMaximosPageState extends ConsumerState<MontosMaximosPage> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(0, 96, 153, 10),
+                    color: Color.fromRGBO(0, 96, 153, 1),
                   ),
                 ),
               ),
@@ -81,7 +81,7 @@ class _MontosMaximosPageState extends ConsumerState<MontosMaximosPage> {
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(0, 96, 153, 10),
+                    color: Color.fromRGBO(0, 96, 153, 1),
                   ),
                 ),
               ),
@@ -93,7 +93,7 @@ class _MontosMaximosPageState extends ConsumerState<MontosMaximosPage> {
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
-                    color: Color.fromRGBO(0, 96, 153, 10),
+                    color: Color.fromRGBO(0, 96, 153, 1),
                   ),
                 ),
               ),              
@@ -105,7 +105,7 @@ class _MontosMaximosPageState extends ConsumerState<MontosMaximosPage> {
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(0, 96, 153, 10),
+                    color: Color.fromRGBO(0, 96, 153, 1),
                   ),
                 ),
               ), 
@@ -117,7 +117,7 @@ class _MontosMaximosPageState extends ConsumerState<MontosMaximosPage> {
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.normal,
-                    color: Color.fromRGBO(0, 96, 153, 10),
+                    color: Color.fromRGBO(0, 96, 153, 1),
                   ),
                 ),
               ),

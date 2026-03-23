@@ -19,7 +19,7 @@ class _SolicitudesPageState extends ConsumerState<SolicitudesPage> {
       appBar: AppBar(
         title: const Padding(
           padding: EdgeInsets.fromLTRB(0,40,0,0),
-          child: Text('', style: TextStyle(color: Color.fromRGBO(0, 96, 153, 10)),),
+          child: Text('', style: TextStyle(color: Color.fromRGBO(0, 96, 153, 1)),),
         ),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
