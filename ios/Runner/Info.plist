@@ -45,5 +45,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Necesitamos tu ubicación para mostrarte los puntos de atención de Minga Móvil.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+    <string>Necesitamos tu ubicación para el correcto funcionamiento de los mapas.</string>
+	<key>NSFaceIDUsageDescription</key>
+<string>Necesitamos acceso a la biometría para que puedas ingresar a Minga Móvil de forma segura.</string>
 </dict>
 </plist>
